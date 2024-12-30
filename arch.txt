@@ -1,0 +1,55 @@
+src/
+  app/
+    store.ts                 # Configuration du store Redux
+    routes.tsx               # Fichier central des routes (Router DOM)
+  features/
+    authentication/          # Feature d'authentification
+      components/
+        LoginForm.tsx        # Composant de formulaire d'authentification
+      slices/
+        authSlice.ts         # Slice Redux pour l'authentification
+      api/
+        authApi.ts           # Appels API liés à l'authentification
+      context/
+        AuthContext.tsx      # Contexte pour l'état d'authentification
+      utils/
+        authHelpers.ts       # Fonctions d'utilitaires spécifiques à l'authentification
+      constants/
+        authConstants.ts     # Constantes de l'authentification
+      types/
+        authTypes.ts         # Définition des types pour l'authentification
+    products/                # Feature des produits
+      components/
+        ProductList.tsx      # Liste de produits
+      slices/
+        productSlice.ts      # Slice Redux pour les produits
+      api/
+        productApi.ts        # Appels API liés aux produits
+      utils/
+        productHelpers.ts    # Fonctions utilitaires pour les produits
+      constants/
+        productConstants.ts  # Constantes pour les produits
+      types/
+        productTypes.ts      # Définition des types pour les produits
+  layouts/
+    AdminLayout.tsx           # Layout Admin (header/footer)
+    UserLayout.tsx            # Layout Utilisateur (header/footer)
+  pages/
+    admin/
+      Dashboard.tsx           # Page Dashboard Admin
+    user/
+      Home.tsx                # Page d'accueil utilisateur
+  utils/
+    api.ts                    # Instance Axios ou Fetch pour les appels API
+    helpers.ts                # Fonctions utilitaires globales
+  constants/
+    globalConstants.ts        # Constantes globales pour l'application
+  types/
+    globalTypes.ts            # Types globaux partagés dans l'application
+  contexts/
+    GlobalContext.tsx          # Contexte global, s'il y a des informations partagées entre plusieurs features
+  assets/
+    images/                   # Images globales
+    styles/                   # Fichiers CSS globaux
+  index.tsx                    # Point d'entrée du projet
+  App.tsx                      # Composant racine

@@ -1,0 +1,43 @@
+src/
+├── app/
+│   └── index.tsx
+├── assets/
+├── config/
+│   └── env.ts
+├── core/
+│   ├── api/
+│   └── store/
+├── features/
+│   ├── historique/
+│   │   ├── components/
+│   │   ├── routes/
+│   │   └── styles/
+│   ├── informations/
+│   ├── mes-ids/
+│   ├── order/
+│   └── parrainage/
+├── hooks/
+│   ├── useBoundingClientRect.tsx
+│   └── useLocalStorage.tsx
+├── layouts/
+│   ├── private/
+│   └── public/
+├── pages/                    # Nouveau dossier Pages
+│   ├── HistoriquePage.tsx     # Exemple d'une page spécifique
+│   ├── InformationsPage.tsx
+│   ├── MesIdsPage.tsx
+│   ├── OrderPage.tsx
+│   └── ParrainagePage.tsx
+├── routes/
+│   ├── PrivateRoutes.tsx
+│   └── index.tsx
+├── shared/
+│   ├── components/
+│   └── utils/
+├── styles/
+│   └── global.css
+├── utils/
+│   ├── formatCurrencyUtil.ts
+│   └── globalConstantUtil.ts
+├── main.tsx
+└── index.tsx
