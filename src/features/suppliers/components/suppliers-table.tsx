@@ -35,7 +35,6 @@ const SuppliersTable = ({ suppliers }: ISupplierListProps) => {
         const response = await deleteSupplier({
           id: supplierId,
         }).unwrap();
-        console.log(response);
 
         if (response.success) {
           dispatch(

@@ -39,7 +39,6 @@ const Login = () => {
       if (values) {
         const response: ApiResponse<AuthResponse> =
           await signIn(values).unwrap();
-        console.log('sgn in response', response);
 
         if (response.success) {
           dispatch(

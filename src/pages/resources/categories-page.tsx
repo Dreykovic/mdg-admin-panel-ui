@@ -37,7 +37,6 @@ const CategoriesPage = () => {
 
   // Créer l'objet `filter`
   const filters = search ? { name: search } : undefined;
-  console.log(filters);
 
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeCategoriesQuery(

@@ -15,7 +15,6 @@ interface ICategoryListProps {
 }
 
 const CategoryList = ({ categories }: ICategoryListProps) => {
-  // console.log('categories', categories);
   const [updateInitialValues, setUpdateInitialValues] =
     useState<Partial<ProductCategory>>();
   const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
@@ -37,7 +36,6 @@ const CategoryList = ({ categories }: ICategoryListProps) => {
         const response = await deleteCategory({
           id: categoryId,
         }).unwrap();
-        console.log(response);
 
         if (response.success) {
           dispatch(

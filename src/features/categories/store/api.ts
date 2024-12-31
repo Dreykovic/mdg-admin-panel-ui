@@ -11,7 +11,7 @@ const appApi = apiSlice.injectEndpoints({
     >({
       query: (args) => {
         const { page, filters, pageSize } = args;
-        console.log('arg: ', args);
+
         return {
           url: `resources/categories`,
           params: { page, filters, pageSize },

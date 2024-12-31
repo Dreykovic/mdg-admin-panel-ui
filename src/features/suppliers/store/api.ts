@@ -11,7 +11,7 @@ const supplierApi = apiSlice.injectEndpoints({
     >({
       query: (args) => {
         const { page, filters, pageSize } = args;
-        console.log('arg: ', args);
+
         return {
           url: `resources/suppliers`,
           params: { page, filters, pageSize },
