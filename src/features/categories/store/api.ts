@@ -35,6 +35,14 @@ const appApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['CATEGORIES'], // Invalider les caches
     }),
+    deleteCategory: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `resources/categories/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['CATEGORIES'], // Invalider les caches
+    }),
   }),
   overrideExisting: false,
 });
@@ -44,4 +52,5 @@ export const {
   useGetSomeCategoriesQuery,
   useCreateCategoryMutation,
   useEditCategoryMutation,
+  useDeleteCategoryMutation,
 } = appApi;

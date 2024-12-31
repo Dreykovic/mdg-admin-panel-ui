@@ -12,12 +12,11 @@ const DeletionConfirmModal = ({
   handleClose,
   deleteHandler,
   isLoading,
-  title = 'Supprimer Définitivement ??',
-  message = "Êtes vous sûr de supprimer ce élément? Cette action est irreversible et peut entraîner la perte d'autres donnés",
+  title = 'Delete Permanently?',
+  message = 'Are you sure you want to delete this item? This action is irreversible and may lead to the loss of other data.',
 }: ModalProps & IDeleteModal) => {
   return (
     <>
-      {' '}
       <Modal
         show={show}
         onHide={handleClose}
@@ -39,16 +38,16 @@ const DeletionConfirmModal = ({
             className="btn btn-secondary"
             onClick={handleClose}
           >
-            Annuler
+            Cancel
           </button>
 
           <LoadingButton
             isLoading={isLoading}
-            text="Supprimer"
+            text="Delete"
             type="button"
             classes="btn btn-danger color-fff"
             handleClick={deleteHandler}
-            loadingText="Suppression"
+            loadingText="Deleting"
           />
         </Modal.Footer>
       </Modal>

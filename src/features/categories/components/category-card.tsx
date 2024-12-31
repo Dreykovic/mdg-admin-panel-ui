@@ -3,16 +3,27 @@ import { useCallback } from 'react';
 
 interface ICategoryProps {
   category: Partial<ProductCategory>;
+  setCategoryId: (arg: number) => void;
 
   setUpdateInitialValues: (arg: Partial<ProductCategory>) => void;
-  // handleDeleteItemModalShow: () => void;
+  handleDeleteItemModalShow: () => void;
   handleEditCategoryModalShow: () => void;
 }
 const CategoryCard = ({
   category,
+  setCategoryId,
   setUpdateInitialValues,
   handleEditCategoryModalShow,
+  handleDeleteItemModalShow,
 }: ICategoryProps) => {
+  const triggerDeletion = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation(); // Empêche la propagation du clic vers le <tr>
+      setCategoryId(category?.id as number);
+      handleDeleteItemModalShow();
+    },
+    [setCategoryId, handleDeleteItemModalShow],
+  );
   const triggerCategoryUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation(); // Empêche la propagation du clic vers le <tr>
@@ -58,8 +69,7 @@ const CategoryCard = ({
                 <button
                   type="button"
                   className="btn btn-outline-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteproject"
+                  onClick={triggerDeletion}
                 >
                   <i className="icofont-ui-delete text-danger"></i>
                 </button>
