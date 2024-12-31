@@ -6,7 +6,7 @@ import { PaginationResponse } from '@/types/api';
 const appApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getSomeCategories: builder.query<
-      PaginationResponse<Partial<ProductCategory>[]>,
+      PaginationResponse<ProductCategory[]>,
       { page?: number; filter?: object; pageSize?: number }
     >({
       query: (args) => {
@@ -27,9 +27,21 @@ const appApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['CATEGORIES'], // Invalider les caches
     }),
+    editCategory: builder.mutation({
+      query: (data: ProductCategory) => ({
+        url: `resources/categories/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['CATEGORIES'], // Invalider les caches
+    }),
   }),
   overrideExisting: false,
 });
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetSomeCategoriesQuery, useCreateCategoryMutation } = appApi;
+export const {
+  useGetSomeCategoriesQuery,
+  useCreateCategoryMutation,
+  useEditCategoryMutation,
+} = appApi;

@@ -7,14 +7,14 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { useCreateCategoryMutation } from '../store/api';
+import { useEditCategoryMutation } from '../store/api';
 import { ProductCategory } from '@/types/entity';
 
 const CategoryEditForm = ({
   show,
   handleClose,
   initialValues,
-}: ModalProps & { initialValues: ProductCategory }) => {
+}: ModalProps & { initialValues: Partial<ProductCategory> }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const validationsSchema = Yup.object({
@@ -22,11 +22,11 @@ const CategoryEditForm = ({
     id: Yup.string().required('Category id is required'),
   });
 
-  const [createCategory] = useCreateCategoryMutation();
+  const [editCategory] = useEditCategoryMutation();
 
   const handleSubmit = async (
-    values: ProductCategory,
-    { setSubmitting }: FormikHelpers<ProductCategory>,
+    values: Partial<ProductCategory>,
+    { setSubmitting }: FormikHelpers<Partial<ProductCategory>>,
   ) => {
     try {
       if (values) {
@@ -35,7 +35,9 @@ const CategoryEditForm = ({
           name: values.name,
         };
 
-        const response: ApiResponse<null> = await createCategory(data).unwrap();
+        const response: ApiResponse<ProductCategory> = await editCategory(
+          data as ProductCategory,
+        ).unwrap();
 
         if (response.success) {
           dispatch(

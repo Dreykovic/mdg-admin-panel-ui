@@ -1,9 +1,28 @@
 import { ProductCategory } from '@/types/entity';
+import { useCallback } from 'react';
 
 interface ICategoryProps {
   category: Partial<ProductCategory>;
+
+  setUpdateInitialValues: (arg: Partial<ProductCategory>) => void;
+  // handleDeleteItemModalShow: () => void;
+  handleEditCategoryModalShow: () => void;
 }
-const CategoryCard = ({ category }: ICategoryProps) => {
+const CategoryCard = ({
+  category,
+  setUpdateInitialValues,
+  handleEditCategoryModalShow,
+}: ICategoryProps) => {
+  const triggerCategoryUpdate = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation(); // Empêche la propagation du clic vers le <tr>
+
+      const values: Partial<ProductCategory> = category;
+      setUpdateInitialValues(values);
+      handleEditCategoryModalShow();
+    },
+    [setUpdateInitialValues, handleEditCategoryModalShow],
+  );
   return (
     <>
       <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
@@ -32,8 +51,7 @@ const CategoryCard = ({ category }: ICategoryProps) => {
                 <button
                   type="button"
                   className="btn btn-outline-secondary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editproject"
+                  onClick={triggerCategoryUpdate}
                 >
                   <i className="icofont-edit text-success"></i>
                 </button>
