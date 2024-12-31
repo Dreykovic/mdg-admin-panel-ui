@@ -10,11 +10,11 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 
 import NoCardData from '@/components/ui/no-data/no-card-data';
 
-interface ICategoryList {
+interface ICategoryListProps {
   categories: Partial<ProductCategory>[];
 }
 
-const CategoryList = ({ categories }: ICategoryList) => {
+const CategoryList = ({ categories }: ICategoryListProps) => {
   // console.log('categories', categories);
   const [updateInitialValues, setUpdateInitialValues] =
     useState<Partial<ProductCategory>>();

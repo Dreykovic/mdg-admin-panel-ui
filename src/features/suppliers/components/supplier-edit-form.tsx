@@ -7,19 +7,14 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { useCreateSupplierMutation } from '../store/api';
+import { useEditSupplierMutation } from '../store/api';
 import { Supplier } from '@/types/entity';
-const initialValues: Partial<Supplier> = {
-  name: '',
-  address1: '',
-  address2: '',
-  city: '',
-  state: '',
-  country: '',
-  postalCode: '',
-};
 
-const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
+const SupplierEditForm = ({
+  show,
+  handleClose,
+  initialValues,
+}: ModalProps & { initialValues: Partial<Supplier> }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const validationsSchema = Yup.object({
@@ -48,7 +43,7 @@ const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
       ),
   });
 
-  const [createSupplier] = useCreateSupplierMutation();
+  const [editSupplier] = useEditSupplierMutation();
 
   const handleSubmit = async (
     values: Partial<Supplier>,
@@ -57,11 +52,19 @@ const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
     try {
       if (values) {
         const data: Partial<Supplier> = {
-          ...values,
+          id: values.id,
+          name: values.name,
+          address1: values.address1,
+          address2: values.address2,
+          state: values.state,
+          city: values.city,
+          country: values.country,
+          postalCode: values.postalCode,
         };
 
-        const response: ApiResponse<Supplier> =
-          await createSupplier(data).unwrap();
+        const response: ApiResponse<Supplier> = await editSupplier(
+          data as Supplier,
+        ).unwrap();
 
         if (response.success) {
           dispatch(
@@ -251,4 +254,4 @@ const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
   );
 };
 
-export default SupplierCreateForm;
+export default SupplierEditForm;

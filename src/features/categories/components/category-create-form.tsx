@@ -8,7 +8,7 @@ import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { useCreateCategoryMutation } from '../store/api';
-import { ProductCategory } from '@/types/entity';
+import { ProductCategory, Supplier } from '@/types/entity';
 const initialValues: Partial<ProductCategory> = { name: '' };
 
 const CategoryCreateForm = ({ show, handleClose }: ModalProps) => {
@@ -31,7 +31,8 @@ const CategoryCreateForm = ({ show, handleClose }: ModalProps) => {
           name: values.name,
         };
 
-        const response: ApiResponse<null> = await createCategory(data).unwrap();
+        const response: ApiResponse<Supplier> =
+          await createCategory(data).unwrap();
 
         if (response.success) {
           dispatch(

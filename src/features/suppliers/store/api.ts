@@ -1,5 +1,5 @@
 import apiSlice from '@/store/api-slice';
-import { ProductCategory, Supplier } from '@/types/entity';
+import { Supplier } from '@/types/entity';
 
 import { PaginationResponse } from '@/types/api';
 
@@ -28,7 +28,7 @@ const supplierApi = apiSlice.injectEndpoints({
       invalidatesTags: ['SUPPLIERS'], // Invalider les caches
     }),
     editSupplier: builder.mutation({
-      query: (data: ProductCategory) => ({
+      query: (data: Supplier) => ({
         url: `resources/suppliers/update/${data.id}`,
         method: 'PUT',
         body: data,

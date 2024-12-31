@@ -1,11 +1,67 @@
 import { Supplier } from '@/types/entity';
 import SupplierRow from './supplier-row';
+import { useCallback, useState } from 'react';
+
+import { useDeleteSupplierMutation } from '../store/api';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store';
 
 import NoTableData from '@/components/ui/no-data/no-table-data';
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import SupplierEditForm from './supplier-edit-form';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 interface ISupplierListProps {
   suppliers: Partial<Supplier>[];
 }
 const SuppliersTable = ({ suppliers }: ISupplierListProps) => {
+  const [updateInitialValues, setUpdateInitialValues] =
+    useState<Partial<Supplier>>();
+  const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
+
+  const handleDeleteItemModalClose = () => setShowDeleteItemModal(false);
+  const handleDeleteItemModalShow = () => setShowDeleteItemModal(true);
+  const [showEditSupplierModal, setShowEditSupplierModal] = useState(false);
+
+  const handleEditSupplierModalClose = () => setShowEditSupplierModal(false);
+  const handleEditSupplierModalShow = () => setShowEditSupplierModal(true);
+  const [supplierId, setSupplierId] = useState<number>();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const [deleteSupplier, { isLoading }] = useDeleteSupplierMutation();
+
+  const handleDeletion = useCallback(async () => {
+    try {
+      if (supplierId) {
+        const response = await deleteSupplier({
+          id: supplierId,
+        }).unwrap();
+        console.log(response);
+
+        if (response.success) {
+          dispatch(
+            showAlert({
+              title: 'Succès !',
+              message: response.message,
+            }),
+          );
+        }
+      } else {
+        throw new Error('No data provided');
+      }
+    } catch (error) {
+      console.error(error);
+
+      dispatch(
+        showAlert({
+          title: 'Erreur !',
+          message: 'An error occurred during deletion' + JSON.stringify(error),
+          success: false,
+        }),
+      );
+    } finally {
+      handleDeleteItemModalClose();
+    }
+  }, [supplierId]);
   return (
     <>
       <div className="card-body">
@@ -27,7 +83,14 @@ const SuppliersTable = ({ suppliers }: ISupplierListProps) => {
           <tbody>
             {suppliers.length > 0 ? (
               suppliers.map((supplier, index) => (
-                <SupplierRow supplier={supplier} key={index++} />
+                <SupplierRow
+                  supplier={supplier}
+                  key={supplier.id ?? index++}
+                  setSupplierId={setSupplierId}
+                  handleDeleteItemModalShow={handleDeleteItemModalShow}
+                  handleEditSupplierModalShow={handleEditSupplierModalShow}
+                  setUpdateInitialValues={setUpdateInitialValues}
+                />
               ))
             ) : (
               <>
@@ -37,6 +100,17 @@ const SuppliersTable = ({ suppliers }: ISupplierListProps) => {
           </tbody>
         </table>
       </div>
+      <SupplierEditForm
+        show={showEditSupplierModal}
+        handleClose={handleEditSupplierModalClose}
+        initialValues={updateInitialValues as Partial<Supplier>}
+      />
+      <DeletionConfirmModal
+        show={showDeleteItemModal}
+        handleClose={handleDeleteItemModalClose}
+        isLoading={isLoading}
+        deleteHandler={handleDeletion}
+      />
     </>
   );
 };
