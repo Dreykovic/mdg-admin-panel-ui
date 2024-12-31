@@ -7,6 +7,7 @@ import { useDeleteCategoryMutation } from '../store/api';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
+import NoDataComponents from '@/components/ui/no-data';
 
 interface ICategoryList {
   categories: Partial<ProductCategory>[];
@@ -65,16 +66,22 @@ const CategoryList = ({ categories }: ICategoryList) => {
   return (
     <>
       <div className="row g-3 gy-5 py-3 row-deck">
-        {categories.map((category, index) => (
-          <CategoryCard
-            key={category.id ?? index++}
-            category={category}
-            setCategoryId={setCategoryId}
-            handleDeleteItemModalShow={handleDeleteItemModalShow}
-            handleEditCategoryModalShow={handleEditCategoryModalShow}
-            setUpdateInitialValues={setUpdateInitialValues}
-          />
-        ))}
+        {categories.length > 0 ? (
+          categories.map((category, index) => (
+            <CategoryCard
+              key={category.id ?? index++}
+              category={category}
+              setCategoryId={setCategoryId}
+              handleDeleteItemModalShow={handleDeleteItemModalShow}
+              handleEditCategoryModalShow={handleEditCategoryModalShow}
+              setUpdateInitialValues={setUpdateInitialValues}
+            />
+          ))
+        ) : (
+          <>
+            <NoDataComponents />
+          </>
+        )}
       </div>
       <CategoryEditForm
         show={showEditCategoryModal}
