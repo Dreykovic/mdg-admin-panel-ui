@@ -16241,63 +16241,94 @@ fieldset:disabled .btn {
   width: auto;
 }
 :root {
-  --dark-color: #2e2e2e; /* Gris très foncé */
-  --color-fff: #ffffff; /* Blanc pur */
-  --color-100: #f9f9f9; /* Blanc légèrement adouci */
-  --color-200: #f4f4f4; /* Gris clair doux */
-  --color-300: #e9e9e9; /* Gris très clair */
-  --color-400: #dcdcdc; /* Gris neutre clair */
-  --color-500: #bfbfbf; /* Gris neutre moyen */
-  --color-600: #a6a6a6; /* Gris moyen soutenu */
-  --color-700: #8c8c8c; /* Gris soutenu */
-  --color-800: #666666; /* Gris foncé */
-  --color-900: #3c3c3c; /* Gris sombre */
+  --dark-color: #2c2f33;
+  --color-fff: #ffffff;
+  --color-100: #f5f9f6;
+  --color-200: #eaf2ec;
+  --color-300: #d6e6d9;
+  --color-400: #b5d4b8;
+  --color-500: #629d72; /* Primary (plus foncé) */
+  --color-600: #82b690; /* Success (plus vif) */
+  --color-700: #4a7f58;
+  --color-800: #3c6847;
+  --color-900: #2c5135;
+  --color-000: #000000;
 
-  --border-color: #dcdcdc; /* Gris neutre clair */
-  --card-color: #ffffff; /* Blanc pur */
-  --body-color: #f9f9f9; /* Fond légèrement gris pour éviter le blanc pur */
-  --white-color: #ffffff; /* Blanc pur */
-  --sidebar-color: #f4f4f4; /* Gris clair doux pour les barres latérales */
-  --text-color: #2e2e2e; /* Gris très foncé pour un bon contraste */
-  --hc-font-color: #666666; /* Gris foncé pour les textes secondaires */
-  --hc-bg-color: #e9e9e9; /* Gris très clair pour les zones mises en avant */
+  --border-color: #b5d4b8;
+  --card-color: #ffffff;
+  --body-color: #f5f9f6;
+  --white-color: #f8f8f8;
+  --sidebar-color: #eaf2ec;
+  --text-color: #2c2f33;
+  --hc-font-color: #4a7f58;
+  --hc-bg-color: #eaf2ec;
 
-  --primary-color: #666666; /* Gris foncé pour les éléments principaux */
-  --success-color: #8c8c8c; /* Gris moyen pour indiquer un succès */
-  --secondary-color: #bfbfbf; /* Gris neutre pour les accents secondaires */
-  --warning-color: #dcdcdc; /* Gris clair pour un effet d’alerte subtil */
-  --error-color: #8c8c8c; /* Gris soutenu pour les erreurs */
-  --info-color: #e9e9e9; /* Gris très clair pour les messages d’information */
+  --primary-color: #629d72; /* Vert plus profond et apaisé */
+  --success-color: #7acb7a; /* Vert validation (plus lumineux et identifiable) */
+  --secondary-color: #d4a05e; /* Beige doré pour éviter la confusion avec Warning */
+  --warning-color: #f0932b; /* Orange ambré plus intense */
+  --error-color: #f44336;
+  --info-color: #2196f3;
 }
 
 [data-theme='dark'] {
-  --dark-color: #121212; /* Noir/gris foncé */
-  --color-fff: #f4f4f4; /* Gris clair pour le texte */
-  --color-100: #1e1e1e;
-  --color-200: #2e2e2e;
-  --color-300: #3c3c3c;
-  --color-400: #666666;
-  --color-500: #8c8c8c;
-  --color-600: #bfbfbf;
-  --color-700: #dcdcdc;
-  --color-800: #f4f4f4;
-  --color-900: #ffffff;
+  --dark-color: #181a1b;
+  --color-fff: #ffffff;
+  --color-100: #2c2f33;
+  --color-200: #324136;
+  --color-300: #3c5543;
+  --color-400: #4a7f58;
+  --color-500: #629d72; /* Primary (plus foncé) */
+  --color-600: #7acb7a; /* Success (plus vif) */
+  --color-700: #b5d4b8;
+  --color-800: #eaf2ec;
+  --color-900: #f5f9f6;
+  --color-000: #000000;
 
-  --border-color: #3c3c3c;
-  --card-color: #1e1e1e;
-  --body-color: #121212;
-  --white-color: #2e2e2e;
-  --sidebar-color: #1e1e1e;
-  --text-color: #f4f4f4;
-  --hc-font-color: #8c8c8c;
-  --hc-bg-color: #3c3c3c;
+  --border-color: #4a7f58;
+  --card-color: #324136;
+  --body-color: #181a1b;
+  --white-color: #e0e0e0;
+  --sidebar-color: #2c2f33;
+  --text-color: #f0f0f0;
+  --hc-font-color: #b5d4b8;
+  --hc-bg-color: #3c5543;
 
-  --primary-color: #666666;
-  --success-color: #8c8c8c;
-  --secondary-color: #bfbfbf;
-  --warning-color: #dcdcdc;
-  --error-color: #1e1e1e;
-  --info-color: #f4f4f4;
+  --primary-color: #629d72; /* Vert principal */
+  --success-color: #7acb7a; /* Vert vif pour le succès */
+  --secondary-color: #d4a05e; /* Beige doré pour éviter la confusion avec le warning */
+  --warning-color: #f0932b; /* Orange intense */
+  --error-color: #f44336;
+  --info-color: #2196f3;
+}
+
+[data-theme='dark'] [class='theme-indigo'] {
+  --secondary-color: #d4a05e;
+  --body-color: #324136;
+  --border-color: #629d72;
+  --card-color: #324136;
+  --primary-gradient: linear-gradient(
+    45deg,
+    #181a1b,
+    #4a7f58,
+    #82b690,
+    #f5f9f6
+  );
+}
+
+[class='theme-indigo'] {
+  --primary-color: #629d72;
+  --success-color: #7acb7a;
+  --secondary-color: #d4a05e;
+  --warning-color: #f0932b;
+  --chart-color1: #4a7f58;
+  --chart-color2: #f0932b;
+  --chart-color3: #2196f3;
+  --chart-color4: #f44336;
+  --chart-color5: #ff9800;
+  --chart-color6: #82b690;
+  --chart-color7: #555555;
+  --primary-gradient: linear-gradient(45deg, #4a7f58, #82b690, #f5f9f6);
 }
 
 .secondary-color {
@@ -16306,7 +16337,6 @@ fieldset:disabled .btn {
 .secondary-color-fill {
   fill: var(--secondary-color);
 }
-
 body {
   -moz-transition: ease 0.1s;
   -o-transition: ease 0.1s;
