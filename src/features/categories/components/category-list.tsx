@@ -6,13 +6,13 @@ interface ICategoryList {
 }
 
 const CategoryList = ({ categories }: ICategoryList) => {
-  console.log('categories', categories);
+  // console.log('categories', categories);
 
   return (
     <>
       <div className="row g-3 gy-5 py-3 row-deck">
         {categories.map((category, index) => (
-          <CategoryCard key={category.id ?? index++} />
+          <CategoryCard key={category.id ?? index++} category={category} />
         ))}
       </div>
     </>

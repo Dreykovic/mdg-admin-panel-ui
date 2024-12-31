@@ -1,16 +1,23 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 interface IPaginationProps {
   currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+  totalElements: number; // Total des éléments
+  pageSize: number; // Taille d'une page
+  onPageChange?: (page: number) => void;
 }
-const Pagination = ({
+
+const CustomPagination = ({
   currentPage,
-  totalPages,
+  totalElements,
+  pageSize,
   onPageChange,
 }: IPaginationProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Calculer le nombre total de pages
+  const totalPages = Math.ceil(totalElements / pageSize);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -71,4 +78,4 @@ const Pagination = ({
   );
 };
 
-export default Pagination;
+export default CustomPagination;

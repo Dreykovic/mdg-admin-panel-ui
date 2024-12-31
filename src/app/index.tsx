@@ -31,9 +31,10 @@ const App: React.FC = () => {
       setRoutes(guestRoutes);
     }
 
-    setInterval(() => {
-      setLoading(false);
-    }, 1000);
+    // setInterval(() => {
+    //   setLoading(false);
+    // }, 0);
+    setLoading(false);
     dispatch(setTheme({ theme: currentTheme }));
   }, [isAuthenticated]);
 

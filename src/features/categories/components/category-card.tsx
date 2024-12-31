@@ -1,4 +1,9 @@
-const CategoryCard = () => {
+import { ProductCategory } from '@/types/entity';
+
+interface ICategoryProps {
+  category: Partial<ProductCategory>;
+}
+const CategoryCard = ({ category }: ICategoryProps) => {
   return (
     <>
       <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
@@ -7,13 +12,10 @@ const CategoryCard = () => {
             <div className="d-flex align-items-center justify-content-between mt-5">
               <div className="lesson_name">
                 <div className="project-block light-info-bg">
-                  <i className="icofont-paint"></i>
+                  <i className="icofont-bricks"></i>
                 </div>
-                <span className="small text-muted project_name fw-bold">
-                  {' '}
-                  Social Geek Made{' '}
-                </span>
-                <h6 className="mb-0 fw-bold  fs-6  mb-2">UI/UX Design</h6>
+
+                <h6 className="mb-0 fw-bold  fs-6  mb-2"> {category.name} </h6>
               </div>
               <div
                 className="btn-group"
