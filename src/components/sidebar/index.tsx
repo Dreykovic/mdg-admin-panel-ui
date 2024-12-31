@@ -52,7 +52,7 @@ const SideBar = () => {
             <span className="logo-icon">
               <Icon.House className="w-10 h-10" />
             </span>
-            <span className="logo-text">OptiRH</span>
+            <span className="logo-text">MDG</span>
           </a>
 
           <ul className="menu-list flex-grow-1 mt-3">{contentRender}</ul>
