@@ -10,11 +10,16 @@ import CustomPagination from '@/components/ui/pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import CardLoading from '@/components/ui/loading/card-loading';
+import CategoryCreateForm from '@/features/categories/components/create-form';
 
 const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
 
+  const handleCreateCategoryModalClose = () =>
+    setShowCreateCategoryModal(false);
+  const handleCreateCategoryModalShow = () => setShowCreateCategoryModal(true);
   // États locaux pour `pageSize` et `search`
   const [pageSize, setPageSize] = useState(
     parseInt(searchParams.get('pageSize') || '10', 10),
@@ -111,8 +116,7 @@ const CategoriesPage = () => {
               <button
                 type="button"
                 className="btn btn-dark w-sm-100"
-                data-bs-toggle="modal"
-                data-bs-target="#createproject"
+                onClick={handleCreateCategoryModalShow}
               >
                 <i className="icofont-plus-circle me-2 fs-6"></i>Create Category
               </button>
@@ -133,6 +137,10 @@ const CategoriesPage = () => {
           />
         </>
       )}
+      <CategoryCreateForm
+        show={showCreateCategoryModal}
+        handleClose={handleCreateCategoryModalClose}
+      />
     </>
   );
 };

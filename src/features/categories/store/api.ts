@@ -19,9 +19,17 @@ const appApi = apiSlice.injectEndpoints({
       },
       providesTags: ['CATEGORIES'], // Ajouter un tag
     }),
+    createCategory: builder.mutation({
+      query: (data: Partial<ProductCategory>) => ({
+        url: 'resources/categories/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['CATEGORIES'], // Invalider les caches
+    }),
   }),
   overrideExisting: false,
 });
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetSomeCategoriesQuery } = appApi;
+export const { useGetSomeCategoriesQuery, useCreateCategoryMutation } = appApi;
