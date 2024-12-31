@@ -7,14 +7,14 @@ const appApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getSomeCategories: builder.query<
       PaginationResponse<ProductCategory[]>,
-      { page?: number; filter?: object; pageSize?: number }
+      { page?: number; filters?: string; pageSize?: number }
     >({
       query: (args) => {
-        const { page, filter, pageSize } = args;
+        const { page, filters, pageSize } = args;
         console.log('arg: ', args);
         return {
           url: `resources/categories`,
-          params: { page, filter, pageSize },
+          params: { page, filters, pageSize },
         };
       },
       providesTags: ['CATEGORIES'], // Ajouter un tag

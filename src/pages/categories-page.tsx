@@ -36,11 +36,12 @@ const CategoriesPage = () => {
   const page = parseInt(searchParams.get('page') || '1', 10);
 
   // Créer l'objet `filter`
-  const filter = { name: search };
+  const filters = search ? { name: search } : undefined;
+  console.log(filters);
 
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeCategoriesQuery(
-    { page, pageSize, filter },
+    { page, pageSize, filters: JSON.stringify(filters ?? '') },
     { refetchOnMountOrArgChange: true },
   );
 
@@ -52,7 +53,7 @@ const CategoriesPage = () => {
     setSearchParams({
       page: page.toString(),
       pageSize: pageSize.toString(),
-      filter: JSON.stringify(filter), // Sérialiser l'objet `filter`
+      filters: JSON.stringify(filters), // Sérialiser l'objet `filter`
     });
   };
 
@@ -66,7 +67,7 @@ const CategoriesPage = () => {
     setSearchParams({
       page: '1',
       pageSize: size.toString(),
-      filter: JSON.stringify(filter), // Conserver le filtre actuel
+      filters: JSON.stringify(filters), // Conserver le filtre actuel
     });
   };
 
