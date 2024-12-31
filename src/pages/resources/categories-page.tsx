@@ -10,7 +10,7 @@ import CustomPagination from '@/components/ui/pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import CardLoading from '@/components/ui/loading/card-loading';
-import CategoryCreateForm from '@/features/categories/components/create-form';
+import CategoryCreateForm from '@/features/categories/components/category-create-form';
 
 const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -126,7 +126,7 @@ const CategoriesPage = () => {
         </div>
       </div>
       {isFetching ? (
-        <CardLoading number={10} />
+        <CardLoading number={9} />
       ) : (
         <>
           <CategoryList categories={someCategories ?? []} />

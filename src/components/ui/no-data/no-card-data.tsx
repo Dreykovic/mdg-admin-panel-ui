@@ -2,7 +2,7 @@ type Props = {
   text?: string;
 };
 
-const NoDataComponents = (props: Props) => {
+const NoCardData = (props: Props) => {
   return (
     <>
       <div className="card" style={{ width: '100%' }}>
@@ -24,4 +24,4 @@ const NoDataComponents = (props: Props) => {
   );
 };
 
-export default NoDataComponents;
+export default NoCardData;

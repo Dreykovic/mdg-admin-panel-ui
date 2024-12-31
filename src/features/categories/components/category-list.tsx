@@ -1,13 +1,14 @@
 import { useCallback, useState } from 'react';
 import CategoryCard from './category-card';
 import { ProductCategory } from '@/types/entity';
-import CategoryEditForm from './edit-form';
+import CategoryEditForm from './category-edit-form';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { useDeleteCategoryMutation } from '../store/api';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
-import NoDataComponents from '@/components/ui/no-data';
+
+import NoCardData from '@/components/ui/no-data/no-card-data';
 
 interface ICategoryList {
   categories: Partial<ProductCategory>[];
@@ -79,7 +80,7 @@ const CategoryList = ({ categories }: ICategoryList) => {
           ))
         ) : (
           <>
-            <NoDataComponents />
+            <NoCardData />
           </>
         )}
       </div>
