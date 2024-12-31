@@ -106,6 +106,13 @@ export interface Supplier extends BaseEntity {
   productDetails: ProductDetail[];
 }
 
+export interface MarginLevel extends BaseEntity {
+  // Properties
+  name: string; // Nom du fournisseur
+  margin: number;
+  productDetails: ProductDetail[];
+}
+
 export interface ProductDetail extends BaseEntity {
   barcode: string;
   isActive: boolean;

@@ -5,7 +5,8 @@ import { lazy } from 'react';
 
 import { RoutesConfigType } from '@/types/routes-type';
 import CategoriesPage from '@/pages/resources/categories-page';
-import SUppliersPage from '@/pages/resources/suppliers-page';
+import SuppliersPage from '@/pages/resources/suppliers-page';
+import MarginsPage from '@/pages/resources/margins-page';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {
@@ -31,8 +32,17 @@ export const authRoutes: RoutesConfigType = {
     name: 'supplier-list',
 
     path: '/resources/suppliers',
-    component: <SUppliersPage />,
+    component: <SuppliersPage />,
     pageName: 'Suppliers Page',
+  },
+  margin: {
+    navLink: 'marginNavId',
+
+    name: 'margin-list',
+
+    path: '/resources/margins',
+    component: <MarginsPage />,
+    pageName: 'Margins Page',
   },
 };
 export const guestRoutes: RoutesConfigType = {

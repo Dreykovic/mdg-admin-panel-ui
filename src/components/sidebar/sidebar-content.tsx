@@ -42,6 +42,13 @@ export const data: ISideBarLink[] = [
         link: '/resources/suppliers',
         targetPageName: 'supplier-list',
       },
+      {
+        id: 'marginNavId',
+        collapse: false,
+        label: 'Margin Levels',
+        link: '/resources/margins',
+        targetPageName: 'margin-list',
+      },
     ],
   },
 ];
