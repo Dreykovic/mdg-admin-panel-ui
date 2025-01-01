@@ -90,7 +90,7 @@ const CategoryCreateForm = ({ show, handleClose }: ModalProps) => {
                 <div className="modal-content">
                   <div className="modal-body">
                     <div className="mb-3">
-                      <label htmlFor="name" className="form-label">
+                      <label htmlFor="name" className="form-label required">
                         Category Name
                       </label>
                       <Field name="name" type="text" className="form-control" />

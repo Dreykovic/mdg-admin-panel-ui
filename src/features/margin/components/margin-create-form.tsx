@@ -98,7 +98,7 @@ const MarginCreateForm = ({ show, handleClose }: ModalProps) => {
                   <div className="modal-body">
                     {/* Margin Name */}
                     <div className="mb-3">
-                      <label htmlFor="name" className="form-label">
+                      <label htmlFor="name" className="form-label required">
                         Margin Name
                       </label>
                       <Field name="name" type="text" className="form-control" />
@@ -111,7 +111,7 @@ const MarginCreateForm = ({ show, handleClose }: ModalProps) => {
 
                     {/* MArgin Level */}
                     <div className="mb-3">
-                      <label htmlFor="margin" className="form-label">
+                      <label htmlFor="margin" className="form-label required">
                         MArgin Level
                       </label>
                       <Field

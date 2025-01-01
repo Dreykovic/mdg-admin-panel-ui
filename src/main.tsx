@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import '@/styles/global.css';
+import '@/styles/styles.css';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';

@@ -41,12 +41,11 @@ const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
     country: Yup.string()
       .required('Country is required.')
       .max(100, 'Country must be 100 characters or less.'),
-    postalCode: Yup.string()
-      .required('Postal code is required.')
-      .matches(
-        /^[0-9]{5}(-[0-9]{4})?$/,
-        'Postal code must be a valid format (e.g., 12345 or 12345-6789).',
-      ),
+    postalCode: Yup.string().required('Postal code is required.'),
+    // .matches(
+    //   /^[0-9]{5}(-[0-9]{4})?$/,
+    //   'Postal code must be a valid format (e.g., 12345 or 12345-6789).',
+    // ),
   });
 
   const [createSupplier] = useCreateSupplierMutation();
@@ -103,6 +102,7 @@ const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
         keyboard={false}
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        size="lg"
       >
         <Formik
           initialValues={initialValues}
@@ -120,7 +120,7 @@ const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
                   <div className="modal-body">
                     {/* Supplier Name */}
                     <div className="mb-3">
-                      <label htmlFor="name" className="form-label">
+                      <label htmlFor="name" className="form-label required">
                         Supplier Name
                       </label>
                       <Field name="name" type="text" className="form-control" />
@@ -130,103 +130,128 @@ const SupplierCreateForm = ({ show, handleClose }: ModalProps) => {
                         className="text-danger"
                       />
                     </div>
-
-                    {/* Address Line 1 */}
-                    <div className="mb-3">
-                      <label htmlFor="address1" className="form-label">
-                        Address Line 1
-                      </label>
-                      <Field
-                        name="address1"
-                        type="text"
-                        className="form-control"
-                      />
-                      <ErrorMessage
-                        name="address1"
-                        component="div"
-                        className="text-danger"
-                      />
+                    <div className="row">
+                      <div className="col">
+                        {/* Address Line 1 */}
+                        <div className="mb-3">
+                          <label
+                            htmlFor="address1"
+                            className="form-label required"
+                          >
+                            Address Line 1
+                          </label>
+                          <Field
+                            name="address1"
+                            type="text"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="address1"
+                            component="div"
+                            className="text-danger"
+                          />
+                        </div>
+                      </div>
+                      <div className="col">
+                        {/* Address Line 2 */}
+                        <div className="mb-3">
+                          <label htmlFor="address2" className="form-label">
+                            Address Line 2 (optional)
+                          </label>
+                          <Field
+                            name="address2"
+                            type="text"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="address2"
+                            component="div"
+                            className="text-danger"
+                          />
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Address Line 2 */}
-                    <div className="mb-3">
-                      <label htmlFor="address2" className="form-label">
-                        Address Line 2 (optional)
-                      </label>
-                      <Field
-                        name="address2"
-                        type="text"
-                        className="form-control"
-                      />
-                      <ErrorMessage
-                        name="address2"
-                        component="div"
-                        className="text-danger"
-                      />
+                    <div className="row">
+                      <div className="col">
+                        {/* City */}
+                        <div className="mb-3">
+                          <label htmlFor="city" className="form-label required">
+                            City
+                          </label>
+                          <Field
+                            name="city"
+                            type="text"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="city"
+                            component="div"
+                            className="text-danger"
+                          />
+                        </div>
+                      </div>
+                      <div className="col">
+                        {/* State */}
+                        <div className="mb-3">
+                          <label htmlFor="state" className="form-label">
+                            State (optional)
+                          </label>
+                          <Field
+                            name="state"
+                            type="text"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="state"
+                            component="div"
+                            className="text-danger"
+                          />
+                        </div>
+                      </div>
                     </div>
-
-                    {/* City */}
-                    <div className="mb-3">
-                      <label htmlFor="city" className="form-label">
-                        City
-                      </label>
-                      <Field name="city" type="text" className="form-control" />
-                      <ErrorMessage
-                        name="city"
-                        component="div"
-                        className="text-danger"
-                      />
-                    </div>
-
-                    {/* State */}
-                    <div className="mb-3">
-                      <label htmlFor="state" className="form-label">
-                        State (optional)
-                      </label>
-                      <Field
-                        name="state"
-                        type="text"
-                        className="form-control"
-                      />
-                      <ErrorMessage
-                        name="state"
-                        component="div"
-                        className="text-danger"
-                      />
-                    </div>
-
-                    {/* Country */}
-                    <div className="mb-3">
-                      <label htmlFor="country" className="form-label">
-                        Country
-                      </label>
-                      <Field
-                        name="country"
-                        type="text"
-                        className="form-control"
-                      />
-                      <ErrorMessage
-                        name="country"
-                        component="div"
-                        className="text-danger"
-                      />
-                    </div>
-
-                    {/* Postal Code */}
-                    <div className="mb-3">
-                      <label htmlFor="postalCode" className="form-label">
-                        Postal Code
-                      </label>
-                      <Field
-                        name="postalCode"
-                        type="text"
-                        className="form-control"
-                      />
-                      <ErrorMessage
-                        name="postalCode"
-                        component="div"
-                        className="text-danger"
-                      />
+                    <div className="row">
+                      <div className="col">
+                        {/* Country */}
+                        <div className="mb-3">
+                          <label
+                            htmlFor="country"
+                            className="form-label required"
+                          >
+                            Country
+                          </label>
+                          <Field
+                            name="country"
+                            type="text"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="country"
+                            component="div"
+                            className="text-danger"
+                          />
+                        </div>
+                      </div>
+                      <div className="col">
+                        {/* Postal Code */}
+                        <div className="mb-3">
+                          <label
+                            htmlFor="postalCode"
+                            className="form-label required"
+                          >
+                            Postal Code
+                          </label>
+                          <Field
+                            name="postalCode"
+                            type="text"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="postalCode"
+                            component="div"
+                            className="text-danger"
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
