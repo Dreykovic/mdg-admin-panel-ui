@@ -1,14 +1,16 @@
 import { useCallback, useState } from 'react';
-import CategoryCard from './category-card';
-import { ProductCategory } from '@/types/entity';
-import CategoryEditForm from './category-edit-form';
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
-import { useDeleteCategoryMutation } from '../store/api';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
 
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoCardData from '@/components/ui/no-data/no-card-data';
+import { AppDispatch } from '@/store';
+import { ProductCategory } from '@/types/entity';
+
+import { useDeleteCategoryMutation } from '../store/api';
+
+import CategoryCard from './category-card';
+import CategoryEditForm from './category-edit-form';
 
 interface ICategoryListProps {
   categories: Partial<ProductCategory>[];

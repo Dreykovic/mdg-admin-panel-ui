@@ -1,5 +1,6 @@
-import { ProductCategory } from '@/types/entity';
 import { useCallback } from 'react';
+
+import { ProductCategory } from '@/types/entity';
 
 interface ICategoryProps {
   category: Partial<ProductCategory>;

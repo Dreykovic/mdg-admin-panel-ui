@@ -1,7 +1,6 @@
 import apiSlice from '@/store/api-slice';
-import { ProductCategory } from '@/types/entity';
-
 import { PaginationResponse } from '@/types/api';
+import { ProductCategory } from '@/types/entity';
 
 const appApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

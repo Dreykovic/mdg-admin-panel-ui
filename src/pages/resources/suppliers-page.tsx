@@ -1,3 +1,8 @@
+import { useEffect, useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+
 import TableLoadingSkeleton from '@/components/ui/loading/table-loading';
 import CustomPagination from '@/components/ui/pagination';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
@@ -5,10 +10,6 @@ import SuppliersTable from '@/features/suppliers/components/suppliers-table';
 import { useGetSomeSuppliersQuery } from '@/features/suppliers/store/api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import { useEffect, useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 
 const SuppliersPage = () => {
   const dispatch = useDispatch<AppDispatch>();

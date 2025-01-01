@@ -5,13 +5,13 @@ import * as Icon from 'react-bootstrap-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useSignOutMutation } from '@/features/auth/store/api';
+import { makeGlobalLogout } from '@/features/auth/store/slice';
 import { AppDispatch, RootState } from '@/store';
+import authUtil from '@/utils/auth-utils';
 
 import { closeSidebar, openSidebar } from '../sidebar/sidebar-slice';
-import { makeGlobalLogout } from '@/features/auth/store/slice';
-import { useSignOutMutation } from '@/features/auth/store/api';
 import { showAlert } from '../ui/alerts/alert-slice';
-import authUtil from '@/utils/auth-utils';
 
 function Header() {
   const dispatch = useDispatch<AppDispatch>();

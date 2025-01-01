@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/page-slice';
+import { useSearchParams } from 'react-router-dom';
 
+import CardLoading from '@/components/ui/loading/card-loading';
+import CustomPagination from '@/components/ui/pagination';
+import CategoryCreateForm from '@/features/categories/components/category-create-form';
 import CategoryList from '@/features/categories/components/category-list';
 import { useGetSomeCategoriesQuery } from '@/features/categories/store/api';
-
-import CustomPagination from '@/components/ui/pagination';
-import { useSearchParams } from 'react-router-dom';
-import { Dropdown } from 'react-bootstrap';
-import CardLoading from '@/components/ui/loading/card-loading';
-import CategoryCreateForm from '@/features/categories/components/category-create-form';
+import { AppDispatch } from '@/store';
+import { setPageName } from '@/store/page-slice';
 
 const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();

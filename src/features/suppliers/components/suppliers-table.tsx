@@ -1,15 +1,16 @@
-import { Supplier } from '@/types/entity';
-import SupplierRow from './supplier-row';
 import { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
+import NoTableData from '@/components/ui/no-data/no-table-data';
+import { AppDispatch } from '@/store';
+import { Supplier } from '@/types/entity';
 
 import { useDeleteSupplierMutation } from '../store/api';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store';
 
-import NoTableData from '@/components/ui/no-data/no-table-data';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
 import SupplierEditForm from './supplier-edit-form';
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
+import SupplierRow from './supplier-row';
 interface ISupplierListProps {
   suppliers: Partial<Supplier>[];
 }

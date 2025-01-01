@@ -1,5 +1,6 @@
-import { Supplier } from '@/types/entity';
 import { useCallback } from 'react';
+
+import { Supplier } from '@/types/entity';
 
 interface ISupplierRowProps {
   supplier: Partial<Supplier>;

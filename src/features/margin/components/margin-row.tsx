@@ -1,5 +1,6 @@
-import { MarginLevel } from '@/types/entity';
 import { useCallback } from 'react';
+
+import { MarginLevel } from '@/types/entity';
 
 interface IMarginRowProps {
   margin: Partial<MarginLevel>;

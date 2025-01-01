@@ -7,8 +7,9 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { useEditCategoryMutation } from '../store/api';
 import { ProductCategory } from '@/types/entity';
+
+import { useEditCategoryMutation } from '../store/api';
 
 const CategoryEditForm = ({
   show,

@@ -1,7 +1,6 @@
 import apiSlice from '@/store/api-slice';
-import { Supplier } from '@/types/entity';
-
 import { PaginationResponse } from '@/types/api';
+import { Supplier } from '@/types/entity';
 
 const supplierApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

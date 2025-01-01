@@ -7,8 +7,9 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { useEditMarginMutation } from '../store/api';
 import { MarginLevel } from '@/types/entity';
+
+import { useEditMarginMutation } from '../store/api';
 
 const MarginEditForm = ({
   show,

@@ -7,8 +7,9 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { useCreateMarginMutation } from '../store/api';
 import { MarginLevel } from '@/types/entity';
+
+import { useCreateMarginMutation } from '../store/api';
 const initialValues: Partial<MarginLevel> = {
   name: '',
   margin: 0,

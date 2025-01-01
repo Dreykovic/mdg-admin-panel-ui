@@ -7,8 +7,9 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { useEditSupplierMutation } from '../store/api';
 import { Supplier } from '@/types/entity';
+
+import { useEditSupplierMutation } from '../store/api';
 
 const SupplierEditForm = ({
   show,

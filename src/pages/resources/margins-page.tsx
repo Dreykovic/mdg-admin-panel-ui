@@ -1,15 +1,15 @@
+import { useEffect, useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+
 import TableLoadingSkeleton from '@/components/ui/loading/table-loading';
 import CustomPagination from '@/components/ui/pagination';
 import MarginCreateForm from '@/features/margin/components/margin-create-form';
 import MarginsTable from '@/features/margin/components/margins-table';
 import { useGetSomeMarginsQuery } from '@/features/margin/store/api';
-
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import { useEffect, useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 
 const MarginsPage = () => {
   const dispatch = useDispatch<AppDispatch>();

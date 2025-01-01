@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import env from '@/config/env';
-import authUtil from '@/utils/auth-utils';
 import { ApiResponse } from '@/types/api';
+import authUtil from '@/utils/auth-utils';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: env.baseUrl,

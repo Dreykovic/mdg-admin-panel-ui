@@ -1,17 +1,16 @@
+import { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
+import NoTableData from '@/components/ui/no-data/no-table-data';
+import { AppDispatch } from '@/store';
 import { MarginLevel } from '@/types/entity';
 
-import { useCallback, useState } from 'react';
-
 import { useDeleteMarginMutation } from '../store/api';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store';
 
-import NoTableData from '@/components/ui/no-data/no-table-data';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
-
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
-import MarginRow from './margin-row';
 import MarginEditForm from './margin-edit-form';
+import MarginRow from './margin-row';
 interface IMarginListProps {
   margins: Partial<MarginLevel>[];
 }

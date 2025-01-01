@@ -1,7 +1,6 @@
 import apiSlice from '@/store/api-slice';
-import { MarginLevel } from '@/types/entity';
-
 import { PaginationResponse } from '@/types/api';
+import { MarginLevel } from '@/types/entity';
 
 const marginApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

@@ -2,11 +2,11 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import sidebarReducer from '@/components/sidebar/sidebar-slice';
 import env from '@/config/env';
+import authReducer from '@/features/auth/store/slice';
 
 import alertReducer from '../components/ui/alerts/alert-slice';
 
 import apiSlice from './api-slice';
-import authReducer from '@/features/auth/store/slice';
 import pageReducer from './page-slice';
 import themeReducer from './theme-slice';
 
