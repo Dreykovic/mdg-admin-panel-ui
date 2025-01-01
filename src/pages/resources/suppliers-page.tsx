@@ -93,7 +93,7 @@ const SuppliersPage = () => {
             <div className="card-header d-flex justify-content-between">
               <div>
                 <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  <Dropdown.Toggle variant="primary" id="dropdown-basic">
                     {`Page Size: ${pageSize}`}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>

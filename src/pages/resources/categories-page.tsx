@@ -91,7 +91,7 @@ const CategoriesPage = () => {
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
             <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <Dropdown.Toggle variant="primary" id="dropdown-basic">
                 {`Page Size: ${pageSize}`}
               </Dropdown.Toggle>
               <Dropdown.Menu>
