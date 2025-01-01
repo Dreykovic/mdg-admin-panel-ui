@@ -40,7 +40,7 @@ const CategoryList = ({ categories }: ICategoryListProps) => {
         if (response.success) {
           dispatch(
             showAlert({
-              title: 'Succès !',
+              title: 'Success !',
               message: response.message,
             }),
           );
@@ -53,7 +53,7 @@ const CategoryList = ({ categories }: ICategoryListProps) => {
 
       dispatch(
         showAlert({
-          title: 'Erreur !',
+          title: 'Error !',
           message: 'An error occurred during deletion' + JSON.stringify(error),
           success: false,
         }),

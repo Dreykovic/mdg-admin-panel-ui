@@ -50,7 +50,7 @@ const Login = () => {
           navigate('/', { replace: true });
           dispatch(
             showAlert({
-              title: 'Succès !',
+              title: 'Success !',
               message: `Login successfully`,
             }),
           );
@@ -63,7 +63,7 @@ const Login = () => {
 
       dispatch(
         showAlert({
-          title: 'Erreur !',
+          title: 'Error !',
           message:
             'Sorry An error occurred during submission' +
             (error as any).data.message,
@@ -71,7 +71,7 @@ const Login = () => {
         }),
       );
     } finally {
-      navigate('/', { replace: true }); // Évite de revenir à la page de connexion
+      // navigate('/', { replace: true }); // Évite de revenir à la page de connexion
 
       setSubmitting(false);
     }
@@ -137,7 +137,7 @@ const Login = () => {
                   isLoading={isSubmitting}
                   text="Login"
                   loadingText="Logging in..."
-                  variant="warning"
+                  variant="light"
                   type="submit"
                 />
               </div>

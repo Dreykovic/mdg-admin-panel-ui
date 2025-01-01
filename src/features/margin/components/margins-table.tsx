@@ -41,7 +41,7 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
         if (response.success) {
           dispatch(
             showAlert({
-              title: 'Succès !',
+              title: 'Success !',
               message: response.message,
             }),
           );
@@ -54,7 +54,7 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
 
       dispatch(
         showAlert({
-          title: 'Erreur !',
+          title: 'Error !',
           message: 'An error occurred during deletion' + JSON.stringify(error),
           success: false,
         }),

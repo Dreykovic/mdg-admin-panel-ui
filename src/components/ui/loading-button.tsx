@@ -13,11 +13,11 @@ interface ILoadingButtonProps {
   type?: 'button' | 'submit' | 'reset' | undefined;
 }
 function LoadingButton({
-  loadingText = 'Chargement',
-  text = 'Soumettre',
+  loadingText = 'Loading...',
+  text = 'Submit',
   isLoading,
   handleClick,
-  variant = 'success',
+  variant = 'primary',
   classes,
   type = 'submit',
 }: ILoadingButtonProps) {

@@ -25,7 +25,17 @@ function Header() {
     try {
       const values = { token: authUtil.getRefreshToken() ?? '' };
       if (values) {
-        await signOut(values).unwrap();
+        const response = await signOut(values).unwrap();
+        if (response.success) {
+          dispatch(makeGlobalLogout());
+          navigate('/', { replace: true });
+          dispatch(
+            showAlert({
+              title: 'Success !',
+              message: `Logout successfully`,
+            }),
+          );
+        }
       } else {
         throw new Error('No data submitted');
       }
@@ -41,9 +51,6 @@ function Header() {
           success: false,
         }),
       );
-    } finally {
-      dispatch(makeGlobalLogout());
-      navigate('/', { replace: true });
     }
   };
   const { authUser } = useSelector((state: RootState) => state.auth);

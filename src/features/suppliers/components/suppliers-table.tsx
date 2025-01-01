@@ -39,7 +39,7 @@ const SuppliersTable = ({ suppliers }: ISupplierListProps) => {
         if (response.success) {
           dispatch(
             showAlert({
-              title: 'Succès !',
+              title: 'Success !',
               message: response.message,
             }),
           );
@@ -52,7 +52,7 @@ const SuppliersTable = ({ suppliers }: ISupplierListProps) => {
 
       dispatch(
         showAlert({
-          title: 'Erreur !',
+          title: 'Error !',
           message: 'An error occurred during deletion' + JSON.stringify(error),
           success: false,
         }),

@@ -13,7 +13,7 @@ const authApis = apiSlice.injectEndpoints({
     signOut: builder.mutation({
       query: (data: { token: string | null }) => ({
         url: 'admin-auth/sign-out',
-        method: 'POST',
+        method: 'DELETE',
         body: data,
       }),
     }),
