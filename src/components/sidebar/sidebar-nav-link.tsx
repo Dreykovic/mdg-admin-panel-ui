@@ -22,7 +22,7 @@ const SidebarNavLink = ({ link, toggleShow, show }: Props) => {
       link.targetPageName === name || link.targetModuleName === group;
 
     checkPage ? setIsLinkActive(true) : setIsLinkActive(false);
-  }, [name, group]);
+  }, [name, group, link]);
   return (
     <>
       <Link

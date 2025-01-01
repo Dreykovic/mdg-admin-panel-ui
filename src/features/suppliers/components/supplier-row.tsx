@@ -24,7 +24,7 @@ const SupplierRow = ({
       setSupplierId(supplier?.id as number);
       handleDeleteItemModalShow();
     },
-    [setSupplierId, handleDeleteItemModalShow],
+    [setSupplierId, handleDeleteItemModalShow, supplier],
   );
   const triggerSupplierUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -34,7 +34,7 @@ const SupplierRow = ({
       setUpdateInitialValues(values);
       handleEditSupplierModalShow();
     },
-    [setUpdateInitialValues, handleEditSupplierModalShow],
+    [setUpdateInitialValues, handleEditSupplierModalShow, supplier],
   );
   return (
     <tr>

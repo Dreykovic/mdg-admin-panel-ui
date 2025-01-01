@@ -61,7 +61,7 @@ const SuppliersTable = ({ suppliers }: ISupplierListProps) => {
     } finally {
       handleDeleteItemModalClose();
     }
-  }, [supplierId]);
+  }, [supplierId, deleteSupplier, dispatch]);
   return (
     <>
       <div className="card-body">

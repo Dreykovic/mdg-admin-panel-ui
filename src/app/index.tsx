@@ -31,12 +31,9 @@ const App: React.FC = () => {
       setRoutes(guestRoutes);
     }
 
-    // setInterval(() => {
-    //   setLoading(false);
-    // }, 0);
     setLoading(false);
     dispatch(setTheme({ theme: currentTheme }));
-  }, [isAuthenticated]);
+  }, [isAuthenticated, currentTheme, dispatch]);
 
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>

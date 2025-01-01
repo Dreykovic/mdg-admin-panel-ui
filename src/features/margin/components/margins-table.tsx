@@ -61,7 +61,7 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
     } finally {
       handleDeleteItemModalClose();
     }
-  }, [marginId]);
+  }, [marginId, deleteMargin, dispatch]);
   return (
     <>
       <div className="card-body">

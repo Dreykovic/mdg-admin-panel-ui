@@ -5,7 +5,7 @@ interface IDeleteModal {
   title?: string;
   message?: string;
   isLoading: boolean;
-  deleteHandler: () => {};
+  deleteHandler: () => void;
 }
 const DeletionConfirmModal = ({
   show,

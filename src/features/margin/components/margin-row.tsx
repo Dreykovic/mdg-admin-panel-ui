@@ -24,7 +24,7 @@ const MarginRow = ({
       setMarginId(margin?.id as number);
       handleDeleteItemModalShow();
     },
-    [setMarginId, handleDeleteItemModalShow],
+    [setMarginId, handleDeleteItemModalShow, margin],
   );
   const triggerMarginUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -34,7 +34,7 @@ const MarginRow = ({
       setUpdateInitialValues(values);
       handleEditMarginModalShow();
     },
-    [setUpdateInitialValues, handleEditMarginModalShow],
+    [setUpdateInitialValues, handleEditMarginModalShow, margin],
   );
   return (
     <tr>

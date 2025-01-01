@@ -23,7 +23,7 @@ const CategoryCard = ({
       setCategoryId(category?.id as number);
       handleDeleteItemModalShow();
     },
-    [setCategoryId, handleDeleteItemModalShow],
+    [setCategoryId, handleDeleteItemModalShow, category],
   );
   const triggerCategoryUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +33,7 @@ const CategoryCard = ({
       setUpdateInitialValues(values);
       handleEditCategoryModalShow();
     },
-    [setUpdateInitialValues, handleEditCategoryModalShow],
+    [setUpdateInitialValues, handleEditCategoryModalShow, category],
   );
   return (
     <>

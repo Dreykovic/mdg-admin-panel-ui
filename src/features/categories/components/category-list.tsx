@@ -63,7 +63,7 @@ const CategoryList = ({ categories }: ICategoryListProps) => {
     } finally {
       handleDeleteItemModalClose();
     }
-  }, [categoryId]);
+  }, [categoryId, deleteCategory, dispatch]);
   return (
     <>
       <div className="row g-3 gy-5 py-3 row-deck">

@@ -16,7 +16,7 @@ const ThemeSwitcher = () => {
   };
   useEffect(() => {
     currentTheme === 'light' ? setChecked(false) : setChecked(true);
-  });
+  }, [setChecked, currentTheme]);
   return (
     <>
       <ul className="list-unstyled mb-0">
