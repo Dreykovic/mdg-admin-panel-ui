@@ -87,63 +87,63 @@ const CategoriesPage = () => {
           </div>
         </div>
       </div>
-      {isFetching ? (
-        <CardLoading number={9} />
-      ) : (
-        <>
-          <div className="row align-items-center">
-            <div className="border-0 mb-4">
-              <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    {`Page Size: ${pageSize}`}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {[5, 10, 20, 50].map((size) => (
-                      <Dropdown.Item
-                        key={size}
-                        onClick={() => handlePageSizeChange(size)}
-                      >
-                        {size}
-                      </Dropdown.Item>
-                    ))}
-                  </Dropdown.Menu>
-                </Dropdown>
-                <div>
-                  <div className="input-group">
-                    <button
-                      type="button"
-                      className="input-group-text"
-                      id="addon-wrapping"
-                    >
-                      <i className="icofont-search"></i>
-                    </button>
-                    <input
-                      type="search"
-                      className="form-control"
-                      placeholder="Search"
-                      aria-label="search"
-                      aria-describedby="addon-wrapping"
-                      value={search}
-                      onChange={handleSearchChange}
-                    />
-                  </div>
-                </div>
+      <div className="row align-items-center">
+        <div className="border-0 mb-4">
+          <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                {`Page Size: ${pageSize}`}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {[5, 10, 20, 50].map((size) => (
+                  <Dropdown.Item
+                    key={size}
+                    onClick={() => handlePageSizeChange(size)}
+                  >
+                    {size}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+            <div>
+              <div className="input-group">
+                <button
+                  type="button"
+                  className="input-group-text"
+                  id="addon-wrapping"
+                >
+                  <i className="icofont-search"></i>
+                </button>
+                <input
+                  type="search"
+                  className="form-control"
+                  placeholder="Search"
+                  aria-label="search"
+                  aria-describedby="addon-wrapping"
+                  value={search}
+                  onChange={handleSearchChange}
+                />
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      {isFetching ? (
+        <CardLoading number={3} />
+      ) : (
+        <>
           <CategoryList categories={someCategories ?? []} />
-          <div className="d-flex justify-content-between align-items-center">
-            <span>{`Display ${someCategories?.length} elements of ${totalElements}`}</span>
-            <CustomPagination
-              totalElements={totalElements as number}
-              pageSize={pageSize}
-              currentPage={currentPage as number}
-              onPageChange={handlePageChange} // Passer la fonction de changement de page
-            />
-          </div>
         </>
       )}
+      <div className="d-flex justify-content-between align-items-center">
+        <span>{`Display ${someCategories?.length} elements of ${totalElements}`}</span>
+        <CustomPagination
+          totalElements={totalElements as number}
+          pageSize={pageSize}
+          currentPage={currentPage as number}
+          onPageChange={handlePageChange} // Passer la fonction de changement de page
+        />
+      </div>
       <CategoryCreateForm
         show={showCreateCategoryModal}
         handleClose={handleCreateCategoryModalClose}

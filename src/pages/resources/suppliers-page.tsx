@@ -89,62 +89,62 @@ const SuppliersPage = () => {
       </div>
       <div className="row clearfix g-3">
         <div className="col-sm-12">
-          {isFetching ? (
-            <TableLoadingSkeleton rows={3} columns={6} />
-          ) : (
-            <div className="card mb-3">
-              <div className="card-header d-flex justify-content-between">
-                <div>
-                  <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                      {`Page Size: ${pageSize}`}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      {[5, 10, 20, 50].map((size) => (
-                        <Dropdown.Item
-                          key={size}
-                          onClick={() => handlePageSizeChange(size)}
-                        >
-                          {size}
-                        </Dropdown.Item>
-                      ))}
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-
-                <div>
-                  <div className="input-group">
-                    <button
-                      type="button"
-                      className="input-group-text"
-                      id="addon-wrapping"
-                    >
-                      <i className="icofont-search"></i>
-                    </button>
-                    <input
-                      type="search"
-                      className="form-control"
-                      placeholder="Search"
-                      aria-label="search"
-                      aria-describedby="addon-wrapping"
-                      value={search}
-                      onChange={handleSearchChange}
-                    />
-                  </div>
-                </div>
+          <div className="card mb-3">
+            <div className="card-header d-flex justify-content-between">
+              <div>
+                <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    {`Page Size: ${pageSize}`}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {[5, 10, 20, 50].map((size) => (
+                      <Dropdown.Item
+                        key={size}
+                        onClick={() => handlePageSizeChange(size)}
+                      >
+                        {size}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
               </div>
-              <SuppliersTable suppliers={someSuppliers ?? []} />
-              <div className="card-footer text-center border-top-0 d-flex align-items-center justify-content-between">
-                <span>{`Display ${someSuppliers?.length} elements of ${totalElements}`}</span>
-                <CustomPagination
-                  totalElements={totalElements as number}
-                  pageSize={pageSize}
-                  currentPage={currentPage as number}
-                  onPageChange={handlePageChange} // Passer la fonction de changement de page
-                />
+
+              <div>
+                <div className="input-group">
+                  <button
+                    type="button"
+                    className="input-group-text"
+                    id="addon-wrapping"
+                  >
+                    <i className="icofont-search"></i>
+                  </button>
+                  <input
+                    type="search"
+                    className="form-control"
+                    placeholder="Search"
+                    aria-label="search"
+                    aria-describedby="addon-wrapping"
+                    value={search}
+                    onChange={handleSearchChange}
+                  />
+                </div>
               </div>
             </div>
-          )}
+            {isFetching ? (
+              <TableLoadingSkeleton rows={3} columns={6} />
+            ) : (
+              <SuppliersTable suppliers={someSuppliers ?? []} />
+            )}
+            <div className="card-footer text-center border-top-0 d-flex align-items-center justify-content-between">
+              <span>{`Display ${someSuppliers?.length} elements of ${totalElements}`}</span>
+              <CustomPagination
+                totalElements={totalElements as number}
+                pageSize={pageSize}
+                currentPage={currentPage as number}
+                onPageChange={handlePageChange} // Passer la fonction de changement de page
+              />
+            </div>
+          </div>
         </div>
       </div>
       <SupplierCreateForm
