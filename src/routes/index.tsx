@@ -7,6 +7,7 @@ import CategoriesPage from '@/pages/resources/categories-page';
 import MarginsPage from '@/pages/resources/margins-page';
 import SuppliersPage from '@/pages/resources/suppliers-page';
 import { RoutesConfigType } from '@/types/routes-type';
+import UnitsPage from '@/pages/resources/units-page';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {
@@ -43,6 +44,15 @@ export const authRoutes: RoutesConfigType = {
     path: '/resources/margins',
     component: <MarginsPage />,
     pageName: 'Margins Page',
+  },
+  unit: {
+    navLink: 'unitNavId',
+
+    name: 'unit-list',
+
+    path: '/resources/units',
+    component: <UnitsPage />,
+    pageName: 'Units Page',
   },
 };
 export const guestRoutes: RoutesConfigType = {
