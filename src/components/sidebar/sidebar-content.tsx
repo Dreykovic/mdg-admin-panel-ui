@@ -49,6 +49,13 @@ export const data: ISideBarLink[] = [
         link: '/resources/margins',
         targetPageName: 'margin-list',
       },
+      {
+        id: 'unitNavId',
+        collapse: false,
+        label: 'Units Of Mesure',
+        link: '/resources/units',
+        targetPageName: 'unit-list',
+      },
     ],
   },
 ];

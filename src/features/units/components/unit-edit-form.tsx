@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { UnitOfMesure, UOMType } from '@/types/entity';
 
-import { useCreateUnitMutation } from '../store/api';
+import { useEditUnitMutation } from '../store/api';
 
 const UnitEditForm = ({
   show,
@@ -26,7 +26,7 @@ const UnitEditForm = ({
     type: Yup.string(),
   });
 
-  const [createUnit] = useCreateUnitMutation();
+  const [updateUnit] = useEditUnitMutation();
 
   const handleSubmit = async (
     values: Partial<UnitOfMesure>,
@@ -35,12 +35,13 @@ const UnitEditForm = ({
     try {
       if (values) {
         const data: Partial<UnitOfMesure> = {
+          id: values.id as number,
           name: values.name,
           factor: values.factor,
           type: values.type,
         };
 
-        const response: ApiResponse<UnitOfMesure> = await createUnit(
+        const response: ApiResponse<UnitOfMesure> = await updateUnit(
           data as UnitOfMesure,
         ).unwrap();
 
