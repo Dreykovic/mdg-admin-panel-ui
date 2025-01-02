@@ -43,26 +43,30 @@ const UnitRow = ({
       <td>{unit.factor}</td>
 
       <td>
-        <div
-          className="btn-group"
-          role="group"
-          aria-label="Basic outlined example"
-        >
-          <button
-            type="button"
-            className="btn btn-outline-secondary"
-            onClick={triggerUnitUpdate}
+        {!unit.isStandard ? (
+          <div
+            className="btn-group"
+            role="group"
+            aria-label="Basic outlined example"
           >
-            <i className="icofont-edit text-success"></i>
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-secondary deleterow"
-            onClick={triggerDeletion}
-          >
-            <i className="icofont-ui-delete text-danger"></i>
-          </button>
-        </div>
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={triggerUnitUpdate}
+            >
+              <i className="icofont-edit text-success"></i>
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-secondary deleterow"
+              onClick={triggerDeletion}
+            >
+              <i className="icofont-ui-delete text-danger"></i>
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </td>
     </tr>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import * as Icon from 'react-bootstrap-icons';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -8,9 +8,11 @@ import { RootState } from '@/store';
 import { ISideBarLink } from './sidebar-content';
 type Props = {
   link: ISideBarLink;
+  toggleShow: () => void;
+  show: boolean;
 };
 
-const SidebarNavLink = ({ link }: Props) => {
+const SidebarNavLink = ({ link, toggleShow, show }: Props) => {
   const { name, group } = useSelector((state: RootState) => state.page);
 
   const [isLinkActive, setIsLinkActive] = useState<boolean>(false);
@@ -24,15 +26,18 @@ const SidebarNavLink = ({ link }: Props) => {
   return (
     <>
       <Link
-        className={`${link.isMenu ? 'm-link' : 'ms-link'} ${isLinkActive ? 'active' : ''}`}
+        className={`m-link ${isLinkActive ? 'active' : ''}`}
         data-bs-toggle={link.collapse ? 'collapse' : ''}
         data-bs-target={link.collapse ? '#' + link.id : ''}
         to={link.collapse ? '#' : link.link}
+        onClick={() => (link.collapse ? toggleShow() : () => {})}
       >
         {link.icon}
         <span>{link.label}</span>
         {link.collapse ? (
-          <span className="arrow icofont-dotted-down ms-auto text-end fs-5"></span>
+          <span className="arrow ms-auto text-end fs-5 text-white">
+            {show ? <Icon.CaretDown /> : <Icon.CaretRight />}
+          </span>
         ) : (
           ''
         )}

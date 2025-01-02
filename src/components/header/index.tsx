@@ -112,6 +112,51 @@ function Header() {
                 </div>
               </Dropdown.Menu>
             </Dropdown>
+
+            <div className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+              <div className="u-info me-2">
+                <p className="mb-0 text-end line-height-sm ">
+                  <span className="font-weight-bold">Dylan Hunter</span>
+                </p>
+                <small>Admin Profile</small>
+              </div>
+              <a
+                className="nav-link dropdown-toggle pulse p-0"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+              >
+                <img
+                  className="avatar lg rounded-circle img-thumbnail"
+                  src="assets/images/profile_av.png"
+                  alt="profile"
+                />
+              </a>
+              <div className="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
+                <div className="card border-0 w280">
+                  <div className="card-body pb-0">
+                    <div className="d-flex py-1">
+                      <img
+                        className="avatar rounded-circle"
+                        src="assets/images/profile_av.png"
+                        alt="profile"
+                      />
+                      <div className="flex-fill ms-3">
+                        <p className="mb-0">
+                          <span className="font-weight-bold">Dylan Hunter</span>
+                        </p>
+                        <small className="">Dylan.hunter@gmail.com</small>
+                      </div>
+                    </div>
+
+                    <div>
+                      <hr className="dropdown-divider border-dark" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           {isOpened ? (
             <button

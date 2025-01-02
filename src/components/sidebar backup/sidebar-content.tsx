@@ -1,3 +1,5 @@
+import * as Icon from 'react-bootstrap-icons';
+
 export interface ISideBarLink {
   id: string;
   targetPageName?: string;
@@ -7,27 +9,23 @@ export interface ISideBarLink {
   collapse: boolean;
   link: string;
   subLinks?: ISideBarLink[];
-  isMenu: boolean;
 }
-
+const IconClasses = 'fs-5 mb-2 mx-2';
 export const data: ISideBarLink[] = [
   {
     id: 'home',
     targetPageName: 'home',
-    icon: <i className="icofont-paint"></i>,
+    icon: <Icon.HouseFill className={IconClasses} />,
     label: 'Dashboard',
     collapse: false,
     link: '/',
-    isMenu: true,
   },
   {
     id: 'resourceNavId',
     collapse: true,
-    icon: <i className="icofont-paint"></i>,
+    icon: <Icon.PersonFill className={IconClasses} />,
     label: 'Resources',
     link: '',
-    isMenu: true,
-
     targetModuleName: 'resources',
     subLinks: [
       {
@@ -36,7 +34,6 @@ export const data: ISideBarLink[] = [
         label: 'Categories',
         link: '/resources/categories',
         targetPageName: 'category-list',
-        isMenu: false,
       },
       {
         id: 'supplierNavId',
@@ -44,7 +41,6 @@ export const data: ISideBarLink[] = [
         label: 'Suppliers',
         link: '/resources/suppliers',
         targetPageName: 'supplier-list',
-        isMenu: false,
       },
       {
         id: 'marginNavId',
@@ -52,7 +48,6 @@ export const data: ISideBarLink[] = [
         label: 'Margin Levels',
         link: '/resources/margins',
         targetPageName: 'margin-list',
-        isMenu: false,
       },
       {
         id: 'unitNavId',
@@ -60,7 +55,6 @@ export const data: ISideBarLink[] = [
         label: 'Units Of Mesure',
         link: '/resources/units',
         targetPageName: 'unit-list',
-        isMenu: false,
       },
     ],
   },
