@@ -7,39 +7,42 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { MarginLevel } from '@/types/entity';
+import { UnitOfMesure, UOMType } from '@/types/entity';
 
-import { useCreateMarginMutation } from '../store/api';
-const initialValues: Partial<MarginLevel> = {
+import { useCreateUnitMutation } from '../store/api';
+const initialValues: Partial<UnitOfMesure> = {
   name: '',
-  margin: 0,
+  factor: 0,
+  type: UOMType.WEIGHT,
 };
 
-const MarginCreateForm = ({ show, handleClose }: ModalProps) => {
+const UnitCreateForm = ({ show, handleClose }: ModalProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const validationsSchema = Yup.object({
     name: Yup.string()
       .required('Name is required.')
       .max(100, 'Name must be 100 characters or less.'),
-    margin: Yup.number().required('Name is required.'),
+    factor: Yup.number().required('Name is required.'),
+    type: Yup.string(),
   });
 
-  const [createMargin] = useCreateMarginMutation();
+  const [createUnit] = useCreateUnitMutation();
 
   const handleSubmit = async (
-    values: Partial<MarginLevel>,
-    { setSubmitting }: FormikHelpers<Partial<MarginLevel>>,
+    values: Partial<UnitOfMesure>,
+    { setSubmitting }: FormikHelpers<Partial<UnitOfMesure>>,
   ) => {
     try {
       if (values) {
-        const data: Partial<MarginLevel> = {
+        const data: Partial<UnitOfMesure> = {
           name: values.name,
-          margin: values.margin,
+          factor: values.factor,
+          type: values.type,
         };
 
-        const response: ApiResponse<MarginLevel> = await createMargin(
-          data as MarginLevel,
+        const response: ApiResponse<UnitOfMesure> = await createUnit(
+          data as UnitOfMesure,
         ).unwrap();
 
         if (response.success) {
@@ -90,7 +93,7 @@ const MarginCreateForm = ({ show, handleClose }: ModalProps) => {
           {({ isSubmitting }) => (
             <Form>
               <Modal.Header closeButton>
-                <Modal.Title>{`Add Margin`}</Modal.Title>
+                <Modal.Title>{`Add Unit Of Mesure`}</Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
@@ -99,7 +102,7 @@ const MarginCreateForm = ({ show, handleClose }: ModalProps) => {
                     {/* Margin Name */}
                     <div className="mb-3">
                       <label htmlFor="name" className="form-label required">
-                        Margin Name
+                        Unit Name
                       </label>
                       <Field name="name" type="text" className="form-control" />
                       <ErrorMessage
@@ -111,17 +114,34 @@ const MarginCreateForm = ({ show, handleClose }: ModalProps) => {
 
                     {/* MArgin Level */}
                     <div className="mb-3">
-                      <label htmlFor="margin" className="form-label required">
-                        MArgin Level
+                      <label htmlFor="factor" className="form-label required">
+                        Factor To Standard
                       </label>
                       <Field
-                        name="margin"
+                        name="factor"
                         type="number"
                         className="form-control"
                       />
                       <ErrorMessage
-                        name="margin"
+                        name="factor"
                         component="div"
+                        className="text-danger"
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="type" className="form-label required">
+                        Unit Type
+                      </label>
+                      <Field as="select" className="form-control" name="type">
+                        <option value="">-- Sélect a type --</option>
+
+                        <option value={UOMType.WEIGHT}>Weight</option>
+                        <option value={UOMType.VOLUME}>Volume</option>
+                        <option value={UOMType.OTHER}>Other</option>
+                      </Field>
+                      <ErrorMessage
+                        name="jobSuperiorId"
+                        component="span"
                         className="text-danger"
                       />
                     </div>
@@ -149,4 +169,4 @@ const MarginCreateForm = ({ show, handleClose }: ModalProps) => {
   );
 };
 
-export default MarginCreateForm;
+export default UnitCreateForm;

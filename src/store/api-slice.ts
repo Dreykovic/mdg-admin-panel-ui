@@ -71,7 +71,7 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['CATEGORIES', 'SUPPLIERS', 'MARGINS'], // Exemple : tags pour cache invalidation
+  tagTypes: ['CATEGORIES', 'SUPPLIERS', 'MARGINS', 'UOM'], // Exemple : tags pour cache invalidation
   endpoints: () => ({}), // À compléter selon vos besoins
 });
 

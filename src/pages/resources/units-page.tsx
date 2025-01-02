@@ -5,19 +5,19 @@ import { useSearchParams } from 'react-router-dom';
 
 import TableLoadingSkeleton from '@/components/ui/loading/table-loading';
 import CustomPagination from '@/components/ui/pagination';
-import MarginCreateForm from '@/features/margins/components/margin-create-form';
-import MarginsTable from '@/features/margins/components/margin-table';
-import { useGetSomeMarginsQuery } from '@/features/margins/store/api';
+import UnitCreateForm from '@/features/units/components/unit-create-form';
+import UnitsTable from '@/features/units/components/unit-table';
+import { useGetSomeUnitsQuery } from '@/features/units/store/api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 
-const MarginsPage = () => {
+const UnitsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showCreateMarginModal, setShowCreateMarginModal] = useState(false);
+  const [showCreateUnitModal, setShowCreateUnitModal] = useState(false);
 
-  const handleCreateMarginModalClose = () => setShowCreateMarginModal(false);
-  const handleCreateMarginModalShow = () => setShowCreateMarginModal(true);
+  const handleCreateUnitModalClose = () => setShowCreateUnitModal(false);
+  const handleCreateUnitModalShow = () => setShowCreateUnitModal(true);
   // États locaux pour `pageSize` et `search`
   const [pageSize, setPageSize] = useState(
     parseInt(searchParams.get('pageSize') || '10', 10),
@@ -33,12 +33,12 @@ const MarginsPage = () => {
   const filters = search ? { name: search } : undefined;
 
   // Lancer la requête avec les paramètres actuels
-  const { data: result, isFetching } = useGetSomeMarginsQuery(
+  const { data: result, isFetching } = useGetSomeUnitsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
     { refetchOnMountOrArgChange: true },
   );
 
-  const someMargins = result?.content.data;
+  const someUnits = result?.content.data;
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
@@ -65,7 +65,7 @@ const MarginsPage = () => {
   };
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'margin-list', group: 'resources' }));
+    dispatch(setPageName({ name: 'unit-list', group: 'resources' }));
   }, [dispatch]);
 
   return (
@@ -73,14 +73,14 @@ const MarginsPage = () => {
       <div className="row align-items-center">
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <h3 className="fw-bold py-3 mb-0">Margin Levels</h3>{' '}
+            <h3 className="fw-bold py-3 mb-0">Units Of Mesure</h3>{' '}
             <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
               <button
                 type="button"
                 className="btn btn-dark w-sm-100"
-                onClick={handleCreateMarginModalShow}
+                onClick={handleCreateUnitModalShow}
               >
-                <i className="icofont-plus-circle me-2 fs-6"></i>New Margin
+                <i className="icofont-plus-circle me-2 fs-6"></i>New Unit
               </button>
             </div>
           </div>
@@ -130,12 +130,12 @@ const MarginsPage = () => {
               </div>
             </div>
             {isFetching ? (
-              <TableLoadingSkeleton rows={2} columns={3} />
+              <TableLoadingSkeleton rows={2} columns={4} />
             ) : (
-              <MarginsTable margins={someMargins ?? []} />
+              <UnitsTable units={someUnits ?? []} />
             )}
             <div className="card-footer text-center border-top-0 d-flex align-items-center justify-content-between">
-              <span>{`Display ${someMargins?.length} elements of ${totalElements}`}</span>
+              <span>{`Display ${someUnits?.length} elements of ${totalElements}`}</span>
               <CustomPagination
                 totalElements={totalElements as number}
                 pageSize={pageSize}
@@ -146,12 +146,12 @@ const MarginsPage = () => {
           </div>
         </div>
       </div>
-      <MarginCreateForm
-        show={showCreateMarginModal}
-        handleClose={handleCreateMarginModalClose}
+      <UnitCreateForm
+        show={showCreateUnitModal}
+        handleClose={handleCreateUnitModalClose}
       />
     </>
   );
 };
 
-export default MarginsPage;
+export default UnitsPage;

@@ -5,36 +5,36 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoTableData from '@/components/ui/no-data/no-table-data';
 import { AppDispatch } from '@/store';
-import { MarginLevel } from '@/types/entity';
+import { UnitOfMesure } from '@/types/entity';
 
-import { useDeleteMarginMutation } from '../store/api';
+import { useDeleteUnitMutation } from '../store/api';
 
-import MarginEditForm from './margin-edit-form';
-import MarginRow from './margin-row';
-interface IMarginListProps {
-  margins: Partial<MarginLevel>[];
+import UnitEditForm from './unit-edit-form';
+import UnitRow from './unit-row';
+interface IUnitListProps {
+  units: Partial<UnitOfMesure>[];
 }
-const MarginsTable = ({ margins }: IMarginListProps) => {
+const UnitsTable = ({ units }: IUnitListProps) => {
   const [updateInitialValues, setUpdateInitialValues] =
-    useState<Partial<MarginLevel>>();
+    useState<Partial<UnitOfMesure>>();
   const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
 
   const handleDeleteItemModalClose = () => setShowDeleteItemModal(false);
   const handleDeleteItemModalShow = () => setShowDeleteItemModal(true);
   const [showEditSupplierModal, setShowEditSupplierModal] = useState(false);
 
-  const handleEditMarginModalClose = () => setShowEditSupplierModal(false);
-  const handleEditMarginModalShow = () => setShowEditSupplierModal(true);
-  const [marginId, setMarginId] = useState<number>();
+  const handleEditUnitModalClose = () => setShowEditSupplierModal(false);
+  const handleEditUnitModalShow = () => setShowEditSupplierModal(true);
+  const [unitId, setUnitId] = useState<number>();
   const dispatch = useDispatch<AppDispatch>();
 
-  const [deleteMargin, { isLoading }] = useDeleteMarginMutation();
+  const [deleteUnit, { isLoading }] = useDeleteUnitMutation();
 
   const handleDeletion = useCallback(async () => {
     try {
-      if (marginId) {
-        const response = await deleteMargin({
-          id: marginId,
+      if (unitId) {
+        const response = await deleteUnit({
+          id: unitId,
         }).unwrap();
 
         if (response.success) {
@@ -61,7 +61,7 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
     } finally {
       handleDeleteItemModalClose();
     }
-  }, [marginId, deleteMargin, dispatch]);
+  }, [unitId, deleteUnit, dispatch]);
   return (
     <>
       <div className="card-body">
@@ -73,35 +73,36 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Level</th>
+              <th>Type</th>
+              <th>Factor</th>
 
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {margins.length > 0 ? (
-              margins.map((margin, index) => (
-                <MarginRow
-                  margin={margin}
-                  key={margin.id ?? index++}
-                  setMarginId={setMarginId}
+            {units.length > 0 ? (
+              units.map((unit, index) => (
+                <UnitRow
+                  unit={unit}
+                  key={unit.id ?? index++}
+                  setUnitId={setUnitId}
                   handleDeleteItemModalShow={handleDeleteItemModalShow}
-                  handleEditMarginModalShow={handleEditMarginModalShow}
+                  handleEditUnitModalShow={handleEditUnitModalShow}
                   setUpdateInitialValues={setUpdateInitialValues}
                 />
               ))
             ) : (
               <>
-                <NoTableData number={3} />
+                <NoTableData number={4} />
               </>
             )}
           </tbody>
         </table>
       </div>
-      <MarginEditForm
+      <UnitEditForm
         show={showEditSupplierModal}
-        handleClose={handleEditMarginModalClose}
-        initialValues={updateInitialValues as Partial<MarginLevel>}
+        handleClose={handleEditUnitModalClose}
+        initialValues={updateInitialValues as Partial<UnitOfMesure>}
       />
       <DeletionConfirmModal
         show={showDeleteItemModal}
@@ -113,4 +114,4 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
   );
 };
 
-export default MarginsTable;
+export default UnitsTable;

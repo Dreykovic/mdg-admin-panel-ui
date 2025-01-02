@@ -1,45 +1,46 @@
 import { useCallback } from 'react';
 
-import { MarginLevel } from '@/types/entity';
+import { UnitOfMesure } from '@/types/entity';
 
-interface IMarginRowProps {
-  margin: Partial<MarginLevel>;
-  setMarginId: (arg: number) => void;
+interface IUnitRowProps {
+  unit: Partial<UnitOfMesure>;
+  setUnitId: (arg: number) => void;
 
-  setUpdateInitialValues: (arg: Partial<MarginLevel>) => void;
+  setUpdateInitialValues: (arg: Partial<UnitOfMesure>) => void;
   handleDeleteItemModalShow: () => void;
-  handleEditMarginModalShow: () => void;
+  handleEditUnitModalShow: () => void;
 }
 
-const MarginRow = ({
-  margin,
-  setMarginId,
+const UnitRow = ({
+  unit,
+  setUnitId,
   setUpdateInitialValues,
-  handleEditMarginModalShow,
+  handleEditUnitModalShow,
   handleDeleteItemModalShow,
-}: IMarginRowProps) => {
+}: IUnitRowProps) => {
   const triggerDeletion = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation(); // Empêche la propagation du clic vers le <tr>
-      setMarginId(margin?.id as number);
+      setUnitId(unit?.id as number);
       handleDeleteItemModalShow();
     },
-    [setMarginId, handleDeleteItemModalShow, margin],
+    [setUnitId, handleDeleteItemModalShow, unit],
   );
-  const triggerMarginUpdate = useCallback(
+  const triggerUnitUpdate = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation(); // Empêche la propagation du clic vers le <tr>
 
-      const values: Partial<MarginLevel> = margin;
+      const values: Partial<UnitOfMesure> = unit;
       setUpdateInitialValues(values);
-      handleEditMarginModalShow();
+      handleEditUnitModalShow();
     },
-    [setUpdateInitialValues, handleEditMarginModalShow, margin],
+    [setUpdateInitialValues, handleEditUnitModalShow, unit],
   );
   return (
     <tr>
-      <td>{margin.name}</td>
-      <td>{margin.margin}</td>
+      <td>{unit.name}</td>
+      <td>{(unit.type as string).toLowerCase()}</td>
+      <td>{unit.factor}</td>
 
       <td>
         <div
@@ -50,7 +51,7 @@ const MarginRow = ({
           <button
             type="button"
             className="btn btn-outline-secondary"
-            onClick={triggerMarginUpdate}
+            onClick={triggerUnitUpdate}
           >
             <i className="icofont-edit text-success"></i>
           </button>
@@ -67,4 +68,4 @@ const MarginRow = ({
   );
 };
 
-export default MarginRow;
+export default UnitRow;
