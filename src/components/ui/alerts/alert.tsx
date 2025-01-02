@@ -27,7 +27,7 @@ const CustomAlert = () => {
           {' '}
           <div className="modal-body justify-content-center flex-column d-flex">
             <i
-              className={`icofont-${success ? 'simple-smile' : 'sad'} text-${success ? 'success' : 'danger'} display-2 text-center mt-2`}
+              className={`icofont-${success ? 'simple-smile' : 'sad'} text-primary display-2 text-center mt-2`}
             ></i>
             <p className="mt-4 fs-5 text-center">{message}</p>
           </div>

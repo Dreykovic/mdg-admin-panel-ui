@@ -53,15 +53,21 @@ const SupplierRow = ({
             type="button"
             className="btn btn-outline-secondary"
             onClick={triggerSupplierUpdate}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Edit"
           >
-            <i className="icofont-edit text-success"></i>
+            <i className="icofont-edit text-primary"></i>
           </button>
           <button
             type="button"
             className="btn btn-outline-secondary deleterow"
             onClick={triggerDeletion}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Delete"
           >
-            <i className="icofont-ui-delete text-danger"></i>
+            <i className="icofont-ui-delete text-primary"></i>
           </button>
         </div>
       </td>
