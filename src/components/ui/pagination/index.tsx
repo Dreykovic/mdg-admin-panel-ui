@@ -1,10 +1,11 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { SetURLSearchParams, useLocation, useNavigate } from 'react-router-dom';
 
 interface IPaginationProps {
   currentPage: number;
   totalElements: number; // Total des éléments
   pageSize: number; // Taille d'une page
   onPageChange?: (page: number) => void;
+  setSearchParams: SetURLSearchParams;
 }
 
 const CustomPagination = ({
@@ -12,6 +13,7 @@ const CustomPagination = ({
   totalElements,
   pageSize,
   onPageChange,
+  setSearchParams,
 }: IPaginationProps) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +25,10 @@ const CustomPagination = ({
     if (page >= 1 && page <= totalPages) {
       // Modifier la route avec le numéro de page
       navigate({ pathname: location.pathname, search: `?page=${page}` });
+      setSearchParams({
+        page: page.toString(),
+        pageSize: pageSize.toString(),
+      });
       // Déclencher la fonction pour les requêtes (si fournie)
       if (onPageChange) onPageChange(page);
     }

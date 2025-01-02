@@ -12,6 +12,7 @@ import authUtil from '@/utils/auth-utils';
 
 import { closeSidebar, openSidebar } from '../sidebar/sidebar-slice';
 import { showAlert } from '../ui/alerts/alert-slice';
+import { Dropdown } from 'react-bootstrap';
 
 function Header() {
   const dispatch = useDispatch<AppDispatch>();
@@ -59,24 +60,58 @@ function Header() {
       <nav className="navbar py-4">
         <div className="container-xxl">
           <div className="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
-            <div className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
-              <div className="u-info me-2">
-                <p className="mb-0 text-end line-height-sm ">
-                  <span className="font-weight-bold">{authUser?.username}</span>
-                </p>
-                <small>Admin Profile</small>
-              </div>
-              <span
-                className="nav-link pulse p-0"
-                role="button"
-                onClick={() => {
-                  // navigate(`${authRoutes.employee.path}/1`);
-                  handleSignOut();
-                }}
-              >
-                <Icon.Person className="avatar lg rounded-circle img-thumbnail text-primary" />
-              </span>
-            </div>
+            <Dropdown>
+              <Dropdown.Toggle variant="transparent" id="dropdown-basic">
+                <div className=" user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+                  <div className="u-info me-2">
+                    <p className="mb-0 text-end line-height-sm ">
+                      <span className="font-weight-bold">
+                        {authUser?.username}
+                      </span>
+                    </p>
+                    <small>{authUser?.profiles}</small>
+                  </div>
+                  <span className="nav-link pulse p-0" role="button">
+                    <Icon.Person className="avatar lg rounded-circle img-thumbnail text-primary" />
+                  </span>
+                </div>
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <div className="card border-0 w280">
+                  <div className="card-body pb-0">
+                    <div className="d-flex py-1">
+                      <Icon.Person className="avatar lg rounded-circle img-thumbnail text-primary" />
+                      <div className="flex-fill ms-3">
+                        <p className="mb-0">
+                          <span className="font-weight-bold">
+                            {authUser?.username}
+                          </span>
+                        </p>
+                        <small className="">{authUser?.email}</small>
+                      </div>
+                    </div>
+
+                    <div>
+                      <hr className="dropdown-divider border-dark" />
+                    </div>
+                  </div>
+                  <div className="list-group m-2 ">
+                    <span
+                      role="button"
+                      className="list-group-item list-group-item-action border-0 "
+                    >
+                      {' '}
+                      <Dropdown.Item onClick={handleSignOut}>
+                        <Dropdown.ItemText>
+                          <i className="icofont-logout fs-6 me-3"></i>
+                          Signout
+                        </Dropdown.ItemText>
+                      </Dropdown.Item>
+                    </span>
+                  </div>
+                </div>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
           {isOpened ? (
             <button

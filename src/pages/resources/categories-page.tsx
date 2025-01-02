@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
+
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
@@ -10,6 +10,9 @@ import CategoryList from '@/features/categories/components/category-list';
 import { useGetSomeCategoriesQuery } from '@/features/categories/store/api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
+import PageSizePicker from '@/components/ui/pagination/page-size-picker';
+import SearchInput from '@/components/ui/pagination/search-input';
+import ElementShow from '@/components/ui/pagination/element-show';
 
 const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,28 +50,6 @@ const CategoriesPage = () => {
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
-  const handlePageChange = (page: number) => {
-    setSearchParams({
-      page: page.toString(),
-      pageSize: pageSize.toString(),
-      filters: JSON.stringify(filters), // Sérialiser l'objet `filter`
-    });
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setSearch(value);
-  };
-
-  const handlePageSizeChange = (size: number) => {
-    setPageSize(size);
-    setSearchParams({
-      page: '1',
-      pageSize: size.toString(),
-      filters: JSON.stringify(filters), // Conserver le filtre actuel
-    });
-  };
-
   return (
     <>
       <div className="row align-items-center">
@@ -90,41 +71,12 @@ const CategoriesPage = () => {
       <div className="row align-items-center">
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <Dropdown>
-              <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                {`Page Size: ${pageSize}`}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {[5, 10, 20, 50].map((size) => (
-                  <Dropdown.Item
-                    key={size}
-                    onClick={() => handlePageSizeChange(size)}
-                  >
-                    {size}
-                  </Dropdown.Item>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-            <div>
-              <div className="input-group">
-                <button
-                  type="button"
-                  className="input-group-text"
-                  id="addon-wrapping"
-                >
-                  <i className="icofont-search"></i>
-                </button>
-                <input
-                  type="search"
-                  className="form-control"
-                  placeholder="Search"
-                  aria-label="search"
-                  aria-describedby="addon-wrapping"
-                  value={search}
-                  onChange={handleSearchChange}
-                />
-              </div>
-            </div>
+            <PageSizePicker
+              pageSize={pageSize}
+              setSearchParams={setSearchParams}
+              setPageSize={setPageSize}
+            />
+            <SearchInput search={search} setSearch={setSearch} />
           </div>
         </div>
       </div>
@@ -136,12 +88,15 @@ const CategoriesPage = () => {
         </>
       )}
       <div className="d-flex justify-content-between align-items-center">
-        <span>{`Display ${someCategories?.length} elements of ${totalElements}`}</span>
+        <ElementShow
+          length={someCategories?.length as number}
+          totalElements={totalElements as number}
+        />
         <CustomPagination
           totalElements={totalElements as number}
           pageSize={pageSize}
           currentPage={currentPage as number}
-          onPageChange={handlePageChange} // Passer la fonction de changement de page
+          setSearchParams={setSearchParams}
         />
       </div>
       <CategoryCreateForm

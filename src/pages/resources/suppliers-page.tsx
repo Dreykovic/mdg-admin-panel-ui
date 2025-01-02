@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
+
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
@@ -10,6 +10,9 @@ import SuppliersTable from '@/features/suppliers/components/suppliers-table';
 import { useGetSomeSuppliersQuery } from '@/features/suppliers/store/api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
+import PageSizePicker from '@/components/ui/pagination/page-size-picker';
+import SearchInput from '../../components/ui/pagination/search-input';
+import ElementShow from '@/components/ui/pagination/element-show';
 
 const SuppliersPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,28 +46,6 @@ const SuppliersPage = () => {
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
-  const handlePageChange = (page: number) => {
-    setSearchParams({
-      page: page.toString(),
-      pageSize: pageSize.toString(),
-      filters: JSON.stringify(filters), // Sérialiser l'objet `filter`
-    });
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    setSearch(value);
-  };
-
-  const handlePageSizeChange = (size: number) => {
-    setPageSize(size);
-    setSearchParams({
-      page: '1',
-      pageSize: size.toString(),
-      filters: JSON.stringify(filters), // Conserver le filtre actuel
-    });
-  };
-
   useEffect(() => {
     dispatch(setPageName({ name: 'supplier-list', group: 'resources' }));
   }, [dispatch]);
@@ -91,44 +72,13 @@ const SuppliersPage = () => {
         <div className="col-sm-12">
           <div className="card mb-3">
             <div className="card-header d-flex justify-content-between">
-              <div>
-                <Dropdown>
-                  <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    {`Page Size: ${pageSize}`}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {[5, 10, 20, 50].map((size) => (
-                      <Dropdown.Item
-                        key={size}
-                        onClick={() => handlePageSizeChange(size)}
-                      >
-                        {size}
-                      </Dropdown.Item>
-                    ))}
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
+              <PageSizePicker
+                pageSize={pageSize}
+                setSearchParams={setSearchParams}
+                setPageSize={setPageSize}
+              />
 
-              <div>
-                <div className="input-group">
-                  <button
-                    type="button"
-                    className="input-group-text"
-                    id="addon-wrapping"
-                  >
-                    <i className="icofont-search"></i>
-                  </button>
-                  <input
-                    type="search"
-                    className="form-control"
-                    placeholder="Search"
-                    aria-label="search"
-                    aria-describedby="addon-wrapping"
-                    value={search}
-                    onChange={handleSearchChange}
-                  />
-                </div>
-              </div>
+              <SearchInput search={search} setSearch={setSearch} />
             </div>
             {isFetching ? (
               <TableLoadingSkeleton rows={3} columns={6} />
@@ -136,12 +86,15 @@ const SuppliersPage = () => {
               <SuppliersTable suppliers={someSuppliers ?? []} />
             )}
             <div className="card-footer text-center border-top-0 d-flex align-items-center justify-content-between">
-              <span>{`Display ${someSuppliers?.length} elements of ${totalElements}`}</span>
+              <ElementShow
+                length={someSuppliers?.length as number}
+                totalElements={totalElements as number}
+              />
               <CustomPagination
                 totalElements={totalElements as number}
                 pageSize={pageSize}
                 currentPage={currentPage as number}
-                onPageChange={handlePageChange} // Passer la fonction de changement de page
+                setSearchParams={setSearchParams}
               />
             </div>
           </div>
