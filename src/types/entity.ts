@@ -112,6 +112,15 @@ export interface MarginLevel extends BaseEntity {
   margin: number;
   productDetails: ProductDetail[];
 }
+export interface UnitOfMesure extends BaseEntity {
+  // Properties
+  name: string; // Nom du fournisseur
+  type: UOMType;
+  factor: number;
+  isStandard: number;
+  unitOfMesureId: number;
+  productDetails: ProductDetail[];
+}
 
 export interface ProductDetail extends BaseEntity {
   barcode: string;
