@@ -1,4 +1,3 @@
-import { Dropdown } from 'react-bootstrap';
 import { SetURLSearchParams } from 'react-router-dom';
 
 interface IPageSizePickerPrps {
@@ -23,21 +22,31 @@ const PageSizePicker = ({
 
   return (
     <>
-      <Dropdown>
-        <Dropdown.Toggle variant="primary" id="dropdown-basic">
+      <div className="dropdown">
+        <a
+          className="btn btn-primary dropdown-toggle"
+          href="#"
+          role="button"
+          id="dropdownMenuLink1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
           {`Page Size: ${pageSize}`}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
+        </a>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {[5, 10, 20, 50].map((size) => (
-            <Dropdown.Item
-              key={size}
-              onClick={() => handlePageSizeChange(size)}
-            >
-              {size}
-            </Dropdown.Item>
+            <li key={size}>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => handlePageSizeChange(size)}
+              >
+                {size}
+              </a>
+            </li>
           ))}
-        </Dropdown.Menu>
-      </Dropdown>
+        </ul>
+      </div>
     </>
   );
 };

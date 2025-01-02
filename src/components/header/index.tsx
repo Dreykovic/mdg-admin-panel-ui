@@ -12,7 +12,6 @@ import authUtil from '@/utils/auth-utils';
 
 import { closeSidebar, openSidebar } from '../sidebar/sidebar-slice';
 import { showAlert } from '../ui/alerts/alert-slice';
-import { Dropdown } from 'react-bootstrap';
 
 function Header() {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,21 +21,12 @@ function Header() {
   };
   const navigate = useNavigate();
   const [signOut] = useSignOutMutation();
-  const handleSignOut = async () => {
+  const handleSignOut = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     try {
       const values = { token: authUtil.getRefreshToken() ?? '' };
       if (values) {
-        const response = await signOut(values).unwrap();
-        if (response.success) {
-          dispatch(makeGlobalLogout());
-          navigate('/', { replace: true });
-          dispatch(
-            showAlert({
-              title: 'Success !',
-              message: `Logout successfully`,
-            }),
-          );
-        }
+        await signOut(values).unwrap();
       } else {
         throw new Error('No data submitted');
       }
@@ -52,6 +42,15 @@ function Header() {
           success: false,
         }),
       );
+    } finally {
+      dispatch(makeGlobalLogout());
+      navigate('/', { replace: true });
+      dispatch(
+        showAlert({
+          title: 'Success !',
+          message: `Logout successfully`,
+        }),
+      );
     }
   };
   const { authUser } = useSelector((state: RootState) => state.auth);
@@ -60,27 +59,26 @@ function Header() {
       <nav className="navbar py-4">
         <div className="container-xxl">
           <div className="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
-            <Dropdown>
-              <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                <div className=" user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
-                  <div className="u-info me-2">
-                    <p className="mb-0 text-end line-height-sm ">
-                      <span className="font-weight-bold">
-                        {authUser?.username}
-                      </span>
-                    </p>
-                    <small>{authUser?.profiles}</small>
-                  </div>
-                  <span className="nav-link pulse p-0" role="button">
-                    <Icon.Person className="avatar lg rounded-circle img-thumbnail text-primary" />
-                  </span>
-                </div>
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
+            <div className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
+              <div className="u-info me-2">
+                <p className="mb-0 text-end line-height-sm ">
+                  <span className="font-weight-bold">{authUser?.username}</span>
+                </p>
+                <small>{authUser?.profiles}</small>
+              </div>
+              <span
+                className="nav-link dropdown-toggle pulse p-0 text-black"
+                role="button"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+              >
+                <Icon.Person className="avatar lg rounded-circle img-thumbnail" />
+              </span>
+              <div className="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                 <div className="card border-0 w280">
                   <div className="card-body pb-0">
                     <div className="d-flex py-1">
-                      <Icon.Person className="avatar lg rounded-circle img-thumbnail text-primary" />
+                      <Icon.Person className="avatar  rounded-circle " />
                       <div className="flex-fill ms-3">
                         <p className="mb-0">
                           <span className="font-weight-bold">
@@ -92,66 +90,21 @@ function Header() {
                     </div>
 
                     <div>
-                      <hr className="dropdown-divider border-dark" />
-                    </div>
-                  </div>
-                  <div className="list-group m-2 ">
-                    <span
-                      role="button"
-                      className="list-group-item list-group-item-action border-0 "
-                    >
-                      {' '}
-                      <Dropdown.Item onClick={handleSignOut}>
-                        <Dropdown.ItemText>
-                          <i className="icofont-logout fs-6 me-3"></i>
-                          Signout
-                        </Dropdown.ItemText>
-                      </Dropdown.Item>
-                    </span>
-                  </div>
-                </div>
-              </Dropdown.Menu>
-            </Dropdown>
-
-            <div className="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center zindex-popover">
-              <div className="u-info me-2">
-                <p className="mb-0 text-end line-height-sm ">
-                  <span className="font-weight-bold">Dylan Hunter</span>
-                </p>
-                <small>Admin Profile</small>
-              </div>
-              <a
-                className="nav-link dropdown-toggle pulse p-0"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                data-bs-display="static"
-              >
-                <img
-                  className="avatar lg rounded-circle img-thumbnail"
-                  src="assets/images/profile_av.png"
-                  alt="profile"
-                />
-              </a>
-              <div className="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
-                <div className="card border-0 w280">
-                  <div className="card-body pb-0">
-                    <div className="d-flex py-1">
-                      <img
-                        className="avatar rounded-circle"
-                        src="assets/images/profile_av.png"
-                        alt="profile"
-                      />
-                      <div className="flex-fill ms-3">
-                        <p className="mb-0">
-                          <span className="font-weight-bold">Dylan Hunter</span>
-                        </p>
-                        <small className="">Dylan.hunter@gmail.com</small>
+                      <div>
+                        <hr className="dropdown-divider border-dark" />
                       </div>
                     </div>
-
-                    <div>
-                      <hr className="dropdown-divider border-dark" />
+                    <div className="list-group m-2 ">
+                      <a
+                        href="#"
+                        className="list-group-item list-group-item-action border-0 "
+                        onClick={handleSignOut}
+                      >
+                        <i className="icofont-logout fs-6 me-3"></i>Signout
+                      </a>
+                      <div>
+                        <hr className="dropdown-divider border-dark" />
+                      </div>
                     </div>
                   </div>
                 </div>
