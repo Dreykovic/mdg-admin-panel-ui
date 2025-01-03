@@ -1,5 +1,4 @@
 import NoTableData from '@/components/ui/no-data/no-table-data';
-
 import { Product } from '@/types/entity';
 
 import ProductRow from './product-row';

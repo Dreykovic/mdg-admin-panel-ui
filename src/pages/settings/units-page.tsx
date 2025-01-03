@@ -1,27 +1,25 @@
 import { useEffect, useState } from 'react';
-
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 import TableLoadingSkeleton from '@/components/ui/loading/table-loading';
 import CustomPagination from '@/components/ui/pagination';
-import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
-import SuppliersTable from '@/features/suppliers/components/suppliers-table';
-import { useGetSomeSuppliersQuery } from '@/features/suppliers/store/api';
+import ElementShow from '@/components/ui/pagination/element-show';
+import PageSizePicker from '@/components/ui/pagination/page-size-picker';
+import SearchInput from '@/components/ui/pagination/search-input';
+import UnitCreateForm from '@/features/units/components/unit-create-form';
+import UnitsTable from '@/features/units/components/unit-table';
+import { useGetSomeUnitsQuery } from '@/features/units/store/api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import PageSizePicker from '@/components/ui/pagination/page-size-picker';
-import SearchInput from '../../components/ui/pagination/search-input';
-import ElementShow from '@/components/ui/pagination/element-show';
 
-const SuppliersPage = () => {
+const UnitsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);
+  const [showCreateUnitModal, setShowCreateUnitModal] = useState(false);
 
-  const handleCreateSupplierModalClose = () =>
-    setShowCreateSupplierModal(false);
-  const handleCreateSupplierModalShow = () => setShowCreateSupplierModal(true);
+  const handleCreateUnitModalClose = () => setShowCreateUnitModal(false);
+  const handleCreateUnitModalShow = () => setShowCreateUnitModal(true);
   // États locaux pour `pageSize` et `search`
   const [pageSize, setPageSize] = useState(
     parseInt(searchParams.get('pageSize') || '10', 10),
@@ -37,17 +35,17 @@ const SuppliersPage = () => {
   const filters = search ? { name: search } : undefined;
 
   // Lancer la requête avec les paramètres actuels
-  const { data: result, isFetching } = useGetSomeSuppliersQuery(
+  const { data: result, isFetching } = useGetSomeUnitsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
     { refetchOnMountOrArgChange: true },
   );
 
-  const someSuppliers = result?.content.data;
+  const someUnits = result?.content.data;
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'supplier-list', group: 'resources' }));
+    dispatch(setPageName({ name: 'unit-list', group: 'settings' }));
   }, [dispatch]);
 
   return (
@@ -55,39 +53,41 @@ const SuppliersPage = () => {
       <div className="row align-items-center">
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <h3 className="fw-bold py-3 mb-0">Suppliers</h3>{' '}
+            <h3 className="fw-bold py-3 mb-0">Units Of Mesure</h3>{' '}
             <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
               <button
                 type="button"
                 className="btn btn-dark w-sm-100"
-                onClick={handleCreateSupplierModalShow}
+                onClick={handleCreateUnitModalShow}
               >
-                <i className="icofont-plus-circle me-2 fs-6"></i>New Supplier
+                <i className="icofont-plus-circle me-2 fs-6"></i>New Unit
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="row clearfix g-3">
-        <div className="col-sm-12">
+      <div className="row justify-content-center g-3">
+        <div className="col-lg-8 col-md-12">
           <div className="card mb-3 shadow">
             <div className="card-header d-flex justify-content-between">
-              <PageSizePicker
-                pageSize={pageSize}
-                setSearchParams={setSearchParams}
-                setPageSize={setPageSize}
-              />
+              <div>
+                <PageSizePicker
+                  pageSize={pageSize}
+                  setSearchParams={setSearchParams}
+                  setPageSize={setPageSize}
+                />
+              </div>
 
               <SearchInput search={search} setSearch={setSearch} />
             </div>
             {isFetching ? (
-              <TableLoadingSkeleton rows={3} columns={6} />
+              <TableLoadingSkeleton rows={2} columns={4} />
             ) : (
-              <SuppliersTable suppliers={someSuppliers ?? []} />
+              <UnitsTable units={someUnits ?? []} />
             )}
             <div className="card-footer text-center border-top-0 d-flex align-items-center justify-content-between">
               <ElementShow
-                length={someSuppliers?.length as number}
+                length={someUnits?.length as number}
                 totalElements={totalElements as number}
               />
               <CustomPagination
@@ -100,12 +100,12 @@ const SuppliersPage = () => {
           </div>
         </div>
       </div>
-      <SupplierCreateForm
-        show={showCreateSupplierModal}
-        handleClose={handleCreateSupplierModalClose}
+      <UnitCreateForm
+        show={showCreateUnitModal}
+        handleClose={handleCreateUnitModalClose}
       />
     </>
   );
 };
 
-export default SuppliersPage;
+export default UnitsPage;

@@ -3,12 +3,13 @@
 
 import { lazy } from 'react';
 
-import CategoriesPage from '@/pages/resources/categories-page';
-import MarginsPage from '@/pages/resources/margins-page';
-import SuppliersPage from '@/pages/resources/suppliers-page';
+import AddProductPage from '@/pages/products/add-product-page';
+import CategoriesPage from '@/pages/products/categories-page';
+import ProductsPage from '@/pages/products/products-page';
+import MarginsPage from '@/pages/settings/margins-page';
+import SuppliersPage from '@/pages/settings/suppliers-page';
+import UnitsPage from '@/pages/settings/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
-import UnitsPage from '@/pages/resources/units-page';
-import ProductsPage from '@/pages/resources/products-page';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {
@@ -60,9 +61,18 @@ export const authRoutes: RoutesConfigType = {
 
     name: 'product-list',
 
-    path: '/products/products',
+    path: '/products',
     component: <ProductsPage />,
     pageName: 'Products Page',
+  },
+  addProduct: {
+    navLink: 'addProductNavId',
+
+    name: 'add-product-list',
+
+    path: '/products/add',
+    component: <AddProductPage />,
+    pageName: 'Product Add Page',
   },
 };
 export const guestRoutes: RoutesConfigType = {

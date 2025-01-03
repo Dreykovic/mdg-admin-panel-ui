@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
-
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 import TableLoadingSkeleton from '@/components/ui/loading/table-loading';
 import CustomPagination from '@/components/ui/pagination';
+import ElementShow from '@/components/ui/pagination/element-show';
+import PageSizePicker from '@/components/ui/pagination/page-size-picker';
+import SearchInput from '@/components/ui/pagination/search-input';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import MarginsTable from '@/features/margins/components/margin-table';
 import { useGetSomeMarginsQuery } from '@/features/margins/store/api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import PageSizePicker from '@/components/ui/pagination/page-size-picker';
-import SearchInput from '@/components/ui/pagination/search-input';
-import ElementShow from '@/components/ui/pagination/element-show';
 
 const MarginsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -46,7 +45,7 @@ const MarginsPage = () => {
   const totalElements = result?.content.total; // Nombre total d'éléments
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'margin-list', group: 'resources' }));
+    dispatch(setPageName({ name: 'margin-list', group: 'settings' }));
   }, [dispatch]);
 
   return (

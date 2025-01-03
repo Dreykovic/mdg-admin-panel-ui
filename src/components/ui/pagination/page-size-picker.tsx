@@ -22,16 +22,18 @@ const PageSizePicker = ({
 
   return (
     <>
-      <div className="dropdown">
+      <div className="dropdown mx-2">
+        <span className=" m-2">Elements per page</span>
+
         <a
-          className="btn btn-primary dropdown-toggle"
+          className="btn btn-primary dropdown-toggle dropdown-toggle-split"
           href="#"
           role="button"
           id="dropdownMenuLink1"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {`Page Size: ${pageSize}`}
+          {`${pageSize}`}
         </a>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
           {[5, 10, 20, 50].map((size) => (

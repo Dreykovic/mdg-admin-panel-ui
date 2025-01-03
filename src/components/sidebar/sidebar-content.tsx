@@ -71,8 +71,16 @@ export const data: ISideBarLink[] = [
         id: 'productNavId',
         collapse: false,
         label: 'List',
-        link: '/products/products',
+        link: '/products',
         targetPageName: 'product-list',
+        isMenu: false,
+      },
+      {
+        id: 'AddProductNavId',
+        collapse: false,
+        label: 'Add',
+        link: '/products/add',
+        targetPageName: 'add-product',
         isMenu: false,
       },
       {
