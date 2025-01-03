@@ -110,7 +110,6 @@ export interface UnitOfMesure extends BaseEntity {
   factor: number;
   isStandard: number;
   unitOfMesureId: number;
-  productDetails: Product[];
 }
 
 export interface Product extends BaseEntity {
@@ -120,6 +119,7 @@ export interface Product extends BaseEntity {
   description?: string;
   barcode: string;
   isActive: boolean;
+  isPublic: boolean;
   minimumStockLevel: number;
   quantity: number;
   additionalCost?: number;
@@ -133,7 +133,6 @@ export interface Product extends BaseEntity {
   supplierId: number;
   marginLevelId: number;
 
-  unitOfMesureId: number;
   productMedia: ProductMedia[];
   stockMovements: StockMovement[];
   category: ProductCategory;

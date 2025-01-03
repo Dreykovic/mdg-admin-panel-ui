@@ -1,8 +1,8 @@
 import { ErrorMessage, Field } from 'formik'; // Assurez-vous d'importer useFormikContext
-import ReactCountryDropdown from 'react-country-dropdown';
 
 import {
   useGetCategoriesListQuery,
+  useGetOriginsListQuery,
   useGetSuppliersListQuery,
 } from '@/store/api-slice';
 import { useState } from 'react';
@@ -21,6 +21,7 @@ const Step3 = () => {
   const handleCreateCategoryModalClose = () =>
     setShowCreateCategoryModal(false);
   const handleCreateCategoryModalShow = () => setShowCreateCategoryModal(true);
+
   // Récupération des suppliers
   const { data: suppliersResponse, isFetching: isSuppliersFetching } =
     useGetSuppliersListQuery(undefined, {
@@ -35,10 +36,18 @@ const Step3 = () => {
     });
   const categories = categoriesResponse?.content.categories;
 
+  // Récupération des origins
+  const { data: originsResponse, isFetching: isOriginsFetching } =
+    useGetOriginsListQuery(undefined, {
+      refetchOnMountOrArgChange: true,
+    });
+  const origins = originsResponse?.content.origins;
+
   return (
     <>
-      {/* Sélection de la direction */}
       <div className="mb-3">
+        {/* Sélection de la direction */}
+
         <label htmlFor="supplierId" className="form-label required">
           Supplier
         </label>
@@ -78,7 +87,6 @@ const Step3 = () => {
           className="text-danger"
         />
       </div>
-
       <div className="row g-3 mb-3">
         <div className="col-sm-6">
           {/* Sélection de la direction */}
@@ -125,15 +133,40 @@ const Step3 = () => {
         <div className="col-sm-6">
           {/* Sélection de la direction */}
 
-          <label htmlFor="categoryId" className="form-label required">
-            Categories
+          <label htmlFor="originId" className="form-label required">
+            Origin
           </label>
-          <div>
-            <ReactCountryDropdown
-              defaultCountry="JP"
-              onSelect={(country) => alert(JSON.stringify(country))}
-            />
+          <div className="d-flex w-sm-100 g-3">
+            {isOriginsFetching ? (
+              <div className="d-flex align-items-center">
+                <span
+                  className="spinner-grow spinner-grow-sm me-2"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Fetching Origins...
+              </div>
+            ) : (
+              <>
+                <Field as="select" className="form-control" name="originId">
+                  <option value="">-- Select an origin --</option>
+                  {origins?.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.country}
+                    </option>
+                  ))}
+                </Field>
+              </>
+            )}
+            <span role="button" className="btn btn-light">
+              <i className="icofont-plus  fs-4"></i>
+            </span>
           </div>
+          <ErrorMessage
+            name="originId"
+            component="span"
+            className="text-danger"
+          />
         </div>
       </div>
       <SupplierCreateForm

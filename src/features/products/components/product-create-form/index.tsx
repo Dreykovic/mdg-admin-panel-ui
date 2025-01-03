@@ -10,12 +10,17 @@ import { AppDispatch } from '@/store';
 import Stepper from './stepper';
 import steps from './stepper/steps';
 import { productInitialValues } from './stepper/validation';
+import { Product } from '@/types/entity';
+import { useCreateProductMutation } from '../../store/api';
+import { ApiResponse } from '@/types/api';
+import { useNavigate } from 'react-router-dom';
+import { authRoutes } from '@/routes';
 
 const AddProduct = () => {
   const [stepIndex, setStepIndex] = useState(0);
   const currentStep = steps[stepIndex];
-  const [formData, setFormData] = useState({});
-
+  const [formData, setFormData] = useState<Partial<Product>>({});
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
   const handleNext = async (
@@ -28,7 +33,6 @@ const AddProduct = () => {
       setStepIndex(stepIndex + 1);
     } else {
       await handleSubmit();
-      setSubmitting(false);
     }
     setSubmitting(false);
   };
@@ -36,11 +40,27 @@ const AddProduct = () => {
   const handlePrevious = () => {
     setStepIndex(stepIndex - 1);
   };
+  const [createProduct] = useCreateProductMutation();
   const handleSubmit = async () => {
     try {
-      console.log(formData);
+      if (formData) {
+        const response: ApiResponse<Product> =
+          await createProduct(formData).unwrap();
+        console.log('response: ', response);
+
+        if (response.success) {
+          dispatch(
+            showAlert({
+              title: 'Succuss !',
+              message: `${response.message}`,
+            }),
+          );
+          navigate(authRoutes.products.path);
+        }
+      }
+      console.log('form Data', formData);
     } catch (error) {
-      console.error(error);
+      console.error('error', error);
 
       dispatch(
         showAlert({

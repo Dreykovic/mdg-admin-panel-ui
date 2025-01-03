@@ -5,6 +5,7 @@ import { ApiResponse, ListResponse } from '@/types/api';
 import authUtil from '@/utils/auth-utils';
 import {
   MarginLevel,
+  Origin,
   ProductCategory,
   Supplier,
   UnitOfMesure,
@@ -77,7 +78,14 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['CATEGORIES', 'SUPPLIERS', 'MARGINS', 'UOM', 'PRODUCTS'], // Exemple : tags pour cache invalidation
+  tagTypes: [
+    'CATEGORIES',
+    'SUPPLIERS',
+    'MARGINS',
+    'UOM',
+    'PRODUCTS',
+    'ORIGINS',
+  ], // Exemple : tags pour cache invalidation
   endpoints: (builder) => ({
     getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({
       query: () => {
@@ -111,6 +119,14 @@ export const apiSlice = createApi({
       },
       providesTags: ['SUPPLIERS'], // Ajouter un tag
     }),
+    getOriginsList: builder.query<ListResponse<Origin[]>, void>({
+      query: () => {
+        return {
+          url: `resources/origins/list`,
+        };
+      },
+      providesTags: ['ORIGINS'], // Ajouter un tag
+    }),
   }),
 });
 export const {
@@ -118,5 +134,6 @@ export const {
   useGetMarginsListQuery,
   useGetUnitsListQuery,
   useGetSuppliersListQuery,
+  useGetOriginsListQuery,
 } = apiSlice;
 export default apiSlice;

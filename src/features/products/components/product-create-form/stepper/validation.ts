@@ -112,25 +112,23 @@ export const productSchema = yup.object({
     .typeError('Category must be an object'),
 });
 export const productInitialValues = {
-  name: '',
+  name: 'Product',
   isGlutenFree: false,
   isGMOFree: false,
   description: undefined,
-  barcode: '',
+
   isActive: true,
-  minimumStockLevel: 0,
-  quantity: 0,
-  additionalCost: undefined,
-  costPerGramWhole: 0,
-  costPerGramGround: 0,
-  pricePerGramWhole: 0,
-  pricePerGramGround: 0,
+  minimumStockLevel: 1000,
+  quantity: 1000,
+  additionalCost: 10,
+  costPerGramWhole: 1000,
+  costPerGramGround: 1000,
+
   originId: undefined,
   subcategoryId: undefined,
   categoryId: undefined,
   supplierId: undefined,
   marginLevelId: undefined,
-  unitOfMesureId: undefined,
 };
 
 export const step1Schema = yup.object({
@@ -200,13 +198,22 @@ export const step3Schema = yup.object({
     .positive()
     .required('Supplier ID is required')
     .typeError('Supplier ID must be a positive integer'),
-
-  unitOfMesureId: yup
+});
+export const step4Schema = yup.object({
+  isActive: yup.boolean().typeError('Active status must be a boolean'),
+  isPublic: yup.boolean().typeError('Public status must be a boolean'),
+  minimumStockLevel: yup
     .number()
     .integer()
     .positive()
-    .required('Unit of Measure ID is required')
-    .typeError('Unit of Measure ID must be a positive integer'),
+    .required('Minimum stock level is required')
+    .typeError('Minimum stock level must be a positive integer'),
+  quantity: yup
+    .number()
+    .integer()
+    .positive()
+    .required('Quantity is required')
+    .typeError('Quantity must be a positive integer'),
 });
 export const stepSchema = yup.object({
   productMedia: yup
@@ -217,15 +224,15 @@ export const stepSchema = yup.object({
 });
 
 export const step1InitialValues = {
-  name: '',
+  name: 'Product',
   isGlutenFree: false,
   isGMOFree: false,
   description: undefined,
 };
 export const step2InitialValues = {
-  additionalCost: 0,
-  costPerGramWhole: 0,
-  costPerGramGround: 0,
+  additionalCost: 10100,
+  costPerGramWhole: 100,
+  costPerGramGround: 1000,
   marginLevelId: undefined,
 };
 export const step3InitialValues = {
@@ -233,9 +240,14 @@ export const step3InitialValues = {
   subcategoryId: undefined,
   categoryId: undefined,
   supplierId: undefined,
-  unitOfMesureId: undefined,
 };
 export const step4InitialValues = {
+  isActive: true,
+  isPublic: false,
+  minimumStockLevel: 1000,
+  quantity: 1000,
+};
+export const step5InitialValues = {
   name: '',
   isGlutenFree: false,
   isGMOFree: false,

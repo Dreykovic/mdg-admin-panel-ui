@@ -11,9 +11,12 @@ import {
   step2Schema,
   step3InitialValues,
   step3Schema,
+  step4InitialValues,
+  step4Schema,
 } from './validation';
 import Step2 from './step2';
 import Step3 from './step3';
+import Step4 from './step4';
 
 // Définition du type des étapes
 export interface Step {
@@ -52,6 +55,16 @@ const steps: Step[] = [
       </>
     ),
     validationSchema: step3Schema,
+  },
+  {
+    initialValues: step4InitialValues,
+    title: 'Stock Setup',
+    content: (
+      <>
+        <Step4 />
+      </>
+    ),
+    validationSchema: step4Schema,
   },
 ];
 export default steps;
