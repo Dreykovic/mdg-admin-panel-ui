@@ -3,16 +3,18 @@ import { FormikValues } from 'formik';
 import * as Yup from 'yup';
 
 import Step1 from './step1';
+
+import {
+  step1InitialValues,
+  step1Schema,
+  step2InitialValues,
+  step2Schema,
+  step3InitialValues,
+  step3Schema,
+} from './validation';
 import Step2 from './step2';
 import Step3 from './step3';
-import {
-  schemaStep1,
-  schemaStep2,
-  initialValues1,
-  initialValues2,
-  schemaStep3,
-  initialValues3,
-} from './validation';
+
 // Définition du type des étapes
 export interface Step {
   initialValues: FormikValues;
@@ -22,37 +24,34 @@ export interface Step {
 }
 const steps: Step[] = [
   {
-    initialValues: initialValues1,
-    title: 'Infos Personnelles',
+    initialValues: step1InitialValues,
+    title: 'Product Informations',
     content: (
       <>
         <Step1 />
       </>
     ),
-    validationSchema: schemaStep1,
+    validationSchema: step1Schema,
   },
   {
-    initialValues: initialValues2,
-
-    title: 'Contrat',
+    initialValues: step2InitialValues,
+    title: 'Pricing',
     content: (
       <>
         <Step2 />
       </>
     ),
-    validationSchema: schemaStep2,
+    validationSchema: step2Schema,
   },
-
   {
-    initialValues: initialValues3,
-
-    title: 'RIB',
+    initialValues: step3InitialValues,
+    title: 'Organize',
     content: (
       <>
         <Step3 />
       </>
     ),
-    validationSchema: schemaStep3,
+    validationSchema: step3Schema,
   },
 ];
 export default steps;

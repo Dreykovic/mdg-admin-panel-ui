@@ -1,119 +1,149 @@
-/// You have to Import this line to
+import { ErrorMessage, Field } from 'formik'; // Assurez-vous d'importer useFormikContext
+import ReactCountryDropdown from 'react-country-dropdown';
 
-import { ErrorMessage, Field } from 'formik';
+import {
+  useGetCategoriesListQuery,
+  useGetSuppliersListQuery,
+} from '@/store/api-slice';
+import { useState } from 'react';
+import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
+import CategoryCreateForm from '@/features/categories/components/category-create-form';
 
 const Step3 = () => {
+  const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);
+
+  const handleCreateSupplierModalClose = () =>
+    setShowCreateSupplierModal(false);
+  const handleCreateSupplierModalShow = () => setShowCreateSupplierModal(true);
+
+  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
+
+  const handleCreateCategoryModalClose = () =>
+    setShowCreateCategoryModal(false);
+  const handleCreateCategoryModalShow = () => setShowCreateCategoryModal(true);
+  // Récupération des suppliers
+  const { data: suppliersResponse, isFetching: isSuppliersFetching } =
+    useGetSuppliersListQuery(undefined, {
+      refetchOnMountOrArgChange: true,
+    });
+  const suppliers = suppliersResponse?.content.suppliers;
+
+  // Récupération des categories
+  const { data: categoriesResponse, isFetching: isCategoriesFetching } =
+    useGetCategoriesListQuery(undefined, {
+      refetchOnMountOrArgChange: true,
+    });
+  const categories = categoriesResponse?.content.categories;
+
   return (
     <>
+      {/* Sélection de la direction */}
       <div className="mb-3">
-        <label htmlFor="bankName" className="form-label">
-          Nom De Banque
+        <label htmlFor="supplierId" className="form-label required">
+          Supplier
         </label>
-
-        <Field
-          name="bankName"
-          type="text"
-          className="form-control"
-          placeholder="Nom De Banque Du Membre"
-        />
+        <div className="d-flex w-sm-100 g-3">
+          {isSuppliersFetching ? (
+            <div className="d-flex align-items-center">
+              <span
+                className="spinner-grow spinner-grow-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Fetching suppliers...
+            </div>
+          ) : (
+            <>
+              <Field as="select" className="form-control" name="supplierId">
+                <option value="">-- Select a supplier --</option>
+                {suppliers?.map((option) => (
+                  <option key={option.id} value={option.id}>
+                    {option.name}
+                  </option>
+                ))}
+              </Field>
+            </>
+          )}
+          <span
+            role="button"
+            className="btn btn-light"
+            onClick={handleCreateSupplierModalShow}
+          >
+            <i className="icofont-plus  fs-4"></i>
+          </span>
+        </div>
         <ErrorMessage
-          name="bankName"
+          name="supplierId"
           component="span"
           className="text-danger"
         />
       </div>
+
       <div className="row g-3 mb-3">
         <div className="col-sm-6">
-          <label htmlFor="codeBank" className="form-label">
-            Code Banque
-          </label>
+          {/* Sélection de la direction */}
 
-          <Field
-            name="codeBank"
-            type="text"
-            className="form-control"
-            placeholder="Code Bank"
-          />
+          <label htmlFor="categoryId" className="form-label required">
+            Categories
+          </label>
+          <div className="d-flex w-sm-100 g-3">
+            {isCategoriesFetching ? (
+              <div className="d-flex align-items-center">
+                <span
+                  className="spinner-grow spinner-grow-sm me-2"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Fetching categories...
+              </div>
+            ) : (
+              <>
+                <Field as="select" className="form-control" name="categoryId">
+                  <option value="">-- Select a category --</option>
+                  {categories?.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.name}
+                    </option>
+                  ))}
+                </Field>
+              </>
+            )}
+            <span
+              role="button"
+              className="btn btn-light"
+              onClick={handleCreateCategoryModalShow}
+            >
+              <i className="icofont-plus  fs-4"></i>
+            </span>
+          </div>
           <ErrorMessage
-            name="codeBank"
+            name="categoryId"
             component="span"
             className="text-danger"
           />
         </div>
         <div className="col-sm-6">
-          <label htmlFor="codeGuichet" className="form-label">
-            Code Guichet
+          {/* Sélection de la direction */}
+
+          <label htmlFor="categoryId" className="form-label required">
+            Categories
           </label>
-          <Field
-            name="codeGuichet"
-            type="text"
-            className="form-control required"
-            placeholder="Code Guichet"
-          />
-          <ErrorMessage
-            name="codeGuichet"
-            component="span"
-            className="text-danger"
-          />
+          <div>
+            <ReactCountryDropdown
+              defaultCountry="JP"
+              onSelect={(country) => alert(JSON.stringify(country))}
+            />
+          </div>
         </div>
       </div>
-      <div className="mb-3">
-        <label htmlFor="iban" className="form-label">
-          IBAN
-        </label>
-
-        <Field
-          name="iban"
-          type="text"
-          className="form-control"
-          placeholder="IBAN"
-        />
-        <ErrorMessage name="iban" component="span" className="text-danger" />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="rib" className="form-label">
-          Relevé d&apos;Identité Bancaire (RIB)
-        </label>
-
-        <Field
-          name="rib"
-          type="text"
-          className="form-control"
-          placeholder="RIB Du membre"
-        />
-        <ErrorMessage name="rib" component="span" className="text-danger" />
-      </div>
-      <div className="row g-3 mb-3">
-        <div className="col-sm-6">
-          <label htmlFor="cleRib" className="form-label">
-            Clé RIB
-          </label>
-
-          <Field
-            name="cleRib"
-            type="text"
-            className="form-control"
-            placeholder="Clé RIB"
-          />
-          <ErrorMessage
-            name="cleRib"
-            component="span"
-            className="text-danger"
-          />
-        </div>
-        <div className="col-sm-6">
-          <label htmlFor="swift" className="form-label">
-            SWIFT
-          </label>
-          <Field
-            name="swift"
-            type="text"
-            className="form-control required"
-            placeholder="Code Guichet"
-          />
-          <ErrorMessage name="swift" component="span" className="text-danger" />
-        </div>
-      </div>
+      <SupplierCreateForm
+        show={showCreateSupplierModal}
+        handleClose={handleCreateSupplierModalClose}
+      />
+      <CategoryCreateForm
+        show={showCreateCategoryModal}
+        handleClose={handleCreateCategoryModalClose}
+      />
     </>
   );
 };

@@ -1,8 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import env from '@/config/env';
-import { ApiResponse } from '@/types/api';
+import { ApiResponse, ListResponse } from '@/types/api';
 import authUtil from '@/utils/auth-utils';
+import {
+  MarginLevel,
+  ProductCategory,
+  Supplier,
+  UnitOfMesure,
+} from '@/types/entity';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: env.baseUrl,
@@ -72,7 +78,45 @@ export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
   tagTypes: ['CATEGORIES', 'SUPPLIERS', 'MARGINS', 'UOM', 'PRODUCTS'], // Exemple : tags pour cache invalidation
-  endpoints: () => ({}), // À compléter selon vos besoins
+  endpoints: (builder) => ({
+    getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({
+      query: () => {
+        return {
+          url: `resources/categories/list`,
+        };
+      },
+      providesTags: ['CATEGORIES'], // Ajouter un tag
+    }),
+    getMarginsList: builder.query<ListResponse<MarginLevel[]>, void>({
+      query: () => {
+        return {
+          url: `resources/margins/list`,
+        };
+      },
+      providesTags: ['MARGINS'], // Ajouter un tag
+    }),
+    getUnitsList: builder.query<ListResponse<UnitOfMesure[]>, void>({
+      query: () => {
+        return {
+          url: `resources/us-o-m/list`,
+        };
+      },
+      providesTags: ['UOM'], // Ajouter un tag
+    }),
+    getSuppliersList: builder.query<ListResponse<Supplier[]>, void>({
+      query: () => {
+        return {
+          url: `resources/suppliers/list`,
+        };
+      },
+      providesTags: ['SUPPLIERS'], // Ajouter un tag
+    }),
+  }),
 });
-
+export const {
+  useGetCategoriesListQuery,
+  useGetMarginsListQuery,
+  useGetUnitsListQuery,
+  useGetSuppliersListQuery,
+} = apiSlice;
 export default apiSlice;

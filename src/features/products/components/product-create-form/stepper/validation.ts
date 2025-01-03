@@ -18,11 +18,7 @@ export const productSchema = yup.object({
     .string()
     .nullable()
     .typeError('Description must be a string'),
-  barcode: yup
-    .string()
-    .trim()
-    .required('Barcode is required')
-    .typeError('Barcode must be a string'),
+
   isActive: yup
     .boolean()
     .required('Active status is required')
@@ -155,20 +151,14 @@ export const step1Schema = yup.object({
     .string()
     .nullable()
     .typeError('Description must be a string'),
-  barcode: yup
-    .string()
-    .trim()
-    .required('Barcode is required')
-    .typeError('Barcode must be a string'),
 });
 export const step2Schema = yup.object({
-  productMedia: yup
-    .array()
-    .of(yup.object().typeError('Product Media must be an array of objects'))
-    .required('Product Media is required')
-    .typeError('Product Media must be an array'),
-});
-export const step3Schema = yup.object({
+  marginLevelId: yup
+    .number()
+    .integer()
+    .positive()
+    .required('Margin Level  is required')
+    .typeError('Margin Level ID must be a positive integer'),
   additionalCost: yup
     .number()
     .positive()
@@ -185,7 +175,7 @@ export const step3Schema = yup.object({
     .required('Cost per gram (ground) is required')
     .typeError('Cost per gram (ground) must be a positive number'),
 });
-export const step4Schema = yup.object({
+export const step3Schema = yup.object({
   originId: yup
     .number()
     .integer()
@@ -210,12 +200,7 @@ export const step4Schema = yup.object({
     .positive()
     .required('Supplier ID is required')
     .typeError('Supplier ID must be a positive integer'),
-  marginLevelId: yup
-    .number()
-    .integer()
-    .positive()
-    .required('Margin Level ID is required')
-    .typeError('Margin Level ID must be a positive integer'),
+
   unitOfMesureId: yup
     .number()
     .integer()
@@ -223,5 +208,52 @@ export const step4Schema = yup.object({
     .required('Unit of Measure ID is required')
     .typeError('Unit of Measure ID must be a positive integer'),
 });
+export const stepSchema = yup.object({
+  productMedia: yup
+    .array()
+    .of(yup.object().typeError('Product Media must be an array of objects'))
+    .required('Product Media is required')
+    .typeError('Product Media must be an array'),
+});
 
+export const step1InitialValues = {
+  name: '',
+  isGlutenFree: false,
+  isGMOFree: false,
+  description: undefined,
+};
+export const step2InitialValues = {
+  additionalCost: 0,
+  costPerGramWhole: 0,
+  costPerGramGround: 0,
+  marginLevelId: undefined,
+};
+export const step3InitialValues = {
+  originId: undefined,
+  subcategoryId: undefined,
+  categoryId: undefined,
+  supplierId: undefined,
+  unitOfMesureId: undefined,
+};
+export const step4InitialValues = {
+  name: '',
+  isGlutenFree: false,
+  isGMOFree: false,
+  description: undefined,
+  barcode: '',
+  isActive: true,
+  minimumStockLevel: 0,
+  quantity: 0,
+  additionalCost: undefined,
+  costPerGramWhole: 0,
+  costPerGramGround: 0,
+  pricePerGramWhole: 0,
+  pricePerGramGround: 0,
+  originId: undefined,
+  subcategoryId: undefined,
+  categoryId: undefined,
+  supplierId: undefined,
+  marginLevelId: undefined,
+  unitOfMesureId: undefined,
+};
 export default productSchema;

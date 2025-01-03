@@ -1,25 +1,21 @@
 import { Formik, Form, FormikHelpers } from 'formik';
 import { useState } from 'react';
-import { ModalProps } from 'react-bootstrap';
-import { Modal } from 'react-bootstrap';
+
 import { useDispatch } from 'react-redux';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
-import { ApiResponse, EmployeeDetails } from '@/types/api';
 
 import Stepper from './stepper';
 import steps from './stepper/steps';
-import { initialValues } from './stepper/validation';
+import { productInitialValues } from './stepper/validation';
 
-import { useCreateDutyMutation } from '@/features/employee/api';
-
-const CreateEmployee = ({ show, handleClose }: ModalProps) => {
+const AddProduct = () => {
   const [stepIndex, setStepIndex] = useState(0);
   const currentStep = steps[stepIndex];
   const [formData, setFormData] = useState({});
-  const [createDuty] = useCreateDutyMutation();
+
   const dispatch = useDispatch<AppDispatch>();
 
   const handleNext = async (
@@ -42,23 +38,7 @@ const CreateEmployee = ({ show, handleClose }: ModalProps) => {
   };
   const handleSubmit = async () => {
     try {
-      if (formData) {
-        const data: Partial<EmployeeDetails> = formData;
-
-        const response: ApiResponse<null> = await createDuty(data).unwrap();
-        if (response.success) {
-          dispatch(
-            showAlert({
-              title: 'Succès !',
-              message: `${response.message}`,
-            }),
-          );
-        }
-
-        handleClose();
-      } else {
-        throw new Error('Pas de valeur fournies');
-      }
+      console.log(formData);
     } catch (error) {
       console.error(error);
 
@@ -71,56 +51,52 @@ const CreateEmployee = ({ show, handleClose }: ModalProps) => {
           success: false,
         }),
       );
-    } finally {
-      handleClose();
     }
   };
   return (
     <>
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Formulaire Ajout Membre Du Personnel</Modal.Title>
-        </Modal.Header>
-        <Stepper step={stepIndex} setStep={setStepIndex} steps={steps} />{' '}
+      <div className="card mb-3 shadow">
         <Formik
-          initialValues={initialValues} // Ajustez selon les valeurs globales de votre formulaire
+          initialValues={productInitialValues} // Ajustez selon les valeurs globales de votre formulaire
           validationSchema={currentStep.validationSchema}
           onSubmit={handleNext}
         >
           {({ isSubmitting }) => (
             <Form>
-              <Modal.Body>{currentStep.content}</Modal.Body>
-              <Modal.Footer>
+              <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
+                <Stepper
+                  step={stepIndex}
+                  setStep={setStepIndex}
+                  steps={steps}
+                />
+              </div>
+              <div className="card-body">{currentStep.content}</div>
+              <div className="card-footer d-flex justify-content-between">
                 {stepIndex === 0 ? (
-                  ''
+                  <span></span>
                 ) : (
                   <button
                     type="button"
                     onClick={handlePrevious}
-                    className="btn btn-secondary"
+                    className="btn btn-secondary "
                   >
-                    Retour
+                    Back
                   </button>
                 )}
 
                 <LoadingButton
                   isLoading={isSubmitting}
-                  classes="btn btn-success"
+                  classes="btn btn-primary "
                   type="submit"
-                  text={`${stepIndex < steps.length - 1 ? 'Continuer' : 'Soumettre'}`}
+                  text={`${stepIndex < steps.length - 1 ? 'Continuer' : 'Save'}`}
                 />
-              </Modal.Footer>
+              </div>
             </Form>
           )}
         </Formik>
-      </Modal>
+      </div>
     </>
   );
 };
 
-export default CreateEmployee;
+export default AddProduct;

@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
+import AddProduct from '@/features/products/components/product-create-form';
 
 const AddProductPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -27,11 +28,7 @@ const AddProductPage = () => {
       </div>
       <div className="row justify-content-center g-3">
         <div className="col-lg-8 col-md-12">
-          <div className="card mb-3 shadow">
-            <div className="card-header d-flex justify-content-between">
-              Form
-            </div>
-          </div>
+          <AddProduct />
         </div>
       </div>
     </>

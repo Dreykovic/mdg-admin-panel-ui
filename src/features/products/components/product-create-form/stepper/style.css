@@ -1,0 +1,36 @@
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.circle {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background: #fff;
+}
+.circle.completed {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+.active .circle {
+  border-color: #2196f3;
+}
+.label {
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+}
