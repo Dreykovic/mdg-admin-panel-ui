@@ -5,23 +5,20 @@ import { useSearchParams } from 'react-router-dom';
 
 import TableLoadingSkeleton from '@/components/ui/loading/table-loading';
 import CustomPagination from '@/components/ui/pagination';
-import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
-import SuppliersTable from '@/features/suppliers/components/suppliers-table';
-import { useGetSomeSuppliersQuery } from '@/features/suppliers/store/api';
+
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 import PageSizePicker from '@/components/ui/pagination/page-size-picker';
-import SearchInput from '../../components/ui/pagination/search-input';
-import ElementShow from '@/components/ui/pagination/element-show';
 
-const SuppliersPage = () => {
+import ElementShow from '@/components/ui/pagination/element-show';
+import { useGetSomeProductsQuery } from '@/features/products/store/api';
+import ProductTable from '@/features/products/components/products-table';
+import SearchInput from '@/components/ui/pagination/search-input';
+
+const ProductsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);
 
-  const handleCreateSupplierModalClose = () =>
-    setShowCreateSupplierModal(false);
-  const handleCreateSupplierModalShow = () => setShowCreateSupplierModal(true);
   // États locaux pour `pageSize` et `search`
   const [pageSize, setPageSize] = useState(
     parseInt(searchParams.get('pageSize') || '10', 10),
@@ -37,33 +34,66 @@ const SuppliersPage = () => {
   const filters = search ? { name: search } : undefined;
 
   // Lancer la requête avec les paramètres actuels
-  const { data: result, isFetching } = useGetSomeSuppliersQuery(
+  const { data: result, isFetching } = useGetSomeProductsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
     { refetchOnMountOrArgChange: true },
   );
 
-  const someSuppliers = result?.content.data;
+  const someProducts = result?.content.data;
+  console.log(someProducts);
+
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'supplier-list', group: 'resources' }));
+    dispatch(setPageName({ name: 'product-list', group: 'products' }));
   }, [dispatch]);
 
   return (
     <>
-      <div className="row align-items-center">
-        <div className="border-0 mb-4">
-          <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <h3 className="fw-bold py-3 mb-0">Suppliers</h3>{' '}
-            <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
-              <button
-                type="button"
-                className="btn btn-dark w-sm-100"
-                onClick={handleCreateSupplierModalShow}
-              >
-                <i className="icofont-plus-circle me-2 fs-6"></i>New Supplier
-              </button>
+      <div className="row g-3 mb-3">
+        <div className="col-md-4">
+          <div className="card shadow">
+            <div className="card-body">
+              <div className="d-flex align-items-center">
+                <div className="avatar lg  rounded-1 no-thumbnail bg-secondary color-defult">
+                  <i className="icofont-optic fs-4"></i>
+                </div>
+                <div className="flex-fill ms-4 text-truncate">
+                  <div className="text-truncate">In-Store Sales</div>
+                  <span className="badge bg-secondary">$</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="card shadow">
+            <div className="card-body">
+              <div className="d-flex align-items-center">
+                <div className="avatar lg  rounded-1 no-thumbnail bg-secondary color-defult">
+                  <i className="icofont-user fs-4"></i>
+                </div>
+                <div className="flex-fill ms-4 text-truncate">
+                  <div className="text-truncate">Website Sales</div>
+                  <span className="fw-bold">Sally Graham</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="card shadow">
+            <div className="card-body">
+              <div className="d-flex align-items-center">
+                <div className="avatar lg  rounded-1 no-thumbnail bg-secondary color-defult">
+                  <i className="icofont-price fs-4"></i>
+                </div>
+                <div className="flex-fill ms-4 text-truncate">
+                  <div className="text-truncate">Discount</div>
+                  <span className="badge bg-secondary">$</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -83,11 +113,11 @@ const SuppliersPage = () => {
             {isFetching ? (
               <TableLoadingSkeleton rows={3} columns={6} />
             ) : (
-              <SuppliersTable suppliers={someSuppliers ?? []} />
+              <ProductTable products={someProducts ?? []} />
             )}
             <div className="card-footer text-center border-top-0 d-flex align-items-center justify-content-between">
               <ElementShow
-                length={someSuppliers?.length as number}
+                length={someProducts?.length as number}
                 totalElements={totalElements as number}
               />
               <CustomPagination
@@ -100,12 +130,8 @@ const SuppliersPage = () => {
           </div>
         </div>
       </div>
-      <SupplierCreateForm
-        show={showCreateSupplierModal}
-        handleClose={handleCreateSupplierModalClose}
-      />
     </>
   );
 };
 
-export default SuppliersPage;
+export default ProductsPage;

@@ -59,19 +59,10 @@ export interface UserProfile extends BaseEntity {
   userId: string;
 }
 
-// Product Types
-export interface ProductDefinition extends BaseEntity {
-  name: string;
-  isGlutenFree: boolean;
-  isGMOFree: boolean;
-  description?: string;
-  productDetails: ProductDetail[];
-}
-
 export interface Origin extends BaseEntity {
   code: string;
   country: string;
-  productDetails: ProductDetail[];
+  productDetails: Product[];
 }
 
 export interface ProductCategory extends BaseEntity {
@@ -79,7 +70,7 @@ export interface ProductCategory extends BaseEntity {
   imageRef?: string;
   imageUrl?: string;
   slug?: string;
-  productDetails: ProductDetail[];
+  productDetails: Product[];
   subcategories: ProductSubcategory[];
 }
 
@@ -89,7 +80,7 @@ export interface ProductSubcategory extends BaseEntity {
   imageUrl?: string;
   slug?: string;
   categoryId: number;
-  productDetails: ProductDetail[];
+  productDetails: Product[];
 }
 
 export interface Supplier extends BaseEntity {
@@ -103,14 +94,14 @@ export interface Supplier extends BaseEntity {
   country: string; // Pays
   // Relations
   imageRef?: string;
-  productDetails: ProductDetail[];
+  productDetails: Product[];
 }
 
 export interface MarginLevel extends BaseEntity {
   // Properties
   name: string; // Nom du fournisseur
   margin: number;
-  productDetails: ProductDetail[];
+  productDetails: Product[];
 }
 export interface UnitOfMesure extends BaseEntity {
   // Properties
@@ -119,10 +110,14 @@ export interface UnitOfMesure extends BaseEntity {
   factor: number;
   isStandard: number;
   unitOfMesureId: number;
-  productDetails: ProductDetail[];
+  productDetails: Product[];
 }
 
-export interface ProductDetail extends BaseEntity {
+export interface Product extends BaseEntity {
+  name: string;
+  isGlutenFree: boolean;
+  isGMOFree: boolean;
+  description?: string;
   barcode: string;
   isActive: boolean;
   minimumStockLevel: number;
@@ -137,10 +132,11 @@ export interface ProductDetail extends BaseEntity {
   categoryId: number;
   supplierId: number;
   marginLevelId: number;
-  productDefinitionId: number;
+
   unitOfMesureId: number;
   productMedia: ProductMedia[];
   stockMovements: StockMovement[];
+  category: ProductCategory;
 }
 
 export interface StockMovement extends BaseEntity {

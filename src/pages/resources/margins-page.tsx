@@ -69,7 +69,7 @@ const MarginsPage = () => {
       </div>
       <div className="row justify-content-center g-3">
         <div className="col-lg-8 col-md-12">
-          <div className="card mb-3">
+          <div className="card mb-3 shadow">
             <div className="card-header d-flex justify-content-between">
               <div>
                 <PageSizePicker

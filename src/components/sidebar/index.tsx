@@ -36,8 +36,6 @@ const SideBar = () => {
     }
   }, [ref, isMinified, rect, height, width, isOpened]);
   const contentRender = useMemo(() => {
-    console.log(data);
-
     return data.map((link) => <SidebarNavGroup link={link} key={link.id} />);
   }, []);
   return (

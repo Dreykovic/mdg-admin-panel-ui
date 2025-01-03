@@ -38,7 +38,7 @@ const CategoryCard = ({
   return (
     <>
       <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
-        <div className="card">
+        <div className="card shadow">
           <div className="card-body">
             <div className="d-flex align-items-center justify-content-between mt-5 flex-wrap">
               <div className="lesson_name">

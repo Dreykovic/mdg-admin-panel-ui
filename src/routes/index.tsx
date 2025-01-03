@@ -8,6 +8,7 @@ import MarginsPage from '@/pages/resources/margins-page';
 import SuppliersPage from '@/pages/resources/suppliers-page';
 import { RoutesConfigType } from '@/types/routes-type';
 import UnitsPage from '@/pages/resources/units-page';
+import ProductsPage from '@/pages/resources/products-page';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {
@@ -23,7 +24,7 @@ export const authRoutes: RoutesConfigType = {
 
     name: 'category-list',
 
-    path: '/resources/categories',
+    path: '/products/categories',
     component: <CategoriesPage />,
     pageName: 'Categories Page',
   },
@@ -32,7 +33,7 @@ export const authRoutes: RoutesConfigType = {
 
     name: 'supplier-list',
 
-    path: '/resources/suppliers',
+    path: '/settings/suppliers',
     component: <SuppliersPage />,
     pageName: 'Suppliers Page',
   },
@@ -41,7 +42,7 @@ export const authRoutes: RoutesConfigType = {
 
     name: 'margin-list',
 
-    path: '/resources/margins',
+    path: '/settings/margins',
     component: <MarginsPage />,
     pageName: 'Margins Page',
   },
@@ -50,9 +51,18 @@ export const authRoutes: RoutesConfigType = {
 
     name: 'unit-list',
 
-    path: '/resources/units',
+    path: '/settings/units',
     component: <UnitsPage />,
     pageName: 'Units Page',
+  },
+  products: {
+    navLink: 'productNavId',
+
+    name: 'product-list',
+
+    path: '/products/products',
+    component: <ProductsPage />,
+    pageName: 'Products Page',
   },
 };
 export const guestRoutes: RoutesConfigType = {
