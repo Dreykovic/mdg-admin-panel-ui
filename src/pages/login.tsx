@@ -16,8 +16,8 @@ interface ILoginFormValues {
 }
 const Login = () => {
   const initialValues = {
-    username: 'Birewa',
-    password: 'secret',
+    username: '',
+    password: '',
   };
   const validationsSchema = Yup.object({
     username: Yup.string().required('The username is required'),
