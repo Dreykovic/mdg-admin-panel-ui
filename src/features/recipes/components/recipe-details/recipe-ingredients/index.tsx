@@ -1,5 +1,5 @@
 import { IRecipeProps } from '@/features/recipes/types';
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import IngredientItem from './ingredient-item';
 import {
   useDeleteIngredientMutation,
@@ -14,8 +14,6 @@ import { AppDispatch } from '@/store';
 import { useDispatch } from 'react-redux';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
-
-type Props = {};
 
 const RecipeIngredients = ({ recipe }: IRecipeProps) => {
   const [showCreateIngredientModal, setShowCreateIngredientModal] =
@@ -87,7 +85,7 @@ const RecipeIngredients = ({ recipe }: IRecipeProps) => {
   return (
     <>
       <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-        <div className="card">
+        <div className="card shadow">
           <div className="card-header p-3 no-bg bg-transparent d-flex align-items-center justify-content-between border-bottom flex-wrap">
             <h3 className="">Ingredients</h3>{' '}
             <div className="d-flex py-2 project-tab flex-wrap w-sm-100">

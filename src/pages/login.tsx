@@ -112,9 +112,9 @@ const Login = () => {
                       <label htmlFor="password" className="form-label required">
                         Password
                       </label>
-                      <a className="text-secondary" href="#">
+                      {/* <a className="text-secondary" href="#">
                         Forgot your password?
-                      </a>
+                      </a> */}
                     </span>
                   </div>
 

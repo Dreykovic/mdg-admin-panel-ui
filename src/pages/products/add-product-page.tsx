@@ -18,11 +18,6 @@ const AddProductPage = () => {
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
             <h3 className="fw-bold py-3 mb-0">New product</h3>{' '}
-            <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
-              <button type="button" className="btn btn-dark w-sm-100">
-                <i className="icofont-plus-circle me-2 fs-6"></i>Create Category
-              </button>
-            </div>
           </div>
         </div>
       </div>

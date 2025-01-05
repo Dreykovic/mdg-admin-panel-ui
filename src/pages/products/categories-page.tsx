@@ -80,7 +80,7 @@ const CategoriesPage = () => {
         </div>
       </div>
       {isFetching ? (
-        <CardLoading number={3} />
+        <CardLoading number={4} />
       ) : (
         <>
           <CategoryList categories={someCategories ?? []} />

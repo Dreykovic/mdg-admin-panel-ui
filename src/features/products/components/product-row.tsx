@@ -16,7 +16,7 @@ const ProductRow = ({ product }: IProductRowProps) => {
               style={{ width: '60px', height: '60px' }}
             >
               <i
-                className="icofont-bricks d-flex justify-content-center align-items-center"
+                className="icofont-honey d-flex justify-content-center align-items-center"
                 style={{ width: '60px', height: '60px', fontSize: '30px' }}
               ></i>
             </div>

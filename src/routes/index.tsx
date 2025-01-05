@@ -6,13 +6,14 @@ import { lazy } from 'react';
 import AddProductPage from '@/pages/products/add-product-page';
 import CategoriesPage from '@/pages/products/categories-page';
 import ProductsPage from '@/pages/products/products-page';
-import MarginsPage from '@/pages/settings/margins-page';
-import SuppliersPage from '@/pages/settings/suppliers-page';
-import UnitsPage from '@/pages/settings/units-page';
+
 import { RoutesConfigType } from '@/types/routes-type';
 import RecipesPage from '@/pages/recipes/recipes-page';
 
 import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
+import MarginsPage from '@/pages/products/settings/margins-page';
+import SuppliersPage from '@/pages/products/settings/suppliers-page';
+import UnitsPage from '@/pages/units-page';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {
@@ -37,7 +38,7 @@ export const authRoutes: RoutesConfigType = {
 
     name: 'supplier-list',
 
-    path: '/settings/suppliers',
+    path: '/product-settings/suppliers',
     component: <SuppliersPage />,
     pageName: 'Suppliers Page',
   },
@@ -46,7 +47,7 @@ export const authRoutes: RoutesConfigType = {
 
     name: 'margin-list',
 
-    path: '/settings/margins',
+    path: '/product-settings/margins',
     component: <MarginsPage />,
     pageName: 'Margins Page',
   },

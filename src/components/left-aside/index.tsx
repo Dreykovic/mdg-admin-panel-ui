@@ -1,5 +1,5 @@
 // import Clock from '@/shared/components/ui/clock';
-import Logo from '@/assets/images/logo/logo.png';
+import Logo from '@/assets/images/logo/logo.svg';
 
 function LeftAside() {
   return (

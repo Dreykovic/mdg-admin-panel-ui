@@ -1,4 +1,4 @@
-import Logo from '@/assets/images/logo/logo.png';
+import Logo from '@/assets/images/logo/logo.svg';
 
 export const Loading = () => {
   return (

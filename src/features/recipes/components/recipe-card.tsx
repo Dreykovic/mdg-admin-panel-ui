@@ -1,7 +1,6 @@
 import { authRoutes } from '@/routes';
 import { Recipe } from '@/types/entity';
 
-import * as Icon from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 interface IRecipeProps {
@@ -11,11 +10,26 @@ const RecipeCard = ({ recipe }: IRecipeProps) => {
   return (
     <>
       <div className="col">
-        <div className="card teacher-card">
+        <div className="card teacher-card shadow">
           <div className="card-body  d-flex">
             <div className="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-              <Icon.Person className="avatar xl img-thumbnail shadow-sm" />
-              <h6 className="mb-0 fw-bold d-block fs-6 mt-2">{``}</h6>
+              <div
+                className="bg-secondary d-flex justify-content-center align-items-center rounded"
+                style={{
+                  width: '100%',
+                  height: '200px', // Définissez une hauteur par défaut
+                  maxWidth: '400px', // Largeur maximale pour un rendu propre
+                  margin: 'auto', // Centre horizontalement dans les conteneurs
+                }}
+              >
+                <i
+                  className="icofont-culinary xl shadow-sm"
+                  style={{
+                    fontSize: '7rem', // Taille de l'icône
+                    color: '#fff', // Couleur blanche pour contraste
+                  }}
+                ></i>
+              </div>
             </div>
 
             <div className="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
@@ -27,16 +41,12 @@ const RecipeCard = ({ recipe }: IRecipeProps) => {
                 <p>{recipe.description}</p>
               </div>
               <div className="d-flex flex-wrap align-items-center ct-btn-set">
-                <a href="chat.html" className="btn btn-dark btn-sm mt-1 me-1">
-                  <i className="icofont-ui-text-chat me-2 fs-6"></i>Chat
-                </a>
-
                 <Link
                   to={authRoutes.recipeEdit.path}
                   state={recipe}
                   className="btn btn-dark btn-sm mt-1"
                 >
-                  <i className="icofont-invisible me-2 fs-6"></i>Profile
+                  <i className="icofont-invisible me-2 fs-6"></i>Details
                 </Link>
               </div>
             </div>

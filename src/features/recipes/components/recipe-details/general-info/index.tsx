@@ -1,15 +1,28 @@
-import * as Icon from 'react-bootstrap-icons';
 import { IRecipeProps } from '../../../types';
 
 const GeneralInfo = ({ recipe }: IRecipeProps) => {
   return (
     <>
-      <div className="card teacher-card  mb-3">
+      <div className="card teacher-card  mb-3 shadow">
         <div className="card-body  d-flex teacher-fulldeatil">
           <div className="profile-teacher pe-xl-4 pe-md-2 pe-sm-4 pe-0 text-center w220 mx-sm-0 mx-auto">
-            <a href="#">
-              <Icon.Person className="avatar xl img-thumbnail shadow-sm" />
-            </a>
+            <div
+              className="bg-secondary d-flex justify-content-center align-items-center rounded"
+              style={{
+                width: '100%',
+                height: '200px', // Définissez une hauteur par défaut
+                maxWidth: '400px', // Largeur maximale pour un rendu propre
+                margin: 'auto', // Centre horizontalement dans les conteneurs
+              }}
+            >
+              <i
+                className="icofont-culinary xl shadow-sm"
+                style={{
+                  fontSize: '7rem', // Taille de l'icône
+                  color: '#fff', // Couleur blanche pour contraste
+                }}
+              ></i>
+            </div>
             <div className="about-info d-flex align-items-center mt-3 justify-content-center flex-column">
               <span className="text-muted small">{`Difficulty : ${recipe.difficulty?.toLowerCase()}`}</span>
             </div>

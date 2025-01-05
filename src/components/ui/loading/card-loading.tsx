@@ -11,11 +11,8 @@ const CardLoading: React.FC<ICardLoaderProps> = ({ number = 8 }) => {
   return (
     <div className="row g-3 gy-5 py-3 row-deck">
       {Array.from({ length: number }).map((_, index) => (
-        <div
-          className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6"
-          key={index}
-        >
-          <Card style={{ width: '18rem' }}>
+        <div className={`col-${Math.floor(12 / number)}`} key={index}>
+          <Card style={{ width: '100%' }}>
             <Card.Body>
               <Placeholder as={Card.Title} animation="glow">
                 <Placeholder xs={6} />
