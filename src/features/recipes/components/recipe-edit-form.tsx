@@ -111,7 +111,6 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
         keyboard={false}
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        size="lg"
       >
         <Formik
           initialValues={initialValues}
@@ -127,54 +126,21 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
               <Modal.Body>
                 <div className="modal-content">
                   <div className="modal-body">
-                    {/* Step Details */}
-                    <h5 className="mb-4">Recipe Details</h5>
-                    <div className="row">
-                      {/* Step Name */}
-                      <div className="col-md-6 mb-3">
-                        <label htmlFor="name" className="form-label required">
-                          Recipe Name
-                        </label>
-                        <Field
-                          name="name"
-                          type="text"
-                          className="form-control"
-                        />
-                        <ErrorMessage
-                          name="name"
-                          component="div"
-                          className="text-danger"
-                        />
-                      </div>
-
-                      {/* Difficulty */}
-                      <div className="col-md-6 mb-3">
-                        <label
-                          htmlFor="difficulty"
-                          className="form-label required"
-                        >
-                          Difficulty
-                        </label>
-                        <Field
-                          name="difficulty"
-                          as="select"
-                          className="form-select"
-                        >
-                          <option value="">Select Difficulty</option>
-                          <option value="EASY">Easy</option>
-                          <option value="MEDIUM">Medium</option>
-                          <option value="HARD">Hard</option>
-                        </Field>
-                        <ErrorMessage
-                          name="difficulty"
-                          component="div"
-                          className="text-danger"
-                        />
-                      </div>
+                    {/* Recipe Name */}
+                    <div className="mb-3">
+                      <label htmlFor="name" className="form-label required">
+                        Recipe Name
+                      </label>
+                      <Field name="name" type="text" className="form-control" />
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className="text-danger"
+                      />
                     </div>
 
                     {/* Description */}
-                    <div className="mb-4">
+                    <div className="mb-3">
                       <label htmlFor="description" className="form-label">
                         Description
                       </label>
@@ -191,72 +157,85 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
                       />
                     </div>
 
-                    {/* Time Details */}
-                    <h5 className="mb-4">Time Details</h5>
-                    <div className="row">
-                      {/* Preparation Time */}
-                      <div className="col-md-6 mb-3">
-                        <label
-                          htmlFor="preparationTime"
-                          className="form-label required"
-                        >
-                          Preparation Time (minutes)
-                        </label>
-                        <Field
-                          name="preparationTime"
-                          type="number"
-                          className="form-control"
-                        />
-                        <ErrorMessage
-                          name="preparationTime"
-                          component="div"
-                          className="text-danger"
-                        />
-                      </div>
-
-                      {/* Cooking Time */}
-                      <div className="col-md-6 mb-3">
-                        <label
-                          htmlFor="cookingTime"
-                          className="form-label required"
-                        >
-                          Cooking Time (minutes)
-                        </label>
-                        <Field
-                          name="cookingTime"
-                          type="number"
-                          className="form-control"
-                        />
-                        <ErrorMessage
-                          name="cookingTime"
-                          component="div"
-                          className="text-danger"
-                        />
-                      </div>
+                    {/* Preparation Time */}
+                    <div className="mb-3">
+                      <label
+                        htmlFor="preparationTime"
+                        className="form-label required"
+                      >
+                        Preparation Time (minutes)
+                      </label>
+                      <Field
+                        name="preparationTime"
+                        type="number"
+                        className="form-control"
+                      />
+                      <ErrorMessage
+                        name="preparationTime"
+                        component="div"
+                        className="text-danger"
+                      />
                     </div>
 
-                    {/* Additional Details */}
-                    <h5 className="mb-4">Additional Details</h5>
-                    <div className="row">
-                      {/* Servings */}
-                      <div className="col-md-6 mb-3">
-                        <label
-                          htmlFor="servings"
-                          className="form-label required"
-                        >
-                          Servings
-                        </label>
-                        <Field
-                          name="servings"
-                          type="number"
-                          className="form-control"
-                        />
-                        <ErrorMessage
-                          name="servings"
-                          component="div"
-                          className="text-danger"
-                        />
-                      </div>
+                    {/* Cooking Time */}
+                    <div className="mb-3">
+                      <label
+                        htmlFor="cookingTime"
+                        className="form-label required"
+                      >
+                        Cooking Time (minutes)
+                      </label>
+                      <Field
+                        name="cookingTime"
+                        type="number"
+                        className="form-control"
+                      />
+                      <ErrorMessage
+                        name="cookingTime"
+                        component="div"
+                        className="text-danger"
+                      />
+                    </div>
+
+                    {/* Servings */}
+                    <div className="mb-3">
+                      <label htmlFor="servings" className="form-label required">
+                        Servings
+                      </label>
+                      <Field
+                        name="servings"
+                        type="number"
+                        className="form-control"
+                      />
+                      <ErrorMessage
+                        name="servings"
+                        component="div"
+                        className="text-danger"
+                      />
+                    </div>
+
+                    {/* Difficulty */}
+                    <div className="mb-3">
+                      <label
+                        htmlFor="difficulty"
+                        className="form-label required"
+                      >
+                        Difficulty
+                      </label>
+                      <Field
+                        name="difficulty"
+                        as="select"
+                        className="form-select"
+                      >
+                        <option value="EASY">Easy</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="HARD">Hard</option>
+                      </Field>
+                      <ErrorMessage
+                        name="difficulty"
+                        component="div"
+                        className="text-danger"
+                      />
                     </div>
                   </div>
                 </div>

@@ -11,6 +11,8 @@ import SuppliersPage from '@/pages/settings/suppliers-page';
 import UnitsPage from '@/pages/settings/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
 import RecipesPage from '@/pages/recipes/recipes-page';
+
+import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {
@@ -84,6 +86,15 @@ export const authRoutes: RoutesConfigType = {
     path: '/recipes',
     component: <RecipesPage />,
     pageName: 'Recipes Page',
+  },
+  recipeEdit: {
+    navLink: 'recipeEditNavId',
+
+    name: 'recipe-edit',
+
+    path: '/recipes/edit',
+    component: <RecipeDetailsPage />,
+    pageName: 'Recipes Edit',
   },
 };
 export const guestRoutes: RoutesConfigType = {

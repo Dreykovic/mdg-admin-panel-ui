@@ -86,6 +86,7 @@ export const apiSlice = createApi({
     'PRODUCTS',
     'ORIGINS',
     'RECIPES',
+    'STEPS',
   ], // Exemple : tags pour cache invalidation
   endpoints: (builder) => ({
     getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({

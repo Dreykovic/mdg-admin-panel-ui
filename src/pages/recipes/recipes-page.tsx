@@ -8,7 +8,7 @@ import ElementShow from '@/components/ui/pagination/element-show';
 import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 
-import { useGetSomeRecipesQuery } from '@/features/recipes/store/api';
+import { useGetSomeRecipesQuery } from '@/features/recipes/store/recipe-api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 import RecipeList from '@/features/recipes/components/recipe-list';
@@ -80,7 +80,7 @@ const RecipesPage = () => {
         </div>
       </div>
       {isFetching ? (
-        <CardLoading number={3} />
+        <CardLoading number={2} />
       ) : (
         <>
           <RecipeList recipes={someRecipes ?? []} />

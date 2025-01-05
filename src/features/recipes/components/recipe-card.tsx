@@ -1,6 +1,8 @@
+import { authRoutes } from '@/routes';
 import { Recipe } from '@/types/entity';
 
 import * as Icon from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 interface IRecipeProps {
   recipe: Partial<Recipe>;
@@ -28,9 +30,14 @@ const RecipeCard = ({ recipe }: IRecipeProps) => {
                 <a href="chat.html" className="btn btn-dark btn-sm mt-1 me-1">
                   <i className="icofont-ui-text-chat me-2 fs-6"></i>Chat
                 </a>
-                <a href="profile.html" className="btn btn-dark btn-sm mt-1">
+
+                <Link
+                  to={authRoutes.recipeEdit.path}
+                  state={recipe}
+                  className="btn btn-dark btn-sm mt-1"
+                >
                   <i className="icofont-invisible me-2 fs-6"></i>Profile
-                </a>
+                </Link>
               </div>
             </div>
           </div>
