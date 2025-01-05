@@ -90,7 +90,7 @@ export const apiSlice = createApi({
     getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({
       query: () => {
         return {
-          url: `resources/categories/list`,
+          url: `resources/product-resources/categories/list`,
         };
       },
       providesTags: ['CATEGORIES'], // Ajouter un tag
@@ -98,7 +98,7 @@ export const apiSlice = createApi({
     getMarginsList: builder.query<ListResponse<MarginLevel[]>, void>({
       query: () => {
         return {
-          url: `resources/margins/list`,
+          url: `resources/product-resources/margins/list`,
         };
       },
       providesTags: ['MARGINS'], // Ajouter un tag
@@ -106,7 +106,7 @@ export const apiSlice = createApi({
     getUnitsList: builder.query<ListResponse<UnitOfMesure[]>, void>({
       query: () => {
         return {
-          url: `resources/us-o-m/list`,
+          url: `resources/product-resources/us-o-m/list`,
         };
       },
       providesTags: ['UOM'], // Ajouter un tag
@@ -114,7 +114,7 @@ export const apiSlice = createApi({
     getSuppliersList: builder.query<ListResponse<Supplier[]>, void>({
       query: () => {
         return {
-          url: `resources/suppliers/list`,
+          url: `resources/product-resources/suppliers/list`,
         };
       },
       providesTags: ['SUPPLIERS'], // Ajouter un tag
@@ -122,7 +122,7 @@ export const apiSlice = createApi({
     getOriginsList: builder.query<ListResponse<Origin[]>, void>({
       query: () => {
         return {
-          url: `resources/origins/list`,
+          url: `resources/product-resources/origins/list`,
         };
       },
       providesTags: ['ORIGINS'], // Ajouter un tag

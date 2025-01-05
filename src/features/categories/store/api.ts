@@ -12,7 +12,7 @@ const appApi = apiSlice.injectEndpoints({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/categories`,
+          url: `resources/product-resources/categories`,
           params: { page, filters, pageSize },
         };
       },
@@ -20,7 +20,7 @@ const appApi = apiSlice.injectEndpoints({
     }),
     createCategory: builder.mutation({
       query: (data: Partial<ProductCategory>) => ({
-        url: 'resources/categories/save',
+        url: 'resources/product-resources/categories/save',
         method: 'POST',
         body: data,
       }),
@@ -28,7 +28,7 @@ const appApi = apiSlice.injectEndpoints({
     }),
     editCategory: builder.mutation({
       query: (data: ProductCategory) => ({
-        url: `resources/categories/update/${data.id}`,
+        url: `resources/product-resources/categories/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -36,7 +36,7 @@ const appApi = apiSlice.injectEndpoints({
     }),
     deleteCategory: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/categories/delete`,
+        url: `resources/product-resources/categories/delete`,
         method: 'DELETE',
         body: data,
       }),

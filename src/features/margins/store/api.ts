@@ -12,7 +12,7 @@ const marginApi = apiSlice.injectEndpoints({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/margins`,
+          url: `resources/product-resources/margins`,
           params: { page, filters, pageSize },
         };
       },
@@ -20,7 +20,7 @@ const marginApi = apiSlice.injectEndpoints({
     }),
     createMargin: builder.mutation({
       query: (data: Partial<MarginLevel>) => ({
-        url: 'resources/margins/save',
+        url: 'resources/product-resources/margins/save',
         method: 'POST',
         body: data,
       }),
@@ -28,7 +28,7 @@ const marginApi = apiSlice.injectEndpoints({
     }),
     editMargin: builder.mutation({
       query: (data: MarginLevel) => ({
-        url: `resources/margins/update/${data.id}`,
+        url: `resources/product-resources/margins/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -36,7 +36,7 @@ const marginApi = apiSlice.injectEndpoints({
     }),
     deleteMargin: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/margins/delete`,
+        url: `resources/product-resources/margins/delete`,
         method: 'DELETE',
         body: data,
       }),

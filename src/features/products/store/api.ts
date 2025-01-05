@@ -12,7 +12,7 @@ const productDetailApi = apiSlice.injectEndpoints({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/products`,
+          url: `resources/product-resources/products`,
           params: { page, filters, pageSize },
         };
       },
@@ -20,7 +20,7 @@ const productDetailApi = apiSlice.injectEndpoints({
     }),
     createProduct: builder.mutation({
       query: (data: Partial<Product>) => ({
-        url: 'resources/products/save',
+        url: 'resources/product-resources/products/save',
         method: 'POST',
         body: data,
       }),
@@ -28,7 +28,7 @@ const productDetailApi = apiSlice.injectEndpoints({
     }),
     editProduct: builder.mutation({
       query: (data: Product) => ({
-        url: `resources/products/update/${data.id}`,
+        url: `resources/product-resources/products/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -36,7 +36,7 @@ const productDetailApi = apiSlice.injectEndpoints({
     }),
     deleteProduct: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/products/delete`,
+        url: `resources/product-resources/products/delete`,
         method: 'DELETE',
         body: data,
       }),

@@ -12,7 +12,7 @@ const supplierApi = apiSlice.injectEndpoints({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/suppliers`,
+          url: `resources/product-resources/suppliers`,
           params: { page, filters, pageSize },
         };
       },
@@ -20,7 +20,7 @@ const supplierApi = apiSlice.injectEndpoints({
     }),
     createSupplier: builder.mutation({
       query: (data: Partial<Supplier>) => ({
-        url: 'resources/suppliers/save',
+        url: 'resources/product-resources/suppliers/save',
         method: 'POST',
         body: data,
       }),
@@ -28,7 +28,7 @@ const supplierApi = apiSlice.injectEndpoints({
     }),
     editSupplier: builder.mutation({
       query: (data: Supplier) => ({
-        url: `resources/suppliers/update/${data.id}`,
+        url: `resources/product-resources/suppliers/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -36,7 +36,7 @@ const supplierApi = apiSlice.injectEndpoints({
     }),
     deleteSupplier: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/suppliers/delete`,
+        url: `resources/product-resources/suppliers/delete`,
         method: 'DELETE',
         body: data,
       }),
