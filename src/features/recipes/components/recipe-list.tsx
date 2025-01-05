@@ -1,7 +1,7 @@
+import NoCardData from '@/components/ui/no-data/no-card-data';
 import { Recipe } from '@/types/entity';
 
 import RecipeCard from './recipe-card';
-import NoCardData from '@/components/ui/no-data/no-card-data';
 
 interface IRecipeListProps {
   recipes: Partial<Recipe>[];

@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import env from '@/config/env';
 import { ApiResponse, ListResponse } from '@/types/api';
-import authUtil from '@/utils/auth-utils';
 import {
   MarginLevel,
   Origin,
@@ -11,6 +10,7 @@ import {
   Supplier,
   UnitOfMesure,
 } from '@/types/entity';
+import authUtil from '@/utils/auth-utils';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: env.baseUrl,

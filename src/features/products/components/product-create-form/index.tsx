@@ -1,20 +1,20 @@
 import { Formik, Form, FormikHelpers } from 'formik';
 import { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
+import { authRoutes } from '@/routes';
 import { AppDispatch } from '@/store';
+import { ApiResponse } from '@/types/api';
+import { Product } from '@/types/entity';
+
+import { useCreateProductMutation } from '../../store/api';
 
 import Stepper from './stepper';
 import steps from './stepper/steps';
 import { productInitialValues } from './stepper/validation';
-import { Product } from '@/types/entity';
-import { useCreateProductMutation } from '../../store/api';
-import { ApiResponse } from '@/types/api';
-import { useNavigate } from 'react-router-dom';
-import { authRoutes } from '@/routes';
 
 const AddProduct = () => {
   const [stepIndex, setStepIndex] = useState(0);
@@ -67,7 +67,7 @@ const AddProduct = () => {
           title: 'Erreur !',
           message:
             'Une erreur est survenue lors de l’enregistrement ' +
-            (error as any).data.message,
+            (error as any).data.error.message,
           success: false,
         }),
       );

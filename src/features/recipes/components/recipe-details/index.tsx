@@ -1,7 +1,8 @@
-import GeneralInfo from './general-info';
 import { IRecipeProps } from '../../types';
-import RecipeSteps from './recipe-steps';
+
+import GeneralInfo from './general-info';
 import RecipeIngredients from './recipe-ingredients';
+import RecipeSteps from './recipe-steps';
 
 const RecipeDetails = ({ recipe }: IRecipeProps) => {
   return (

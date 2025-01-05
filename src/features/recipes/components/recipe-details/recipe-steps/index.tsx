@@ -1,20 +1,21 @@
-import StepItem from './step-item';
+import { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
+import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import {
   useDeleteStepMutation,
   useGetStepsQuery,
 } from '@/features/recipes/store/step-api';
-
-import CardLoading from '@/components/ui/loading/card-loading';
-import { useCallback, useState } from 'react';
 import { IRecipeProps } from '@/features/recipes/types';
-import StepCreateForm from './add-step';
-import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
 import { Step } from '@/types/entity';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
+
+import StepCreateForm from './add-step';
 import StepEditForm from './edit-step';
+import StepItem from './step-item';
 
 const StepSteps = ({ recipe }: IRecipeProps) => {
   const [showCreateStepModal, setShowCreateStepModal] = useState(false);

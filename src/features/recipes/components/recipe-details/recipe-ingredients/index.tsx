@@ -1,19 +1,21 @@
-import { IRecipeProps } from '@/features/recipes/types';
 import { useCallback, useState } from 'react';
-import IngredientItem from './ingredient-item';
+import { useDispatch } from 'react-redux';
+
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
+import CardLoading from '@/components/ui/loading/card-loading';
+import NoCardData from '@/components/ui/no-data/no-card-data';
 import {
   useDeleteIngredientMutation,
   useGetIngredientsQuery,
 } from '@/features/recipes/store/ingredient-api';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
-import { Ingredient } from '@/types/entity';
-import IngredientCreateForm from './add-Ingredient';
-import IngredientEditForm from './edit-Ingredient';
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
+import { IRecipeProps } from '@/features/recipes/types';
 import { AppDispatch } from '@/store';
-import { useDispatch } from 'react-redux';
-import CardLoading from '@/components/ui/loading/card-loading';
-import NoCardData from '@/components/ui/no-data/no-card-data';
+import { Ingredient } from '@/types/entity';
+
+import IngredientCreateForm from './add-ingredient';
+import IngredientEditForm from './edit-ingredient';
+import IngredientItem from './ingredient-item';
 
 const RecipeIngredients = ({ recipe }: IRecipeProps) => {
   const [showCreateIngredientModal, setShowCreateIngredientModal] =

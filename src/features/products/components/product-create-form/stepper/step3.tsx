@@ -1,13 +1,13 @@
 import { ErrorMessage, Field } from 'formik'; // Assurez-vous d'importer useFormikContext
+import { useState } from 'react';
 
+import CategoryCreateForm from '@/features/categories/components/category-create-form';
+import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
 import {
   useGetCategoriesListQuery,
   useGetOriginsListQuery,
   useGetSuppliersListQuery,
 } from '@/store/api-slice';
-import { useState } from 'react';
-import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
-import CategoryCreateForm from '@/features/categories/components/category-create-form';
 
 const Step3 = () => {
   const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);

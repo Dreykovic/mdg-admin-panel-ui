@@ -55,5 +55,6 @@ const Layout = memo((props: Props) => {
     </div>
   );
 });
+Layout.displayName = 'Layout';
 
 export default Layout;

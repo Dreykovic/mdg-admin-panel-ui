@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
+import RecipeDetails from '@/features/recipes/components/recipe-details';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 
-import RecipeDetails from '@/features/recipes/components/recipe-details';
-import { useLocation } from 'react-router-dom';
 const RecipeDetailsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();

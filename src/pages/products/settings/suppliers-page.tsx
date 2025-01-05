@@ -6,12 +6,12 @@ import TableLoadingSkeleton from '@/components/ui/loading/table-loading';
 import CustomPagination from '@/components/ui/pagination';
 import ElementShow from '@/components/ui/pagination/element-show';
 import PageSizePicker from '@/components/ui/pagination/page-size-picker';
+import SearchInput from '@/components/ui/pagination/search-input';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
 import SuppliersTable from '@/features/suppliers/components/suppliers-table';
 import { useGetSomeSuppliersQuery } from '@/features/suppliers/store/api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import SearchInput from '@/components/ui/pagination/search-input';
 
 const SuppliersPage = () => {
   const dispatch = useDispatch<AppDispatch>();

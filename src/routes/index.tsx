@@ -6,14 +6,12 @@ import { lazy } from 'react';
 import AddProductPage from '@/pages/products/add-product-page';
 import CategoriesPage from '@/pages/products/categories-page';
 import ProductsPage from '@/pages/products/products-page';
-
-import { RoutesConfigType } from '@/types/routes-type';
-import RecipesPage from '@/pages/recipes/recipes-page';
-
-import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
 import MarginsPage from '@/pages/products/settings/margins-page';
 import SuppliersPage from '@/pages/products/settings/suppliers-page';
+import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
+import RecipesPage from '@/pages/recipes/recipes-page';
 import UnitsPage from '@/pages/units-page';
+import { RoutesConfigType } from '@/types/routes-type';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {

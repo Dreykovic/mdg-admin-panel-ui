@@ -7,12 +7,11 @@ import CustomPagination from '@/components/ui/pagination';
 import ElementShow from '@/components/ui/pagination/element-show';
 import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
-
+import RecipeCreateForm from '@/features/recipes/components/recipe-create-form';
+import RecipeList from '@/features/recipes/components/recipe-list';
 import { useGetSomeRecipesQuery } from '@/features/recipes/store/recipe-api';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import RecipeList from '@/features/recipes/components/recipe-list';
-import RecipeCreateForm from '@/features/recipes/components/recipe-create-form';
 
 const RecipesPage = () => {
   const dispatch = useDispatch<AppDispatch>();

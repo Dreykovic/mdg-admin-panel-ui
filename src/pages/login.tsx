@@ -65,7 +65,7 @@ const Login = () => {
           title: 'Error !',
           message:
             'Sorry An error occurred during submission' +
-            (error as any).data.message,
+            (error as any).data.error.message,
           success: false,
         }),
       );

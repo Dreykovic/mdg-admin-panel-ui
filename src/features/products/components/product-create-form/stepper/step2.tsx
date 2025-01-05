@@ -1,9 +1,10 @@
 /// You have to Import this line to
 
-import MarginCreateForm from '@/features/margins/components/margin-create-form';
-import { useGetMarginsListQuery } from '@/store/api-slice';
 import { ErrorMessage, Field } from 'formik';
 import { useState } from 'react';
+
+import MarginCreateForm from '@/features/margins/components/margin-create-form';
+import { useGetMarginsListQuery } from '@/store/api-slice';
 
 const Step2 = () => {
   const [showCreateMarginModal, setShowCreateMarginModal] = useState(false);

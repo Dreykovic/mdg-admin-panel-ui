@@ -1,5 +1,6 @@
-import { Step } from '@/types/entity';
 import { useCallback } from 'react';
+
+import { Step } from '@/types/entity';
 
 export interface IStepProps {
   step: Partial<Step>;

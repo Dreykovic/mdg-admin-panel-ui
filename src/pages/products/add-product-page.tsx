@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import AddProduct from '@/features/products/components/product-create-form';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import AddProduct from '@/features/products/components/product-create-form';
 
 const AddProductPage = () => {
   const dispatch = useDispatch<AppDispatch>();

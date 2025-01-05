@@ -1,5 +1,6 @@
-import { Ingredient } from '@/types/entity';
 import React, { useCallback } from 'react';
+
+import { Ingredient } from '@/types/entity';
 
 export interface IIngredientProps {
   ingredient: Partial<Ingredient>;

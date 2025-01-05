@@ -5,14 +5,14 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
-import { AppDispatch } from '@/store';
-import { ApiResponse } from '@/types/api';
-import { Ingredient } from '@/types/entity';
 import { useCreateIngredientMutation } from '@/features/recipes/store/ingredient-api';
+import { AppDispatch } from '@/store';
 import {
   useGetProductsListQuery,
   useGetUnitsListQuery,
 } from '@/store/api-slice';
+import { ApiResponse } from '@/types/api';
+import { Ingredient } from '@/types/entity';
 
 const IngredientEditForm = ({
   show,
