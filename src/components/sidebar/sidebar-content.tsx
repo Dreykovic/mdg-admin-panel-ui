@@ -93,4 +93,25 @@ export const data: ISideBarLink[] = [
       },
     ],
   },
+
+  {
+    id: 'recipeNavId',
+    collapse: true,
+    icon: <i className="icofont-paint"></i>,
+    label: 'Recipes',
+    link: '',
+    isMenu: true,
+
+    targetModuleName: 'recipes',
+    subLinks: [
+      {
+        id: 'recipeNavId',
+        collapse: false,
+        label: 'List',
+        link: '/recipes',
+        targetPageName: 'recipe-list',
+        isMenu: false,
+      },
+    ],
+  },
 ];

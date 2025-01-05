@@ -10,6 +10,7 @@ import MarginsPage from '@/pages/settings/margins-page';
 import SuppliersPage from '@/pages/settings/suppliers-page';
 import UnitsPage from '@/pages/settings/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
+import RecipesPage from '@/pages/recipes/recipes-page';
 const Login = lazy(() => import('@/pages/login'));
 const Home = lazy(() => import('@/pages/home'));
 export const authRoutes: RoutesConfigType = {
@@ -73,6 +74,16 @@ export const authRoutes: RoutesConfigType = {
     path: '/products/add',
     component: <AddProductPage />,
     pageName: 'Product Add Page',
+  },
+
+  recipes: {
+    navLink: 'recipeNavId',
+
+    name: 'recipe-list',
+
+    path: '/recipes',
+    component: <RecipesPage />,
+    pageName: 'Recipes Page',
   },
 };
 export const guestRoutes: RoutesConfigType = {

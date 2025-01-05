@@ -7,7 +7,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { ProductCategory, Supplier } from '@/types/entity';
+import { ProductCategory } from '@/types/entity';
 
 import { useCreateCategoryMutation } from '../store/api';
 const initialValues: Partial<ProductCategory> = { name: '' };
@@ -32,7 +32,7 @@ const CategoryCreateForm = ({ show, handleClose }: ModalProps) => {
           name: values.name,
         };
 
-        const response: ApiResponse<Supplier> =
+        const response: ApiResponse<ProductCategory> =
           await createCategory(data).unwrap();
 
         if (response.success) {

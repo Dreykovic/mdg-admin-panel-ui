@@ -27,6 +27,12 @@ export enum UOMType {
   OTHER = 'OTHER',
 }
 
+export enum RecipeDifficultyType {
+  EASY = 'EASY',
+  MEDIUM = 'MEDIUM',
+  HARD = 'HARD',
+}
+
 // Base Entity
 export interface BaseEntity {
   id: string | number;
@@ -158,4 +164,52 @@ export interface ProductMedia extends BaseEntity {
   position?: string;
   mediaCategoryId: string;
   productId: string;
+}
+export interface RecipeCategory extends BaseEntity {
+  name: string;
+  imageRef?: string;
+  imageUrl?: string;
+  slug?: string;
+  recipes: RecipeCategoryLink[];
+}
+
+export interface RecipeCategoryLink extends BaseEntity {
+  recipeId: number;
+  categoryId: number;
+  category: RecipeCategory[];
+}
+export interface Recipe extends BaseEntity {
+  name: string;
+  description?: string;
+  preparationTime: number;
+  cookingTime: number;
+  servings: number;
+  isPromoAwarded: boolean;
+  difficulty: RecipeDifficultyType;
+  isApproved: boolean;
+  categories: RecipeCategoryLink[];
+  userId: string;
+  author: User;
+  steps: Step[];
+  ingredients: Ingredient[];
+}
+
+export interface Ingredient extends BaseEntity {
+  quantity: number;
+
+  grindRequired: boolean;
+  productId: string;
+  recipeId: number;
+  unitOfMeasureId: number;
+  product: Product;
+  unitOfMeasure: UnitOfMesure;
+  recipe: Recipe;
+}
+export interface Step extends BaseEntity {
+  stepNumber: number;
+  description?: string;
+  duration: number;
+  recipeId: number;
+
+  recipe: Recipe;
 }
