@@ -6,6 +6,7 @@ import authUtil from '@/utils/auth-utils';
 import {
   MarginLevel,
   Origin,
+  Product,
   ProductCategory,
   Supplier,
   UnitOfMesure,
@@ -87,6 +88,7 @@ export const apiSlice = createApi({
     'ORIGINS',
     'RECIPES',
     'STEPS',
+    'INGREDIENTS',
   ], // Exemple : tags pour cache invalidation
   endpoints: (builder) => ({
     getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({
@@ -108,7 +110,7 @@ export const apiSlice = createApi({
     getUnitsList: builder.query<ListResponse<UnitOfMesure[]>, void>({
       query: () => {
         return {
-          url: `resources/product-resources/us-o-m/list`,
+          url: `resources/us-o-m/list`,
         };
       },
       providesTags: ['UOM'], // Ajouter un tag
@@ -129,6 +131,14 @@ export const apiSlice = createApi({
       },
       providesTags: ['ORIGINS'], // Ajouter un tag
     }),
+    getProductsList: builder.query<ListResponse<Product[]>, void>({
+      query: () => {
+        return {
+          url: `resources/product-resources/products/list`,
+        };
+      },
+      providesTags: ['PRODUCTS'], // Ajouter un tag
+    }),
   }),
 });
 export const {
@@ -137,5 +147,6 @@ export const {
   useGetUnitsListQuery,
   useGetSuppliersListQuery,
   useGetOriginsListQuery,
+  useGetProductsListQuery,
 } = apiSlice;
 export default apiSlice;

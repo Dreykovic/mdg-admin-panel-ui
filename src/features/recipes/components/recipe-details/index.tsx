@@ -16,12 +16,12 @@ const RecipeDetails = ({ recipe }: IRecipeProps) => {
         </div>
         <div className="col-xl-8 col-lg-12 col-md-12">
           <GeneralInfo recipe={recipe} />
+          <div className="row g-3 row-deck">
+            <RecipeIngredients recipe={recipe} />
+          </div>
         </div>
         <div className="col-xl-4 col-lg-12 col-md-12">
           <RecipeSteps recipe={recipe} />
-        </div>
-        <div className="row g-3 row-deck">
-          <RecipeIngredients />
         </div>
       </div>
     </>

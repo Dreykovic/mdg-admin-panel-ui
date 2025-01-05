@@ -12,7 +12,7 @@ const unitApi = apiSlice.injectEndpoints({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/product-resources/us-o-m`,
+          url: `resources/us-o-m`,
           params: { page, filters, pageSize },
         };
       },
@@ -20,7 +20,7 @@ const unitApi = apiSlice.injectEndpoints({
     }),
     createUnit: builder.mutation({
       query: (data: Partial<UnitOfMesure>) => ({
-        url: 'resources/product-resources/us-o-m/save',
+        url: 'resources/us-o-m/save',
         method: 'POST',
         body: data,
       }),
@@ -28,7 +28,7 @@ const unitApi = apiSlice.injectEndpoints({
     }),
     editUnit: builder.mutation({
       query: (data: UnitOfMesure) => ({
-        url: `resources/product-resources/us-o-m/update/${data.id}`,
+        url: `resources/us-o-m/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -36,7 +36,7 @@ const unitApi = apiSlice.injectEndpoints({
     }),
     deleteUnit: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/product-resources/us-o-m/delete`,
+        url: `resources/us-o-m/delete`,
         method: 'DELETE',
         body: data,
       }),

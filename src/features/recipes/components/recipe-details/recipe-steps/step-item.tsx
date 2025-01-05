@@ -50,7 +50,6 @@ const StepItem = ({
           </div>
           <p className="py-2 mb-0">{step.description}</p>
           <div className="tikit-info row g-3 align-items-center">
-            <div className="col-sm"></div>
             <div className="col-sm text-end">
               <div
                 className="btn-group"
