@@ -114,7 +114,7 @@ const StepSteps = ({ recipe }: IRecipeProps) => {
                   ))
                 ) : (
                   <>
-                    <NoCardData />
+                    <NoCardData text="No Step" />
                   </>
                 )}
               </ol>

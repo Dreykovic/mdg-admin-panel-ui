@@ -119,7 +119,7 @@ const RecipeIngredients = ({ recipe }: IRecipeProps) => {
                 ))
               ) : (
                 <>
-                  <NoCardData />
+                  <NoCardData text="No Ingredient" />
                 </>
               )}
             </ul>

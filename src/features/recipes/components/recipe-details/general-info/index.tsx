@@ -48,15 +48,15 @@ const GeneralInfo = ({ recipe }: IRecipeProps) => {
               </div>
               <div className="col-xl-5">
                 <div className="d-flex align-items-center">
-                  <i className="icofont-ui-clock p-1"> Servings :</i>
+                  <i className="icofont-users p-1"> Servings :</i>
                   <span className="ms-2 small">{recipe.servings}</span>
                 </div>
               </div>
               <div className="col-xl-5">
                 <div className="d-flex align-items-center">
-                  <i className="icofont-ui-clock p-1"> State :</i>
+                  <i className="icofont-flag p-1"> State :</i>
                   <span className="ms-2 small">
-                    {recipe.isApproved ? 'Approved' : 'Not Not Approved'}
+                    {recipe.isApproved ? 'Approved' : 'Not  Approved'}
                   </span>
                 </div>
               </div>

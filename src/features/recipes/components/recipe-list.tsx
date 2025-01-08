@@ -17,7 +17,7 @@ const RecipeList = ({ recipes }: IRecipeListProps) => {
           ))
         ) : (
           <>
-            <NoCardData />
+            <NoCardData text="No Recipe" />
           </>
         )}
       </div>
