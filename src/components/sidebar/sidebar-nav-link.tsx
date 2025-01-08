@@ -24,8 +24,8 @@ const SidebarNavLink = ({ link }: Props) => {
     <>
       <Link
         className={`${link.isMenu ? 'm-link' : 'ms-link'} ${isLinkActive ? 'active' : ''}`}
-        data-bs-toggle={link.collapse ? 'collapse' : ''}
-        data-bs-target={link.collapse ? '#' + link.id : ''}
+        data-bs-toggle={link.collapse ? 'collapse' : undefined}
+        data-bs-target={link.collapse ? '#' + link.id : undefined}
         to={link.collapse ? '#' : link.link}
       >
         {link.icon}

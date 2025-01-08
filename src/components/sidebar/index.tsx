@@ -43,7 +43,7 @@ const SideBar = () => {
       <div
         className={`sidebar px-4 py-4 py-md-5 me-0 ${sidebarState} ${sidebarOpenedClass}`}
         style={{
-          overflow: contentOverflow,
+          overflowX: contentOverflow,
         }}
         ref={mainContentRef}
       >

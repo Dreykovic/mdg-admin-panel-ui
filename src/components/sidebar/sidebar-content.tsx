@@ -30,7 +30,7 @@ export const data: ISideBarLink[] = [
 
     link: '/recipes',
     targetPageName: 'recipe-list',
-    isMenu: false,
+    isMenu: true,
   },
   {
     id: 'unitNavId',
@@ -38,7 +38,7 @@ export const data: ISideBarLink[] = [
     label: 'Units Of Mesure',
     link: '/settings/units',
     targetPageName: 'unit-list',
-    isMenu: false,
+    isMenu: true,
 
     icon: <i className="icofont-measure"></i>,
   },

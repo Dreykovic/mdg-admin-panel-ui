@@ -7,7 +7,7 @@ type Props = {
 const SidebarNavGroup = ({ link }: Props) => {
   return (
     <>
-      <li className="collapsed">
+      <li className={link.collapse ? 'collapsed' : undefined}>
         <SidebarNavLink link={link} />
 
         {link.collapse && link.subLinks && link.subLinks.length > 0 ? (
