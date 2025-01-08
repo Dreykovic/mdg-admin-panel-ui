@@ -33,7 +33,7 @@ const ProductsTable = ({ products }: IProductListProps) => {
               ))
             ) : (
               <>
-                <NoTableData number={5} />
+                <NoTableData number={5} text="No Product" />
               </>
             )}
           </tbody>

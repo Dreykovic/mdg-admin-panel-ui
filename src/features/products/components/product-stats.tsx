@@ -26,7 +26,7 @@ const ProductStats = () => {
                 </div>
                 <div className="flex-fill ms-4 text-truncate">
                   <div className="text-truncate">Website Sales</div>
-                  <span className="fw-bold">Sally Graham</span>
+                  <span className="fw-bold">$</span>
                 </div>
               </div>
             </div>

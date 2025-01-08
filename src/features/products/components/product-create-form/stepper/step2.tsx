@@ -87,7 +87,7 @@ const Step2 = () => {
                     role="status"
                     aria-hidden="true"
                   ></span>
-                  Fetching categories...
+                  Fetching Margins...
                 </div>
               ) : (
                 <>

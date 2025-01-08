@@ -59,7 +59,7 @@ const Step1 = () => {
           name="isGMOFree"
         />
         <label className="form-check-label" htmlFor="isGMOFree">
-          Gluten Free
+          GMO Free
         </label>
         <ErrorMessage
           name="isGMOFree"
