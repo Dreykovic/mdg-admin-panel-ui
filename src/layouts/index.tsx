@@ -4,9 +4,7 @@ import Header from '@/components/header';
 import LeftAside from '@/components/left-aside';
 import SideBar from '@/components/sidebar';
 import CustomAlert from '@/components/ui/alerts/alert';
-import { Outlet, useLocation, useOutlet } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+
 import AnimatedOutlet from './animate';
 
 const AUTH_MAIN_CLASSNAMES = 'main px-lg-4 px-md-4';

@@ -1,4 +1,4 @@
-import { LazyExoticComponent, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export type RoutesConfigType = {
   [key: string]: {
