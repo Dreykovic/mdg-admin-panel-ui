@@ -1,8 +1,6 @@
 // All components mapping with path for internal routes
 //TODO: rendre les routes nommé
 
-import { lazy } from 'react';
-
 import AddProductPage from '@/pages/products/add-product-page';
 import CategoriesPage from '@/pages/products/categories-page';
 import ProductsPage from '@/pages/products/products-page';
