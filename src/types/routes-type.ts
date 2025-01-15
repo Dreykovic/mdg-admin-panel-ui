@@ -1,11 +1,11 @@
-import { ReactNode } from 'react';
+import { LazyExoticComponent, ReactNode } from 'react';
 
 export type RoutesConfigType = {
   [key: string]: {
     navLink: string;
     name: string;
     path: string;
-    component: ReactNode;
+    component: () => JSX.Element;
     pageName: string;
   };
 };

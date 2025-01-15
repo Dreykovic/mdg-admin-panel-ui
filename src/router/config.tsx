@@ -12,14 +12,15 @@ import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
 import RecipesPage from '@/pages/recipes/recipes-page';
 import UnitsPage from '@/pages/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
-const Login = lazy(() => import('@/pages/login'));
-const Home = lazy(() => import('@/pages/home'));
-export const authRoutes: RoutesConfigType = {
+import Home from '@/pages/home';
+import Login from '@/pages/login';
+
+export const authRoutesConfig: RoutesConfigType = {
   home: {
     navLink: 'homeNavId',
     name: 'home',
     path: '/',
-    component: <Home />,
+    component: Home,
     pageName: 'Home',
   },
   category: {
@@ -28,7 +29,7 @@ export const authRoutes: RoutesConfigType = {
     name: 'category-list',
 
     path: '/products/categories',
-    component: <CategoriesPage />,
+    component: CategoriesPage,
     pageName: 'Categories Page',
   },
   supplier: {
@@ -37,7 +38,7 @@ export const authRoutes: RoutesConfigType = {
     name: 'supplier-list',
 
     path: '/product-settings/suppliers',
-    component: <SuppliersPage />,
+    component: SuppliersPage,
     pageName: 'Suppliers Page',
   },
   margin: {
@@ -46,7 +47,7 @@ export const authRoutes: RoutesConfigType = {
     name: 'margin-list',
 
     path: '/product-settings/margins',
-    component: <MarginsPage />,
+    component: MarginsPage,
     pageName: 'Margins Page',
   },
   unit: {
@@ -55,7 +56,7 @@ export const authRoutes: RoutesConfigType = {
     name: 'unit-list',
 
     path: '/settings/units',
-    component: <UnitsPage />,
+    component: UnitsPage,
     pageName: 'Units Page',
   },
   products: {
@@ -64,7 +65,7 @@ export const authRoutes: RoutesConfigType = {
     name: 'product-list',
 
     path: '/products',
-    component: <ProductsPage />,
+    component: ProductsPage,
     pageName: 'Products Page',
   },
   addProduct: {
@@ -73,7 +74,7 @@ export const authRoutes: RoutesConfigType = {
     name: 'add-product-list',
 
     path: '/products/add',
-    component: <AddProductPage />,
+    component: AddProductPage,
     pageName: 'Product Add Page',
   },
 
@@ -83,7 +84,7 @@ export const authRoutes: RoutesConfigType = {
     name: 'recipe-list',
 
     path: '/recipes',
-    component: <RecipesPage />,
+    component: RecipesPage,
     pageName: 'Recipes Page',
   },
   recipeEdit: {
@@ -92,17 +93,17 @@ export const authRoutes: RoutesConfigType = {
     name: 'recipe-edit',
 
     path: '/recipes/edit',
-    component: <RecipeDetailsPage />,
+    component: RecipeDetailsPage,
     pageName: 'Recipes Edit',
   },
 };
-export const guestRoutes: RoutesConfigType = {
+export const guestRoutesConfig: RoutesConfigType = {
   login: {
     navLink: 'homeNavId',
 
     name: 'login',
     path: '/', // the url
-    component: <Login />, // view rendered
+    component: Login, // view rendered
     pageName: '',
   },
 
@@ -111,7 +112,7 @@ export const guestRoutes: RoutesConfigType = {
 
     name: 'any',
     path: '*', // the url
-    component: <Login />, // view rendered
+    component: Login, // view rendered
     pageName: '',
   },
 };
