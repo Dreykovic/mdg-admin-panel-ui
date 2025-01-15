@@ -2,18 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Loading } from '@/components/ui/loading';
-import Layout from '@/layouts';
-import { guestRoutes, authRoutes } from '@/routes';
-import RouteProvider from '@/routes/provider';
 import { AppDispatch, RootState } from '@/store';
 import { setTheme } from '@/store/theme-slice';
-import { LayoutType } from '@/types/global';
-import { RoutesConfigType } from '@/types/routes-type';
+
+import { authRouter, guestRouter } from '@/router';
+import { RouterProvider } from 'react-router-dom';
+
 const App: React.FC = () => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [layoutType, setLayoutType] = useState<LayoutType>('GUEST');
-  const [routes, setRoutes] = useState<RoutesConfigType>(guestRoutes);
+  const [router, setRouter] = useState(guestRouter);
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated,
   );
@@ -24,22 +20,17 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      setLayoutType('AUTH');
-      setRoutes(authRoutes);
+      setRouter(authRouter);
     } else {
-      setLayoutType('GUEST');
-      setRoutes(guestRoutes);
+      setRouter(guestRouter);
     }
 
-    setLoading(false);
     dispatch(setTheme({ theme: currentTheme }));
   }, [isAuthenticated, currentTheme, dispatch]);
 
   return (
     <ErrorBoundary fallback={<div>Something went wrong</div>}>
-      <Layout type={layoutType}>
-        {loading === false ? <RouteProvider routes={routes} /> : <Loading />}
-      </Layout>
+      <RouterProvider router={router} />
     </ErrorBoundary>
   );
 };

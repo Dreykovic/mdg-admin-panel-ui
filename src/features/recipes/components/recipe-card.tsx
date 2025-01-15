@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import { authRoutes } from '@/routes';
 import { Recipe } from '@/types/entity';
+import { authRoutesConfig } from '@/router/config';
 
 interface IRecipeProps {
   recipe: Partial<Recipe>;
@@ -42,7 +42,7 @@ const RecipeCard = ({ recipe }: IRecipeProps) => {
               </div>
               <div className="d-flex flex-wrap align-items-center ct-btn-set">
                 <Link
-                  to={authRoutes.recipeEdit.path}
+                  to={authRoutesConfig.recipeEdit.path}
                   state={recipe}
                   className="btn btn-dark btn-sm mt-1"
                 >

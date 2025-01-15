@@ -10,9 +10,10 @@ import SearchInput from '@/components/ui/pagination/search-input';
 import ProductStats from '@/features/products/components/product-stats';
 import ProductTable from '@/features/products/components/products-table';
 import { useGetSomeProductsQuery } from '@/features/products/store/api';
-import { authRoutes } from '@/routes';
+
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
+import { authRoutesConfig } from '@/router/config';
 
 const ProductsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -57,7 +58,7 @@ const ProductsPage = () => {
             <div className="card-header d-flex justify-content-between">
               <SearchInput search={search} setSearch={setSearch} />
               <Link
-                to={authRoutes.addProduct.path}
+                to={authRoutesConfig.addProduct.path}
                 type="button"
                 className="btn btn-dark w-sm-100"
               >
