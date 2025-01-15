@@ -11,12 +11,12 @@ import store from './store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Suspense fallback={<SuspenseContent />}>
-        <Provider store={store}>
+    <Suspense fallback={<SuspenseContent />}>
+      <Provider store={store}>
+        <BrowserRouter>
           <App />
-        </Provider>
-      </Suspense>
-    </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
+    </Suspense>
   </React.StrictMode>,
 );
