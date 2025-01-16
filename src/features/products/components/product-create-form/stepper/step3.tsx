@@ -8,6 +8,7 @@ import {
   useGetOriginsListQuery,
   useGetSuppliersListQuery,
 } from '@/store/api-slice';
+import OriginCreateForm from '@/features/origins/components/origin-create-form';
 
 const Step3 = () => {
   const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);
@@ -22,6 +23,10 @@ const Step3 = () => {
     setShowCreateCategoryModal(false);
   const handleCreateCategoryModalShow = () => setShowCreateCategoryModal(true);
 
+  const [showCreateOriginModal, setShowCreateOriginModal] = useState(false);
+
+  const handleCreateOriginModalClose = () => setShowCreateOriginModal(false);
+  const handleCreateOriginModalShow = () => setShowCreateOriginModal(true);
   // Récupération des suppliers
   const { data: suppliersResponse, isFetching: isSuppliersFetching } =
     useGetSuppliersListQuery(undefined, {
@@ -158,7 +163,11 @@ const Step3 = () => {
                 </Field>
               </>
             )}
-            <span role="button" className="btn btn-light">
+            <span
+              role="button"
+              className="btn btn-light"
+              onClick={handleCreateOriginModalShow}
+            >
               <i className="icofont-plus  fs-4"></i>
             </span>
           </div>
@@ -176,6 +185,10 @@ const Step3 = () => {
       <CategoryCreateForm
         show={showCreateCategoryModal}
         handleClose={handleCreateCategoryModalClose}
+      />
+      <OriginCreateForm
+        show={showCreateOriginModal}
+        handleClose={handleCreateOriginModalClose}
       />
     </>
   );
