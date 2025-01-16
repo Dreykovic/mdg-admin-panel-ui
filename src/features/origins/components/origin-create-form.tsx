@@ -16,7 +16,7 @@ const OriginCreateForm = ({ show, handleClose }: ModalProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const validationsSchema = Yup.object({
-    name: Yup.string().required('The origin country is required'),
+    country: Yup.string().required('The origin country is required'),
     // image: Yup.string().required('Le nom est obligatoire'),
   });
 

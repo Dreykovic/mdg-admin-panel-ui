@@ -40,19 +40,13 @@ const OriginCard = ({
       <div className="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-4">
         <div className="card shadow">
           <div className="card-body">
-            <div className="d-flex align-items-center justify-content-between mt-5 flex-wrap">
-              <div className="lesson_name">
-                <span className="medium text-muted project_name fw-bold">
-                  {origin.country}
+            <div className="py-2 d-flex align-items-center border-bottom">
+              <div className="d-flex ms-3 align-items-center flex-fill">
+                <span className="avatar lg bg-secondary rounded-circle text-center d-flex align-items-center justify-content-center">
+                  <i className="icofont-flag fs-5"></i>
                 </span>
-                <div
-                  className=" bg-secondary"
-                  style={{ width: '60px', height: '60px' }}
-                >
-                  <i
-                    className="icofont-bricks d-flex justify-content-center align-items-center"
-                    style={{ width: '60px', height: '60px', fontSize: '30px' }}
-                  ></i>
+                <div className="d-flex flex-column ps-3">
+                  <h6 className="fw-bold mb-0 small-14">{origin.country}</h6>
                 </div>
               </div>
               <div
