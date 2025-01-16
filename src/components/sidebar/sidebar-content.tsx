@@ -98,6 +98,14 @@ export const data: ISideBarLink[] = [
         isMenu: false,
       },
       {
+        id: 'originNavId',
+        collapse: false,
+        label: 'Origins',
+        link: '/product-settings/origins',
+        targetPageName: 'origin-list',
+        isMenu: false,
+      },
+      {
         id: 'marginNavId',
         collapse: false,
         label: 'Margin Levels',
