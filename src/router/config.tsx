@@ -12,6 +12,7 @@ import UnitsPage from '@/pages/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
+import OriginsPage from '@/pages/products/settings/origins-page';
 
 export const authRoutesConfig: RoutesConfigType = {
   home: {
@@ -29,6 +30,15 @@ export const authRoutesConfig: RoutesConfigType = {
     path: '/products/categories',
     component: CategoriesPage,
     pageName: 'Categories Page',
+  },
+  origin: {
+    navLink: 'originNavId',
+
+    name: 'origin-list',
+
+    path: '/product-settings/origins',
+    component: OriginsPage,
+    pageName: 'Origins Page',
   },
   supplier: {
     navLink: 'supplierNavId',
