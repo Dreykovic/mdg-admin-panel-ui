@@ -16,6 +16,7 @@ import {
   step4InitialValues,
   step4Schema,
 } from './validation';
+import { JSX } from 'react';
 
 // Définition du type des étapes
 export interface Step {
