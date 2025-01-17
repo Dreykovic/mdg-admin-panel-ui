@@ -47,13 +47,13 @@ const Step4 = () => {
           id="isActive"
           name="isActive"
         />
-        <label className="form-check-label" htmlFor="isActive">
-          In Stock{' '}
+        <label className="form-check-label mx-2" htmlFor="isActive">
+          In Stock
         </label>
         <ErrorMessage
           name="isActive"
           component="span"
-          className="text-danger"
+          className="text-danger mx-2"
         />
       </div>
       <div className="form-check form-switch mb-3">
@@ -64,13 +64,13 @@ const Step4 = () => {
           id="isPublic"
           name="isPublic"
         />
-        <label className="form-check-label" htmlFor="isPublic">
+        <label className="form-check-label mx-2" htmlFor="isPublic">
           Visible On Site
         </label>
         <ErrorMessage
           name="isPublic"
           component="span"
-          className="text-danger"
+          className="text-danger mx-2"
         />
       </div>
     </>

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
-import LoadingButton from '@/components/ui/loading-button';
+import LoadingButton from '@/components/ui/buttons/loading-button';
 
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';

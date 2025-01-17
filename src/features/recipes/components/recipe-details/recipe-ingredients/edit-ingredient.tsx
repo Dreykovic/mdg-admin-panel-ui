@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
-import LoadingButton from '@/components/ui/loading-button';
+import LoadingButton from '@/components/ui/buttons/loading-button';
 import { useCreateIngredientMutation } from '@/features/recipes/store/ingredient-api';
 import { AppDispatch } from '@/store';
 import {
