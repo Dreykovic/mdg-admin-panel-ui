@@ -1,6 +1,6 @@
 import { ModalProps, Modal } from 'react-bootstrap';
 
-import LoadingButton from './loading-button';
+import LoadingButton from './buttons/loading-button';
 interface IDeleteModal {
   title?: string;
   message?: string;

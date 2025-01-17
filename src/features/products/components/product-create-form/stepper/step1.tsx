@@ -41,13 +41,13 @@ const Step1 = () => {
           id="isGlutenFree"
           name="isGlutenFree"
         />
-        <label className="form-check-label" htmlFor="isGlutenFree">
+        <label className="form-check-label mx-2" htmlFor="isGlutenFree">
           Gluten Free
         </label>
         <ErrorMessage
           name="isGlutenFree"
           component="span"
-          className="text-danger"
+          className="text-danger mx-2"
         />
       </div>
       <div className="form-check form-switch mb-3">
@@ -58,13 +58,13 @@ const Step1 = () => {
           id="isGMOFree"
           name="isGMOFree"
         />
-        <label className="form-check-label" htmlFor="isGMOFree">
+        <label className="form-check-label mx-2" htmlFor="isGMOFree">
           GMO Free
         </label>
         <ErrorMessage
           name="isGMOFree"
           component="span"
-          className="text-danger"
+          className="text-danger mx-2"
         />
       </div>
     </>

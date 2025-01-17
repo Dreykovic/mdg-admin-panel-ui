@@ -118,6 +118,7 @@ export const productInitialValues = {
   description: undefined,
 
   isActive: true,
+  isPublic: false,
   minimumStockLevel: 1000,
   quantity: 1000,
   additionalCost: 10,
@@ -254,6 +255,7 @@ export const step5InitialValues = {
   description: undefined,
   barcode: '',
   isActive: true,
+  isPublic: false,
   minimumStockLevel: 0,
   quantity: 0,
   additionalCost: undefined,
