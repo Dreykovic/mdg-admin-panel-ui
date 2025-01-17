@@ -13,6 +13,7 @@ import { RoutesConfigType } from '@/types/routes-type';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
 import OriginsPage from '@/pages/products/settings/origins-page';
+import Changelog from '@/pages/changelog';
 
 export const authRoutesConfig: RoutesConfigType = {
   home: {
@@ -103,6 +104,15 @@ export const authRoutesConfig: RoutesConfigType = {
     path: '/recipes/edit',
     component: RecipeDetailsPage,
     pageName: 'Recipes Edit',
+  },
+  changelog: {
+    navLink: 'changelogNavId',
+
+    name: 'changelog',
+
+    path: '/changelog',
+    component: Changelog,
+    pageName: 'changelog',
   },
 };
 export const guestRoutesConfig: RoutesConfigType = {
