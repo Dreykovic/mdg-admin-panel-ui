@@ -5,7 +5,7 @@ interface IDynamicAddBtnProps {
 }
 function DynamicAddBtn({ handleClick }: IDynamicAddBtnProps) {
   return (
-    <span role="button" className="btn btn-light" onClick={handleClick}>
+    <span role="button" className="btn" onClick={handleClick}>
       <i className="icofont-plus  fs-4"></i>
     </span>
   );
