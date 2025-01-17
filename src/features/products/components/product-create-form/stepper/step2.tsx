@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import { useGetMarginsListQuery } from '@/store/api-slice';
+import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 
 const Step2 = () => {
   const [showCreateMarginModal, setShowCreateMarginModal] = useState(false);
@@ -105,13 +106,8 @@ const Step2 = () => {
                   </Field>
                 </>
               )}
-              <span
-                role="button"
-                className="btn btn-light"
-                onClick={handleCreateMarginModalShow}
-              >
-                <i className="icofont-plus  fs-4"></i>
-              </span>
+
+              <DynamicAddBtn handleClick={handleCreateMarginModalShow} />
             </div>
             <ErrorMessage
               name="marginLevelId"

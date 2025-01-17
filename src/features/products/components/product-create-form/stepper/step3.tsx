@@ -9,6 +9,7 @@ import {
   useGetSuppliersListQuery,
 } from '@/store/api-slice';
 import OriginCreateForm from '@/features/origins/components/origin-create-form';
+import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 
 const Step3 = () => {
   const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);
@@ -78,13 +79,8 @@ const Step3 = () => {
               </Field>
             </>
           )}
-          <span
-            role="button"
-            className="btn btn-light"
-            onClick={handleCreateSupplierModalShow}
-          >
-            <i className="icofont-plus  fs-4"></i>
-          </span>
+
+          <DynamicAddBtn handleClick={handleCreateSupplierModalShow} />
         </div>
         <ErrorMessage
           name="supplierId"
@@ -121,13 +117,8 @@ const Step3 = () => {
                 </Field>
               </>
             )}
-            <span
-              role="button"
-              className="btn btn-light"
-              onClick={handleCreateCategoryModalShow}
-            >
-              <i className="icofont-plus  fs-4"></i>
-            </span>
+
+            <DynamicAddBtn handleClick={handleCreateCategoryModalShow} />
           </div>
           <ErrorMessage
             name="categoryId"
@@ -163,13 +154,8 @@ const Step3 = () => {
                 </Field>
               </>
             )}
-            <span
-              role="button"
-              className="btn btn-light"
-              onClick={handleCreateOriginModalShow}
-            >
-              <i className="icofont-plus  fs-4"></i>
-            </span>
+
+            <DynamicAddBtn handleClick={handleCreateOriginModalShow} />
           </div>
           <ErrorMessage
             name="originId"
