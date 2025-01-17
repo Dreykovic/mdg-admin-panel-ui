@@ -7,8 +7,7 @@ interface IProductRowProps {
 const ProductRow = ({ product }: IProductRowProps) => {
   return (
     <>
-      {' '}
-      <tr key={product.id}>
+      <tr>
         <td>
           <div className="d-flex align-items-center flex-fill">
             <div
@@ -26,9 +25,29 @@ const ProductRow = ({ product }: IProductRowProps) => {
             </div>
           </div>
         </td>
-        <td>{product.category?.name}</td>
+        <td>
+          <div className="d-flex align-items-center">
+            <div className="avatar rounded-circle no-thumbnail">
+              <i
+                className="icofont-bricks d-flex justify-content-center align-items-center"
+                style={{ width: '40px', height: '40px', fontSize: '20px' }}
+              ></i>
+            </div>
+            <div className="flex-fill ms-1 text-truncate">
+              <span>{product.category?.name}</span>
+            </div>
+          </div>
+        </td>
+        <td>{product.quantity}</td>
         <td>{product.pricePerGramGround}</td>
         <td>{product.pricePerGramWhole}</td>
+        <td>
+          <span
+            className={`badge bg-${product.isPublic ? 'light' : 'dark'} ${product.isPublic ? 'text-dark' : ''} `}
+          >
+            {product.isPublic ? 'Visible' : 'Hidden'}
+          </span>
+        </td>
 
         <td>...</td>
       </tr>
