@@ -5,6 +5,8 @@ interface IProductRowProps {
 }
 
 const ProductRow = ({ product }: IProductRowProps) => {
+  console.log('product', product);
+
   return (
     <>
       <tr>
