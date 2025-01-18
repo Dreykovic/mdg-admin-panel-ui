@@ -6,8 +6,6 @@ interface IProductListProps {
   products: Partial<Product>[];
 }
 const ProductsTable = ({ products }: IProductListProps) => {
-  console.log('children', products);
-
   return (
     <>
       <div className="card-body">

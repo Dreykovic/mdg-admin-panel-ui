@@ -7,7 +7,6 @@ interface IProductRowProps {
 }
 
 const ProductRow = ({ product }: IProductRowProps) => {
-  console.log('product', product);
   const navigate = useNavigate();
   return (
     <>
