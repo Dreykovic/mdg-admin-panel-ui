@@ -14,6 +14,7 @@ import Home from '@/pages/home';
 import Login from '@/pages/login';
 import OriginsPage from '@/pages/products/settings/origins-page';
 import Changelog from '@/pages/changelog';
+import ProductDetailsPage from '@/pages/products/details';
 
 export const authRoutesConfig: RoutesConfigType = {
   home: {
@@ -76,6 +77,15 @@ export const authRoutesConfig: RoutesConfigType = {
     path: '/products',
     component: ProductsPage,
     pageName: 'Products Page',
+  },
+  productDetails: {
+    navLink: 'productDetailsNavId',
+
+    name: 'product-details',
+
+    path: '/products/details/:productId',
+    component: ProductDetailsPage,
+    pageName: 'Product Details Page',
   },
   addProduct: {
     navLink: 'addProductNavId',

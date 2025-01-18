@@ -1,4 +1,6 @@
+import { authRoutesConfig } from '@/router/config';
 import { Product } from '@/types/entity';
+import { useNavigate } from 'react-router-dom';
 
 interface IProductRowProps {
   product: Partial<Product>;
@@ -6,10 +8,10 @@ interface IProductRowProps {
 
 const ProductRow = ({ product }: IProductRowProps) => {
   console.log('product', product);
-
+  const navigate = useNavigate();
   return (
     <>
-      <tr>
+      <tr onClick={() => navigate(`/products/details/${product.id}`)}>
         <td>
           <div className="d-flex align-items-center flex-fill">
             <div
