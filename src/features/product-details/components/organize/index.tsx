@@ -1,6 +1,7 @@
 import { Product } from '@/types/entity';
 import React from 'react';
 import ProductOrganizeCategory from './category';
+import ProductOrganizeSupplier from './supplier';
 
 type Props = {
   product: Product;
@@ -16,6 +17,7 @@ const ProductOrganizeCard = ({ product }: Props) => {
         <div className="card-body">
           <div className="flex-grow-1">
             <ProductOrganizeCategory product={product} />
+            <ProductOrganizeSupplier product={product} />
           </div>
         </div>
       </div>

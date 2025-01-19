@@ -20,7 +20,7 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
     preparationTime: 10,
     cookingTime: 10,
     servings: 1,
-    difficulty: RecipeDifficultyType.EASY, // Valeur par défaut parmi les options disponibles
+    difficulty: 'EASY', // Valeur par défaut parmi les options disponibles
     userId: authUser?.id as string,
   };
 
@@ -48,11 +48,7 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
     difficulty: Yup.string()
       .required('Difficulty is required.')
       .oneOf(
-        [
-          RecipeDifficultyType.EASY,
-          RecipeDifficultyType.MEDIUM,
-          RecipeDifficultyType.HARD,
-        ],
+        ['EASY', 'MEDIUM', 'HARD'],
         'Difficulty must be one of: easy, medium, hard.',
       ),
     userId: Yup.string().required('Author is required.'),
