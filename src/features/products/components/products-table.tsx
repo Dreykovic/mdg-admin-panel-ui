@@ -23,7 +23,7 @@ const ProductsTable = ({ products }: IProductListProps) => {
               <th>Price (Whole)</th>
               <th>Status</th>
 
-              <th>Actions</th>
+              {/* <th>Actions</th> */}
             </tr>
           </thead>
           <tbody>

@@ -3,9 +3,9 @@ const ProductStateCard = () => {
     <>
       <div className="card">
         <div className="card-body">
-          <h6 className="fw-bold mb-3 text-danger">Bug Image Atteched</h6>
+          <h6 className="fw-bold mb-3 text-danger">Danger Zone</h6>
           <div className="flex-grow-1">
-            <div className="py-2 d-flex align-items-center border-bottom">
+            {/* <div className="py-2 d-flex align-items-center border-bottom">
               <div className="d-flex ms-3 align-items-center flex-fill">
                 <span className="avatar lg light-danger-bg rounded-circle text-center d-flex align-items-center justify-content-center">
                   <i className="icofont-bug fs-5"></i>
@@ -56,7 +56,7 @@ const ProductStateCard = () => {
               <button type="button" className="btn light-danger-bg text-end">
                 Download
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

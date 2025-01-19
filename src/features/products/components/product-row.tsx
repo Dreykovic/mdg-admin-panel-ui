@@ -51,7 +51,7 @@ const ProductRow = ({ product }: IProductRowProps) => {
           </span>
         </td>
 
-        <td>
+        {/* <td>
           <div className="btn-group">
             <button
               type="button"
@@ -88,7 +88,7 @@ const ProductRow = ({ product }: IProductRowProps) => {
               </li>
             </ul>
           </div>
-        </td>
+        </td> */}
       </tr>
     </>
   );
