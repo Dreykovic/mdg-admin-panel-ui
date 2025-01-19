@@ -7,11 +7,11 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch, RootState } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { Recipe, RecipeDifficultyType } from '@/types/entity';
+import { Recipe } from '@/types/entity';
 
 import { useCreateRecipeMutation } from '../store/recipe-api';
 
-const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
+const RecipeEditForm = ({ show, handleClose }: ModalProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const { authUser } = useSelector((state: RootState) => state.auth);
   const initialValues: Partial<Recipe> = {
@@ -20,7 +20,7 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
     preparationTime: 10,
     cookingTime: 10,
     servings: 1,
-    difficulty: RecipeDifficultyType.EASY, // Valeur par défaut parmi les options disponibles
+    difficulty: 'EASY', // Valeur par défaut parmi les options disponibles
     userId: authUser?.id as string,
   };
 
@@ -48,11 +48,7 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
     difficulty: Yup.string()
       .required('Difficulty is required.')
       .oneOf(
-        [
-          RecipeDifficultyType.EASY,
-          RecipeDifficultyType.MEDIUM,
-          RecipeDifficultyType.HARD,
-        ],
+        ['EASY', 'MEDIUM', 'HARD'],
         'Difficulty must be one of: easy, medium, hard.',
       ),
     userId: Yup.string().required('Author is required.'),
@@ -261,4 +257,4 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
   );
 };
 
-export default RecipeCreateForm;
+export default RecipeEditForm;

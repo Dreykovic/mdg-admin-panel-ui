@@ -7,7 +7,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { UnitOfMesure, UOMType } from '@/types/entity';
+import { UnitOfMeasure } from '@/types/entity';
 
 import { useEditUnitMutation } from '../store/api';
 
@@ -15,7 +15,7 @@ const UnitEditForm = ({
   show,
   handleClose,
   initialValues,
-}: ModalProps & { initialValues: Partial<UnitOfMesure> }) => {
+}: ModalProps & { initialValues: Partial<UnitOfMeasure> }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const validationsSchema = Yup.object({
@@ -29,20 +29,20 @@ const UnitEditForm = ({
   const [updateUnit] = useEditUnitMutation();
 
   const handleSubmit = async (
-    values: Partial<UnitOfMesure>,
-    { setSubmitting }: FormikHelpers<Partial<UnitOfMesure>>,
+    values: Partial<UnitOfMeasure>,
+    { setSubmitting }: FormikHelpers<Partial<UnitOfMeasure>>,
   ) => {
     try {
       if (values) {
-        const data: Partial<UnitOfMesure> = {
+        const data: Partial<UnitOfMeasure> = {
           id: values.id as number,
           name: values.name,
           factor: values.factor,
           type: values.type,
         };
 
-        const response: ApiResponse<UnitOfMesure> = await updateUnit(
-          data as UnitOfMesure,
+        const response: ApiResponse<UnitOfMeasure> = await updateUnit(
+          data as UnitOfMeasure,
         ).unwrap();
 
         if (response.success) {
@@ -136,20 +136,20 @@ const UnitEditForm = ({
                         <option value="">-- Sélect a type --</option>
 
                         <option
-                          value={UOMType.WEIGHT}
-                          selected={initialValues.type === UOMType.WEIGHT}
+                          value={'WEIGHT'}
+                          selected={initialValues.type === 'WEIGHT'}
                         >
                           Weight
                         </option>
                         <option
-                          value={UOMType.VOLUME}
-                          selected={initialValues.type === UOMType.VOLUME}
+                          value={'VOLUME'}
+                          selected={initialValues.type === 'VOLUME'}
                         >
                           Volume
                         </option>
                         <option
-                          value={UOMType.OTHER}
-                          selected={initialValues.type === UOMType.OTHER}
+                          value={'OTHER'}
+                          selected={initialValues.type === 'OTHER'}
                         >
                           Other
                         </option>

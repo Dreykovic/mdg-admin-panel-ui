@@ -28,12 +28,12 @@ const AddProduct = () => {
     values: any,
     { setSubmitting }: FormikHelpers<any>,
   ) => {
+    setFormData((prev) => ({ ...prev, ...values }));
+    console.log(formData);
     if (stepIndex < steps.length - 1) {
-      setFormData((prev) => ({ ...prev, ...values }));
-
       setStepIndex(stepIndex + 1);
     } else {
-      await handleSubmit();
+      await handleSubmit(values);
     }
     setSubmitting(false);
   };
@@ -42,12 +42,11 @@ const AddProduct = () => {
     setStepIndex(stepIndex - 1);
   };
   const [createProduct] = useCreateProductMutation();
-  const handleSubmit = async () => {
+  const handleSubmit = async (data: any) => {
     try {
-      if (formData) {
+      if (data) {
         const response: ApiResponse<Product> =
-          await createProduct(formData).unwrap();
-        console.log('response: ', response);
+          await createProduct(data).unwrap();
 
         if (response.success) {
           dispatch(
@@ -59,7 +58,6 @@ const AddProduct = () => {
           navigate(authRoutesConfig.products.path);
         }
       }
-      console.log('form Data', formData);
     } catch (error) {
       console.error('error', error);
 

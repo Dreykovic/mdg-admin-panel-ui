@@ -5,18 +5,18 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoTableData from '@/components/ui/no-data/no-table-data';
 import { AppDispatch } from '@/store';
-import { UnitOfMesure } from '@/types/entity';
+import { UnitOfMeasure } from '@/types/entity';
 
 import { useDeleteUnitMutation } from '../store/api';
 
 import UnitEditForm from './unit-edit-form';
 import UnitRow from './unit-row';
 interface IUnitListProps {
-  units: Partial<UnitOfMesure>[];
+  units: Partial<UnitOfMeasure>[];
 }
 const UnitsTable = ({ units }: IUnitListProps) => {
   const [updateInitialValues, setUpdateInitialValues] =
-    useState<Partial<UnitOfMesure>>();
+    useState<Partial<UnitOfMeasure>>();
   const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
 
   const handleDeleteItemModalClose = () => setShowDeleteItemModal(false);
@@ -102,7 +102,7 @@ const UnitsTable = ({ units }: IUnitListProps) => {
       <UnitEditForm
         show={showEditSupplierModal}
         handleClose={handleEditUnitModalClose}
-        initialValues={updateInitialValues as Partial<UnitOfMesure>}
+        initialValues={updateInitialValues as Partial<UnitOfMeasure>}
       />
       <DeletionConfirmModal
         show={showDeleteItemModal}

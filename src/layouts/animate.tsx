@@ -4,7 +4,7 @@ import React from 'react';
 const AnimatedOutlet = () => {
   const location = useLocation();
   const element = useOutlet();
-  console.log('element', location);
+
   return (
     <AnimatePresence mode="popLayout" initial={false}>
       <motion.div

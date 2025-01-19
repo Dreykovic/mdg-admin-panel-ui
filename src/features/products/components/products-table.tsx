@@ -6,8 +6,6 @@ interface IProductListProps {
   products: Partial<Product>[];
 }
 const ProductsTable = ({ products }: IProductListProps) => {
-  console.log('children', products);
-
   return (
     <>
       <div className="card-body">
@@ -20,10 +18,12 @@ const ProductsTable = ({ products }: IProductListProps) => {
             <tr>
               <th>Product</th>
               <th>Category</th>
-              <th>Price (Grd)</th>
+              <th>Quantity</th>
+              <th>Price (Ground)</th>
               <th>Price (Whole)</th>
+              <th>Status</th>
 
-              <th>Actions</th>
+              {/* <th>Actions</th> */}
             </tr>
           </thead>
           <tbody>

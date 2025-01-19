@@ -89,7 +89,7 @@ const RecipeIngredients = ({ recipe }: IRecipeProps) => {
       <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
         <div className="card shadow">
           <div className="card-header p-3 no-bg bg-transparent d-flex align-items-center justify-content-between border-bottom flex-wrap">
-            <h3 className="">Ingredients</h3>{' '}
+            <h3 className="">Ingredients</h3>
             <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
               <button
                 type="button"

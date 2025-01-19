@@ -115,4 +115,14 @@ export const data: ISideBarLink[] = [
       },
     ],
   },
+  {
+    id: 'changelogNavId',
+    collapse: false,
+    label: 'Changelog',
+    link: '/Changelog',
+    targetPageName: 'changelog',
+    isMenu: true,
+
+    icon: <i className="icofont-edit"></i>,
+  },
 ];
