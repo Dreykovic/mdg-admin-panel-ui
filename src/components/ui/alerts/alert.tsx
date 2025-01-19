@@ -24,7 +24,6 @@ const CustomAlert = () => {
           <h5 className="modal-title  fw-bold">{title}</h5>
         </Modal.Header>
         <Modal.Body>
-          {' '}
           <div className="modal-body justify-content-center flex-column d-flex">
             <i
               className={`icofont-${success ? 'simple-smile' : 'sad'} text-primary display-2 text-center mt-2`}

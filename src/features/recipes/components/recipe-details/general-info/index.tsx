@@ -63,7 +63,7 @@ const GeneralInfo = ({ recipe }: IRecipeProps) => {
             </div>
           </div>
         </div>
-      </div>{' '}
+      </div>
     </>
   );
 };

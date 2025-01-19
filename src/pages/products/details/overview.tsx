@@ -26,7 +26,7 @@ const ProductOverviewTabPane = ({ product }: Props) => {
             <ProductOrganizeCard product={product} />
           </div>
           <div className="col-lg-4">
-            <ProductConversionCard />
+            <ProductConversionCard product={product} />
           </div>
           <div className="col-lg-4">
             <ProductStateCard />

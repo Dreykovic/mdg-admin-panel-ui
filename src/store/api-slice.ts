@@ -9,6 +9,7 @@ import {
   ProductCategory,
   Supplier,
   UnitOfMeasure,
+  VolumeConversion,
 } from '@/types/entity';
 import authUtil from '@/utils/auth-utils';
 
@@ -89,6 +90,7 @@ export const apiSlice = createApi({
     'RECIPES',
     'STEPS',
     'INGREDIENTS',
+    'VOLUME_CONVERSION',
   ], // Exemple : tags pour cache invalidation
   endpoints: (builder) => ({
     getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({
@@ -139,6 +141,22 @@ export const apiSlice = createApi({
       },
       providesTags: ['PRODUCTS'], // Ajouter un tag
     }),
+    createProductConversionSetting: builder.mutation({
+      query: (data: Partial<VolumeConversion>) => ({
+        url: 'conversion/volume/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['PRODUCTS', 'VOLUME_CONVERSION'], // Invalider les caches
+    }),
+    deleteProductConversionSetting: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: 'conversion/volume/delete',
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['PRODUCTS', 'VOLUME_CONVERSION'], // Invalider les caches
+    }),
   }),
 });
 export const {
@@ -148,5 +166,7 @@ export const {
   useGetSuppliersListQuery,
   useGetOriginsListQuery,
   useGetProductsListQuery,
+  useCreateProductConversionSettingMutation,
+  useDeleteProductConversionSettingMutation,
 } = apiSlice;
 export default apiSlice;

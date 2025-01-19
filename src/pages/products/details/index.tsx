@@ -67,7 +67,7 @@ const ProductDetailsPage = () => {
                     href="#grid-view"
                     role="tab"
                   >
-                    Stock{' '}
+                    Stock
                   </a>
                 </li>
               </ul>
