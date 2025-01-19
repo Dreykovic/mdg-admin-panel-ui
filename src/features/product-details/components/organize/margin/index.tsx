@@ -1,19 +1,19 @@
 import { Product } from '@/types/entity';
 import { useState } from 'react';
-import ProductOriginEditForm from './edit';
+import ProductMarginEditForm from './edit';
 
 type Props = {
   product: Product;
 };
 
-const ProductOrganizeOrigin = ({ product }: Props) => {
-  const [showUpdateProductOriginModal, setShowUpdateProductOriginModal] =
+const ProductOrganizeMargin = ({ product }: Props) => {
+  const [showUpdateProductMarginModal, setShowUpdateProductMarginModal] =
     useState(false);
 
-  const handleUpdateProductOriginModalClose = () =>
-    setShowUpdateProductOriginModal(false);
-  const handleUpdateProductOriginModalShow = () =>
-    setShowUpdateProductOriginModal(true);
+  const handleUpdateProductMarginModalClose = () =>
+    setShowUpdateProductMarginModal(false);
+  const handleUpdateProductMarginModalShow = () =>
+    setShowUpdateProductMarginModal(true);
   return (
     <>
       <div className="py-2 d-flex align-items-center border-bottom flex-wrap">
@@ -22,27 +22,27 @@ const ProductOrganizeOrigin = ({ product }: Props) => {
             <i className="icofont-user fs-5"></i>
           </span>
           <div className="d-flex flex-column ps-3">
-            <h6 className=" mb-0 small-14">Origin</h6>
-            <span className="fw-bold">{`${product.origin?.country} `}</span>
+            <h6 className=" mb-0 small-14">Margin Level</h6>
+            <span className="fw-bold">{`${product.marginLevel?.name} (${product.marginLevel?.margin}%)`}</span>
           </div>
         </div>
         <div className="time-block text-truncate">
           <button
             type="button"
             className="btn p-0"
-            onClick={handleUpdateProductOriginModalShow}
+            onClick={handleUpdateProductMarginModalShow}
           >
             <i className="icofont-edit text-primary fs-6"></i>
           </button>
         </div>
       </div>
-      <ProductOriginEditForm
-        show={showUpdateProductOriginModal}
-        handleClose={handleUpdateProductOriginModalClose}
+      <ProductMarginEditForm
+        show={showUpdateProductMarginModal}
+        handleClose={handleUpdateProductMarginModalClose}
         product={product}
       />
     </>
   );
 };
 
-export default ProductOrganizeOrigin;
+export default ProductOrganizeMargin;
