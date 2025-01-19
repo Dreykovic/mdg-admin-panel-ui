@@ -1,7 +1,6 @@
 import { Product } from '@/types/entity';
 import { useState } from 'react';
 import ProductSupplierEditForm from './edit';
-import { Supplier } from '../../../../../types/entity';
 
 type Props = {
   product: Product;

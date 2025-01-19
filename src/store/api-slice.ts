@@ -8,7 +8,7 @@ import {
   Product,
   ProductCategory,
   Supplier,
-  UnitOfMesure,
+  UnitOfMeasure,
 } from '@/types/entity';
 import authUtil from '@/utils/auth-utils';
 
@@ -107,7 +107,7 @@ export const apiSlice = createApi({
       },
       providesTags: ['MARGINS'], // Ajouter un tag
     }),
-    getUnitsList: builder.query<ListResponse<UnitOfMesure[]>, void>({
+    getUnitsList: builder.query<ListResponse<UnitOfMeasure[]>, void>({
       query: () => {
         return {
           url: `resources/us-o-m/list`,

@@ -1,11 +1,11 @@
 import apiSlice from '@/store/api-slice';
 import { PaginationResponse } from '@/types/api';
-import { UnitOfMesure } from '@/types/entity';
+import { UnitOfMeasure } from '@/types/entity';
 
 const unitApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getSomeUnits: builder.query<
-      PaginationResponse<UnitOfMesure[]>,
+      PaginationResponse<UnitOfMeasure[]>,
       { page?: number; filters?: string; pageSize?: number }
     >({
       query: (args) => {
@@ -19,7 +19,7 @@ const unitApi = apiSlice.injectEndpoints({
       providesTags: ['UOM'], // Ajouter un tag
     }),
     createUnit: builder.mutation({
-      query: (data: Partial<UnitOfMesure>) => ({
+      query: (data: Partial<UnitOfMeasure>) => ({
         url: 'resources/us-o-m/save',
         method: 'POST',
         body: data,
@@ -27,7 +27,7 @@ const unitApi = apiSlice.injectEndpoints({
       invalidatesTags: ['UOM'], // Invalider les caches
     }),
     editUnit: builder.mutation({
-      query: (data: UnitOfMesure) => ({
+      query: (data: UnitOfMeasure) => ({
         url: `resources/us-o-m/update/${data.id}`,
         method: 'PUT',
         body: data,

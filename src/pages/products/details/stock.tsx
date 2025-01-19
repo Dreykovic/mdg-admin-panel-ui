@@ -1,8 +1,4 @@
-import React from 'react';
-
-type Props = {};
-
-const ProductStockTabPane = (props: Props) => {
+const ProductStockTabPane = () => {
   return (
     <>
       <div className="tab-pane fade" id="grid-view">

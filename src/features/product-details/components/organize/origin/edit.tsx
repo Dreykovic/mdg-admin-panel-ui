@@ -12,13 +12,10 @@ import { Product } from '@/types/entity';
 import { useEditProductMutation } from '../../../store/api';
 import { useState } from 'react';
 
-import {
-  useGetOriginsListQuery,
-  useGetSuppliersListQuery,
-} from '@/store/api-slice';
+import { useGetOriginsListQuery } from '@/store/api-slice';
 
 import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
-import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
+
 import OriginCreateForm from '@/features/origins/components/origin-create-form';
 const ProductOriginEditForm = ({
   show,

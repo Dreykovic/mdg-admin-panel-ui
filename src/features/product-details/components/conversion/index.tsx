@@ -1,8 +1,4 @@
-import React from 'react';
-
-type Props = {};
-
-const ProductConversionCard = (props: Props) => {
+const ProductConversionCard = () => {
   return (
     <>
       <div className="card shadow">

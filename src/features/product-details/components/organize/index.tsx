@@ -1,5 +1,4 @@
 import { Product } from '@/types/entity';
-import React from 'react';
 import ProductOrganizeCategory from './category';
 import ProductOrganizeSupplier from './supplier';
 import ProductOrganizeOrigin from './origin';

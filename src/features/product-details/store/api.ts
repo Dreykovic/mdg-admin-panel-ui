@@ -1,5 +1,5 @@
 import apiSlice from '@/store/api-slice';
-import { ListResponse, PaginationResponse } from '@/types/api';
+import { ListResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
 const productDetailsApi = apiSlice.injectEndpoints({

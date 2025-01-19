@@ -23,7 +23,7 @@ const ProductOrganizeCategory = ({ product }: Props) => {
           </span>
           <div className="d-flex flex-column ps-3">
             <h6 className=" mb-0 small-14">Category</h6>
-            <span className="fw-bold">{product.category.name}</span>
+            <span className="fw-bold">{product.category?.name}</span>
           </div>
         </div>
         <div className="time-block text-truncate">

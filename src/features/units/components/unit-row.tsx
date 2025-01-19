@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
 
-import { UnitOfMesure } from '@/types/entity';
+import { UnitOfMeasure } from '@/types/entity';
 
 interface IUnitRowProps {
-  unit: Partial<UnitOfMesure>;
+  unit: Partial<UnitOfMeasure>;
   setUnitId: (arg: number) => void;
 
-  setUpdateInitialValues: (arg: Partial<UnitOfMesure>) => void;
+  setUpdateInitialValues: (arg: Partial<UnitOfMeasure>) => void;
   handleDeleteItemModalShow: () => void;
   handleEditUnitModalShow: () => void;
 }
@@ -30,7 +30,7 @@ const UnitRow = ({
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation(); // Empêche la propagation du clic vers le <tr>
 
-      const values: Partial<UnitOfMesure> = unit;
+      const values: Partial<UnitOfMeasure> = unit;
       setUpdateInitialValues(values);
       handleEditUnitModalShow();
     },

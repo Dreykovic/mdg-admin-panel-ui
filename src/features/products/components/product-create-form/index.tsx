@@ -29,7 +29,7 @@ const AddProduct = () => {
     { setSubmitting }: FormikHelpers<any>,
   ) => {
     setFormData((prev) => ({ ...prev, ...values }));
-
+    console.log(formData);
     if (stepIndex < steps.length - 1) {
       setStepIndex(stepIndex + 1);
     } else {

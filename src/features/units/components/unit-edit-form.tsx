@@ -7,7 +7,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { UnitOfMeasure, UOMType } from '@/types/entity';
+import { UnitOfMeasure } from '@/types/entity';
 
 import { useEditUnitMutation } from '../store/api';
 
