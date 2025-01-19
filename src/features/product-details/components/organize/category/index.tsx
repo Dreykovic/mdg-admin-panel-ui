@@ -1,11 +1,19 @@
 import { Product } from '@/types/entity';
-import React from 'react';
+import { useState } from 'react';
+import ProductCategoryEditForm from './edit';
 
 type Props = {
   product: Product;
 };
 
 const ProductOrganizeCategory = ({ product }: Props) => {
+  const [showUpdateProductCategoryModal, setShowUpdateProductCategoryModal] =
+    useState(false);
+
+  const handleUpdateProductCategoryModalClose = () =>
+    setShowUpdateProductCategoryModal(false);
+  const handleUpdateProductCategoryModalShow = () =>
+    setShowUpdateProductCategoryModal(true);
   return (
     <>
       <div className="py-2 d-flex align-items-center border-bottom flex-wrap">
@@ -19,11 +27,20 @@ const ProductOrganizeCategory = ({ product }: Props) => {
           </div>
         </div>
         <div className="time-block text-truncate">
-          <button type="button" className="btn p-0">
+          <button
+            type="button"
+            className="btn p-0"
+            onClick={handleUpdateProductCategoryModalShow}
+          >
             <i className="icofont-edit text-primary fs-6"></i>
           </button>
         </div>
       </div>
+      <ProductCategoryEditForm
+        show={showUpdateProductCategoryModal}
+        handleClose={handleUpdateProductCategoryModalClose}
+        product={product}
+      />
     </>
   );
 };

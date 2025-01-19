@@ -11,7 +11,7 @@ const ProductOrganizeCard = ({ product }: Props) => {
     <>
       <div className="card shadow">
         <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-          <h6 className="mb-0 fw-bold ">Upcomming Interviews</h6>
+          <h6 className="mb-0 fw-bold ">Organize</h6>
         </div>
         <div className="card-body">
           <div className="flex-grow-1">
