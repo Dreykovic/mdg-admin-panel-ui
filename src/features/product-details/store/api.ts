@@ -1,11 +1,11 @@
 import apiSlice from '@/store/api-slice';
-import { ApiResponse, PaginationResponse } from '@/types/api';
+import { ListResponse, PaginationResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
 const productDetailsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUniqueProduct: builder.query<
-      ApiResponse<Product>,
+      ListResponse<Product>,
       { productId: string }
     >({
       query: (args) => {
@@ -19,7 +19,7 @@ const productDetailsApi = apiSlice.injectEndpoints({
     }),
 
     editProduct: builder.mutation({
-      query: (data: Product) => ({
+      query: (data: Partial<Product>) => ({
         url: `resources/product-resources/products/update/${data.id}`,
         method: 'PUT',
         body: data,

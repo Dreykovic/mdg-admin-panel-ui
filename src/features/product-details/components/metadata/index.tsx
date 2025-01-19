@@ -1,8 +1,19 @@
-import React from 'react';
+import { Product } from '@/types/entity';
+import React, { useState } from 'react';
+import ProductMetadataEditForm from './edit';
 
-type Props = {};
+type Props = {
+  product: Product;
+};
 
-const ProductMetadata = (props: Props) => {
+const ProductMetadata = ({ product }: Props) => {
+  const [showUpdateProductMetadataModal, setShowUpdateProductMetadataModal] =
+    useState(false);
+
+  const handleUpdateProductMetadataModalClose = () =>
+    setShowUpdateProductMetadataModal(false);
+  const handleUpdateProductMetadataModalShow = () =>
+    setShowUpdateProductMetadataModal(true);
   return (
     <>
       <div className="card teacher-card shadow">
@@ -28,24 +39,28 @@ const ProductMetadata = (props: Props) => {
           </div>
 
           <div className="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-            <h6 className="mb-0 mt-2  fw-bold d-block fs-6">dsd</h6>
+            <h6 className="mb-0 mt-2  fw-bold d-block fs-6">{product.name}</h6>
 
             <div className="video-setting-icon mt-3 pt-3 border-top">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Mollitia assumenda iste libero animi consequuntur quidem placeat
-                atque accusamus dolor magni quam totam ea quo, perspiciatis cum
-                tempore temporibus autem at.
-              </p>
+              <p>{product.description}</p>
             </div>
             <div className="d-flex flex-wrap align-items-center ct-btn-set">
-              <a href="#" className="btn btn-dark btn-sm mt-1">
+              <a
+                href="#"
+                className="btn btn-dark btn-sm mt-1"
+                onClick={handleUpdateProductMetadataModalShow}
+              >
                 <i className="icofont-edit me-2 fs-6"></i>Edit
               </a>
             </div>
           </div>
         </div>
       </div>
+      <ProductMetadataEditForm
+        show={showUpdateProductMetadataModal}
+        handleClose={handleUpdateProductMetadataModalClose}
+        product={product}
+      />
     </>
   );
 };

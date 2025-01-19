@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useGetUniqueProductQuery } from '@/features/product-details/store/api';
 import { Loading } from '@/components/ui/loading';
 import ErrorAlert from '@/components/ui/error-alert';
+import { Product } from '@/types/entity';
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -34,7 +35,9 @@ const ProductDetailsPage = () => {
   if (isError) {
     return <ErrorAlert error={error} />;
   }
-  console.log(response);
+
+  const product = response?.content.product;
+  console.log('Fetched Product', product);
 
   return (
     <>
@@ -73,7 +76,7 @@ const ProductDetailsPage = () => {
         </div>
       </div>
       <div className="tab-content">
-        <ProductOverviewTabPane />
+        <ProductOverviewTabPane product={product as Product} />
         <ProductStockTabPane />
       </div>
     </>

@@ -11,7 +11,7 @@ import { Recipe, RecipeDifficultyType } from '@/types/entity';
 
 import { useCreateRecipeMutation } from '../store/recipe-api';
 
-const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
+const RecipeEditForm = ({ show, handleClose }: ModalProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const { authUser } = useSelector((state: RootState) => state.auth);
   const initialValues: Partial<Recipe> = {
@@ -261,4 +261,4 @@ const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
   );
 };
 
-export default RecipeCreateForm;
+export default RecipeEditForm;
