@@ -29,8 +29,8 @@ const ProductPriceSettings = ({ product }: Props) => {
             <i className="icofont-edit text-primary fs-6"></i>
           </button>
         </div>
-        <div className="card-body">
-          <div className="row g-4 row-deck">
+        <div className="card-body mem-list">
+          <div className="row g-4 row-deck ">
             <div className="col-md-6 col-sm-6">
               <div className="card">
                 <div className="card-body ">

@@ -17,7 +17,7 @@ const ProductMetadata = ({ product }: Props) => {
   return (
     <>
       <div className="card teacher-card shadow">
-        <div className="card-body  d-flex">
+        <div className="card-body  d-flex mem-list">
           <div className="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
             <div
               className=" d-flex justify-content-center align-items-center rounded"

@@ -12,43 +12,46 @@ import { Product } from '@/types/entity';
 import { useEditProductMutation } from '../../../store/api';
 import { useState } from 'react';
 
-import { useGetSuppliersListQuery } from '@/store/api-slice';
+import {
+  useGetOriginsListQuery,
+  useGetSuppliersListQuery,
+} from '@/store/api-slice';
 
 import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
-const ProductSupplierEditForm = ({
+import OriginCreateForm from '@/features/origins/components/origin-create-form';
+const ProductOriginEditForm = ({
   show,
   handleClose,
   product,
 }: ModalProps & { product: Product }) => {
-  const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);
+  const [showCreateOriginModal, setShowCreateOriginModal] = useState(false);
 
-  const handleCreateSupplierModalClose = () =>
-    setShowCreateSupplierModal(false);
-  const handleCreateSupplierModalShow = () => setShowCreateSupplierModal(true);
+  const handleCreateOriginModalClose = () => setShowCreateOriginModal(false);
+  const handleCreateOriginModalShow = () => setShowCreateOriginModal(true);
   const dispatch = useDispatch<AppDispatch>();
   const initialValues: Partial<Product> = {
-    supplierId: product.supplierId,
+    originId: product.originId,
     id: product.id as string,
   };
 
   const validationsSchema = Yup.object({
-    supplierId: Yup.number()
+    originId: Yup.number()
       .integer()
       .positive()
-      .required('Supplier ID is required')
-      .typeError('Supplier ID must be a positive integer'),
+      .required('Origin ID is required')
+      .typeError('Origin ID must be a positive integer'),
 
     id: Yup.string().required('product Id is required.'),
   });
 
   const [updateProductMetadata] = useEditProductMutation();
-  // Récupération des suppliers
-  const { data: suppliersResponse, isFetching: isSuppliersFetching } =
-    useGetSuppliersListQuery(undefined, {
+  // Récupération des origins
+  const { data: originsResponse, isFetching: isOriginsFetching } =
+    useGetOriginsListQuery(undefined, {
       refetchOnMountOrArgChange: true,
     });
-  const suppliers = suppliersResponse?.content.suppliers;
+  const origins = originsResponse?.content.origins;
 
   const handleSubmit = async (
     values: Partial<Product>,
@@ -112,42 +115,39 @@ const ProductSupplierEditForm = ({
           {({ isSubmitting }) => (
             <Form>
               <Modal.Header closeButton>
-                <Modal.Title>{`Update Product Supplier`}</Modal.Title>
+                <Modal.Title>{`Update Product Origin`}</Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
                 <div className="modal-content">
                   <div className="modal-body">
-                    <div className="mb-3">
+                    <div className="">
                       {/* Sélection de la direction */}
 
-                      <label
-                        htmlFor="supplierId"
-                        className="form-label required"
-                      >
-                        Supplier
+                      <label htmlFor="originId" className="form-label required">
+                        Origin
                       </label>
                       <div className="d-flex w-sm-100 g-3">
-                        {isSuppliersFetching ? (
+                        {isOriginsFetching ? (
                           <div className="d-flex align-items-center">
                             <span
                               className="spinner-grow spinner-grow-sm me-2"
                               role="status"
                               aria-hidden="true"
                             ></span>
-                            Fetching suppliers...
+                            Fetching Origins...
                           </div>
                         ) : (
                           <>
                             <Field
                               as="select"
                               className="form-control"
-                              name="supplierId"
+                              name="originId"
                             >
-                              <option value="">-- Select a supplier --</option>
-                              {suppliers?.map((option) => (
+                              <option value="">-- Select an origin --</option>
+                              {origins?.map((option) => (
                                 <option key={option.id} value={option.id}>
-                                  {option.name}
+                                  {option.country}
                                 </option>
                               ))}
                             </Field>
@@ -155,11 +155,11 @@ const ProductSupplierEditForm = ({
                         )}
 
                         <DynamicAddBtn
-                          handleClick={handleCreateSupplierModalShow}
+                          handleClick={handleCreateOriginModalShow}
                         />
                       </div>
                       <ErrorMessage
-                        name="supplierId"
+                        name="originId"
                         component="span"
                         className="text-danger"
                       />
@@ -184,12 +184,13 @@ const ProductSupplierEditForm = ({
           )}
         </Formik>
       </Modal>
-      <SupplierCreateForm
-        show={showCreateSupplierModal}
-        handleClose={handleCreateSupplierModalClose}
+
+      <OriginCreateForm
+        show={showCreateOriginModal}
+        handleClose={handleCreateOriginModalClose}
       />
     </>
   );
 };
 
-export default ProductSupplierEditForm;
+export default ProductOriginEditForm;
