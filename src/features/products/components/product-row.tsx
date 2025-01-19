@@ -1,4 +1,3 @@
-import { authRoutesConfig } from '@/router/config';
 import { Product } from '@/types/entity';
 import { useNavigate } from 'react-router-dom';
 
@@ -52,7 +51,44 @@ const ProductRow = ({ product }: IProductRowProps) => {
           </span>
         </td>
 
-        <td>...</td>
+        <td>
+          <div className="btn-group">
+            <button
+              type="button"
+              className="btn"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              ...
+              <span className="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul className="dropdown-menu border-0 shadow py-3 px-2">
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Another action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Something else here
+                </a>
+              </li>
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Separated link
+                </a>
+              </li>
+            </ul>
+          </div>
+        </td>
       </tr>
     </>
   );

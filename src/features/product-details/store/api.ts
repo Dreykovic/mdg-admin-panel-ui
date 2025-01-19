@@ -1,31 +1,23 @@
 import apiSlice from '@/store/api-slice';
-import { PaginationResponse } from '@/types/api';
+import { ApiResponse, PaginationResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
-const productDetailApi = apiSlice.injectEndpoints({
+const productDetailsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getSomeProducts: builder.query<
-      PaginationResponse<Product[]>,
-      { page?: number; filters?: string; pageSize?: number }
+    getUniqueProduct: builder.query<
+      ApiResponse<Product>,
+      { productId: string }
     >({
       query: (args) => {
-        const { page, filters, pageSize } = args;
+        const { productId } = args;
 
         return {
-          url: `resources/product-resources/products`,
-          params: { page, filters, pageSize },
+          url: `resources/product-resources/products/details/${productId}`,
         };
       },
       providesTags: ['PRODUCTS'], // Ajouter un tag
     }),
-    createProduct: builder.mutation({
-      query: (data: Partial<Product>) => ({
-        url: 'resources/product-resources/products/save',
-        method: 'POST',
-        body: data,
-      }),
-      invalidatesTags: ['PRODUCTS'], // Invalider les caches
-    }),
+
     editProduct: builder.mutation({
       query: (data: Product) => ({
         url: `resources/product-resources/products/update/${data.id}`,
@@ -48,8 +40,7 @@ const productDetailApi = apiSlice.injectEndpoints({
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 export const {
-  useGetSomeProductsQuery,
-  useCreateProductMutation,
   useEditProductMutation,
   useDeleteProductMutation,
-} = productDetailApi;
+  useGetUniqueProductQuery,
+} = productDetailsApi;

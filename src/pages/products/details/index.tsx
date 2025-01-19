@@ -5,13 +5,37 @@ import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 import ProductOverviewTabPane from './overview';
 import ProductStockTabPane from './stock';
+import { useParams } from 'react-router-dom';
+import { useGetUniqueProductQuery } from '@/features/product-details/store/api';
+import { Loading } from '@/components/ui/loading';
+import ErrorAlert from '@/components/ui/error-alert';
 
 const ProductDetailsPage = () => {
+  const { productId } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-
   useEffect(() => {
     dispatch(setPageName({ name: 'product-details', group: 'products' }));
   }, [dispatch]);
+  const {
+    data: response,
+    isFetching,
+    isError,
+    error,
+  } = useGetUniqueProductQuery(
+    { productId: productId as string },
+    {
+      refetchOnMountOrArgChange: true,
+      refetchOnReconnect: true,
+    },
+  );
+  if (isFetching) {
+    return <Loading />;
+  }
+  if (isError) {
+    return <ErrorAlert error={error} />;
+  }
+  console.log(response);
+
   return (
     <>
       <div className="row align-items-center">
