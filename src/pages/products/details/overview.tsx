@@ -18,7 +18,7 @@ const ProductOverviewTabPane = ({ product }: Props) => {
             <ProductMetadata product={product} />
           </div>
           <div className="col-md-12 col-lg-4 col-xl-5 col-xxl-5">
-            <ProductPriceSettings />
+            <ProductPriceSettings product={product} />
           </div>
         </div>
         <div className="row g-3 mb-3 mt-3 row-deck">
