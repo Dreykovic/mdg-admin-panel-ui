@@ -16,7 +16,6 @@ const Layout = () => {
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated,
   );
-  console.log('element animate');
 
   const mainClassNames = isAuthenticated
     ? AUTH_MAIN_CLASSNAMES

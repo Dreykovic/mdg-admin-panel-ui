@@ -115,13 +115,13 @@ export const productInitialValues = {
   name: 'Product',
   isGlutenFree: false,
   isGMOFree: false,
-  description: undefined,
+  description: 'lorem ipsum',
 
-  isActive: true,
+  isActive: false,
   isPublic: false,
   minimumStockLevel: 1000,
   quantity: 1000,
-  additionalCost: 10,
+  additionalCost: 0,
   costPerGramWhole: 1000,
   costPerGramGround: 1000,
 
@@ -160,7 +160,6 @@ export const step2Schema = yup.object({
     .typeError('Margin Level ID must be a positive integer'),
   additionalCost: yup
     .number()
-    .positive()
     .nullable()
     .typeError('Additional cost must be a positive number'),
   costPerGramWhole: yup
@@ -201,8 +200,14 @@ export const step3Schema = yup.object({
     .typeError('Supplier ID must be a positive integer'),
 });
 export const step4Schema = yup.object({
-  isActive: yup.boolean().typeError('Active status must be a boolean'),
-  isPublic: yup.boolean().typeError('Public status must be a boolean'),
+  isActive: yup
+    .boolean()
+    .required('Active status is required')
+    .typeError('Active status must be a boolean'),
+  isPublic: yup
+    .boolean()
+    .required('Public status is required')
+    .typeError('Public status must be a boolean'),
   minimumStockLevel: yup
     .number()
     .integer()
@@ -243,7 +248,7 @@ export const step3InitialValues = {
   supplierId: undefined,
 };
 export const step4InitialValues = {
-  isActive: true,
+  isActive: false,
   isPublic: false,
   minimumStockLevel: 1000,
   quantity: 1000,

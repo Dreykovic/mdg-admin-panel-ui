@@ -1,14 +1,15 @@
 import { Product } from '@/types/entity';
+import { useNavigate } from 'react-router-dom';
 
 interface IProductRowProps {
   product: Partial<Product>;
 }
 
 const ProductRow = ({ product }: IProductRowProps) => {
+  const navigate = useNavigate();
   return (
     <>
-      {' '}
-      <tr key={product.id}>
+      <tr onClick={() => navigate(`/products/details/${product.id}`)}>
         <td>
           <div className="d-flex align-items-center flex-fill">
             <div
@@ -26,11 +27,68 @@ const ProductRow = ({ product }: IProductRowProps) => {
             </div>
           </div>
         </td>
-        <td>{product.category?.name}</td>
+        <td>
+          <div className="d-flex align-items-center">
+            <div className="avatar rounded-circle no-thumbnail">
+              <i
+                className="icofont-bricks d-flex justify-content-center align-items-center"
+                style={{ width: '40px', height: '40px', fontSize: '20px' }}
+              ></i>
+            </div>
+            <div className="flex-fill ms-1 text-truncate">
+              <span>{product.category?.name}</span>
+            </div>
+          </div>
+        </td>
+        <td>{product.quantity}</td>
         <td>{product.pricePerGramGround}</td>
         <td>{product.pricePerGramWhole}</td>
+        <td>
+          <span
+            className={`badge bg-${product.isPublic ? 'light' : 'dark'} ${product.isPublic ? 'text-dark' : ''} `}
+          >
+            {product.isPublic ? 'Visible' : 'Hidden'}
+          </span>
+        </td>
 
-        <td>...</td>
+        {/* <td>
+          <div className="btn-group">
+            <button
+              type="button"
+              className="btn"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              ...
+              <span className="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul className="dropdown-menu border-0 shadow py-3 px-2">
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Another action
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Something else here
+                </a>
+              </li>
+              <li>
+                <hr className="dropdown-divider" />
+              </li>
+              <li>
+                <a className="dropdown-item py-2 rounded" href="#">
+                  Separated link
+                </a>
+              </li>
+            </ul>
+          </div>
+        </td> */}
       </tr>
     </>
   );

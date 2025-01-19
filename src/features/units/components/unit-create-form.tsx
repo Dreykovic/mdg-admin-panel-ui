@@ -7,13 +7,13 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
-import { UnitOfMesure, UOMType } from '@/types/entity';
+import { UnitOfMeasure } from '@/types/entity';
 
 import { useCreateUnitMutation } from '../store/api';
-const initialValues: Partial<UnitOfMesure> = {
+const initialValues: Partial<UnitOfMeasure> = {
   name: '',
   factor: 0,
-  type: UOMType.WEIGHT,
+  type: 'WEIGHT',
 };
 
 const UnitCreateForm = ({ show, handleClose }: ModalProps) => {
@@ -30,19 +30,19 @@ const UnitCreateForm = ({ show, handleClose }: ModalProps) => {
   const [createUnit] = useCreateUnitMutation();
 
   const handleSubmit = async (
-    values: Partial<UnitOfMesure>,
-    { setSubmitting }: FormikHelpers<Partial<UnitOfMesure>>,
+    values: Partial<UnitOfMeasure>,
+    { setSubmitting }: FormikHelpers<Partial<UnitOfMeasure>>,
   ) => {
     try {
       if (values) {
-        const data: Partial<UnitOfMesure> = {
+        const data: Partial<UnitOfMeasure> = {
           name: values.name,
           factor: values.factor,
           type: values.type,
         };
 
-        const response: ApiResponse<UnitOfMesure> = await createUnit(
-          data as UnitOfMesure,
+        const response: ApiResponse<UnitOfMeasure> = await createUnit(
+          data as UnitOfMeasure,
         ).unwrap();
 
         if (response.success) {
@@ -135,9 +135,9 @@ const UnitCreateForm = ({ show, handleClose }: ModalProps) => {
                       <Field as="select" className="form-control" name="type">
                         <option value="">-- Sélect a type --</option>
 
-                        <option value={UOMType.WEIGHT}>Weight</option>
-                        <option value={UOMType.VOLUME}>Volume</option>
-                        <option value={UOMType.OTHER}>Other</option>
+                        <option value={'WEIGHT'}>Weight</option>
+                        <option value={'VOLUME'}>Volume</option>
+                        <option value={'OTHER'}>Other</option>
                       </Field>
                       <ErrorMessage
                         name="jobSuperiorId"

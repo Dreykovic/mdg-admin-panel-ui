@@ -40,7 +40,6 @@ const ProductsPage = () => {
   );
 
   const someProducts = result?.content.data;
-  console.log(someProducts);
 
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments

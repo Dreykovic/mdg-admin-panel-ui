@@ -17,7 +17,7 @@ const AddProductPage = () => {
       <div className="row align-items-center">
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <h3 className="fw-bold py-3 mb-0">New product</h3>{' '}
+            <h3 className="fw-bold py-3 mb-0">New product</h3>
           </div>
         </div>
       </div>

@@ -38,7 +38,6 @@ const StepItem = ({
   );
   return (
     <>
-      {' '}
       <li className="dd-item mb-3">
         <div className="dd-handle">
           <div className="task-info d-flex align-items-center justify-content-between">
