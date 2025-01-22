@@ -4,7 +4,7 @@ export const Loading = () => {
   return (
     <>
       <div className="">
-        <div className="light-success-bg mb-3 h-100">
+        <div className="bg-secondary mb-3 h-100">
           <div className=" text-center ">
             <img src={Logo} className="img-fluid mx-size" alt="No Data" />
           </div>
