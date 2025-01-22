@@ -25,6 +25,14 @@ function Header() {
     e.preventDefault();
     try {
       const values = { token: authUtil.getRefreshToken() ?? '' };
+      dispatch(makeGlobalLogout());
+      navigate('/', { replace: true });
+      dispatch(
+        showAlert({
+          title: 'Success !',
+          message: `Logout successfully`,
+        }),
+      );
       if (values) {
         await signOut(values).unwrap();
       } else {
@@ -40,15 +48,6 @@ function Header() {
             'Sorry An error occurred during submission' +
             (error as any).data.error.message,
           success: false,
-        }),
-      );
-    } finally {
-      dispatch(makeGlobalLogout());
-      navigate('/', { replace: true });
-      dispatch(
-        showAlert({
-          title: 'Success !',
-          message: `Logout successfully`,
         }),
       );
     }
