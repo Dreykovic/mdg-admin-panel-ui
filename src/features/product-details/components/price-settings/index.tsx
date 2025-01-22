@@ -34,7 +34,7 @@ const ProductPriceSettings = ({ product }: Props) => {
             <div className="col-md-6 col-sm-6">
               <div className="card">
                 <div className="card-body ">
-                  <i className="icofont-checked fs-3"></i>
+                  <i className="icofont-money-bag fs-3"></i>
                   <h6 className="mt-3 mb-0 small-14">Cost (Whole) </h6>
                   <span className="fw-bold">${product.costPerGramWhole}</span>
                 </div>
@@ -43,7 +43,7 @@ const ProductPriceSettings = ({ product }: Props) => {
             <div className="col-md-6 col-sm-6">
               <div className="card">
                 <div className="card-body ">
-                  <i className="icofont-stopwatch fs-3"></i>
+                  <i className="icofont-money-bag fs-3"></i>
                   <h6 className="mt-3 mb-0 small-14"> Cost (Ground)</h6>
                   <span className="fw-bold">${product.costPerGramGround}</span>
                 </div>
@@ -52,7 +52,7 @@ const ProductPriceSettings = ({ product }: Props) => {
             <div className="col-md-6 col-sm-6">
               <div className="card">
                 <div className="card-body ">
-                  <i className="icofont-ban fs-3"></i>
+                  <i className="icofont-coins fs-3"></i>
                   <h6 className="mt-3 mb-0  small-14">Price (Whole)</h6>
                   <span className="fw-bold">${product.pricePerGramWhole}</span>
                 </div>
@@ -61,7 +61,7 @@ const ProductPriceSettings = ({ product }: Props) => {
             <div className="col-md-6 col-sm-6">
               <div className="card">
                 <div className="card-body ">
-                  <i className="icofont-beach-bed fs-3"></i>
+                  <i className="icofont-coins fs-3"></i>
                   <h6 className="mt-3 mb-0  small-14">Price (Ground)</h6>
                   <span className="fw-bold">${product.pricePerGramGround}</span>
                 </div>
@@ -70,7 +70,7 @@ const ProductPriceSettings = ({ product }: Props) => {
             <div className="col-md-6 col-sm-6">
               <div className="card">
                 <div className="card-body ">
-                  <i className="icofont-beach-bed fs-3"></i>
+                  <i className="icofont-coins fs-3"></i>
                   <h6 className="mt-3 mb-0  small-14">Additional Cost</h6>
                   <span className="fw-bold">${product.additionalCost}</span>
                 </div>

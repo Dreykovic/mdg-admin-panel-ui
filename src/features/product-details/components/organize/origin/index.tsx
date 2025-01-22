@@ -19,7 +19,7 @@ const ProductOrganizeOrigin = ({ product }: Props) => {
       <div className="py-2 d-flex align-items-center border-bottom flex-wrap">
         <div className="d-flex align-items-center flex-fill">
           <span className="avatar lg bg-secondary  text-center d-flex align-items-center justify-content-center">
-            <i className="icofont-user fs-5"></i>
+            <i className="icofont-flag fs-5"></i>
           </span>
           <div className="d-flex flex-column ps-3">
             <h6 className=" mb-0 small-14">Origin</h6>
