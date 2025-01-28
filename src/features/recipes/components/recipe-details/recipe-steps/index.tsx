@@ -43,16 +43,16 @@ const StepSteps = ({ recipe }: IRecipeProps) => {
 
   const handleEditStepModalClose = () => setShowEditSupplierModal(false);
   const handleEditStepModalShow = () => setShowEditSupplierModal(true);
-  const [marginId, setStepId] = useState<number>();
+  const [stepId, setStepId] = useState<number>();
   const dispatch = useDispatch<AppDispatch>();
 
   const [deleteStep, { isLoading }] = useDeleteStepMutation();
 
   const handleDeletion = useCallback(async () => {
     try {
-      if (marginId) {
+      if (stepId) {
         const response = await deleteStep({
-          id: marginId,
+          id: stepId,
         }).unwrap();
 
         if (response.success) {
@@ -79,7 +79,7 @@ const StepSteps = ({ recipe }: IRecipeProps) => {
     } finally {
       handleDeleteItemModalClose();
     }
-  }, [marginId, deleteStep, dispatch]);
+  }, [stepId, deleteStep, dispatch]);
   return (
     <>
       <div className="card mb-3 shadow">
@@ -96,30 +96,32 @@ const StepSteps = ({ recipe }: IRecipeProps) => {
           </div>
         </div>
         <div className="card-body">
-          <div className="planned_task client_task">
-            <div className="dd" data-plugin="nestable">
-              <ol className="dd-list">
-                {isStepsFetching ? (
-                  <CardLoading number={1} />
-                ) : steps && steps.length > 0 ? (
-                  steps.map((step, index) => (
-                    <StepItem
-                      key={index}
-                      step={step}
-                      setStepId={setStepId}
-                      handleDeleteItemModalShow={handleDeleteItemModalShow}
-                      handleEditStepModalShow={handleEditStepModalShow}
-                      setUpdateInitialValues={setUpdateInitialValues}
-                    />
-                  ))
+          {isStepsFetching ? (
+            <CardLoading number={1} />
+          ) : (
+            <div className="planned_task client_task">
+              <div className="dd">
+                {steps && steps.length > 0 ? (
+                  <ol className="dd-list">
+                    {steps.map((step, index) => (
+                      <StepItem
+                        key={index}
+                        step={step}
+                        setStepId={setStepId}
+                        handleDeleteItemModalShow={handleDeleteItemModalShow}
+                        handleEditStepModalShow={handleEditStepModalShow}
+                        setUpdateInitialValues={setUpdateInitialValues}
+                      />
+                    ))}
+                  </ol>
                 ) : (
                   <>
                     <NoCardData text="No Step" />
                   </>
                 )}
-              </ol>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <StepCreateForm

@@ -101,28 +101,32 @@ const RecipeIngredients = ({ recipe }: IRecipeProps) => {
             </div>
           </div>
           <div className="card-body">
-            <ul className="list-styled mb-0">
-              {isIngredientsFetching ? (
-                <CardLoading number={1} />
-              ) : ingredients && ingredients.length > 0 ? (
-                ingredients.map((ingredient, index) => (
-                  <IngredientItem
-                    ingredient={ingredient}
-                    key={index}
-                    setIngredientId={setIngredientId}
-                    handleDeleteItemModalShow={handleDeleteItemModalShow}
-                    handleEditIngredientModalShow={
-                      handleEditIngredientModalShow
-                    }
-                    setUpdateInitialValues={setUpdateInitialValues}
-                  />
-                ))
-              ) : (
-                <>
-                  <NoCardData text="No Ingredient" />
-                </>
-              )}
-            </ul>
+            {isIngredientsFetching ? (
+              <CardLoading number={1} />
+            ) : (
+              <>
+                {ingredients && ingredients.length > 0 ? (
+                  <ul className="list-styled mb-0">
+                    {ingredients.map((ingredient, index) => (
+                      <IngredientItem
+                        ingredient={ingredient}
+                        key={index}
+                        setIngredientId={setIngredientId}
+                        handleDeleteItemModalShow={handleDeleteItemModalShow}
+                        handleEditIngredientModalShow={
+                          handleEditIngredientModalShow
+                        }
+                        setUpdateInitialValues={setUpdateInitialValues}
+                      />
+                    ))}
+                  </ul>
+                ) : (
+                  <>
+                    <NoCardData text="No Ingredient" />
+                  </>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

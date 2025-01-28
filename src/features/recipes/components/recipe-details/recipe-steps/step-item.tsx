@@ -39,7 +39,7 @@ const StepItem = ({
   return (
     <>
       <li className="dd-item mb-3">
-        <div className="dd-handle">
+        <div className="">
           <div className="task-info d-flex align-items-center justify-content-between">
             <h6 className="bg-secondary py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">
               {`Step ${step.stepNumber}`}
