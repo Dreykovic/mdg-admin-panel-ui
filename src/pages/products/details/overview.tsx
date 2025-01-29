@@ -29,7 +29,7 @@ const ProductOverviewTabPane = ({ product }: Props) => {
             <ProductConversionCard product={product} />
           </div>
           <div className="col-lg-4">
-            <ProductStateCard />
+            <ProductStateCard product={product} />
           </div>
         </div>
       </div>
