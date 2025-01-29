@@ -6,7 +6,7 @@ type Props = {
   product: Product;
 };
 
-const ProductOrganizeMargin = ({ product }: Props) => {
+const ProductPriceMargin = ({ product }: Props) => {
   const [showUpdateProductMarginModal, setShowUpdateProductMarginModal] =
     useState(false);
 
@@ -45,4 +45,4 @@ const ProductOrganizeMargin = ({ product }: Props) => {
   );
 };
 
-export default ProductOrganizeMargin;
+export default ProductPriceMargin;
