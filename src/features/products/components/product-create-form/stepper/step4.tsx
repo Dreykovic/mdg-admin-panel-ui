@@ -38,41 +38,6 @@ const Step4 = () => {
           />
         </div>
       </div>
-
-      <div className="form-check form-switch mb-3">
-        <Field
-          className="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="isActive"
-          name="isActive"
-        />
-        <label className="form-check-label mx-2" htmlFor="isActive">
-          In Stock
-        </label>
-        <ErrorMessage
-          name="isActive"
-          component="span"
-          className="text-danger mx-2"
-        />
-      </div>
-      <div className="form-check form-switch mb-3">
-        <Field
-          className="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="isPublic"
-          name="isPublic"
-        />
-        <label className="form-check-label mx-2" htmlFor="isPublic">
-          Visible On Site
-        </label>
-        <ErrorMessage
-          name="isPublic"
-          component="span"
-          className="text-danger mx-2"
-        />
-      </div>
     </>
   );
 };

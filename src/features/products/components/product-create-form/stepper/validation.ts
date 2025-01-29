@@ -200,14 +200,6 @@ export const step3Schema = yup.object({
     .typeError('Supplier ID must be a positive integer'),
 });
 export const step4Schema = yup.object({
-  isActive: yup
-    .boolean()
-    .required('Active status is required')
-    .typeError('Active status must be a boolean'),
-  isPublic: yup
-    .boolean()
-    .required('Public status is required')
-    .typeError('Public status must be a boolean'),
   minimumStockLevel: yup
     .number()
     .integer()
@@ -248,8 +240,6 @@ export const step3InitialValues = {
   supplierId: undefined,
 };
 export const step4InitialValues = {
-  isActive: false,
-  isPublic: false,
   minimumStockLevel: 1000,
   quantity: 1000,
 };
