@@ -13,6 +13,7 @@ export const v1 = {
         'Product Table',
         'Product Details',
         'Product Details Edit',
+        'Product Deletion',
       ],
     },
     {
@@ -31,6 +32,7 @@ export const v1 = {
         'Recipe Edit page',
         'Recipe Steps CRUD',
         'Recipe Ingredients CRUD',
+        'Recipe Deletion',
       ],
     },
     {
