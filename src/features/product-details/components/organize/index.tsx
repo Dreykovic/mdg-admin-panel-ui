@@ -2,7 +2,6 @@ import { Product } from '@/types/entity';
 import ProductOrganizeCategory from './category';
 import ProductOrganizeSupplier from './supplier';
 import ProductOrganizeOrigin from './origin';
-import ProductOrganizeMargin from './margin';
 
 type Props = {
   product: Product;
@@ -20,7 +19,6 @@ const ProductOrganizeCard = ({ product }: Props) => {
             <ProductOrganizeCategory product={product} />
             <ProductOrganizeSupplier product={product} />
             <ProductOrganizeOrigin product={product} />
-            <ProductOrganizeMargin product={product} />
           </div>
         </div>
       </div>

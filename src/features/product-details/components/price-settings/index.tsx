@@ -1,6 +1,7 @@
 import { Product } from '@/types/entity';
 import { useState } from 'react';
 import ProductPriceSettingsEditForm from './edit';
+import ProductPriceMargin from './margin';
 
 type Props = {
   product: Product;
@@ -21,13 +22,9 @@ const ProductPriceSettings = ({ product }: Props) => {
       <div className="card shadow">
         <div className="card-header py-3 d-flex justify-content-between">
           <h6 className="mb-0 fw-bold ">Price Settings</h6>
-          <button
-            type="button"
-            className="btn p-0"
-            onClick={handleUpdateProductPriceSettingsModalShow}
-          >
-            <i className="icofont-edit text-primary fs-6"></i>
-          </button>
+        </div>
+        <div className="card-header py-3 ">
+          <ProductPriceMargin product={product} />
         </div>
         <div className="card-body mem-list">
           <div className="row g-4 row-deck ">
@@ -73,6 +70,19 @@ const ProductPriceSettings = ({ product }: Props) => {
                   <i className="icofont-coins fs-3"></i>
                   <h6 className="mt-3 mb-0  small-14">Additional Cost</h6>
                   <span className="fw-bold">${product.additionalCost}</span>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6 col-sm-6">
+              <div
+                className="card bg-secondary"
+                role="button"
+                onClick={handleUpdateProductPriceSettingsModalShow}
+              >
+                <div className="card-body ">
+                  <i className="icofont-edit text-primary fs-6"></i>
+
+                  <h6 className="mt-3 mb-0  small-14">Edit</h6>
                 </div>
               </div>
             </div>

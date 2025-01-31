@@ -1,10 +1,11 @@
-import { IRecipeProps } from '../../types';
-
+import { Recipe } from '@/types/entity';
 import GeneralInfo from './general-info';
 import RecipeIngredients from './recipe-ingredients';
 import RecipeSteps from './recipe-steps';
+import RecipeStateCard from './state';
 
-const RecipeDetails = ({ recipe }: IRecipeProps) => {
+type Props = { recipe: Recipe };
+const RecipeDetails = ({ recipe }: Props) => {
   return (
     <>
       <div className="row g-3">
@@ -18,11 +19,16 @@ const RecipeDetails = ({ recipe }: IRecipeProps) => {
         <div className="col-xl-8 col-lg-12 col-md-12">
           <GeneralInfo recipe={recipe} />
           <div className="row g-3 row-deck">
-            <RecipeIngredients recipe={recipe} />
+            <RecipeIngredients recipeId={recipe.id} />
+          </div>
+          <div className="row g-3 mb-3 mt-3 row-deck">
+            <div className="col-lg-12">
+              <RecipeStateCard recipe={recipe} />
+            </div>
           </div>
         </div>
         <div className="col-xl-4 col-lg-12 col-md-12">
-          <RecipeSteps recipe={recipe} />
+          <RecipeSteps recipeId={recipe.id} />
         </div>
       </div>
     </>

@@ -1,6 +1,8 @@
-import { IRecipeProps } from '../../../types';
-
-const GeneralInfo = ({ recipe }: IRecipeProps) => {
+import { Recipe } from '@/types/entity';
+type Props = {
+  recipe: Recipe;
+};
+const GeneralInfo = ({ recipe }: Props) => {
   return (
     <>
       <div className="card teacher-card  mb-3 shadow">

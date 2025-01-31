@@ -27,7 +27,7 @@ const productDetailsApi = apiSlice.injectEndpoints({
       invalidatesTags: ['PRODUCTS'], // Invalider les caches
     }),
     deleteProduct: builder.mutation({
-      query: (data: { id: number }) => ({
+      query: (data: { id: string }) => ({
         url: `resources/product-resources/products/delete`,
         method: 'DELETE',
         body: data,

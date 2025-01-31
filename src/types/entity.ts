@@ -4,6 +4,8 @@ export type ProfileName = 'CUSTOMER' | 'ADMIN' | 'PARTNER';
 
 export type TokenStatus = 'ACTIVE' | 'REVOKED';
 
+export type VisibilityType = 'DRAFT' | 'VISIBLE' | 'HIDDEN' | 'ARCHIVED';
+
 export type UOMType = 'WEIGHT' | 'VOLUME' | 'OTHER';
 
 export type RecipeDifficultyType = 'EASY' | 'MEDIUM' | 'HARD';
@@ -14,7 +16,7 @@ export interface User {
   email: string;
   profiles: ProfileName[];
   password: string;
-  email_verified_at: String | null;
+  email_verified_at: Date | null;
   tokenFamilies?: TokenFamily[];
   recipes?: Recipe[];
   createdAt: Date;
@@ -139,6 +141,7 @@ export interface Product {
   description: string | null;
   isActive: boolean;
   isPublic: boolean;
+  visibility: VisibilityType;
   minimumStockLevel: number;
   quantity: number;
   additionalCost: number | null;
@@ -195,6 +198,7 @@ export interface Recipe {
   isApproved: boolean;
   isPromoAwarded: boolean;
   difficulty: RecipeDifficultyType;
+  visibility: VisibilityType;
   userId: string;
   categories?: RecipeCategoryLink[];
   ingrediants?: Ingredient[];
@@ -235,7 +239,6 @@ export interface VolumeConversion {
   m2: number;
   m3: number;
   avg: number;
-  unitOfMeasureId: number;
   productId: string;
   stdVolId: number;
   stdVol?: UnitOfMeasure;

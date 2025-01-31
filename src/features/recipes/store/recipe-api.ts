@@ -1,5 +1,5 @@
 import apiSlice from '@/store/api-slice';
-import { PaginationResponse } from '@/types/api';
+import { ListResponse, PaginationResponse } from '@/types/api';
 import { Recipe } from '@/types/entity';
 
 const appApi = apiSlice.injectEndpoints({
@@ -14,6 +14,16 @@ const appApi = apiSlice.injectEndpoints({
         return {
           url: `resources/recipe-resources/recipes`,
           params: { page, filters, pageSize },
+        };
+      },
+      providesTags: ['RECIPES'], // Ajouter un tag
+    }),
+    getUniqueRecipe: builder.query<ListResponse<Recipe>, { recipeId: number }>({
+      query: (args) => {
+        const { recipeId } = args;
+
+        return {
+          url: `resources/recipe-resources/recipes/details/${recipeId}`,
         };
       },
       providesTags: ['RECIPES'], // Ajouter un tag
@@ -52,4 +62,5 @@ export const {
   useCreateRecipeMutation,
   useEditRecipeMutation,
   useDeleteRecipeMutation,
+  useGetUniqueRecipeQuery,
 } = appApi;

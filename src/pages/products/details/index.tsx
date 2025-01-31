@@ -10,6 +10,7 @@ import { useGetUniqueProductQuery } from '@/features/product-details/store/api';
 import { Loading } from '@/components/ui/loading';
 import ErrorAlert from '@/components/ui/error-alert';
 import { Product } from '@/types/entity';
+import CardLoading from '@/components/ui/loading/card-loading';
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -30,7 +31,7 @@ const ProductDetailsPage = () => {
     },
   );
   if (isFetching) {
-    return <Loading />;
+    return <CardLoading number={4} />;
   }
   if (isError) {
     return <ErrorAlert error={error} />;
