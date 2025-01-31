@@ -1,29 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import RecipeDetails from '@/features/recipes/components/recipe-details';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
+import NoCardData from '@/components/ui/no-data/no-card-data';
 
 const RecipeDetailsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const location = useLocation();
 
-  const navigate = useNavigate();
-
-  const [recipe] = useState(location.state || {}); // <-- cache state locally
+  const { recipeId } = useParams();
 
   useEffect(() => {
-    navigate('.', { replace: true }); // <-- redirect to current path w/o state
     dispatch(setPageName({ name: 'recipe-edit', group: 'recipes' }));
-  }, [dispatch, navigate]);
+  }, [dispatch]);
 
   return (
     <>
-      <div className="row clearfix">
-        <RecipeDetails recipe={recipe} />
-      </div>
+      {recipeId ? (
+        <div className="row clearfix">
+          <RecipeDetails recipeId={parseInt(recipeId)} />
+        </div>
+      ) : (
+        <NoCardData text="Something went wrong" />
+      )}
     </>
   );
 };

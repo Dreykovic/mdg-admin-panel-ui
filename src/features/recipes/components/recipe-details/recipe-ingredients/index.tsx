@@ -9,15 +9,17 @@ import {
   useDeleteIngredientMutation,
   useGetIngredientsQuery,
 } from '@/features/recipes/store/ingredient-api';
-import { IRecipeProps } from '@/features/recipes/types';
+
 import { AppDispatch } from '@/store';
 import { Ingredient } from '@/types/entity';
 
 import IngredientCreateForm from './add-ingredient';
 import IngredientEditForm from './edit-ingredient';
 import IngredientItem from './ingredient-item';
-
-const RecipeIngredients = ({ recipe }: IRecipeProps) => {
+type Props = {
+  recipeId: number;
+};
+const RecipeIngredients = ({ recipeId }: Props) => {
   const [showCreateIngredientModal, setShowCreateIngredientModal] =
     useState(false);
 
@@ -26,7 +28,7 @@ const RecipeIngredients = ({ recipe }: IRecipeProps) => {
   const handleCreateIngredientModalShow = () =>
     setShowCreateIngredientModal(true);
   // Créer l'objet `filter`
-  const filters = recipe ? { recipeId: recipe.id } : undefined;
+  const filters = { recipeId };
   // Récupération des categories
   const { data: ingredientsResponse, isFetching: isIngredientsFetching } =
     useGetIngredientsQuery(
@@ -133,7 +135,7 @@ const RecipeIngredients = ({ recipe }: IRecipeProps) => {
       <IngredientCreateForm
         show={showCreateIngredientModal}
         handleClose={handleCreateIngredientModalClose}
-        recipeId={recipe.id as number}
+        recipeId={recipeId}
       />
       <IngredientEditForm
         show={showEditSupplierModal}

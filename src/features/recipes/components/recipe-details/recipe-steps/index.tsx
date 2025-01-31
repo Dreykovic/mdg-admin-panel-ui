@@ -16,14 +16,16 @@ import { Step } from '@/types/entity';
 import StepCreateForm from './add-step';
 import StepEditForm from './edit-step';
 import StepItem from './step-item';
-
-const StepSteps = ({ recipe }: IRecipeProps) => {
+type Props = {
+  recipeId: number;
+};
+const StepSteps = ({ recipeId }: Props) => {
   const [showCreateStepModal, setShowCreateStepModal] = useState(false);
 
   const handleCreateStepModalClose = () => setShowCreateStepModal(false);
   const handleCreateStepModalShow = () => setShowCreateStepModal(true);
   // Créer l'objet `filter`
-  const filters = recipe ? { recipeId: recipe.id } : undefined;
+  const filters = { recipeId };
   // Récupération des categories
   const { data: stepsResponse, isFetching: isStepsFetching } = useGetStepsQuery(
     { filters: JSON.stringify(filters ?? '') },
@@ -127,7 +129,7 @@ const StepSteps = ({ recipe }: IRecipeProps) => {
       <StepCreateForm
         show={showCreateStepModal}
         handleClose={handleCreateStepModalClose}
-        recipeId={recipe.id as number}
+        recipeId={recipeId}
       />
       <StepEditForm
         show={showEditSupplierModal}

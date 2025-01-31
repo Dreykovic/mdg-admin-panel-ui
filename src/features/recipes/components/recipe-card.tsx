@@ -42,7 +42,7 @@ const RecipeCard = ({ recipe }: IRecipeProps) => {
               </div>
               <div className="d-flex flex-wrap align-items-center ct-btn-set">
                 <Link
-                  to={authRoutesConfig.recipeEdit.path}
+                  to={`/recipes/edit/${recipe.id}`}
                   state={recipe}
                   className="btn btn-dark btn-sm mt-1"
                 >

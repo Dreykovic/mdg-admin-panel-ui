@@ -1,10 +1,8 @@
-import { IRecipeProps } from '../../types';
-
 import GeneralInfo from './general-info';
 import RecipeIngredients from './recipe-ingredients';
 import RecipeSteps from './recipe-steps';
-
-const RecipeDetails = ({ recipe }: IRecipeProps) => {
+type Props = { recipeId: number };
+const RecipeDetails = ({ recipeId }: Props) => {
   return (
     <>
       <div className="row g-3">
@@ -16,13 +14,13 @@ const RecipeDetails = ({ recipe }: IRecipeProps) => {
           </div>
         </div>
         <div className="col-xl-8 col-lg-12 col-md-12">
-          <GeneralInfo recipe={recipe} />
+          <GeneralInfo recipeId={recipeId} />
           <div className="row g-3 row-deck">
-            <RecipeIngredients recipe={recipe} />
+            <RecipeIngredients recipeId={recipeId} />
           </div>
         </div>
         <div className="col-xl-4 col-lg-12 col-md-12">
-          <RecipeSteps recipe={recipe} />
+          <RecipeSteps recipeId={recipeId} />
         </div>
       </div>
     </>

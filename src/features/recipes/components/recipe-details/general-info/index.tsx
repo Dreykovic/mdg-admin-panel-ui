@@ -1,6 +1,32 @@
-import { IRecipeProps } from '../../../types';
+import { useGetUniqueRecipeQuery } from '@/features/recipes/store/recipe-api';
 
-const GeneralInfo = ({ recipe }: IRecipeProps) => {
+import CardLoading from '@/components/ui/loading/card-loading';
+import ErrorAlert from '@/components/ui/error-alert';
+import { Recipe } from '@/types/entity';
+type Props = {
+  recipeId: number;
+};
+const GeneralInfo = ({ recipeId }: Props) => {
+  const {
+    data: response,
+    isFetching,
+    isError,
+    error,
+  } = useGetUniqueRecipeQuery(
+    { recipeId: recipeId },
+    {
+      refetchOnMountOrArgChange: true,
+      refetchOnReconnect: true,
+    },
+  );
+  if (isFetching) {
+    return <CardLoading number={1} />;
+  }
+  if (isError) {
+    return <ErrorAlert error={error} />;
+  }
+  const recipe = response?.content.recipe as Recipe;
+
   return (
     <>
       <div className="card teacher-card  mb-3 shadow">

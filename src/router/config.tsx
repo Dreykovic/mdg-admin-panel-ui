@@ -111,7 +111,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'recipe-edit',
 
-    path: '/recipes/edit',
+    path: '/recipes/edit/:recipeId',
     component: RecipeDetailsPage,
     pageName: 'Recipes Edit',
   },
