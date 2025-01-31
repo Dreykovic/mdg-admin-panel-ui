@@ -37,7 +37,7 @@ const RecipeDetailsPage = () => {
     dispatch(setPageName({ name: 'recipe-edit', group: 'recipes' }));
   }, [dispatch]);
   if (isFetching) {
-    return <CardLoading />;
+    return <CardLoading number={4} />;
   }
   if (isError) {
     return <ErrorAlert error={error} />;
