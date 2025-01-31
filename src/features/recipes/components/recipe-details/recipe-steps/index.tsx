@@ -9,13 +9,13 @@ import {
   useDeleteStepMutation,
   useGetStepsQuery,
 } from '@/features/recipes/store/step-api';
-import { IRecipeProps } from '@/features/recipes/types';
-import { AppDispatch } from '@/store';
+
 import { Step } from '@/types/entity';
 
 import StepCreateForm from './add-step';
 import StepEditForm from './edit-step';
 import StepItem from './step-item';
+import { AppDispatch } from '@/store';
 type Props = {
   recipeId: number;
 };

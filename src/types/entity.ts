@@ -16,7 +16,7 @@ export interface User {
   email: string;
   profiles: ProfileName[];
   password: string;
-  email_verified_at: Date | null;
+  email_verified_at: String | null;
   tokenFamilies?: TokenFamily[];
   recipes?: Recipe[];
   createdAt: Date;

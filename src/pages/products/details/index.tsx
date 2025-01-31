@@ -7,7 +7,7 @@ import ProductOverviewTabPane from './overview';
 import ProductStockTabPane from './stock';
 import { useParams } from 'react-router-dom';
 import { useGetUniqueProductQuery } from '@/features/product-details/store/api';
-import { Loading } from '@/components/ui/loading';
+
 import ErrorAlert from '@/components/ui/error-alert';
 import { Product } from '@/types/entity';
 import CardLoading from '@/components/ui/loading/card-loading';
