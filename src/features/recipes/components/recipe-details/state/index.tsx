@@ -1,19 +1,19 @@
-import { Product } from '@/types/entity';
-import ProductDeleteBlock from './delete';
-import ProductVisibilityBlock from './visibility';
+import { Recipe } from '@/types/entity';
+import RecipeDeleteBlock from './delete';
+import RecipeVisibilityBlock from './visibility';
 
 type Props = {
-  product: Product;
+  recipe: Recipe;
 };
-const ProductStateCard = ({ product }: Props) => {
+const RecipeStateCard = ({ recipe }: Props) => {
   return (
     <>
       <div className="card border-danger">
         <div className="card-body">
           <h6 className="fw-bold mb-3 text-danger">Danger Zone</h6>
           <div className="flex-grow-1">
-            <ProductVisibilityBlock product={product} />
-            <ProductDeleteBlock product={product} />
+            <RecipeVisibilityBlock recipe={recipe} />
+            <RecipeDeleteBlock recipe={recipe} />
           </div>
         </div>
       </div>
@@ -21,4 +21,4 @@ const ProductStateCard = ({ product }: Props) => {
   );
 };
 
-export default ProductStateCard;
+export default RecipeStateCard;

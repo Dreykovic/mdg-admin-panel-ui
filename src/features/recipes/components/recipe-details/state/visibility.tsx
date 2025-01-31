@@ -1,14 +1,14 @@
-import { Product } from '@/types/entity';
+import { Recipe } from '@/types/entity';
 
 type Props = {
-  product: Product;
+  recipe: Recipe;
 };
 
-const ProductVisibilityBlock = ({ product }: Props) => {
+const RecipeVisibilityBlock = ({ recipe }: Props) => {
   let visibilityColor: string;
   let visibilityIcon: string;
 
-  switch (product.visibility) {
+  switch (recipe.visibility) {
     case 'VISIBLE':
       visibilityColor = 'success';
       visibilityIcon = 'eye';
@@ -49,7 +49,7 @@ const ProductVisibilityBlock = ({ product }: Props) => {
             aria-expanded="false"
           >
             <i className={`icofont-${visibilityIcon} me-2 fs-6`}></i>
-            {product.visibility.toLocaleLowerCase()}
+            {recipe.visibility.toLocaleLowerCase()}
             <i className={`icofont-simple-down ms-2 fs-6`}></i>
           </button>
           <ul className="dropdown-menu border-0 shadow p-3">
@@ -57,7 +57,7 @@ const ProductVisibilityBlock = ({ product }: Props) => {
               <a className="dropdown-item py-2 rounded  btn btn-sm " href="#">
                 <i className={`icofont-eye me-2 fs-6`}></i>
                 Visible
-                {product.visibility === 'VISIBLE' ? (
+                {recipe.visibility === 'VISIBLE' ? (
                   <i
                     className={`icofont-check-circled text-primary ms-2 fs-6`}
                   ></i>
@@ -70,7 +70,7 @@ const ProductVisibilityBlock = ({ product }: Props) => {
               <a className="dropdown-item py-2 rounded " href="#">
                 <i className={`icofont-file-alt me-2 fs-6`}></i>
                 Make a Draft
-                {product.visibility === 'DRAFT' ? (
+                {recipe.visibility === 'DRAFT' ? (
                   <i
                     className={`icofont-check-circled text-primary ms-2 fs-6`}
                   ></i>
@@ -83,7 +83,7 @@ const ProductVisibilityBlock = ({ product }: Props) => {
               <a className="dropdown-item py-2  rounded" href="#">
                 <i className={`icofont-archive me-2 fs-6`}></i>
                 Archive
-                {product.visibility === 'ARCHIVED' ? (
+                {recipe.visibility === 'ARCHIVED' ? (
                   <i
                     className={`icofont-check-circled text-primary ms-2 fs-6`}
                   ></i>
@@ -96,7 +96,7 @@ const ProductVisibilityBlock = ({ product }: Props) => {
               <a className="dropdown-item py-2  rounded" href="#">
                 <i className={`icofont-eye-blocked me-2 fs-6`}></i>
                 Hide
-                {product.visibility === 'HIDDEN' ? (
+                {recipe.visibility === 'HIDDEN' ? (
                   <i
                     className={`icofont-check-circled text-primary ms-2 fs-6`}
                   ></i>
@@ -112,4 +112,4 @@ const ProductVisibilityBlock = ({ product }: Props) => {
   );
 };
 
-export default ProductVisibilityBlock;
+export default RecipeVisibilityBlock;
