@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import { Recipe } from '@/types/entity';
-import { authRoutesConfig } from '@/router/config';
 
 interface IRecipeProps {
   recipe: Partial<Recipe>;
