@@ -46,7 +46,7 @@ const ProductOriginEditForm = ({
   // Récupération des origins
   const { data: originsResponse, isFetching: isOriginsFetching } =
     useGetOriginsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const origins = originsResponse?.content.origins;
 

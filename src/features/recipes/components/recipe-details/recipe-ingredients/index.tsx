@@ -34,7 +34,7 @@ const RecipeIngredients = ({ recipeId }: Props) => {
     useGetIngredientsQuery(
       { filters: JSON.stringify(filters ?? '') },
       {
-        refetchOnMountOrArgChange: true,
+        refetchOnMountOrArgChange: false,
       },
     );
   const ingredients = ingredientsResponse?.content.ingredients;

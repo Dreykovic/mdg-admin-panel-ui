@@ -30,7 +30,7 @@ const StepSteps = ({ recipeId }: Props) => {
   const { data: stepsResponse, isFetching: isStepsFetching } = useGetStepsQuery(
     { filters: JSON.stringify(filters ?? '') },
     {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     },
   );
   const steps = stepsResponse?.content.steps;

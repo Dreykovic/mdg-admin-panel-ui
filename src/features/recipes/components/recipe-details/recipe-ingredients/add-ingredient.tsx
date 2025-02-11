@@ -101,14 +101,14 @@ const IngredientCreateForm = ({
   // Récupération des categories
   const { data: uOMsResponse, isFetching: isUOMsFetching } =
     useGetUnitsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const uOMs = uOMsResponse?.content.uOMs;
 
   // Récupération des categories
   const { data: productsResponse, isFetching: isProductsFetching } =
     useGetProductsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const products = productsResponse?.content.products;
   return (

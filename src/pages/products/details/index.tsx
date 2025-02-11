@@ -26,7 +26,7 @@ const ProductDetailsPage = () => {
   } = useGetUniqueProductQuery(
     { productId: productId as string },
     {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
       refetchOnReconnect: true,
     },
   );

@@ -46,7 +46,7 @@ const ProductSupplierEditForm = ({
   // Récupération des suppliers
   const { data: suppliersResponse, isFetching: isSuppliersFetching } =
     useGetSuppliersListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const suppliers = suppliersResponse?.content.suppliers;
 

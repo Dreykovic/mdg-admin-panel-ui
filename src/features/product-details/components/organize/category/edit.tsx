@@ -47,7 +47,7 @@ const ProductCategoryEditForm = ({
   // Récupération des categories
   const { data: categoriesResponse, isFetching: isCategoriesFetching } =
     useGetCategoriesListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const categories = categoriesResponse?.content.categories;
   const handleSubmit = async (

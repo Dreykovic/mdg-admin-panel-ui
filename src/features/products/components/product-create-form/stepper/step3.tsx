@@ -31,21 +31,21 @@ const Step3 = () => {
   // Récupération des suppliers
   const { data: suppliersResponse, isFetching: isSuppliersFetching } =
     useGetSuppliersListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const suppliers = suppliersResponse?.content.suppliers;
 
   // Récupération des categories
   const { data: categoriesResponse, isFetching: isCategoriesFetching } =
     useGetCategoriesListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const categories = categoriesResponse?.content.categories;
 
   // Récupération des origins
   const { data: originsResponse, isFetching: isOriginsFetching } =
     useGetOriginsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const origins = originsResponse?.content.origins;
 

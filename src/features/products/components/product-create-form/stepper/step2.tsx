@@ -15,7 +15,7 @@ const Step2 = () => {
   // Récupération des categories
   const { data: marginsResponse, isFetching: isMarginsFetching } =
     useGetMarginsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const margins = marginsResponse?.content.margins;
   return (

@@ -29,7 +29,7 @@ const RecipeDetailsPage = () => {
   } = useGetUniqueRecipeQuery(
     { recipeId: parseInt(recipeId) },
     {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
       refetchOnReconnect: true,
     },
   );
