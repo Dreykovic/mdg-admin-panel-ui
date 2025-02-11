@@ -37,7 +37,7 @@ const MarginsPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeMarginsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someMargins = result?.content.data;

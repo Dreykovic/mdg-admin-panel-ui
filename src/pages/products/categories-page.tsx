@@ -42,7 +42,7 @@ const CategoriesPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeCategoriesQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someCategories = result?.content.data;

@@ -36,7 +36,7 @@ const ProductsPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeProductsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someProducts = result?.content.data;

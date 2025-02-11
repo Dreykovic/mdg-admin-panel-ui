@@ -37,7 +37,7 @@ const UnitsPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeUnitsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someUnits = result?.content.data;

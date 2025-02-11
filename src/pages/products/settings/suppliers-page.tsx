@@ -38,7 +38,7 @@ const SuppliersPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeSuppliersQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someSuppliers = result?.content.data;
