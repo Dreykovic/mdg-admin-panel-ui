@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import UnitCreateForm from '@/features/units/components/unit-create-form';
 import UnitsTable from '@/features/units/components/unit-table';
-import { useGetSomeUnitsQuery } from '@/features/units/store/api';
+import { useGetSomeUnitsQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 
@@ -37,7 +37,7 @@ const UnitsPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeUnitsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someUnits = result?.content.data;

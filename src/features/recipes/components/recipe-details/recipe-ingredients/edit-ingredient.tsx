@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useCreateIngredientMutation } from '@/features/recipes/store/ingredient-api';
+import { useCreateIngredientMutation } from '@/store/api-slice';
 import { AppDispatch } from '@/store';
 import {
   useGetProductsListQuery,
@@ -87,14 +87,14 @@ const IngredientEditForm = ({
   // Récupération des categories
   const { data: uOMsResponse, isFetching: isUOMsFetching } =
     useGetUnitsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const uOMs = uOMsResponse?.content.uOMs;
 
   // Récupération des categories
   const { data: productsResponse, isFetching: isProductsFetching } =
     useGetProductsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const products = productsResponse?.content.products;
   return (

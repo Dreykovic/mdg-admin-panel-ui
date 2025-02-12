@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Recipe } from '@/types/entity';
 
-import { useCreateRecipeMutation } from '../store/recipe-api';
+import { useCreateRecipeMutation } from '@/store/api-slice';
 
 const RecipeCreateForm = ({ show, handleClose }: ModalProps) => {
   const dispatch = useDispatch<AppDispatch>();

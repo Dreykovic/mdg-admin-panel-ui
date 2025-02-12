@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import OriginCreateForm from '@/features/origins/components/origin-create-form';
 import OriginList from '@/features/origins/components/origin-list';
-import { useGetSomeOriginsQuery } from '@/features/origins/store/api';
+import { useGetSomeOriginsQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 
@@ -41,7 +41,7 @@ const OriginsPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeOriginsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someOrigins = result?.content.data;

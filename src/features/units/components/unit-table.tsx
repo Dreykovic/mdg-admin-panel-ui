@@ -7,7 +7,7 @@ import NoTableData from '@/components/ui/no-data/no-table-data';
 import { AppDispatch } from '@/store';
 import { UnitOfMeasure } from '@/types/entity';
 
-import { useDeleteUnitMutation } from '../store/api';
+import { useDeleteUnitMutation } from '@/store/api-slice';
 
 import UnitEditForm from './unit-edit-form';
 import UnitRow from './unit-row';

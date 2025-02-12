@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
-import { useEditProductMutation } from '../../../store/api';
+import { useEditProductMutation } from '@/store/api-slice';
 import { useState } from 'react';
 
 import { useGetSuppliersListQuery } from '@/store/api-slice';
@@ -46,7 +46,7 @@ const ProductSupplierEditForm = ({
   // Récupération des suppliers
   const { data: suppliersResponse, isFetching: isSuppliersFetching } =
     useGetSuppliersListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const suppliers = suppliersResponse?.content.suppliers;
 

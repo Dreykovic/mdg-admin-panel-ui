@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { UnitOfMeasure } from '@/types/entity';
 
-import { useEditUnitMutation } from '../store/api';
+import { useEditUnitMutation } from '@/store/api-slice';
 
 const UnitEditForm = ({
   show,

@@ -1,6 +1,6 @@
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { Product } from '@/types/entity';
-import { useDeleteProductMutation } from '../../store/api';
+import { useDeleteProductMutation } from '@/store/api-slice';
 import { useCallback, useState } from 'react';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';

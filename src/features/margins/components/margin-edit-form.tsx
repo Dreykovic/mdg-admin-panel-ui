@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { MarginLevel } from '@/types/entity';
 
-import { useEditMarginMutation } from '../store/api';
+import { useEditMarginMutation } from '@/store/api-slice';
 
 const MarginEditForm = ({
   show,

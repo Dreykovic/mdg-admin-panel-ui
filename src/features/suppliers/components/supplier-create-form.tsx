@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Supplier } from '@/types/entity';
 
-import { useCreateSupplierMutation } from '../store/api';
+import { useCreateSupplierMutation } from '@/store/api-slice';
 const initialValues: Partial<Supplier> = {
   name: '',
   address1: '',

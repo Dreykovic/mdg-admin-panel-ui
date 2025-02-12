@@ -5,10 +5,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
-import {
-  useDeleteStepMutation,
-  useGetStepsQuery,
-} from '@/features/recipes/store/step-api';
+import { useDeleteStepMutation, useGetStepsQuery } from '@/store/api-slice';
 
 import { Step } from '@/types/entity';
 
@@ -30,7 +27,7 @@ const StepSteps = ({ recipeId }: Props) => {
   const { data: stepsResponse, isFetching: isStepsFetching } = useGetStepsQuery(
     { filters: JSON.stringify(filters ?? '') },
     {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     },
   );
   const steps = stepsResponse?.content.steps;

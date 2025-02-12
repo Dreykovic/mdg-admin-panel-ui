@@ -8,8 +8,8 @@ import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { ProductCategory } from '@/types/entity';
+import { useCreateCategoryMutation } from '@/store/api-slice';
 
-import { useCreateCategoryMutation } from '../store/api';
 const initialValues: Partial<ProductCategory> = { name: '' };
 
 const CategoryCreateForm = ({ show, handleClose }: ModalProps) => {

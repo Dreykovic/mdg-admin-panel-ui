@@ -8,7 +8,7 @@ import NoCardData from '@/components/ui/no-data/no-card-data';
 import {
   useDeleteIngredientMutation,
   useGetIngredientsQuery,
-} from '@/features/recipes/store/ingredient-api';
+} from '@/store/api-slice';
 
 import { AppDispatch } from '@/store';
 import { Ingredient } from '@/types/entity';
@@ -34,7 +34,7 @@ const RecipeIngredients = ({ recipeId }: Props) => {
     useGetIngredientsQuery(
       { filters: JSON.stringify(filters ?? '') },
       {
-        refetchOnMountOrArgChange: true,
+        refetchOnMountOrArgChange: false,
       },
     );
   const ingredients = ingredientsResponse?.content.ingredients;

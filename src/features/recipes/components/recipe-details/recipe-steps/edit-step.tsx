@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useEditStepMutation } from '@/features/recipes/store/step-api';
+import { useEditStepMutation } from '@/store/api-slice';
 import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Step } from '@/types/entity';

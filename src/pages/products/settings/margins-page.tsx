@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import MarginsTable from '@/features/margins/components/margin-table';
-import { useGetSomeMarginsQuery } from '@/features/margins/store/api';
+import { useGetSomeMarginsQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 
@@ -37,7 +37,7 @@ const MarginsPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeMarginsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someMargins = result?.content.data;

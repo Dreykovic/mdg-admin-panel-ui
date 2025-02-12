@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Origin } from '@/types/entity';
 
-import { useCreateOriginMutation } from '../store/api';
+import { useCreateOriginMutation } from '@/store/api-slice';
 const initialValues: Partial<Origin> = { country: '' };
 
 const OriginCreateForm = ({ show, handleClose }: ModalProps) => {

@@ -9,9 +9,10 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import CategoryCreateForm from '@/features/categories/components/category-create-form';
 import CategoryList from '@/features/categories/components/category-list';
-import { useGetSomeCategoriesQuery } from '@/features/categories/store/api';
+
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
+import { useGetSomeCategoriesQuery } from '@/store/base-api-slice';
 
 const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -42,7 +43,7 @@ const CategoriesPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeCategoriesQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someCategories = result?.content.data;

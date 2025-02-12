@@ -6,7 +6,7 @@ import { setPageName } from '@/store/page-slice';
 import ProductOverviewTabPane from './overview';
 import ProductStockTabPane from './stock';
 import { useParams } from 'react-router-dom';
-import { useGetUniqueProductQuery } from '@/features/product-details/store/api';
+import { useGetUniqueProductQuery } from '@/store/api-slice';
 
 import ErrorAlert from '@/components/ui/error-alert';
 import { Product } from '@/types/entity';
@@ -26,7 +26,7 @@ const ProductDetailsPage = () => {
   } = useGetUniqueProductQuery(
     { productId: productId as string },
     {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
       refetchOnReconnect: true,
     },
   );

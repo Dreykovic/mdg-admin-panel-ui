@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
-import { useEditProductMutation } from '../../../store/api';
+import { useEditProductMutation } from '@/store/api-slice';
 import { useState } from 'react';
 
 import { useGetOriginsListQuery } from '@/store/api-slice';
@@ -46,7 +46,7 @@ const ProductOriginEditForm = ({
   // Récupération des origins
   const { data: originsResponse, isFetching: isOriginsFetching } =
     useGetOriginsListQuery(undefined, {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
     });
   const origins = originsResponse?.content.origins;
 

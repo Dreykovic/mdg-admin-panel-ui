@@ -6,7 +6,7 @@ import RecipeDetails from '@/features/recipes/components/recipe-details';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 import NoCardData from '@/components/ui/no-data/no-card-data';
-import { useGetUniqueRecipeQuery } from '@/features/recipes/store/recipe-api';
+import { useGetUniqueRecipeQuery } from '@/store/api-slice';
 import CardLoading from '@/components/ui/loading/card-loading';
 import ErrorAlert from '@/components/ui/error-alert';
 
@@ -29,7 +29,7 @@ const RecipeDetailsPage = () => {
   } = useGetUniqueRecipeQuery(
     { recipeId: parseInt(recipeId) },
     {
-      refetchOnMountOrArgChange: true,
+      refetchOnMountOrArgChange: false,
       refetchOnReconnect: true,
     },
   );

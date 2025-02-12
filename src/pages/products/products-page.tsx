@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import ProductStats from '@/features/products/components/product-stats';
 import ProductTable from '@/features/products/components/products-table';
-import { useGetSomeProductsQuery } from '@/features/products/store/api';
+import { useGetSomeProductsQuery } from '@/store/base-api-slice';
 
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
@@ -36,7 +36,7 @@ const ProductsPage = () => {
   // Lancer la requête avec les paramètres actuels
   const { data: result, isFetching } = useGetSomeProductsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
-    { refetchOnMountOrArgChange: true },
+    { refetchOnMountOrArgChange: false },
   );
 
   const someProducts = result?.content.data;
