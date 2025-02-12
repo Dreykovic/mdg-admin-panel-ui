@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Origin } from '@/types/entity';
 
-import { useEditOriginMutation } from '../store/api';
+import { useEditOriginMutation } from '@/store/api-slice';
 
 const OriginEditForm = ({
   show,

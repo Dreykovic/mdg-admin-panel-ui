@@ -7,7 +7,7 @@ import { AppDispatch } from '@/store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { authRoutesConfig } from '@/router/config';
-import { useDeleteRecipeMutation } from '@/features/recipes/store/recipe-api';
+import { useDeleteRecipeMutation } from '@/store/api-slice';
 
 type Props = {
   recipe: Recipe;

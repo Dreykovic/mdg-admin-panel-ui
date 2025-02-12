@@ -7,7 +7,7 @@ import NoCardData from '@/components/ui/no-data/no-card-data';
 import { AppDispatch } from '@/store';
 import { Origin } from '@/types/entity';
 
-import { useDeleteOriginMutation } from '../store/api';
+import { useDeleteOriginMutation } from '@/store/api-slice';
 
 import OriginCard from './origin-card';
 

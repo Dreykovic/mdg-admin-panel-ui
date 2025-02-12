@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useCreateIngredientMutation } from '@/features/recipes/store/ingredient-api';
+import { useCreateIngredientMutation } from '@/store/api-slice';
 import { AppDispatch } from '@/store';
 import {
   useGetProductsListQuery,

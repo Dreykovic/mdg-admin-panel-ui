@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import MarginsTable from '@/features/margins/components/margin-table';
-import { useGetSomeMarginsQuery } from '@/features/margins/store/api';
+import { useGetSomeMarginsQuery } from '@/store/api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 

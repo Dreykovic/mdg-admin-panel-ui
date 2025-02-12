@@ -1,3 +1,5 @@
+import { PrefetchEndpoints } from '@/store/api-slice';
+
 export interface ISideBarLink {
   id: string;
   targetPageName?: string;
@@ -8,6 +10,7 @@ export interface ISideBarLink {
   link: string;
   subLinks?: ISideBarLink[];
   isMenu: boolean;
+  prefetchQuery?: PrefetchEndpoints; // 🔥 Correctif ici !
 }
 
 export const data: ISideBarLink[] = [
@@ -31,6 +34,7 @@ export const data: ISideBarLink[] = [
     link: '/recipes',
     targetPageName: 'recipe-list',
     isMenu: true,
+    prefetchQuery: 'getSomeRecipes', // <-- Précharger les recettes
   },
   {
     id: 'unitNavId',
@@ -41,6 +45,7 @@ export const data: ISideBarLink[] = [
     isMenu: true,
 
     icon: <i className="icofont-measure"></i>,
+    prefetchQuery: 'getSomeUnits', // <-- Précharger les recettes
   },
   {
     id: 'productNavId',
@@ -59,6 +64,7 @@ export const data: ISideBarLink[] = [
         link: '/products',
         targetPageName: 'product-list',
         isMenu: false,
+        prefetchQuery: 'getSomeProducts', // <-- Précharger les recettes
       },
       {
         id: 'AddProductNavId',
@@ -75,6 +81,7 @@ export const data: ISideBarLink[] = [
         link: '/products/categories',
         targetPageName: 'category-list',
         isMenu: false,
+        prefetchQuery: 'getSomeCategories', // <-- Précharger les recettes
       },
     ],
   },
@@ -96,6 +103,7 @@ export const data: ISideBarLink[] = [
         link: '/product-settings/suppliers',
         targetPageName: 'supplier-list',
         isMenu: false,
+        prefetchQuery: 'getSomeSuppliers', // <-- Précharger les recettes
       },
       {
         id: 'originNavId',
@@ -104,6 +112,7 @@ export const data: ISideBarLink[] = [
         link: '/product-settings/origins',
         targetPageName: 'origin-list',
         isMenu: false,
+        prefetchQuery: 'getSomeOrigins', // <-- Précharger les recettes
       },
       {
         id: 'marginNavId',
@@ -112,6 +121,7 @@ export const data: ISideBarLink[] = [
         link: '/product-settings/margins',
         targetPageName: 'margin-list',
         isMenu: false,
+        prefetchQuery: 'getSomeMargins', // <-- Précharger les recettes
       },
     ],
   },

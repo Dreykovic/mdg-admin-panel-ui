@@ -10,7 +10,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
-import { useCreateProductMutation } from '../../store/api';
+import { useCreateProductMutation } from '@/store/api-slice';
 
 import Stepper from './stepper';
 import steps from './stepper/steps';

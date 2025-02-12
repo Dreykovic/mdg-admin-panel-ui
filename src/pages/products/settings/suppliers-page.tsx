@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
 import SuppliersTable from '@/features/suppliers/components/suppliers-table';
-import { useGetSomeSuppliersQuery } from '@/features/suppliers/store/api';
+import { useGetSomeSuppliersQuery } from '@/store/api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 

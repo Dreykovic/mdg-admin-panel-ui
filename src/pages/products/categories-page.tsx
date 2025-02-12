@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import CategoryCreateForm from '@/features/categories/components/category-create-form';
 import CategoryList from '@/features/categories/components/category-list';
-import { useGetSomeCategoriesQuery } from '@/features/categories/store/api';
+import { useGetSomeCategoriesQuery } from '@/store/api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 

@@ -7,7 +7,7 @@ import NoTableData from '@/components/ui/no-data/no-table-data';
 import { AppDispatch } from '@/store';
 import { MarginLevel } from '@/types/entity';
 
-import { useDeleteMarginMutation } from '../store/api';
+import { useDeleteMarginMutation } from '@/store/api-slice';
 
 import MarginEditForm from './margin-edit-form';
 import MarginRow from './margin-row';

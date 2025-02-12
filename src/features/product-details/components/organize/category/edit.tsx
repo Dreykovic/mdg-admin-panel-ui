@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
-import { useEditProductMutation } from '../../../store/api';
+import { useEditProductMutation } from '@/store/api-slice';
 import { useState } from 'react';
 
 import CategoryCreateForm from '@/features/categories/components/category-create-form';

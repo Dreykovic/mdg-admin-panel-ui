@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Supplier } from '@/types/entity';
 
-import { useEditSupplierMutation } from '../store/api';
+import { useEditSupplierMutation } from '@/store/api-slice';
 
 const SupplierEditForm = ({
   show,

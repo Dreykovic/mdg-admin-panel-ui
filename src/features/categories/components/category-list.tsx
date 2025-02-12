@@ -7,10 +7,9 @@ import NoCardData from '@/components/ui/no-data/no-card-data';
 import { AppDispatch } from '@/store';
 import { ProductCategory } from '@/types/entity';
 
-import { useDeleteCategoryMutation } from '../store/api';
-
 import CategoryCard from './category-card';
 import CategoryEditForm from './category-edit-form';
+import { useDeleteCategoryMutation } from '@/store/api-slice';
 
 interface ICategoryListProps {
   categories: Partial<ProductCategory>[];

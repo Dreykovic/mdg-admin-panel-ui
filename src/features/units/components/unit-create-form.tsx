@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { UnitOfMeasure } from '@/types/entity';
 
-import { useCreateUnitMutation } from '../store/api';
+import { useCreateUnitMutation } from '@/store/api-slice';
 const initialValues: Partial<UnitOfMeasure> = {
   name: '',
   factor: 0,

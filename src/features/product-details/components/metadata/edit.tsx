@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
-import { useEditProductMutation } from '../../store/api';
+import { useEditProductMutation } from '@/store/api-slice';
 
 const ProductMetadataEditForm = ({
   show,
