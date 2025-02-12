@@ -9,7 +9,7 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import ProductStats from '@/features/products/components/product-stats';
 import ProductTable from '@/features/products/components/products-table';
-import { useGetSomeProductsQuery } from '@/store/api-slice';
+import { useGetSomeProductsQuery } from '@/store/base-api-slice';
 
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';

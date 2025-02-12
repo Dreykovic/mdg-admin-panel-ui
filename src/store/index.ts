@@ -6,9 +6,9 @@ import authReducer from '@/features/auth/store/slice';
 
 import alertReducer from '../components/ui/alerts/alert-slice';
 
-import apiSlice from './api-slice';
 import pageReducer from './page-slice';
 import themeReducer from './theme-slice';
+import { baseApiSlice } from './base-api-slice';
 
 const combinedReducer = {
   auth: authReducer,
@@ -16,14 +16,14 @@ const combinedReducer = {
   page: pageReducer,
   sidebar: sidebarReducer,
   alert: alertReducer,
-  [apiSlice.reducerPath]: apiSlice.reducer,
+  [baseApiSlice.reducerPath]: baseApiSlice.reducer,
 };
 
 const store = configureStore({
   reducer: combinedReducer,
   devTools: env.appState !== 'production',
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
+    getDefaultMiddleware().concat(baseApiSlice.middleware),
 });
 export default store;
 export type RootState = ReturnType<typeof store.getState>;

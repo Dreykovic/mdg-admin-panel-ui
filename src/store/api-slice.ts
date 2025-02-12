@@ -1,7 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-import env from '@/config/env';
-import { ApiResponse, ListResponse, PaginationResponse } from '@/types/api';
+import { ListResponse } from '@/types/api';
 import {
   Ingredient,
   MarginLevel,
@@ -15,87 +12,9 @@ import {
   User,
   VolumeConversion,
 } from '@/types/entity';
-import authUtil from '@/utils/auth-utils';
+import { baseApiSlice } from './base-api-slice';
 
-const baseQuery = fetchBaseQuery({
-  baseUrl: env.baseUrl,
-  prepareHeaders: (headers, { endpoint }) => {
-    const endpointsWithoutAuth = [`${env.baseUrl}/admin-auth/sign-in`];
-    if (!endpointsWithoutAuth.includes(endpoint)) {
-      const token = authUtil.getAccessToken();
-
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return headers;
-  },
-});
-
-// Wrapper pour gérer automatiquement le rafraîchissement du token
-const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
-  let result = await baseQuery(args, api, extraOptions);
-
-  // Si une erreur 401 est retournée, essayez de rafraîchir le token
-  if (result.error && result.error.status === 401) {
-    console.warn('Access token expired, attempting to refresh...');
-
-    const refreshToken = authUtil.getRefreshToken();
-
-    if (refreshToken) {
-      // Essayez de renouveler l'access token
-      const refreshResult = await baseQuery(
-        {
-          url: '/admin-auth/refresh', // Endpoint pour rafraîchir le token
-          method: 'POST',
-          body: { token: refreshToken },
-        },
-        api,
-        extraOptions,
-      );
-
-      if (refreshResult.data) {
-        const data = refreshResult.data as ApiResponse<{
-          accessToken: string;
-          refreshToken: string;
-        }>;
-
-        // Mettez à jour le localStorage avec le nouvel access token
-        authUtil.updateAccessToken(data.content.accessToken);
-        authUtil.updateRefreshToken(data.content.refreshToken);
-
-        // Rejouez la requête initiale avec le nouveau token
-        result = await baseQuery(args, api, extraOptions);
-      } else {
-        console.error('Failed to refresh token, logging out...');
-        // Optionnel : ajoutez une action pour déconnecter l'utilisateur
-        api.dispatch({ type: 'auth/logout' });
-      }
-    } else {
-      console.error('No refresh token available, logging out...');
-      api.dispatch({ type: 'auth/logout' });
-    }
-  }
-
-  return result;
-};
-
-// Définition de l'API avec gestion des tokens
-export const apiSlice = createApi({
-  reducerPath: 'api',
-  baseQuery: baseQueryWithReauth,
-  tagTypes: [
-    'CATEGORIES',
-    'SUPPLIERS',
-    'MARGINS',
-    'UOM',
-    'PRODUCTS',
-    'ORIGINS',
-    'RECIPES',
-    'STEPS',
-    'INGREDIENTS',
-    'VOLUME_CONVERSION',
-  ], // Exemple : tags pour cache invalidation
+const apiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     /**Auth */
     signIn: builder.mutation({
@@ -114,20 +33,7 @@ export const apiSlice = createApi({
     }),
 
     /**Categories */
-    getSomeCategories: builder.query<
-      PaginationResponse<ProductCategory[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/product-resources/categories`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['CATEGORIES'], // Ajouter un tag
-    }),
     createCategory: builder.mutation({
       query: (data: Partial<ProductCategory>) => ({
         url: 'resources/product-resources/categories/save',
@@ -161,20 +67,7 @@ export const apiSlice = createApi({
       providesTags: ['CATEGORIES'], // Ajouter un tag
     }),
     /** Margins*/
-    getSomeMargins: builder.query<
-      PaginationResponse<MarginLevel[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/product-resources/margins`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['MARGINS'], // Ajouter un tag
-    }),
     createMargin: builder.mutation({
       query: (data: Partial<MarginLevel>) => ({
         url: 'resources/product-resources/margins/save',
@@ -217,20 +110,7 @@ export const apiSlice = createApi({
       },
       providesTags: ['UOM'], // Ajouter un tag
     }),
-    getSomeUnits: builder.query<
-      PaginationResponse<UnitOfMeasure[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/us-o-m`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['UOM'], // Ajouter un tag
-    }),
     createUnit: builder.mutation({
       query: (data: Partial<UnitOfMeasure>) => ({
         url: 'resources/us-o-m/save',
@@ -256,20 +136,7 @@ export const apiSlice = createApi({
       invalidatesTags: ['UOM'], // Invalider les caches
     }),
     /**Origins */
-    getSomeOrigins: builder.query<
-      PaginationResponse<Origin[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/product-resources/origins`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['ORIGINS'], // Ajouter un tag
-    }),
     createOrigin: builder.mutation({
       query: (data: Partial<Origin>) => ({
         url: 'resources/product-resources/origins/save',
@@ -296,20 +163,7 @@ export const apiSlice = createApi({
     }),
 
     /** Suppliers*/
-    getSomeSuppliers: builder.query<
-      PaginationResponse<Supplier[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/product-resources/suppliers`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['SUPPLIERS'], // Ajouter un tag
-    }),
     createSupplier: builder.mutation({
       query: (data: Partial<Supplier>) => ({
         url: 'resources/product-resources/suppliers/save',
@@ -351,20 +205,7 @@ export const apiSlice = createApi({
       providesTags: ['ORIGINS'], // Ajouter un tag
     }),
     /**Products */
-    getSomeProducts: builder.query<
-      PaginationResponse<Product[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/product-resources/products`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['PRODUCTS'], // Ajouter un tag
-    }),
     createProduct: builder.mutation({
       query: (data: Partial<Product>) => ({
         url: 'resources/product-resources/products/save',
@@ -428,20 +269,7 @@ export const apiSlice = createApi({
       invalidatesTags: ['PRODUCTS', 'VOLUME_CONVERSION'], // Invalider les caches
     }),
     /**Recipes */
-    getSomeRecipes: builder.query<
-      PaginationResponse<Recipe[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/recipe-resources/recipes`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['RECIPES'], // Ajouter un tag
-    }),
     getUniqueRecipe: builder.query<ListResponse<Recipe>, { recipeId: number }>({
       query: (args) => {
         const { recipeId } = args;
@@ -477,20 +305,7 @@ export const apiSlice = createApi({
       invalidatesTags: ['RECIPES'], // Invalider les caches
     }),
     /**Ingredients */
-    getSomeIngredients: builder.query<
-      PaginationResponse<Ingredient[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/recipe-resources/ingredients`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['INGREDIENTS'], // Ajouter un tag
-    }),
     getIngredients: builder.query<
       ListResponse<Ingredient[]>,
       { filters?: string }
@@ -530,20 +345,7 @@ export const apiSlice = createApi({
       invalidatesTags: ['INGREDIENTS'], // Invalider les caches
     }),
     /**Step */
-    getSomeSteps: builder.query<
-      PaginationResponse<Step[]>,
-      { page?: number; filters?: string; pageSize?: number }
-    >({
-      query: (args) => {
-        const { page, filters, pageSize } = args;
 
-        return {
-          url: `resources/recipe-resources/steps`,
-          params: { page, filters, pageSize },
-        };
-      },
-      providesTags: ['STEPS'], // Ajouter un tag
-    }),
     getSteps: builder.query<ListResponse<Step[]>, { filters?: string }>({
       query: (args) => {
         const { filters } = args;
@@ -580,42 +382,38 @@ export const apiSlice = createApi({
       invalidatesTags: ['STEPS'], // Invalider les caches
     }),
   }),
+  overrideExisting: false,
 });
-export type PrefetchEndpoints = keyof (typeof apiSlice)['endpoints']; // 🔥 Récupère tous les endpoints
-
+// Export hooks for usage in functional components, which are
+// auto-generated based on the defined endpoints
 export const {
   /**Auth */
   useSignInMutation,
   useSignOutMutation,
   /**Categories */
-  useGetSomeCategoriesQuery,
   useCreateCategoryMutation,
   useEditCategoryMutation,
   useDeleteCategoryMutation,
 
   useGetCategoriesListQuery,
   /**MArgins */
-  useGetSomeMarginsQuery,
   useCreateMarginMutation,
   useEditMarginMutation,
   useDeleteMarginMutation,
   useGetMarginsListQuery,
   /**UNits */
-  useGetSomeOriginsQuery,
   useCreateOriginMutation,
   useEditOriginMutation,
   useDeleteOriginMutation,
   useGetOriginsListQuery,
 
   /**Suppliers */
-  useGetSomeSuppliersQuery,
   useCreateSupplierMutation,
   useEditSupplierMutation,
   useDeleteSupplierMutation,
 
   useGetSuppliersListQuery,
   /**UNits */
-  useGetSomeUnitsQuery,
   useCreateUnitMutation,
   useEditUnitMutation,
   useDeleteUnitMutation,
@@ -626,28 +424,26 @@ export const {
   useDeleteProductMutation,
   useGetUniqueProductQuery,
   useGetProductsListQuery,
-  useGetSomeProductsQuery,
   useCreateProductMutation,
   useCreateProductConversionSettingMutation,
   useDeleteProductConversionSettingMutation,
   /**Recipes */
-  useGetSomeRecipesQuery,
+
   useCreateRecipeMutation,
   useEditRecipeMutation,
   useDeleteRecipeMutation,
   useGetUniqueRecipeQuery,
   /**Ingredient */
-  useGetSomeIngredientsQuery,
+
   useCreateIngredientMutation,
   useEditIngredientMutation,
   useDeleteIngredientMutation,
   useGetIngredientsQuery,
   /**Steps */
-  useGetSomeStepsQuery,
+
   useCreateStepMutation,
   useEditStepMutation,
   useDeleteStepMutation,
   useGetStepsQuery,
-  usePrefetch,
 } = apiSlice;
-export default apiSlice;
+export type PrefetchEndpoints = keyof (typeof apiSlice)['endpoints']; // 🔥 Récupère tous les endpoints

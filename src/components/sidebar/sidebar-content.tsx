@@ -1,4 +1,4 @@
-import { PrefetchEndpoints } from '@/store/api-slice';
+import { PrefetchEndpoints } from '@/store/base-api-slice';
 
 export interface ISideBarLink {
   id: string;

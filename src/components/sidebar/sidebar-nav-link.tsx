@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { RootState } from '@/store';
 import { ISideBarLink } from './sidebar-content';
-import { usePrefetch } from '@/store/api-slice';
+import { usePrefetch } from '@/store/base-api-slice';
 
 type Props = {
   link: ISideBarLink;
@@ -14,7 +14,7 @@ const SidebarNavLink = ({ link }: Props) => {
   const { name, group } = useSelector((state: RootState) => state.page);
 
   // ✅ Vérifie que prefetchQuery existe avant d'utiliser usePrefetch
-  const prefetch = link.prefetchQuery ? usePrefetch('getSomeUnits') : null;
+  const prefetch = link.prefetchQuery ? usePrefetch(link.prefetchQuery) : null;
 
   const [isLinkActive, setIsLinkActive] = useState<boolean>(false);
 
