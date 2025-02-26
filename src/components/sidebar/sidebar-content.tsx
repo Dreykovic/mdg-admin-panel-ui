@@ -46,7 +46,7 @@ export const data: ISideBarLinkModule = {
           id: 'productNavId',
           collapse: false,
           label: 'Products',
-          link: '/products',
+          link: '/catalog/goods/products',
           targetPageName: 'product-list',
           isMenu: false,
           prefetchQuery: 'getSomeProducts', // <-- Précharger les recettes
@@ -57,7 +57,7 @@ export const data: ISideBarLinkModule = {
           id: 'AddProductNavId',
           collapse: false,
           label: 'Add Product',
-          link: '/products/add',
+          link: '/catalog/goods/products/add',
           targetPageName: 'add-product',
           isMenu: false,
         },
@@ -67,7 +67,7 @@ export const data: ISideBarLinkModule = {
           id: 'categoryNavId',
           collapse: false,
           label: 'Categories',
-          link: '/products/categories',
+          link: '/catalog/goods/categories',
           targetPageName: 'category-list',
           isMenu: false,
           prefetchQuery: 'getSomeCategories', // <-- Précharger les recettes
@@ -77,7 +77,7 @@ export const data: ISideBarLinkModule = {
           id: 'supplierNavId',
           collapse: false,
           label: 'Suppliers',
-          link: '/product-settings/suppliers',
+          link: '/catalog/goods/suppliers',
           targetPageName: 'supplier-list',
           isMenu: false,
           prefetchQuery: 'getSomeSuppliers', // <-- Précharger les recettes
@@ -87,7 +87,7 @@ export const data: ISideBarLinkModule = {
           id: 'originNavId',
           collapse: false,
           label: 'Origins',
-          link: '/product-settings/origins',
+          link: '/catalog/goods/origins',
           targetPageName: 'origin-list',
           isMenu: false,
           prefetchQuery: 'getSomeOrigins', // <-- Précharger les recettes
@@ -97,7 +97,7 @@ export const data: ISideBarLinkModule = {
           id: 'marginNavId',
           collapse: false,
           label: 'Margin Levels',
-          link: '/product-settings/margins',
+          link: 'catalog/goods/margins',
           targetPageName: 'margin-list',
           isMenu: false,
           prefetchQuery: 'getSomeMargins', // <-- Précharger les recettes
@@ -107,7 +107,7 @@ export const data: ISideBarLinkModule = {
           id: 'unitNavId',
           collapse: false,
           label: 'Units Of Mesure',
-          link: '/settings/units',
+          link: '/catalog/goods/units',
           targetPageName: 'unit-list',
           isMenu: false,
           prefetchQuery: 'getSomeUnits', // <-- Précharger les recettes
@@ -132,7 +132,7 @@ export const data: ISideBarLinkModule = {
           collapse: false,
           label: 'Recipes',
 
-          link: '/recipes',
+          link: 'catalog/compositions/recipes',
           targetPageName: 'recipe-list',
           isMenu: false,
           prefetchQuery: 'getSomeRecipes', // <-- Précharger les recettes
@@ -146,7 +146,7 @@ export const data: ISideBarLinkModule = {
       id: 'changelogNavId',
       collapse: false,
       label: 'Changelog',
-      link: '/Changelog',
+      link: '/resources/Changelog',
       targetPageName: 'changelog',
       isMenu: true,
 
