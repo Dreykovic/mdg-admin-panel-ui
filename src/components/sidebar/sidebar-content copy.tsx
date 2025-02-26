@@ -24,23 +24,47 @@ export const data: ISideBarLink[] = [
     link: '/',
     isMenu: true,
   },
+  // Recipes
+  {
+    id: 'recipeNavId',
+    collapse: false,
+    icon: <i className="icofont-culinary"></i>,
+    label: 'Recipes',
 
-  // Goods
+    targetModuleName: 'recipes',
+
+    link: '/recipes',
+    targetPageName: 'recipe-list',
+    isMenu: true,
+    prefetchQuery: 'getSomeRecipes', // <-- Précharger les recettes
+  },
+  // Unit Of Mesure
+  {
+    id: 'unitNavId',
+    collapse: false,
+    label: 'Units Of Mesure',
+    link: '/settings/units',
+    targetPageName: 'unit-list',
+    isMenu: true,
+
+    icon: <i className="icofont-measure"></i>,
+    prefetchQuery: 'getSomeUnits', // <-- Précharger les recettes
+  },
+  // Product
   {
     id: 'productNavId',
     collapse: true,
     icon: <i className="icofont-food-cart"></i>,
-    label: 'Goods',
+    label: 'Products',
     link: '',
     isMenu: true,
 
-    targetModuleName: 'goods',
-    // Products List
+    targetModuleName: 'products',
     subLinks: [
       {
         id: 'productNavId',
         collapse: false,
-        label: 'Products',
+        label: 'List',
         link: '/products',
         targetPageName: 'product-list',
         isMenu: false,
@@ -104,5 +128,16 @@ export const data: ISideBarLink[] = [
         prefetchQuery: 'getSomeMargins', // <-- Précharger les recettes
       },
     ],
+  },
+  // ChangeLog
+  {
+    id: 'changelogNavId',
+    collapse: false,
+    label: 'Changelog',
+    link: '/Changelog',
+    targetPageName: 'changelog',
+    isMenu: true,
+
+    icon: <i className="icofont-edit"></i>,
   },
 ];

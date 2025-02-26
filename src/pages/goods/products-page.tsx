@@ -45,7 +45,7 @@ const ProductsPage = () => {
   const totalElements = result?.content.total; // Nombre total d'éléments
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'product-list', group: 'products' }));
+    dispatch(setPageName({ name: 'product-list', group: 'goods' }));
   }, [dispatch]);
   console.log(someProducts);
   return (

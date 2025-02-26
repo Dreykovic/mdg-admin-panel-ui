@@ -1,20 +1,20 @@
 // All components mapping with path for internal routes
 //TODO: rendre les routes nommé
 
-import AddProductPage from '@/pages/products/add-product-page';
-import CategoriesPage from '@/pages/products/categories-page';
-import ProductsPage from '@/pages/products/products-page';
-import MarginsPage from '@/pages/products/settings/margins-page';
-import SuppliersPage from '@/pages/products/settings/suppliers-page';
+import AddProductPage from '@/pages/goods/add-product-page';
+import CategoriesPage from '@/pages/goods/categories-page';
+import ProductsPage from '@/pages/goods/products-page';
+import MarginsPage from '@/pages/goods/settings/margins-page';
+import SuppliersPage from '@/pages/goods/settings/suppliers-page';
 import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
 import RecipesPage from '@/pages/recipes/recipes-page';
 import UnitsPage from '@/pages/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
-import OriginsPage from '@/pages/products/settings/origins-page';
+import OriginsPage from '@/pages/goods/settings/origins-page';
 import Changelog from '@/pages/changelog';
-import ProductDetailsPage from '@/pages/products/details';
+import ProductDetailsPage from '@/pages/goods/details';
 
 export const authRoutesConfig: RoutesConfigType = {
   home: {
