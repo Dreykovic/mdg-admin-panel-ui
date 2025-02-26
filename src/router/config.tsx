@@ -4,15 +4,15 @@
 import AddProductPage from '@/pages/goods/add-product-page';
 import CategoriesPage from '@/pages/goods/categories-page';
 import ProductsPage from '@/pages/goods/products-page';
-import MarginsPage from '@/pages/goods/settings/margins-page';
-import SuppliersPage from '@/pages/goods/settings/suppliers-page';
-import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
-import RecipesPage from '@/pages/recipes/recipes-page';
-import UnitsPage from '@/pages/units-page';
+import MarginsPage from '@/pages/goods/margins-page';
+import SuppliersPage from '@/pages/goods/suppliers-page';
+import RecipeDetailsPage from '@/pages/compositions/recipe-details-page';
+import RecipesPage from '@/pages/compositions/recipes-page';
+import UnitsPage from '@/pages/goods/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
-import OriginsPage from '@/pages/goods/settings/origins-page';
+import OriginsPage from '@/pages/goods/origins-page';
 import Changelog from '@/pages/changelog';
 import ProductDetailsPage from '@/pages/goods/details';
 

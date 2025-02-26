@@ -27,7 +27,7 @@ export const data: ISideBarLink[] = [
 
   // Goods
   {
-    id: 'productNavId',
+    id: 'goodsNavId',
     collapse: true,
     icon: <i className="icofont-food-cart"></i>,
     label: 'Goods',
@@ -35,8 +35,8 @@ export const data: ISideBarLink[] = [
     isMenu: true,
 
     targetModuleName: 'goods',
-    // Products List
     subLinks: [
+      // Products List
       {
         id: 'productNavId',
         collapse: false,
@@ -46,6 +46,8 @@ export const data: ISideBarLink[] = [
         isMenu: false,
         prefetchQuery: 'getSomeProducts', // <-- Précharger les recettes
       },
+      // Add Product
+
       {
         id: 'AddProductNavId',
         collapse: false,
@@ -54,6 +56,8 @@ export const data: ISideBarLink[] = [
         targetPageName: 'add-product',
         isMenu: false,
       },
+
+      // Categories
       {
         id: 'categoryNavId',
         collapse: false,
@@ -63,19 +67,7 @@ export const data: ISideBarLink[] = [
         isMenu: false,
         prefetchQuery: 'getSomeCategories', // <-- Précharger les recettes
       },
-    ],
-  },
-  // Product Settings
-  {
-    id: 'productSettingsNavId',
-    collapse: true,
-    icon: <i className="icofont-laboratory"></i>,
-    label: 'Product Settings',
-    link: '',
-    isMenu: true,
-
-    targetModuleName: 'product-settings',
-    subLinks: [
+      // Suppliers
       {
         id: 'supplierNavId',
         collapse: false,
@@ -85,6 +77,7 @@ export const data: ISideBarLink[] = [
         isMenu: false,
         prefetchQuery: 'getSomeSuppliers', // <-- Précharger les recettes
       },
+      // Origins
       {
         id: 'originNavId',
         collapse: false,
@@ -94,6 +87,7 @@ export const data: ISideBarLink[] = [
         isMenu: false,
         prefetchQuery: 'getSomeOrigins', // <-- Précharger les recettes
       },
+      // Margins
       {
         id: 'marginNavId',
         collapse: false,
@@ -103,6 +97,53 @@ export const data: ISideBarLink[] = [
         isMenu: false,
         prefetchQuery: 'getSomeMargins', // <-- Précharger les recettes
       },
+      // Units
+      {
+        id: 'unitNavId',
+        collapse: false,
+        label: 'Units Of Mesure',
+        link: '/settings/units',
+        targetPageName: 'unit-list',
+        isMenu: false,
+        prefetchQuery: 'getSomeUnits', // <-- Précharger les recettes
+      },
     ],
+  },
+  // Compositions
+  {
+    id: 'compositionNavId',
+    collapse: true,
+    icon: <i className="icofont-culinary"></i>,
+    label: 'Compositions',
+    link: '',
+    isMenu: true,
+
+    targetModuleName: 'compositions',
+    subLinks: [
+      // Recipes List
+
+      {
+        id: 'recipeNavId',
+        collapse: false,
+        label: 'Recipes',
+
+        link: '/recipes',
+        targetPageName: 'recipe-list',
+        isMenu: false,
+        prefetchQuery: 'getSomeRecipes', // <-- Précharger les recettes
+      },
+    ],
+  },
+
+  // ChangeLog
+  {
+    id: 'changelogNavId',
+    collapse: false,
+    label: 'Changelog',
+    link: '/Changelog',
+    targetPageName: 'changelog',
+    isMenu: true,
+
+    icon: <i className="icofont-edit"></i>,
   },
 ];

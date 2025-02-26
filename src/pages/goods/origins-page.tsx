@@ -29,7 +29,7 @@ const OriginsPage = () => {
   );
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'origin-list', group: 'product-settings' }));
+    dispatch(setPageName({ name: 'origin-list', group: 'goods' }));
   }, [dispatch]);
 
   // Récupérer les paramètres `page` ou définir une valeur par défaut

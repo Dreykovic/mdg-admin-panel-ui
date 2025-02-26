@@ -45,7 +45,7 @@ const MarginsPage = () => {
   const totalElements = result?.content.total; // Nombre total d'éléments
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'margin-list', group: 'product-settings' }));
+    dispatch(setPageName({ name: 'margin-list', group: 'goods' }));
   }, [dispatch]);
 
   return (

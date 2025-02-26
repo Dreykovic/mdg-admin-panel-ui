@@ -29,7 +29,7 @@ const RecipesPage = () => {
   );
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'recipe-list', group: 'recipes' }));
+    dispatch(setPageName({ name: 'recipe-list', group: 'compositions' }));
   }, [dispatch]);
 
   // Récupérer les paramètres `page` ou définir une valeur par défaut
