@@ -31,7 +31,7 @@ const CategoriesPage = () => {
   );
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'category-list', group: 'products' }));
+    dispatch(setPageName({ name: 'category-list', group: 'goods' }));
   }, [dispatch]);
 
   // Récupérer les paramètres `page` ou définir une valeur par défaut

@@ -49,7 +49,7 @@ export const data: ISideBarLink[] = [
       {
         id: 'AddProductNavId',
         collapse: false,
-        label: 'Add',
+        label: 'Add Product',
         link: '/products/add',
         targetPageName: 'add-product',
         isMenu: false,

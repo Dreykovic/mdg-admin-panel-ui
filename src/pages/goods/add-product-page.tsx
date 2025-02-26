@@ -9,7 +9,7 @@ const AddProductPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'add-product', group: 'products' }));
+    dispatch(setPageName({ name: 'add-product', group: 'goods' }));
   }, [dispatch]);
 
   return (
