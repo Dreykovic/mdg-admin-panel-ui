@@ -36,18 +36,7 @@ const SideBar = () => {
     }
   }, [ref, isMinified, rect, height, width, isOpened]);
   const contentRender = useMemo(() => {
-    return Object.keys(data).map((module) => {
-      return (
-        <div className="mt-3">
-          <span className={`text-muted text-uppercase my-2 font-weight-bold`}>
-            {module}
-          </span>
-          {data[module].map((link) => (
-            <SidebarNavGroup link={link} key={link.id} />
-          ))}
-        </div>
-      );
-    });
+    return data.map((link) => <SidebarNavGroup link={link} key={link.id} />);
   }, []);
   return (
     <>
