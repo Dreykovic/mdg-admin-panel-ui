@@ -7,44 +7,44 @@ import CustomPagination from '@/components/ui/pagination';
 import ElementShow from '@/components/ui/pagination/element-show';
 import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
-import OriginCreateForm from '@/features/origins/components/origin-create-form';
-import OriginList from '@/features/origins/components/origin-list';
-import { useGetSomeOriginsQuery } from '@/store/base-api-slice';
+import RecipeCreateForm from '@/features/recipes/components/recipe-create-form';
+import RecipeList from '@/features/recipes/components/recipe-list';
+import { useGetSomeRecipesQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
 
-const OriginsPage = () => {
+const RecipesPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showCreateOriginModal, setShowCreateOriginModal] = useState(false);
+  const [showCreateRecipeModal, setShowCreateRecipeModal] = useState(false);
 
-  const handleCreateOriginModalClose = () => setShowCreateOriginModal(false);
-  const handleCreateOriginModalShow = () => setShowCreateOriginModal(true);
+  const handleCreateRecipeModalClose = () => setShowCreateRecipeModal(false);
+  const handleCreateRecipeModalShow = () => setShowCreateRecipeModal(true);
   // États locaux pour `pageSize` et `search`
   const [pageSize, setPageSize] = useState(
     parseInt(searchParams.get('pageSize') || '10', 10),
   );
   const [search, setSearch] = useState(
-    JSON.parse(searchParams.get('filter') || '{}')?.country || '',
+    JSON.parse(searchParams.get('filter') || '{}')?.name || '',
   );
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'origin-list', group: 'product-settings' }));
+    dispatch(setPageName({ name: 'recipe-list', group: 'compositions' }));
   }, [dispatch]);
 
   // Récupérer les paramètres `page` ou définir une valeur par défaut
   const page = parseInt(searchParams.get('page') || '1', 10);
 
   // Créer l'objet `filter`
-  const filters = search ? { country: search } : undefined;
+  const filters = search ? { name: search } : undefined;
 
   // Lancer la requête avec les paramètres actuels
-  const { data: result, isFetching } = useGetSomeOriginsQuery(
+  const { data: result, isFetching } = useGetSomeRecipesQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
     { refetchOnMountOrArgChange: false },
   );
 
-  const someOrigins = result?.content.data;
+  const someRecipes = result?.content.data;
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
@@ -53,14 +53,14 @@ const OriginsPage = () => {
       <div className="row align-items-center">
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <h3 className="fw-bold py-3 mb-0">Origins</h3>
+            <h3 className="fw-bold py-3 mb-0">Recipes</h3>
             <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
               <button
                 type="button"
                 className="btn btn-dark w-sm-100"
-                onClick={handleCreateOriginModalShow}
+                onClick={handleCreateRecipeModalShow}
               >
-                <i className="icofont-plus-circle me-2 fs-6"></i>Create Origin
+                <i className="icofont-plus-circle me-2 fs-6"></i>Create Recipe
               </button>
             </div>
           </div>
@@ -79,15 +79,15 @@ const OriginsPage = () => {
         </div>
       </div>
       {isFetching ? (
-        <CardLoading number={4} />
+        <CardLoading number={2} />
       ) : (
         <>
-          <OriginList origins={someOrigins ?? []} />
+          <RecipeList recipes={someRecipes ?? []} />
         </>
       )}
       <div className="d-flex justify-content-between align-items-center">
         <ElementShow
-          length={someOrigins?.length as number}
+          length={someRecipes?.length as number}
           totalElements={totalElements as number}
         />
         <CustomPagination
@@ -97,12 +97,12 @@ const OriginsPage = () => {
           setSearchParams={setSearchParams}
         />
       </div>
-      <OriginCreateForm
-        show={showCreateOriginModal}
-        handleClose={handleCreateOriginModalClose}
+      <RecipeCreateForm
+        show={showCreateRecipeModal}
+        handleClose={handleCreateRecipeModalClose}
       />
     </>
   );
 };
 
-export default OriginsPage;
+export default RecipesPage;

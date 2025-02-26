@@ -7,19 +7,21 @@ import CustomPagination from '@/components/ui/pagination';
 import ElementShow from '@/components/ui/pagination/element-show';
 import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
-import RecipeCreateForm from '@/features/recipes/components/recipe-create-form';
-import RecipeList from '@/features/recipes/components/recipe-list';
-import { useGetSomeRecipesQuery } from '@/store/base-api-slice';
+import CategoryCreateForm from '@/features/categories/components/category-create-form';
+import CategoryList from '@/features/categories/components/category-list';
+
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
+import { useGetSomeCategoriesQuery } from '@/store/base-api-slice';
 
-const RecipesPage = () => {
+const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showCreateRecipeModal, setShowCreateRecipeModal] = useState(false);
+  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
 
-  const handleCreateRecipeModalClose = () => setShowCreateRecipeModal(false);
-  const handleCreateRecipeModalShow = () => setShowCreateRecipeModal(true);
+  const handleCreateCategoryModalClose = () =>
+    setShowCreateCategoryModal(false);
+  const handleCreateCategoryModalShow = () => setShowCreateCategoryModal(true);
   // États locaux pour `pageSize` et `search`
   const [pageSize, setPageSize] = useState(
     parseInt(searchParams.get('pageSize') || '10', 10),
@@ -29,7 +31,7 @@ const RecipesPage = () => {
   );
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'recipe-list', group: 'recipes' }));
+    dispatch(setPageName({ name: 'category-list', group: 'goods' }));
   }, [dispatch]);
 
   // Récupérer les paramètres `page` ou définir une valeur par défaut
@@ -39,12 +41,12 @@ const RecipesPage = () => {
   const filters = search ? { name: search } : undefined;
 
   // Lancer la requête avec les paramètres actuels
-  const { data: result, isFetching } = useGetSomeRecipesQuery(
+  const { data: result, isFetching } = useGetSomeCategoriesQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
     { refetchOnMountOrArgChange: false },
   );
 
-  const someRecipes = result?.content.data;
+  const someCategories = result?.content.data;
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
@@ -53,14 +55,14 @@ const RecipesPage = () => {
       <div className="row align-items-center">
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <h3 className="fw-bold py-3 mb-0">Recipes</h3>
+            <h3 className="fw-bold py-3 mb-0">Categories</h3>
             <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
               <button
                 type="button"
                 className="btn btn-dark w-sm-100"
-                onClick={handleCreateRecipeModalShow}
+                onClick={handleCreateCategoryModalShow}
               >
-                <i className="icofont-plus-circle me-2 fs-6"></i>Create Recipe
+                <i className="icofont-plus-circle me-2 fs-6"></i>Create Category
               </button>
             </div>
           </div>
@@ -79,15 +81,15 @@ const RecipesPage = () => {
         </div>
       </div>
       {isFetching ? (
-        <CardLoading number={2} />
+        <CardLoading number={4} />
       ) : (
         <>
-          <RecipeList recipes={someRecipes ?? []} />
+          <CategoryList categories={someCategories ?? []} />
         </>
       )}
       <div className="d-flex justify-content-between align-items-center">
         <ElementShow
-          length={someRecipes?.length as number}
+          length={someCategories?.length as number}
           totalElements={totalElements as number}
         />
         <CustomPagination
@@ -97,12 +99,12 @@ const RecipesPage = () => {
           setSearchParams={setSearchParams}
         />
       </div>
-      <RecipeCreateForm
-        show={showCreateRecipeModal}
-        handleClose={handleCreateRecipeModalClose}
+      <CategoryCreateForm
+        show={showCreateCategoryModal}
+        handleClose={handleCreateCategoryModalClose}
       />
     </>
   );
 };
 
-export default RecipesPage;
+export default CategoriesPage;

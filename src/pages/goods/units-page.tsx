@@ -45,7 +45,7 @@ const UnitsPage = () => {
   const totalElements = result?.content.total; // Nombre total d'éléments
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'unit-list', group: 'settings' }));
+    dispatch(setPageName({ name: 'unit-list', group: 'goods' }));
   }, [dispatch]);
 
   return (

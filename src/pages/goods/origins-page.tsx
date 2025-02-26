@@ -7,46 +7,44 @@ import CustomPagination from '@/components/ui/pagination';
 import ElementShow from '@/components/ui/pagination/element-show';
 import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
-import CategoryCreateForm from '@/features/categories/components/category-create-form';
-import CategoryList from '@/features/categories/components/category-list';
-
+import OriginCreateForm from '@/features/origins/components/origin-create-form';
+import OriginList from '@/features/origins/components/origin-list';
+import { useGetSomeOriginsQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/page-slice';
-import { useGetSomeCategoriesQuery } from '@/store/base-api-slice';
 
-const CategoriesPage = () => {
+const OriginsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
+  const [showCreateOriginModal, setShowCreateOriginModal] = useState(false);
 
-  const handleCreateCategoryModalClose = () =>
-    setShowCreateCategoryModal(false);
-  const handleCreateCategoryModalShow = () => setShowCreateCategoryModal(true);
+  const handleCreateOriginModalClose = () => setShowCreateOriginModal(false);
+  const handleCreateOriginModalShow = () => setShowCreateOriginModal(true);
   // États locaux pour `pageSize` et `search`
   const [pageSize, setPageSize] = useState(
     parseInt(searchParams.get('pageSize') || '10', 10),
   );
   const [search, setSearch] = useState(
-    JSON.parse(searchParams.get('filter') || '{}')?.name || '',
+    JSON.parse(searchParams.get('filter') || '{}')?.country || '',
   );
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'category-list', group: 'products' }));
+    dispatch(setPageName({ name: 'origin-list', group: 'goods' }));
   }, [dispatch]);
 
   // Récupérer les paramètres `page` ou définir une valeur par défaut
   const page = parseInt(searchParams.get('page') || '1', 10);
 
   // Créer l'objet `filter`
-  const filters = search ? { name: search } : undefined;
+  const filters = search ? { country: search } : undefined;
 
   // Lancer la requête avec les paramètres actuels
-  const { data: result, isFetching } = useGetSomeCategoriesQuery(
+  const { data: result, isFetching } = useGetSomeOriginsQuery(
     { page, pageSize, filters: JSON.stringify(filters ?? '') },
     { refetchOnMountOrArgChange: false },
   );
 
-  const someCategories = result?.content.data;
+  const someOrigins = result?.content.data;
   const currentPage = result?.content.page;
   const totalElements = result?.content.total; // Nombre total d'éléments
 
@@ -55,14 +53,14 @@ const CategoriesPage = () => {
       <div className="row align-items-center">
         <div className="border-0 mb-4">
           <div className="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-            <h3 className="fw-bold py-3 mb-0">Categories</h3>
+            <h3 className="fw-bold py-3 mb-0">Origins</h3>
             <div className="d-flex py-2 project-tab flex-wrap w-sm-100">
               <button
                 type="button"
                 className="btn btn-dark w-sm-100"
-                onClick={handleCreateCategoryModalShow}
+                onClick={handleCreateOriginModalShow}
               >
-                <i className="icofont-plus-circle me-2 fs-6"></i>Create Category
+                <i className="icofont-plus-circle me-2 fs-6"></i>Create Origin
               </button>
             </div>
           </div>
@@ -84,12 +82,12 @@ const CategoriesPage = () => {
         <CardLoading number={4} />
       ) : (
         <>
-          <CategoryList categories={someCategories ?? []} />
+          <OriginList origins={someOrigins ?? []} />
         </>
       )}
       <div className="d-flex justify-content-between align-items-center">
         <ElementShow
-          length={someCategories?.length as number}
+          length={someOrigins?.length as number}
           totalElements={totalElements as number}
         />
         <CustomPagination
@@ -99,12 +97,12 @@ const CategoriesPage = () => {
           setSearchParams={setSearchParams}
         />
       </div>
-      <CategoryCreateForm
-        show={showCreateCategoryModal}
-        handleClose={handleCreateCategoryModalClose}
+      <OriginCreateForm
+        show={showCreateOriginModal}
+        handleClose={handleCreateOriginModalClose}
       />
     </>
   );
 };
 
-export default CategoriesPage;
+export default OriginsPage;

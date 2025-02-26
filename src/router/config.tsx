@@ -1,20 +1,20 @@
 // All components mapping with path for internal routes
 //TODO: rendre les routes nommé
 
-import AddProductPage from '@/pages/products/add-product-page';
-import CategoriesPage from '@/pages/products/categories-page';
-import ProductsPage from '@/pages/products/products-page';
-import MarginsPage from '@/pages/products/settings/margins-page';
-import SuppliersPage from '@/pages/products/settings/suppliers-page';
-import RecipeDetailsPage from '@/pages/recipes/recipe-details-page';
-import RecipesPage from '@/pages/recipes/recipes-page';
-import UnitsPage from '@/pages/units-page';
+import AddProductPage from '@/pages/goods/add-product-page';
+import CategoriesPage from '@/pages/goods/categories-page';
+import ProductsPage from '@/pages/goods/products-page';
+import MarginsPage from '@/pages/goods/margins-page';
+import SuppliersPage from '@/pages/goods/suppliers-page';
+import RecipeDetailsPage from '@/pages/compositions/recipe-details-page';
+import RecipesPage from '@/pages/compositions/recipes-page';
+import UnitsPage from '@/pages/goods/units-page';
 import { RoutesConfigType } from '@/types/routes-type';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
-import OriginsPage from '@/pages/products/settings/origins-page';
+import OriginsPage from '@/pages/goods/origins-page';
 import Changelog from '@/pages/changelog';
-import ProductDetailsPage from '@/pages/products/details';
+import ProductDetailsPage from '@/pages/goods/product-details-page';
 
 export const authRoutesConfig: RoutesConfigType = {
   home: {
@@ -29,7 +29,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'category-list',
 
-    path: '/products/categories',
+    path: '/catalog/goods/categories',
     component: CategoriesPage,
     pageName: 'Categories Page',
   },
@@ -38,7 +38,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'origin-list',
 
-    path: '/product-settings/origins',
+    path: '/catalog/goods/origins',
     component: OriginsPage,
     pageName: 'Origins Page',
   },
@@ -47,7 +47,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'supplier-list',
 
-    path: '/product-settings/suppliers',
+    path: '/catalog/goods/suppliers',
     component: SuppliersPage,
     pageName: 'Suppliers Page',
   },
@@ -56,7 +56,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'margin-list',
 
-    path: '/product-settings/margins',
+    path: '/catalog/goods/margins',
     component: MarginsPage,
     pageName: 'Margins Page',
   },
@@ -65,7 +65,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'unit-list',
 
-    path: '/settings/units',
+    path: '/catalog/goods/units',
     component: UnitsPage,
     pageName: 'Units Page',
   },
@@ -74,7 +74,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'product-list',
 
-    path: '/products',
+    path: '/catalog/goods/products',
     component: ProductsPage,
     pageName: 'Products Page',
   },
@@ -83,7 +83,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'product-details',
 
-    path: '/products/details/:productId',
+    path: '/catalog/goods/products/details/:productId',
     component: ProductDetailsPage,
     pageName: 'Product Details Page',
   },
@@ -92,7 +92,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'add-product-list',
 
-    path: '/products/add',
+    path: '/catalog/goods/products/add',
     component: AddProductPage,
     pageName: 'Product Add Page',
   },
@@ -102,7 +102,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'recipe-list',
 
-    path: '/recipes',
+    path: '/catalog/compositions/recipes',
     component: RecipesPage,
     pageName: 'Recipes Page',
   },
@@ -111,7 +111,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'recipe-edit',
 
-    path: '/recipes/edit/:recipeId',
+    path: '/catalog/compositions/recipes/edit/:recipeId',
     component: RecipeDetailsPage,
     pageName: 'Recipes Edit',
   },
@@ -120,7 +120,7 @@ export const authRoutesConfig: RoutesConfigType = {
 
     name: 'changelog',
 
-    path: '/changelog',
+    path: '/resources/changelog',
     component: Changelog,
     pageName: 'changelog',
   },

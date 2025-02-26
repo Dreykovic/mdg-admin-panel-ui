@@ -46,7 +46,7 @@ const SuppliersPage = () => {
   const totalElements = result?.content.total; // Nombre total d'éléments
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'supplier-list', group: 'product-settings' }));
+    dispatch(setPageName({ name: 'supplier-list', group: 'goods' }));
   }, [dispatch]);
 
   return (

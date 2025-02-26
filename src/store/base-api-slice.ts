@@ -31,7 +31,7 @@ const baseQuery = fetchBaseQuery({
 });
 
 // Wrapper pour gérer automatiquement le rafraîchissement du token
-const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
+const baseQueryWithReAuth = async (args: any, api: any, extraOptions: any) => {
   let result = await baseQuery(args, api, extraOptions);
 
   // Si une erreur 401 est retournée, essayez de rafraîchir le token
@@ -81,7 +81,7 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
 // Définition de l'API avec gestion des tokens
 export const baseApiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: baseQueryWithReauth,
+  baseQuery: baseQueryWithReAuth,
   tagTypes: [
     'CATEGORIES',
     'SUPPLIERS',
@@ -104,7 +104,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/product-resources/categories`,
+          url: `catalog/product-catalog/categories`,
           params: { page, filters, pageSize },
         };
       },
@@ -120,7 +120,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/product-resources/margins`,
+          url: `catalog/product-catalog/margins`,
           params: { page, filters, pageSize },
         };
       },
@@ -137,7 +137,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/us-o-m`,
+          url: `catalog/us-o-m`,
           params: { page, filters, pageSize },
         };
       },
@@ -152,7 +152,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/product-resources/origins`,
+          url: `catalog/product-catalog/origins`,
           params: { page, filters, pageSize },
         };
       },
@@ -167,7 +167,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/product-resources/suppliers`,
+          url: `catalog/product-catalog/suppliers`,
           params: { page, filters, pageSize },
         };
       },
@@ -182,7 +182,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/product-resources/products`,
+          url: `catalog/product-catalog/products`,
           params: { page, filters, pageSize },
         };
       },
@@ -197,7 +197,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/recipe-resources/recipes`,
+          url: `catalog/recipe-catalog/recipes`,
           params: { page, filters, pageSize },
         };
       },
@@ -212,7 +212,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/recipe-resources/ingredients`,
+          url: `catalog/recipe-catalog/ingredients`,
           params: { page, filters, pageSize },
         };
       },
@@ -227,7 +227,7 @@ export const baseApiSlice = createApi({
         const { page, filters, pageSize } = args;
 
         return {
-          url: `resources/recipe-resources/steps`,
+          url: `catalog/recipe-catalog/steps`,
           params: { page, filters, pageSize },
         };
       },

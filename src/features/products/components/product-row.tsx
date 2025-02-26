@@ -9,7 +9,11 @@ const ProductRow = ({ product }: IProductRowProps) => {
   const navigate = useNavigate();
   return (
     <>
-      <tr onClick={() => navigate(`/products/details/${product.id}`)}>
+      <tr
+        onClick={() =>
+          navigate(`/catalog/goods/products/details/${product.id}`)
+        }
+      >
         <td>
           <div className="d-flex align-items-center flex-fill">
             <div
