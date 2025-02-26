@@ -14,7 +14,7 @@ import Home from '@/pages/home';
 import Login from '@/pages/login';
 import OriginsPage from '@/pages/goods/origins-page';
 import Changelog from '@/pages/changelog';
-import ProductDetailsPage from '@/pages/goods/details';
+import ProductDetailsPage from '@/pages/goods/product-details-page';
 
 export const authRoutesConfig: RoutesConfigType = {
   home: {
