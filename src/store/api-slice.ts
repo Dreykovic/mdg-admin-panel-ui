@@ -36,7 +36,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
 
     createCategory: builder.mutation({
       query: (data: Partial<ProductCategory>) => ({
-        url: 'resources/product-resources/categories/save',
+        url: 'catalog/product-catalog/categories/save',
         method: 'POST',
         body: data,
       }),
@@ -44,7 +44,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editCategory: builder.mutation({
       query: (data: ProductCategory) => ({
-        url: `resources/product-resources/categories/update/${data.id}`,
+        url: `catalog/product-catalog/categories/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -52,7 +52,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteCategory: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/product-resources/categories/delete`,
+        url: `catalog/product-catalog/categories/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -61,7 +61,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({
       query: () => {
         return {
-          url: `resources/product-resources/categories/list`,
+          url: `catalog/product-catalog/categories/list`,
         };
       },
       providesTags: ['CATEGORIES'], // Ajouter un tag
@@ -70,7 +70,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
 
     createMargin: builder.mutation({
       query: (data: Partial<MarginLevel>) => ({
-        url: 'resources/product-resources/margins/save',
+        url: 'catalog/product-catalog/margins/save',
         method: 'POST',
         body: data,
       }),
@@ -78,7 +78,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editMargin: builder.mutation({
       query: (data: MarginLevel) => ({
-        url: `resources/product-resources/margins/update/${data.id}`,
+        url: `catalog/product-catalog/margins/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -86,7 +86,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteMargin: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/product-resources/margins/delete`,
+        url: `catalog/product-catalog/margins/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -95,7 +95,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     getMarginsList: builder.query<ListResponse<MarginLevel[]>, void>({
       query: () => {
         return {
-          url: `resources/product-resources/margins/list`,
+          url: `catalog/product-catalog/margins/list`,
         };
       },
       providesTags: ['MARGINS'], // Ajouter un tag
@@ -105,7 +105,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     getUnitsList: builder.query<ListResponse<UnitOfMeasure[]>, void>({
       query: () => {
         return {
-          url: `resources/us-o-m/list`,
+          url: `catalog/us-o-m/list`,
         };
       },
       providesTags: ['UOM'], // Ajouter un tag
@@ -113,7 +113,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
 
     createUnit: builder.mutation({
       query: (data: Partial<UnitOfMeasure>) => ({
-        url: 'resources/us-o-m/save',
+        url: 'catalog/us-o-m/save',
         method: 'POST',
         body: data,
       }),
@@ -121,7 +121,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editUnit: builder.mutation({
       query: (data: UnitOfMeasure) => ({
-        url: `resources/us-o-m/update/${data.id}`,
+        url: `catalog/us-o-m/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -129,7 +129,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteUnit: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/us-o-m/delete`,
+        url: `catalog/us-o-m/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -139,7 +139,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
 
     createOrigin: builder.mutation({
       query: (data: Partial<Origin>) => ({
-        url: 'resources/product-resources/origins/save',
+        url: 'catalog/product-catalog/origins/save',
         method: 'POST',
         body: data,
       }),
@@ -147,7 +147,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editOrigin: builder.mutation({
       query: (data: Origin) => ({
-        url: `resources/product-resources/origins/update/${data.id}`,
+        url: `catalog/product-catalog/origins/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -155,7 +155,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteOrigin: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/product-resources/origins/delete`,
+        url: `catalog/product-catalog/origins/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -166,7 +166,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
 
     createSupplier: builder.mutation({
       query: (data: Partial<Supplier>) => ({
-        url: 'resources/product-resources/suppliers/save',
+        url: 'catalog/product-catalog/suppliers/save',
         method: 'POST',
         body: data,
       }),
@@ -174,7 +174,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editSupplier: builder.mutation({
       query: (data: Supplier) => ({
-        url: `resources/product-resources/suppliers/update/${data.id}`,
+        url: `catalog/product-catalog/suppliers/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -182,7 +182,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteSupplier: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/product-resources/suppliers/delete`,
+        url: `catalog/product-catalog/suppliers/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -191,7 +191,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     getSuppliersList: builder.query<ListResponse<Supplier[]>, void>({
       query: () => {
         return {
-          url: `resources/product-resources/suppliers/list`,
+          url: `catalog/product-catalog/suppliers/list`,
         };
       },
       providesTags: ['SUPPLIERS'], // Ajouter un tag
@@ -199,7 +199,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     getOriginsList: builder.query<ListResponse<Origin[]>, void>({
       query: () => {
         return {
-          url: `resources/product-resources/origins/list`,
+          url: `catalog/product-catalog/origins/list`,
         };
       },
       providesTags: ['ORIGINS'], // Ajouter un tag
@@ -208,7 +208,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
 
     createProduct: builder.mutation({
       query: (data: Partial<Product>) => ({
-        url: 'resources/product-resources/products/save',
+        url: 'catalog/product-catalog/products/save',
         method: 'POST',
         body: data,
       }),
@@ -222,7 +222,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
         const { productId } = args;
 
         return {
-          url: `resources/product-resources/products/details/${productId}`,
+          url: `catalog/product-catalog/products/details/${productId}`,
         };
       },
       providesTags: ['PRODUCTS'], // Ajouter un tag
@@ -230,7 +230,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
 
     editProduct: builder.mutation({
       query: (data: Partial<Product>) => ({
-        url: `resources/product-resources/products/update/${data.id}`,
+        url: `catalog/product-catalog/products/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -238,7 +238,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteProduct: builder.mutation({
       query: (data: { id: string }) => ({
-        url: `resources/product-resources/products/delete`,
+        url: `catalog/product-catalog/products/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -247,7 +247,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     getProductsList: builder.query<ListResponse<Product[]>, void>({
       query: () => {
         return {
-          url: `resources/product-resources/products/list`,
+          url: `catalog/product-catalog/products/list`,
         };
       },
       providesTags: ['PRODUCTS'], // Ajouter un tag
@@ -275,14 +275,14 @@ const apiSlice = baseApiSlice.injectEndpoints({
         const { recipeId } = args;
 
         return {
-          url: `resources/recipe-resources/recipes/details/${recipeId}`,
+          url: `catalog/recipe-catalog/recipes/details/${recipeId}`,
         };
       },
       providesTags: ['RECIPES'], // Ajouter un tag
     }),
     createRecipe: builder.mutation({
       query: (data: Partial<Recipe>) => ({
-        url: 'resources/recipe-resources/recipes/save',
+        url: 'catalog/recipe-catalog/recipes/save',
         method: 'POST',
         body: data,
       }),
@@ -290,7 +290,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editRecipe: builder.mutation({
       query: (data: Recipe) => ({
-        url: `resources/recipe-resources/recipes/update/${data.id}`,
+        url: `catalog/recipe-catalog/recipes/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -298,7 +298,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteRecipe: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/recipe-resources/recipes/delete`,
+        url: `catalog/recipe-catalog/recipes/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -314,7 +314,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
         const { filters } = args;
 
         return {
-          url: `resources/recipe-resources/ingredients/list`,
+          url: `catalog/recipe-catalog/ingredients/list`,
           params: { filters },
         };
       },
@@ -322,7 +322,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     createIngredient: builder.mutation({
       query: (data: Partial<Ingredient>) => ({
-        url: 'resources/recipe-resources/ingredients/save',
+        url: 'catalog/recipe-catalog/ingredients/save',
         method: 'POST',
         body: data,
       }),
@@ -330,7 +330,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editIngredient: builder.mutation({
       query: (data: Ingredient) => ({
-        url: `resources/recipe-resources/ingredients/update/${data.id}`,
+        url: `catalog/recipe-catalog/ingredients/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -338,7 +338,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteIngredient: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/recipe-resources/ingredients/delete`,
+        url: `catalog/recipe-catalog/ingredients/delete`,
         method: 'DELETE',
         body: data,
       }),
@@ -351,7 +351,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
         const { filters } = args;
 
         return {
-          url: `resources/recipe-resources/steps/list`,
+          url: `catalog/recipe-catalog/steps/list`,
           params: { filters },
         };
       },
@@ -359,7 +359,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     createStep: builder.mutation({
       query: (data: Partial<Step>) => ({
-        url: 'resources/recipe-resources/steps/save',
+        url: 'catalog/recipe-catalog/steps/save',
         method: 'POST',
         body: data,
       }),
@@ -367,7 +367,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     editStep: builder.mutation({
       query: (data: Step) => ({
-        url: `resources/recipe-resources/steps/update/${data.id}`,
+        url: `catalog/recipe-catalog/steps/update/${data.id}`,
         method: 'PUT',
         body: data,
       }),
@@ -375,7 +375,7 @@ const apiSlice = baseApiSlice.injectEndpoints({
     }),
     deleteStep: builder.mutation({
       query: (data: { id: number }) => ({
-        url: `resources/recipe-resources/steps/delete`,
+        url: `catalog/recipe-catalog/steps/delete`,
         method: 'DELETE',
         body: data,
       }),
