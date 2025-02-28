@@ -1,8 +1,4 @@
-import React from 'react';
-
-type Props = {};
-
-const BreadCrumb = (props: Props) => {
+const BreadCrumb = () => {
   return (
     <>
       <nav aria-label="breadcrumb">

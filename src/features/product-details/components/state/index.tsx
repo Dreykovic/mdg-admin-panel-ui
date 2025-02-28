@@ -1,4 +1,5 @@
 import { Product } from '@/types/entity';
+
 import ProductDeleteBlock from './delete';
 import ProductVisibilityBlock from './visibility';
 

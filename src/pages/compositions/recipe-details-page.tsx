@@ -2,18 +2,36 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import ErrorAlert from '@/components/ui/error-alert';
+import CardLoading from '@/components/ui/loading/card-loading';
+import NoCardData from '@/components/ui/no-data/no-card-data';
 import RecipeDetails from '@/features/recipes/components/recipe-details';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/page-slice';
-import NoCardData from '@/components/ui/no-data/no-card-data';
 import { useGetUniqueRecipeQuery } from '@/store/api-slice';
-import CardLoading from '@/components/ui/loading/card-loading';
-import ErrorAlert from '@/components/ui/error-alert';
+import { setPageName } from '@/store/page-slice';
 
 const RecipeDetailsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { recipeId } = useParams();
+
+  useEffect(() => {
+    dispatch(setPageName({ name: 'recipe-edit', group: 'recipes' }));
+  }, [dispatch]);
+
+  const {
+    data: response,
+    isFetching,
+    isError,
+    error,
+  } = useGetUniqueRecipeQuery(
+    { recipeId: recipeId ? parseInt(recipeId) : 0 },
+    {
+      refetchOnMountOrArgChange: false,
+      refetchOnReconnect: true,
+    },
+  );
+
   if (!recipeId) {
     return (
       <>
@@ -21,21 +39,7 @@ const RecipeDetailsPage = () => {
       </>
     );
   }
-  const {
-    data: response,
-    isFetching,
-    isError,
-    error,
-  } = useGetUniqueRecipeQuery(
-    { recipeId: parseInt(recipeId) },
-    {
-      refetchOnMountOrArgChange: false,
-      refetchOnReconnect: true,
-    },
-  );
-  useEffect(() => {
-    dispatch(setPageName({ name: 'recipe-edit', group: 'recipes' }));
-  }, [dispatch]);
+
   if (isFetching) {
     return <CardLoading number={4} />;
   }

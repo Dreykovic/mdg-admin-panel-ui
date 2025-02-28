@@ -14,7 +14,7 @@ export interface UserData {
   username: string;
   email: string;
   profiles: ProfileName[]; // Liste de rôles ou profils
-  email_verified_at: string | null;
+  email_verified_at?: Date | null;
 }
 
 export interface AuthResponse {

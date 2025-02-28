@@ -1,11 +1,11 @@
 // Définition des étapes
 import { FormikValues } from 'formik';
+import { JSX } from 'react';
 import * as Yup from 'yup';
 
 import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
-
 import {
   step1InitialValues,
   step1Schema,
@@ -14,7 +14,6 @@ import {
   step3InitialValues,
   step3Schema,
 } from './validation';
-import { JSX } from 'react';
 
 // Définition du type des étapes
 export interface Step {

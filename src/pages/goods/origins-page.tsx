@@ -9,8 +9,8 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import OriginCreateForm from '@/features/origins/components/origin-create-form';
 import OriginList from '@/features/origins/components/origin-list';
-import { useGetSomeOriginsQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
+import { useGetSomeOriginsQuery } from '@/store/base-api-slice';
 import { setPageName } from '@/store/page-slice';
 
 const OriginsPage = () => {

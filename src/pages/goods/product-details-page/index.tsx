@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
-import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/page-slice';
-import ProductOverviewTabPane from './overview';
-import ProductStockTabPane from './stock';
 import { useParams } from 'react-router-dom';
-import { useGetUniqueProductQuery } from '@/store/api-slice';
 
 import ErrorAlert from '@/components/ui/error-alert';
-import { Product } from '@/types/entity';
 import CardLoading from '@/components/ui/loading/card-loading';
+import { AppDispatch } from '@/store';
+import { useGetUniqueProductQuery } from '@/store/api-slice';
+import { setPageName } from '@/store/page-slice';
+import { Product } from '@/types/entity';
+
+import ProductOverviewTabPane from './overview';
+import ProductStockTabPane from './stock';
 
 const ProductDetailsPage = () => {
   const { productId } = useParams();

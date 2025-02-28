@@ -1,13 +1,13 @@
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
-import { Recipe } from '@/types/entity';
-
 import { useCallback, useState } from 'react';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
-import { AppDispatch } from '@/store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { authRoutesConfig } from '@/router/config';
+import { AppDispatch } from '@/store';
 import { useDeleteRecipeMutation } from '@/store/api-slice';
+import { Recipe } from '@/types/entity';
 
 type Props = {
   recipe: Recipe;
@@ -50,7 +50,7 @@ const RecipeDeleteBlock = ({ recipe }: Props) => {
     } finally {
       handleDeleteItemModalClose();
     }
-  }, [recipe.id, deleteRecipe, dispatch]);
+  }, [recipe.id, deleteRecipe, dispatch, navigate]);
 
   return (
     <>

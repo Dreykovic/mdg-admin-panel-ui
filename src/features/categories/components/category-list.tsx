@@ -5,11 +5,11 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import { AppDispatch } from '@/store';
+import { useDeleteCategoryMutation } from '@/store/api-slice';
 import { ProductCategory } from '@/types/entity';
 
 import CategoryCard from './category-card';
 import CategoryEditForm from './category-edit-form';
-import { useDeleteCategoryMutation } from '@/store/api-slice';
 
 interface ICategoryListProps {
   categories: Partial<ProductCategory>[];

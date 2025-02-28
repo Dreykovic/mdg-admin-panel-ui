@@ -3,9 +3,9 @@
 import { ErrorMessage, Field } from 'formik';
 import { useState } from 'react';
 
+import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import { useGetMarginsListQuery } from '@/store/api-slice';
-import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 
 const Step2 = () => {
   const [showCreateMarginModal, setShowCreateMarginModal] = useState(false);

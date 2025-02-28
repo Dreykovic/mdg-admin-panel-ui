@@ -1,7 +1,8 @@
 import { Product } from '@/types/entity';
+
 import ProductOrganizeCategory from './category';
-import ProductOrganizeSupplier from './supplier';
 import ProductOrganizeOrigin from './origin';
+import ProductOrganizeSupplier from './supplier';
 
 type Props = {
   product: Product;

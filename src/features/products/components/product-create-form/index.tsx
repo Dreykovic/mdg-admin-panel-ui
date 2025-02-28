@@ -5,17 +5,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-
+import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
+import { useCreateProductMutation } from '@/store/api-slice';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
-
-import { useCreateProductMutation } from '@/store/api-slice';
 
 import Stepper from './stepper';
 import steps from './stepper/steps';
 import { productInitialValues } from './stepper/validation';
-import { authRoutesConfig } from '@/router/config';
 
 const AddProduct = () => {
   const [stepIndex, setStepIndex] = useState(0);

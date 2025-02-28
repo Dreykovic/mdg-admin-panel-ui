@@ -9,8 +9,8 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
 import SuppliersTable from '@/features/suppliers/components/suppliers-table';
-import { useGetSomeSuppliersQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
+import { useGetSomeSuppliersQuery } from '@/store/base-api-slice';
 import { setPageName } from '@/store/page-slice';
 
 const SuppliersPage = () => {

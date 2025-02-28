@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { AppDispatch, RootState } from '@/store';
-import { setTheme } from '@/store/theme-slice';
+import { RouterProvider } from 'react-router-dom';
 
 import { authRouter, guestRouter } from '@/router';
-import { RouterProvider } from 'react-router-dom';
+import { AppDispatch, RootState } from '@/store';
+import { setTheme } from '@/store/theme-slice';
 
 const App: React.FC = () => {
   const [router, setRouter] = useState(guestRouter);

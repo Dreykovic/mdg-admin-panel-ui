@@ -1,11 +1,13 @@
-import { Product } from '@/types/entity';
-import ProductSettingCreateForm from './create';
 import { useCallback, useState } from 'react';
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { useDispatch } from 'react-redux';
+
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { AppDispatch } from '@/store';
 import { useDeleteProductConversionSettingMutation } from '@/store/api-slice';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
+import { Product } from '@/types/entity';
+
+import ProductSettingCreateForm from './create';
 
 type Props = {
   product: Product;

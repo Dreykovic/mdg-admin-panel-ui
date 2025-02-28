@@ -1,9 +1,11 @@
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoTableData from '@/components/ui/no-data/no-table-data';
+import { MarginLevel } from '@/types/entity';
+
+import { useMargins } from '../hooks/use-margins';
+
 import MarginEditForm from './margin-edit-form';
 import MarginRow from './margin-row';
-import { MarginLevel } from '@/types/entity';
-import { useMargins } from '../hooks/use-margins';
 
 interface IMarginListProps {
   margins: Partial<MarginLevel>[];

@@ -15,7 +15,11 @@ const ThemeSwitcher = () => {
     dispatch(setTheme({ theme: newTheme }));
   };
   useEffect(() => {
-    currentTheme === 'light' ? setChecked(false) : setChecked(true);
+    if (currentTheme === 'light') {
+      setChecked(false);
+    } else {
+      setChecked(true);
+    }
   }, [setChecked, currentTheme]);
   return (
     <>

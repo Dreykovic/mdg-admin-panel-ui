@@ -9,10 +9,9 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import CategoryCreateForm from '@/features/categories/components/category-create-form';
 import CategoryList from '@/features/categories/components/category-list';
-
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/page-slice';
 import { useGetSomeCategoriesQuery } from '@/store/base-api-slice';
+import { setPageName } from '@/store/page-slice';
 
 const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();

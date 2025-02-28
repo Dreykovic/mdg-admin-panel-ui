@@ -5,10 +5,10 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useSignInMutation } from '@/store/api-slice';
 import { makeGlobalLogin } from '@/features/auth/store/slice';
 import { AuthResponse } from '@/features/auth/types';
 import { AppDispatch } from '@/store';
+import { useSignInMutation } from '@/store/api-slice';
 import { ApiResponse } from '@/types/api';
 interface ILoginFormValues {
   username: string;

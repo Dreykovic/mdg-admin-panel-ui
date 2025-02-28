@@ -1,4 +1,5 @@
 import { Recipe } from '@/types/entity';
+
 import GeneralInfo from './general-info';
 import RecipeIngredients from './recipe-ingredients';
 import RecipeSteps from './recipe-steps';

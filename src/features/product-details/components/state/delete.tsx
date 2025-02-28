@@ -1,12 +1,13 @@
-import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
-import { Product } from '@/types/entity';
-import { useDeleteProductMutation } from '@/store/api-slice';
 import { useCallback, useState } from 'react';
-import { showAlert } from '@/components/ui/alerts/alert-slice';
-import { AppDispatch } from '@/store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { showAlert } from '@/components/ui/alerts/alert-slice';
+import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { authRoutesConfig } from '@/router/config';
+import { AppDispatch } from '@/store';
+import { useDeleteProductMutation } from '@/store/api-slice';
+import { Product } from '@/types/entity';
 
 type Props = {
   product: Product;
@@ -49,7 +50,7 @@ const ProductDeleteBlock = ({ product }: Props) => {
     } finally {
       handleDeleteItemModalClose();
     }
-  }, [product.id, deleteProduct, dispatch]);
+  }, [product.id, deleteProduct, dispatch, navigate]);
 
   return (
     <>

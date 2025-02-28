@@ -5,12 +5,11 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
+import { AppDispatch } from '@/store';
 import {
   useDeleteIngredientMutation,
   useGetIngredientsQuery,
 } from '@/store/api-slice';
-
-import { AppDispatch } from '@/store';
 import { Ingredient } from '@/types/entity';
 
 import IngredientCreateForm from './add-ingredient';

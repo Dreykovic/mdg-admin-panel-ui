@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useCreateIngredientMutation } from '@/store/api-slice';
 import UnitCreateForm from '@/features/units/components/unit-create-form';
 import { AppDispatch } from '@/store';
+import { useCreateIngredientMutation } from '@/store/api-slice';
 import {
   useGetProductsListQuery,
   useGetUnitsListQuery,

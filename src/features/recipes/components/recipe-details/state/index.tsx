@@ -1,4 +1,5 @@
 import { Recipe } from '@/types/entity';
+
 import RecipeDeleteBlock from './delete';
 import RecipeVisibilityBlock from './visibility';
 

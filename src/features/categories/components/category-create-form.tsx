@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
+import { useCreateCategoryMutation } from '@/store/api-slice';
 import { ApiResponse } from '@/types/api';
 import { ProductCategory } from '@/types/entity';
-import { useCreateCategoryMutation } from '@/store/api-slice';
 
 const initialValues: Partial<ProductCategory> = { name: '' };
 

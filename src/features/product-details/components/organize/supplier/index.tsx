@@ -1,5 +1,7 @@
-import { Product } from '@/types/entity';
 import { useState } from 'react';
+
+import { Product } from '@/types/entity';
+
 import ProductSupplierEditForm from './edit';
 
 type Props = {

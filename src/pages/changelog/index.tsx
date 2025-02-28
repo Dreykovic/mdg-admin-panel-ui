@@ -1,10 +1,11 @@
-import ChangelogImg from '@/assets/images/change-log.webp';
-
-import ChangelogUpdates from './update';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setPageName } from '@/store/page-slice';
+
+import ChangelogImg from '@/assets/images/change-log.webp';
 import { AppDispatch } from '@/store';
+import { setPageName } from '@/store/page-slice';
+
+import ChangelogUpdates from './update';
 const Changelog = () => {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
