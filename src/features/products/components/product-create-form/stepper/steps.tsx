@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
-import Step4 from './step4';
+
 import {
   step1InitialValues,
   step1Schema,
@@ -13,8 +13,6 @@ import {
   step2Schema,
   step3InitialValues,
   step3Schema,
-  step4InitialValues,
-  step4Schema,
 } from './validation';
 import { JSX } from 'react';
 
@@ -55,16 +53,6 @@ const steps: Step[] = [
       </>
     ),
     validationSchema: step3Schema,
-  },
-  {
-    initialValues: step4InitialValues,
-    title: 'Stock Setup',
-    content: (
-      <>
-        <Step4 />
-      </>
-    ),
-    validationSchema: step4Schema,
   },
 ];
 export default steps;
