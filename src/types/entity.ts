@@ -6,6 +6,14 @@ export type TokenStatus = 'ACTIVE' | 'REVOKED';
 
 export type VisibilityType = 'DRAFT' | 'VISIBLE' | 'HIDDEN' | 'ARCHIVED';
 
+export type MovementType =
+  | 'STOCK_IN'
+  | 'STOCK_OUT'
+  | 'ADJUSTMENT'
+  | 'TRANSFER'
+  | 'RETURN'
+  | 'DAMAGE';
+
 export type UOMType = 'WEIGHT' | 'VOLUME' | 'OTHER';
 
 export type RecipeDifficultyType = 'EASY' | 'MEDIUM' | 'HARD';
@@ -16,7 +24,7 @@ export interface User {
   email: string;
   profiles: ProfileName[];
   password: string;
-  email_verified_at: String | null;
+  email_verified_at: Date | null;
   tokenFamilies?: TokenFamily[];
   recipes?: Recipe[];
   createdAt: Date;
@@ -74,22 +82,29 @@ export interface ProductCategory {
   imageRef: string | null;
   imageUrl: string | null;
   slug: string | null;
-  subcategories?: ProductSubcategory[];
   Product?: Product[];
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface ProductSubcategory {
+export interface ProductTag {
   id: number;
   name: string;
   description: string | null;
   imageRef: string | null;
   imageUrl: string | null;
   slug: string | null;
-  categoryId: number;
-  category?: ProductCategory;
-  products?: Product[];
+  ProductTagLinks?: ProductTagLink[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ProductTagLink {
+  id: number;
+  productId: string;
+  productTagId: number;
+  product?: Product;
+  productTag?: ProductTag;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -139,13 +154,12 @@ export interface Product {
   isGlutenFree: boolean;
   isGMOFree: boolean;
   description: string | null;
+  sku: string;
   isActive: boolean;
-  isPublic: boolean;
+  isArchived: boolean;
   visibility: VisibilityType;
-  minimumStockLevel: number;
-  quantity: number;
+  isFeatured: boolean;
   additionalCost: number | null;
-  imageRef: string | null;
   costPerGramWhole: number;
   costPerGramGround: number;
   pricePerGramWhole: number;
@@ -156,14 +170,67 @@ export interface Product {
   supplierId: number;
   marginLevelId: number;
   ingredients?: Ingredient[];
+  ProductTagLinks?: ProductTagLink[];
+  inventory?: Inventory | null;
+  images?: ProductImage[];
   origin?: Origin;
-  subCategory?: ProductSubcategory | null;
   category?: ProductCategory;
   supplier?: Supplier;
   marginLevel?: MarginLevel;
   createdAt: Date;
   updatedAt: Date;
   volumeConversion?: VolumeConversion | null;
+}
+
+export interface ProductImage {
+  id: string;
+  url: string;
+  altText: string | null;
+  isFeatured: boolean;
+  sortOrder: number;
+  productId: string;
+  product?: Product;
+}
+
+export interface Inventory {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  quantity: number;
+  availableQuantity: number;
+  reservedQuantity: number;
+  reorderThreshold: number;
+  reorderQuantity: number;
+  inStock: boolean;
+  backorderable: boolean;
+  lastStockCheck: Date | null;
+  nextScheduledCheck: Date | null;
+  productId: string | null;
+  product?: Product | null;
+  warehouseId: string;
+  warehouse?: Warehouse;
+  stockMovements?: StockMovement[];
+}
+
+export interface Warehouse {
+  id: string;
+  name: string;
+  location: string | null;
+  isDefault: boolean;
+  inventories?: Inventory[];
+}
+
+export interface StockMovement {
+  id: string;
+  createdAt: Date;
+  quantity: number;
+  type: MovementType;
+  notes: string | null;
+  referenceType: string | null;
+  referenceId: string | null;
+  inventoryId: string;
+  inventory?: Inventory;
+  userId: string | null;
 }
 
 export interface RecipeCategory {
@@ -201,7 +268,7 @@ export interface Recipe {
   visibility: VisibilityType;
   userId: string;
   categories?: RecipeCategoryLink[];
-  ingrediants?: Ingredient[];
+  ingredients?: Ingredient[];
   steps?: Step[];
   author?: User;
   createdAt: Date;
@@ -210,13 +277,14 @@ export interface Recipe {
 
 export interface Ingredient {
   id: number;
+  name: string | null;
   quantity: number;
   grindRequired: boolean;
   recipeId: number;
-  productId: string;
+  productId: string | null;
   unitOfMeasureId: number;
   unitOfMeasure?: UnitOfMeasure;
-  product?: Product;
+  product?: Product | null;
   recipe?: Recipe;
   createdAt: Date;
   updatedAt: Date;
