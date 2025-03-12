@@ -55,7 +55,7 @@ const ProductDetailsPage = () => {
                   <a
                     className="nav-link active"
                     data-bs-toggle="tab"
-                    href="#list-view"
+                    href="#product-overview"
                     role="tab"
                   >
                     Overview
@@ -65,7 +65,7 @@ const ProductDetailsPage = () => {
                   <a
                     className="nav-link"
                     data-bs-toggle="tab"
-                    href="#grid-view"
+                    href="#product-stock"
                     role="tab"
                   >
                     Stock

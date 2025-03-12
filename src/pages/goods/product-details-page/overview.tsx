@@ -12,7 +12,7 @@ type Props = {
 const ProductOverviewTabPane = ({ product }: Props) => {
   return (
     <>
-      <div className="tab-pane fade show active" id="list-view">
+      <div className="tab-pane fade show active" id="product-overview">
         <div className="row g-3 mb-3 row-deck">
           <div className="col-md-12 col-lg-8 col-xl-7 col-xxl-7">
             <ProductMetadata product={product} />

@@ -1,70 +1,118 @@
-const ProductInventory = () => {
+import { Inventory } from '@/types/entity';
+import { formatDateTime } from '@/utils/format';
+
+type Prop = {
+  inventory: Inventory;
+};
+const ProductInventory = ({ inventory }: Prop) => {
   return (
     <>
       <div className="row clearfix g-3">
         <div className="col-lg-4">
           <div className="card">
-            <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-              <h6 className="mb-0 fw-bold ">Contact Add</h6>
-            </div>
-            <div className="card-body"></div>
-          </div>
-        </div>
-        <div className="col-lg-8">
-          <div className="card mb-3">
-            <div className="card-body">
-              <table
-                id="myProjectTable"
-                className="table table-hover align-middle mb-0"
-                style={{ width: '100%' }}
+            <div className="card-header py-3 d-flex justify-content-between">
+              <h6 className="mb-0 fw-bold ">Inventory Informations</h6>
+              <button
+                type="button"
+                className="btn p-0"
+                data-bs-toggle="modal"
+                data-bs-target="#edit1"
               >
-                <thead>
-                  <tr>
-                    <th>Person Name</th>
-                    <th>Birthdate</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <img
-                        className="avatar rounded-circle"
-                        src="assets/images/xs/avatar2.jpg"
-                        alt=""
-                      />
-                      <span className="fw-bold ms-1">Ryan Randall</span>
-                    </td>
-                    <td>12/03/2021</td>
-                    <td>RyanRandall@gmail.com</td>
-                    <td>617-555-0164</td>
-                    <td>
-                      <div
-                        className="btn-group"
-                        role="group"
-                        aria-label="Basic outlined example"
-                      >
-                        <button
-                          type="button"
-                          className="btn btn-outline-secondary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#expedit"
-                        >
-                          <i className="icofont-edit text-success"></i>
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-outline-secondary deleterow"
-                        >
-                          <i className="icofont-ui-delete text-danger"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                <i className="icofont-edit text-primary fs-6"></i>
+              </button>
+            </div>
+            <div className="card-body">
+              <ul className="list-unstyled mb-0">
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Quantity</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">{inventory.quantity}</span>
+                  </div>
+                </li>
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Available Quantity</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {inventory.availableQuantity}
+                    </span>
+                  </div>
+                </li>
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Reserved Quantity</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {inventory.reservedQuantity}
+                    </span>
+                  </div>
+                </li>
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Reorder Threshold</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {inventory.reorderThreshold}
+                    </span>
+                  </div>
+                </li>
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Reorder Quantity</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {inventory.reorderQuantity}
+                    </span>
+                  </div>
+                </li>
+
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Back Orderable</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {inventory.backOrderable ? 'Yes' : 'No'}
+                    </span>
+                  </div>
+                </li>
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Last Stock Check</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {formatDateTime(inventory.lastStockCheck)}
+                    </span>
+                  </div>
+                </li>
+                <li className="row flex-wrap mb-3">
+                  <div className="col-6">
+                    <span className="fw-bold">Next Schedule Check</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {formatDateTime(inventory.nextScheduledCheck)}
+                    </span>
+                  </div>
+                </li>
+                <li className="row flex-wrap">
+                  <div className="col-6">
+                    <span className="fw-bold">In Stock</span>
+                  </div>
+                  <div className="col-6">
+                    <span className="text-muted">
+                      {inventory.inStock ? 'Yes' : 'No'}
+                    </span>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

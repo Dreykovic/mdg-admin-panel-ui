@@ -29,6 +29,7 @@ export interface User {
   recipes?: Recipe[];
   createdAt: Date;
   updatedAt: Date;
+  stockMovements?: StockMovement[];
 }
 
 export interface TokenFamily {
@@ -202,7 +203,7 @@ export interface Inventory {
   reorderThreshold: number;
   reorderQuantity: number;
   inStock: boolean;
-  backorderable: boolean;
+  backOrderable: boolean;
   lastStockCheck: Date | null;
   nextScheduledCheck: Date | null;
   productId: string | null;
@@ -222,7 +223,6 @@ export interface Warehouse {
 
 export interface StockMovement {
   id: string;
-  createdAt: Date;
   quantity: number;
   type: MovementType;
   notes: string | null;
@@ -231,6 +231,8 @@ export interface StockMovement {
   inventoryId: string;
   inventory?: Inventory;
   userId: string | null;
+  user?: User | null;
+  createdAt: Date;
 }
 
 export interface RecipeCategory {
