@@ -1,6 +1,7 @@
 import { ListResponse } from '@/types/api';
 import {
   Ingredient,
+  Inventory,
   MarginLevel,
   Origin,
   Product,
@@ -382,6 +383,20 @@ const apiSlice = baseApiSlice.injectEndpoints({
       }),
       invalidatesTags: ['STEPS'], // Invalider les caches
     }),
+
+    // Inventory
+    getInventory: builder.query<ListResponse<Inventory>, { productId: string }>(
+      {
+        query: (args) => {
+          const { productId } = args;
+
+          return {
+            url: `inventory/get/${productId}`,
+          };
+        },
+        providesTags: ['INVENTORY'], // Ajouter un tag
+      },
+    ),
   }),
   overrideExisting: false,
 });

@@ -78,7 +78,7 @@ const ProductDetailsPage = () => {
       </div>
       <div className="tab-content">
         <ProductOverviewTabPane product={product as Product} />
-        <ProductStockTabPane />
+        <ProductStockTabPane product={product as Product} />
       </div>
     </>
   );

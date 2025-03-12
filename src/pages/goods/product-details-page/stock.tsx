@@ -1,13 +1,13 @@
-const ProductStockTabPane = () => {
+import ProductInventory from '@/features/product-stock/components/inventory';
+import { Product } from '@/types/entity';
+type Props = {
+  product: Product;
+};
+const ProductStockTabPane = ({ product }: Props) => {
   return (
     <>
       <div className="tab-pane fade" id="grid-view">
-        <div className="row clearfix g-3">
-          <div className="col-lg-4"></div>
-          <div className="col-lg-8">
-            <div className="row row-cols-sm-1 row-cols-md-2 row-col-lg-3 row-cols-xl-2 row-cols-xxl-3"></div>
-          </div>
-        </div>
+        <ProductInventory />
       </div>
     </>
   );
