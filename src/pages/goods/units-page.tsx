@@ -10,8 +10,8 @@ import SearchInput from '@/components/ui/pagination/search-input';
 import UnitCreateForm from '@/features/units/components/unit-create-form';
 import UnitsTable from '@/features/units/components/unit-table';
 import { AppDispatch } from '@/store';
-import { useGetSomeUnitsQuery } from '@/store/base-api-slice';
-import { setPageName } from '@/store/page-slice';
+import { useGetSomeUnitsQuery } from '@/store/api';
+import { setPageName } from '@/store/slice/page-slice';
 
 const UnitsPage = () => {
   const dispatch = useDispatch<AppDispatch>();

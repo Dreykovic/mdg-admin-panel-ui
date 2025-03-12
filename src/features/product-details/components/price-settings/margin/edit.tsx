@@ -9,8 +9,8 @@ import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import { AppDispatch } from '@/store';
-import { useEditProductMutation } from '@/store/api-slice';
-import { useGetMarginsListQuery } from '@/store/api-slice';
+import { useGetMarginsListQuery } from '@/store/api/margin-level';
+import { useEditProductMutation } from '@/store/api/product';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 

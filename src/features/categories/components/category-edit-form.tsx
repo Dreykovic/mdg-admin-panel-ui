@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
-import { useEditCategoryMutation } from '@/store/api-slice';
+import { useEditCategoryMutation } from '@/store/api/category';
 import { ApiResponse } from '@/types/api';
 import { ProductCategory } from '@/types/entity';
 

@@ -9,12 +9,13 @@ import { AppDispatch } from '@/store';
 import {
   useDeleteIngredientMutation,
   useGetIngredientsQuery,
-} from '@/store/api-slice';
+} from '@/store/api/ingredient';
 import { Ingredient } from '@/types/entity';
 
 import IngredientCreateForm from './add-ingredient';
 import IngredientEditForm from './edit-ingredient';
 import IngredientItem from './ingredient-item';
+
 type Props = {
   recipeId: number;
 };

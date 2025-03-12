@@ -8,11 +8,9 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import UnitCreateForm from '@/features/units/components/unit-create-form';
 import { AppDispatch } from '@/store';
-import { useCreateIngredientMutation } from '@/store/api-slice';
-import {
-  useGetProductsListQuery,
-  useGetUnitsListQuery,
-} from '@/store/api-slice';
+import { useCreateIngredientMutation } from '@/store/api/ingredient';
+import { useGetProductsListQuery } from '@/store/api/product';
+import { useGetUnitsListQuery } from '@/store/api/unit-of-measure';
 import { ApiResponse } from '@/types/api';
 import { Ingredient } from '@/types/entity';
 

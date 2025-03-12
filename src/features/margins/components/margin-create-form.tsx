@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
-import { useCreateMarginMutation } from '@/store/api-slice';
+import { useCreateMarginMutation } from '@/store/api/margin-level';
 import { ApiResponse } from '@/types/api';
 import { MarginLevel } from '@/types/entity';
 

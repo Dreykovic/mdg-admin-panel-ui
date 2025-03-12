@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '@/store';
-import { setTheme } from '@/store/theme-slice';
+import { setTheme } from '@/store/slice/theme-slice';
 
 const ThemeSwitcher = () => {
   const currentTheme = useSelector(

@@ -4,6 +4,7 @@ type Props = {
   product: Product;
 };
 const ProductStockTabPane = ({ product }: Props) => {
+  console.log(product);
   return (
     <>
       <div className="tab-pane fade" id="grid-view">

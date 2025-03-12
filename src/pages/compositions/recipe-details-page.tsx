@@ -7,8 +7,8 @@ import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import RecipeDetails from '@/features/recipes/components/recipe-details';
 import { AppDispatch } from '@/store';
-import { useGetUniqueRecipeQuery } from '@/store/api-slice';
-import { setPageName } from '@/store/page-slice';
+import { useGetUniqueRecipeQuery } from '@/store/api/recipe';
+import { setPageName } from '@/store/slice/page-slice';
 
 const RecipeDetailsPage = () => {
   const dispatch = useDispatch<AppDispatch>();

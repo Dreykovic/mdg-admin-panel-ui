@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { authRouter, guestRouter } from '@/router';
 import { AppDispatch, RootState } from '@/store';
-import { setTheme } from '@/store/theme-slice';
+import { setTheme } from '@/store/slice/theme-slice';
 
 const App: React.FC = () => {
   const [router, setRouter] = useState(guestRouter);

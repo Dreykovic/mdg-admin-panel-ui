@@ -14,9 +14,9 @@ import {
   VolumeConversion,
 } from '@/types/entity';
 
-import { baseApiSlice } from './base-api-slice';
+import { apiSlice } from '.';
 
-const apiSlice = baseApiSlice.injectEndpoints({
+const apiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     /**Auth */
     signIn: builder.mutation({

@@ -10,8 +10,8 @@ import SearchInput from '@/components/ui/pagination/search-input';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import MarginsTable from '@/features/margins/components/margin-table';
 import { AppDispatch } from '@/store';
-import { useGetSomeMarginsQuery } from '@/store/base-api-slice';
-import { setPageName } from '@/store/page-slice';
+import { useGetSomeMarginsQuery } from '@/store/api';
+import { setPageName } from '@/store/slice/page-slice';
 
 const MarginsPage = () => {
   const dispatch = useDispatch<AppDispatch>();

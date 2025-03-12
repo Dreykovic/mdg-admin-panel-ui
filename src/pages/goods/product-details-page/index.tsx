@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import ErrorAlert from '@/components/ui/error-alert';
 import CardLoading from '@/components/ui/loading/card-loading';
 import { AppDispatch } from '@/store';
-import { useGetUniqueProductQuery } from '@/store/api-slice';
-import { setPageName } from '@/store/page-slice';
+import { useGetUniqueProductQuery } from '@/store/api/product';
+import { setPageName } from '@/store/slice/page-slice';
 import { Product } from '@/types/entity';
 
 import ProductOverviewTabPane from './overview';

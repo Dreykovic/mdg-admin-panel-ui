@@ -79,7 +79,7 @@ const baseQueryWithReAuth = async (args: any, api: any, extraOptions: any) => {
 };
 
 // Définition de l'API avec gestion des tokens
-export const baseApiSlice = createApi({
+export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReAuth,
   tagTypes: [
@@ -266,5 +266,5 @@ export const {
   /**Steps */
   useGetSomeStepsQuery,
   usePrefetch,
-} = baseApiSlice;
-export type PrefetchEndpoints = keyof (typeof baseApiSlice)['endpoints']; // 🔥 Récupère tous les endpoints
+} = apiSlice;
+export type PrefetchEndpoints = keyof (typeof apiSlice)['endpoints']; // 🔥 Récupère tous les endpoints

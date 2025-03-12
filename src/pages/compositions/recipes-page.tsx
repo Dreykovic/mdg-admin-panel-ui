@@ -10,8 +10,8 @@ import SearchInput from '@/components/ui/pagination/search-input';
 import RecipeCreateForm from '@/features/recipes/components/recipe-create-form';
 import RecipeList from '@/features/recipes/components/recipe-list';
 import { AppDispatch } from '@/store';
-import { useGetSomeRecipesQuery } from '@/store/base-api-slice';
-import { setPageName } from '@/store/page-slice';
+import { useGetSomeRecipesQuery } from '@/store/api';
+import { setPageName } from '@/store/slice/page-slice';
 
 const RecipesPage = () => {
   const dispatch = useDispatch<AppDispatch>();

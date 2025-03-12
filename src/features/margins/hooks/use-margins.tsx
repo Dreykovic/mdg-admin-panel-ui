@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';
-import { useDeleteMarginMutation } from '@/store/api-slice';
+import { useDeleteMarginMutation } from '@/store/api/margin-level';
 import { MarginLevel } from '@/types/entity';
 
 export const useMargins = () => {

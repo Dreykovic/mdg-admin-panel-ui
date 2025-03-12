@@ -10,8 +10,8 @@ import SearchInput from '@/components/ui/pagination/search-input';
 import CategoryCreateForm from '@/features/categories/components/category-create-form';
 import CategoryList from '@/features/categories/components/category-list';
 import { AppDispatch } from '@/store';
-import { useGetSomeCategoriesQuery } from '@/store/base-api-slice';
-import { setPageName } from '@/store/page-slice';
+import { useGetSomeCategoriesQuery } from '@/store/api';
+import { setPageName } from '@/store/slice/page-slice';
 
 const CategoriesPage = () => {
   const dispatch = useDispatch<AppDispatch>();

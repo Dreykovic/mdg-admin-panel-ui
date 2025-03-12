@@ -7,7 +7,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
-import { useCreateProductMutation } from '@/store/api-slice';
+import { useCreateProductMutation } from '@/store/api/product';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import AddProduct from '@/features/products/components/product-create-form';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/page-slice';
+import { setPageName } from '@/store/slice/page-slice';
 
 const AddProductPage = () => {
   const dispatch = useDispatch<AppDispatch>();

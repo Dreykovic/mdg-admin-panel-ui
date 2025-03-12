@@ -11,8 +11,8 @@ import ProductStats from '@/features/products/components/product-stats';
 import ProductTable from '@/features/products/components/products-table';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
-import { useGetSomeProductsQuery } from '@/store/base-api-slice';
-import { setPageName } from '@/store/page-slice';
+import { useGetSomeProductsQuery } from '@/store/api';
+import { setPageName } from '@/store/slice/page-slice';
 
 const ProductsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
