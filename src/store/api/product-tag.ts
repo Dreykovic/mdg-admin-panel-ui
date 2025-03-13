@@ -74,6 +74,20 @@ const productTagApi = apiSlice.injectEndpoints({
         { type: 'PRODUCT_TAGS', id: arg.productId },
       ],
     }),
+    // Get list of all product tags
+    getUniqueProductTagLinks: builder.query<
+      ListResponse<ProductTagLink[]>,
+      { productId: string }
+    >({
+      query: (args) => {
+        const { productId } = args;
+
+        return {
+          url: `catalog/product-catalog/tag-links/product/${productId}`,
+        };
+      },
+      providesTags: ['PRODUCT_TAGS'], // Ajouter un tag
+    }),
   }),
   overrideExisting: false,
 });
@@ -81,7 +95,7 @@ const productTagApi = apiSlice.injectEndpoints({
 // Export hooks for usage in functional components
 export const {
   useGetProductTagsListQuery,
-
+  useGetUniqueProductTagLinksQuery,
   useCreateProductTagMutation,
   useUpdateProductTagMutation,
   useDeleteProductTagMutation,
