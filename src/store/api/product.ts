@@ -26,7 +26,7 @@ const productApi = apiSlice.injectEndpoints({
           url: `catalog/product-catalog/products/details/${productId}`,
         };
       },
-      providesTags: ['PRODUCTS'], // Ajouter un tag
+      providesTags: ['PRODUCT'], // Ajouter un tag
     }),
 
     editProduct: builder.mutation({
@@ -35,7 +35,7 @@ const productApi = apiSlice.injectEndpoints({
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: ['PRODUCTS'], // Invalider les caches
+      invalidatesTags: ['PRODUCTS', 'PRODUCT'], // Invalider les caches
     }),
     deleteProduct: builder.mutation({
       query: (data: { id: string }) => ({
@@ -59,7 +59,7 @@ const productApi = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: ['PRODUCTS', 'VOLUME_CONVERSION'], // Invalider les caches
+      invalidatesTags: ['PRODUCT', 'VOLUME_CONVERSION'], // Invalider les caches
     }),
     deleteProductConversionSetting: builder.mutation({
       query: (data: { id: number }) => ({
@@ -67,7 +67,7 @@ const productApi = apiSlice.injectEndpoints({
         method: 'DELETE',
         body: data,
       }),
-      invalidatesTags: ['PRODUCTS', 'VOLUME_CONVERSION'], // Invalider les caches
+      invalidatesTags: ['PRODUCT', 'VOLUME_CONVERSION'], // Invalider les caches
     }),
   }),
   overrideExisting: false,

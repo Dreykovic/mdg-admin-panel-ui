@@ -88,6 +88,7 @@ export const apiSlice = createApi({
     'MARGINS',
     'UOM',
     'PRODUCTS',
+    'PRODUCT',
     'ORIGINS',
     'RECIPES',
     'STEPS',
