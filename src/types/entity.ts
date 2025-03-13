@@ -6,13 +6,17 @@ export type TokenStatus = 'ACTIVE' | 'REVOKED';
 
 export type VisibilityType = 'DRAFT' | 'VISIBLE' | 'HIDDEN' | 'ARCHIVED';
 
-export type MovementType =
-  | 'STOCK_IN'
-  | 'STOCK_OUT'
+export type MovementType = 'STOCK_IN' | 'STOCK_OUT';
+
+export type ReferenceType =
+  | 'ORDER'
+  | 'PURCHASE_ORDER'
   | 'ADJUSTMENT'
   | 'TRANSFER'
   | 'RETURN'
-  | 'DAMAGE';
+  | 'DAMAGE'
+  | 'OTHER'
+  | 'INVENTORY';
 
 export type UOMType = 'WEIGHT' | 'VOLUME' | 'OTHER';
 
@@ -226,7 +230,7 @@ export interface StockMovement {
   quantity: number;
   type: MovementType;
   notes: string | null;
-  referenceType: string | null;
+  referenceType: ReferenceType;
   referenceId: string | null;
   inventoryId: string;
   inventory?: Inventory;

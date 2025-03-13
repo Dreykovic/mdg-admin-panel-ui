@@ -1,51 +1,68 @@
-import { Icon0Circle } from 'react-bootstrap-icons';
+import { Table } from 'react-bootstrap';
 
 import { Inventory } from '@/types/entity';
 import { StockMovement } from '@/types/entity';
+import { formatDateTime } from '@/utils/format';
 
 type Prop = {
   inventory: Inventory;
 };
-const StockMvt = ({ inventory }: Prop) => {
+
+const StockMovementTable = ({ inventory }: Prop) => {
   const stockMovements: StockMovement[] = inventory.stockMovements ?? [];
   return (
-    <div>
-      <div className="card mb-3">
-        <div className="card-body">
-          <table
-            id="myProjectTable"
-            className="table table-hover align-middle mb-0"
-            style={{ width: '100%' }}
-          >
-            <thead>
-              <tr>
-                <th>Author</th>
-                <th>Type</th>
-                <th>Note</th>
-                <th>Quantity</th>
-                <th>Reference Type</th>
+    <div className="card">
+      <div className="card-body">
+        <h2 className="mb-3 text-primary">📦 Stock Movements</h2>
+        <Table striped bordered hover responsive className="shadow-sm">
+          <thead className="bg-dark text-light">
+            <tr>
+              <th>#</th>
+              <th>Quantity</th>
+              <th>Type</th>
+              <th>Reference Type</th>
+              <th>Reference ID</th>
+              <th>Notes</th>
+              <th>User</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stockMovements.map((movement, index) => (
+              <tr key={movement.id}>
+                <td>{index + 1}</td>
+                <td
+                  className={
+                    movement.quantity > 0 ? 'text-success' : 'text-danger'
+                  }
+                >
+                  {movement.quantity}
+                </td>
+                <td>
+                  <span
+                    className={`badge ${
+                      movement.type === 'STOCK_IN'
+                        ? 'bg-success'
+                        : movement.type === 'STOCK_OUT'
+                          ? 'bg-danger'
+                          : 'bg-warning text-dark'
+                    }`}
+                  >
+                    {movement.type.replace('_', ' ')}
+                  </span>
+                </td>
+                <td>{movement.referenceType ?? 'N/A'}</td>
+                <td>{movement.referenceId ?? 'N/A'}</td>
+                <td>{movement.notes ?? '—'}</td>
+                <td>{movement.userId ? movement.user?.username : '—'}</td>
+                <td>{formatDateTime(movement.createdAt)}</td>
               </tr>
-            </thead>
-            <tbody>
-              {stockMovements.map((stockMvt) => (
-                <tr key={stockMvt.id}>
-                  <td>
-                    <span className="fw-bold ms-1">
-                      {stockMvt.user?.username}
-                    </span>
-                  </td>
-                  <td>{stockMvt.type}</td>
-                  <td>{stockMvt.notes}</td>
-                  <td>{stockMvt.quantity}</td>
-                  <td>{stockMvt.referenceType}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </Table>
       </div>
     </div>
   );
 };
 
-export default StockMvt;
+export default StockMovementTable;
