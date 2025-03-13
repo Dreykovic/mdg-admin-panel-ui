@@ -1,16 +1,16 @@
 // src/App.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import AuthGuard from '@/components/auth/auth-guard'; // Create this component
+import AuthGuard from '@/components/auth/auth-guard';
+import LoadingFallback from '@/components/ui/loading-fallback';
 import Layout from '@/layouts';
 import { authRoutesConfig, guestRoutesConfig } from '@/router/config';
 import { AppDispatch, RootState } from '@/store';
 import { setTheme } from '@/store/slice/theme-slice';
 
-// Create a single router with conditional rendering based on auth state
 const App: React.FC = () => {
   const isAuthenticated = useSelector(
     (state: RootState) => state.auth.isAuthenticated,
@@ -20,12 +20,10 @@ const App: React.FC = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
 
-  // Handle theme changes
   useEffect(() => {
     dispatch(setTheme({ theme: currentTheme }));
   }, [currentTheme, dispatch]);
 
-  // Create router dynamically but only once per auth state change
   const router = React.useMemo(() => {
     return createBrowserRouter([
       {
@@ -37,7 +35,9 @@ const App: React.FC = () => {
                 path,
                 element: (
                   <AuthGuard isAuthenticated={isAuthenticated}>
-                    <Component />
+                    <Suspense fallback={<LoadingFallback />}>
+                      <Component />
+                    </Suspense>
                   </AuthGuard>
                 ),
                 handle: { routeName: name },
@@ -46,7 +46,11 @@ const App: React.FC = () => {
           : Object.values(guestRoutesConfig).map(
               ({ path, component: Component, name }) => ({
                 path,
-                element: <Component />,
+                element: (
+                  <Suspense fallback={<LoadingFallback />}>
+                    <Component />
+                  </Suspense>
+                ),
                 handle: { routeName: name },
               }),
             ),

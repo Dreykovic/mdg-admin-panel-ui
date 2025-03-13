@@ -1,25 +1,41 @@
-// src/routes/config.ts
+// src/router/config.ts
 import React from 'react';
 
-import NotFound from '@/components/ui/not-found'; // Add this component for 404 handling
-// Resources
-import Changelog from '@/pages/changelog';
-// Catalog - Compositions
-import RecipeDetailsPage from '@/pages/compositions/recipe-details-page';
-import RecipesPage from '@/pages/compositions/recipes-page';
-// Catalog - Goods
-import InventoryCreatePage from '@/pages/goods/add-inventory-page';
-import AddProductPage from '@/pages/goods/add-product-page';
-import CategoriesPage from '@/pages/goods/categories-page';
-import MarginsPage from '@/pages/goods/margins-page';
-import OriginsPage from '@/pages/goods/origins-page';
-import ProductDetailsPage from '@/pages/goods/product-details-page';
-import ProductsPage from '@/pages/goods/products-page';
-import SuppliersPage from '@/pages/goods/suppliers-page';
-import UnitsPage from '@/pages/goods/units-page';
-// Home & Auth
+// Home & Auth - Keep these eager loaded for fast initial access
+import NotFound from '@/components/ui/not-found';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
+
+// Lazy load all other components
+// Goods
+const CategoriesPage = React.lazy(
+  () => import('@/pages/goods/categories-page'),
+);
+const OriginsPage = React.lazy(() => import('@/pages/goods/origins-page'));
+const SuppliersPage = React.lazy(() => import('@/pages/goods/suppliers-page'));
+const MarginsPage = React.lazy(() => import('@/pages/goods/margins-page'));
+const UnitsPage = React.lazy(() => import('@/pages/goods/units-page'));
+const ProductsPage = React.lazy(() => import('@/pages/goods/products-page'));
+const ProductDetailsPage = React.lazy(
+  () => import('@/pages/goods/product-details-page'),
+);
+const InventoryCreatePage = React.lazy(
+  () => import('@/pages/goods/add-inventory-page'),
+);
+const AddProductPage = React.lazy(
+  () => import('@/pages/goods/add-product-page'),
+);
+
+// Compositions
+const RecipesPage = React.lazy(
+  () => import('@/pages/compositions/recipes-page'),
+);
+const RecipeDetailsPage = React.lazy(
+  () => import('@/pages/compositions/recipe-details-page'),
+);
+
+// Resources
+const Changelog = React.lazy(() => import('@/pages/changelog'));
 
 /**
  * Route configuration type
@@ -31,6 +47,9 @@ export interface RouteConfig {
   component: React.ComponentType;
   pageName: string;
 }
+
+// Rest of your route configuration code remains the same
+// ...
 
 /**
  * Type for route configuration maps
