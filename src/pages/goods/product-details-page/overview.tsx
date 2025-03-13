@@ -1,5 +1,5 @@
-import ProductConversionCard from '@/features/product-details/conversion';
-import ProductMetadata from '@/features/product-details/metadata';
+import ProductConversionCard from '@/features/product-details/conversion/components';
+import ProductMetadata from '@/features/product-details/metadata/components';
 import ProductOrganizeCard from '@/features/product-details/organize';
 import ProductPriceSettings from '@/features/product-details/price-settings';
 import ProductStateCard from '@/features/product-details/state';

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Product } from '@/types/entity';
 
 import ProductMetadataEditForm from './edit';
+import ProductTagsSection from './product-tags-section';
 
 type Props = {
   product: Product;
@@ -10,8 +11,14 @@ type Props = {
 
 const ProductMetadata = ({ product }: Props) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0); // Pour forcer le rafraîchissement des données
 
   const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
+
+  // Callback pour rafraîchir les données après modification des tags
+  const handleTagsUpdated = () => {
+    setRefreshKey((prev) => prev + 1);
+  };
 
   return (
     <>
@@ -34,10 +41,10 @@ const ProductMetadata = ({ product }: Props) => {
                   <button
                     onClick={toggleEditModal}
                     className="btn btn-sm btn-outline-primary rounded-pill"
-                    aria-label="Edit product"
+                    aria-label="Modifier le produit"
                   >
                     <i className="icofont-edit me-1"></i>
-                    Edit
+                    Modifier
                   </button>
                 </div>
 
@@ -45,15 +52,12 @@ const ProductMetadata = ({ product }: Props) => {
                   <p className="text-secondary mb-0">{product.description}</p>
                 </div>
 
-                {/* Additional metadata could be added here */}
-                <div className="d-flex flex-wrap gap-2 mt-3 pt-3 border-top">
-                  {product.productTagLinks &&
-                    product.productTagLinks.map((productTagLink, index) => (
-                      <span key={index} className="badge bg-light text-dark">
-                        {productTagLink.productTag?.name}
-                      </span>
-                    ))}
-                </div>
+                {/* Section des tags avec rafraîchissement */}
+                <ProductTagsSection
+                  key={refreshKey}
+                  product={product}
+                  onTagsUpdated={handleTagsUpdated}
+                />
               </div>
             </div>
           </div>
