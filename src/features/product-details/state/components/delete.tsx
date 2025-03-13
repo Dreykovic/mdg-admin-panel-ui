@@ -1,56 +1,25 @@
-import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
-import { authRoutesConfig } from '@/router/config';
-import { AppDispatch } from '@/store';
-import { useDeleteProductMutation } from '@/store/api/product';
 import { Product } from '@/types/entity';
+
+import { useProductDeletion } from '../hooks/use-product-deletion';
 
 type Props = {
   product: Product;
 };
 
 const ProductDeleteBlock = ({ product }: Props) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
+  const { handleDeletion, isLoading } = useProductDeletion(product.id);
 
   const handleDeleteItemModalClose = () => setShowDeleteItemModal(false);
   const handleDeleteItemModalShow = () => setShowDeleteItemModal(true);
-  const [deleteProduct, { isLoading }] = useDeleteProductMutation();
 
-  const handleDeletion = useCallback(async () => {
-    try {
-      const response = await deleteProduct({
-        id: product.id,
-      }).unwrap();
-
-      if (response.success) {
-        navigate(authRoutesConfig.products.path);
-        dispatch(
-          showAlert({
-            title: 'Success !',
-            message: response.message,
-          }),
-        );
-      }
-    } catch (error) {
-      console.error(error);
-
-      dispatch(
-        showAlert({
-          title: 'Error !',
-          message: 'An error occurred during deletion' + JSON.stringify(error),
-          success: false,
-        }),
-      );
-    } finally {
-      handleDeleteItemModalClose();
-    }
-  }, [product.id, deleteProduct, dispatch, navigate]);
+  const handleConfirmedDeletion = async () => {
+    await handleDeletion();
+    handleDeleteItemModalClose();
+  };
 
   return (
     <>
@@ -75,7 +44,7 @@ const ProductDeleteBlock = ({ product }: Props) => {
         show={showDeleteItemModal}
         handleClose={handleDeleteItemModalClose}
         isLoading={isLoading}
-        deleteHandler={handleDeletion}
+        deleteHandler={handleConfirmedDeletion}
       />
     </>
   );
