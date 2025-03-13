@@ -2,7 +2,7 @@ import ProductConversionCard from '@/features/product-details/conversion/compone
 import ProductMetadata from '@/features/product-details/metadata/components';
 import ProductOrganizeCard from '@/features/product-details/organize';
 import ProductPriceSettings from '@/features/product-details/price-settings';
-import ProductStateCard from '@/features/product-details/state';
+import ProductStateCard from '@/features/product-details/state/components';
 import { Product } from '@/types/entity';
 
 type Props = {
