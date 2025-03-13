@@ -1,8 +1,8 @@
-import ProductConversionCard from '@/features/product-details/components/conversion';
-import ProductMetadata from '@/features/product-details/components/metadata';
-import ProductOrganizeCard from '@/features/product-details/components/organize';
-import ProductPriceSettings from '@/features/product-details/components/price-settings';
-import ProductStateCard from '@/features/product-details/components/state';
+import ProductConversionCard from '@/features/product-details/conversion';
+import ProductMetadata from '@/features/product-details/metadata';
+import ProductOrganizeCard from '@/features/product-details/organize';
+import ProductPriceSettings from '@/features/product-details/price-settings';
+import ProductStateCard from '@/features/product-details/state';
 import { Product } from '@/types/entity';
 
 type Props = {
