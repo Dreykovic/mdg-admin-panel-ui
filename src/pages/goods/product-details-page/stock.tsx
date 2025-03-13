@@ -5,7 +5,7 @@ import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import ProductInventory from '@/features/product-stock/inventory/components';
 import InventoryCreateForm from '@/features/product-stock/inventory/components/create-inventory-form';
-import StockMvt from '@/features/product-stock/stock-mvt';
+import StockMvt from '@/features/product-stock/stock-mvt/components';
 import { useGetInventoryQuery } from '@/store/api/inventory';
 import { Inventory, Product } from '@/types/entity';
 type Props = {
@@ -50,7 +50,7 @@ const ProductStockTabPane = ({ product }: Props) => {
               <ProductInventory inventory={inventory as Inventory} />
             </div>
             <div className="col-lg-8">
-              <StockMvt />
+              <StockMvt inventory={inventory as Inventory} />
             </div>
           </div>
         ) : (
