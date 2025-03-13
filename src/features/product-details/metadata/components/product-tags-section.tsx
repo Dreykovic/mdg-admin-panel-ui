@@ -77,6 +77,7 @@ const ProductTagsSection = ({
         show={isModalOpen}
         handleClose={() => setIsModalOpen(false)}
         product={product}
+        productTagLinks={productTagLinks}
         onTagsUpdated={onTagsUpdated}
       />
     </div>

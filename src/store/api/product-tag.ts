@@ -53,26 +53,17 @@ const productTagApi = apiSlice.injectEndpoints({
         method: 'POST',
         body: data,
       }),
-      invalidatesTags: (result, error, arg) => [
-        'PRODUCT_TAGS',
-        { type: 'PRODUCT_TAGS', id: arg.productId },
-      ],
+      invalidatesTags: ['PRODUCT_TAGS'],
     }),
 
     // Remove a tag from a product
-    removeProductTagLink: builder.mutation<
-      void,
-      { productId: string; productTagId: number }
-    >({
+    removeProductTagLink: builder.mutation<void, { id: number }>({
       query: (data) => ({
         url: `catalog/product-catalog/tag-links/delete`,
         method: 'DELETE',
         body: data,
       }),
-      invalidatesTags: (result, error, arg) => [
-        'PRODUCT_TAGS',
-        { type: 'PRODUCT_TAGS', id: arg.productId },
-      ],
+      invalidatesTags: ['PRODUCT_TAGS'],
     }),
     // Get list of all product tags
     getUniqueProductTagLinks: builder.query<

@@ -1,5 +1,5 @@
 // File: ProductTagsModal.tsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Tab, Tabs } from 'react-bootstrap';
 
 import {
@@ -8,7 +8,7 @@ import {
   useRemoveProductTagLinkMutation,
   useCreateProductTagMutation,
 } from '@/store/api/product-tag';
-import { Product, ProductTag } from '@/types/entity';
+import { Product, ProductTag, ProductTagLink } from '@/types/entity';
 
 import TagBadge from './tag-badge';
 
@@ -16,6 +16,7 @@ type ProductTagsModalProps = {
   show: boolean;
   handleClose: () => void;
   product: Product;
+  productTagLinks: ProductTagLink[] | undefined;
   onTagsUpdated?: () => void;
 };
 
@@ -24,6 +25,7 @@ const ProductTagsModal = ({
   handleClose,
   product,
   onTagsUpdated,
+  productTagLinks,
 }: ProductTagsModalProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('manage');
@@ -42,25 +44,12 @@ const ProductTagsModal = ({
   const [createTag, { isLoading: isCreatingTag }] =
     useCreateProductTagMutation();
 
-  // Local state to track current product tags
-  const [productTags, setProductTags] = useState<ProductTag[]>([]);
-
-  // Initialize product tags
-  useEffect(() => {
-    if (product.productTagLinks) {
-      const currentTags = product.productTagLinks.map(
-        (link) => link.productTag,
-      );
-      setProductTags(currentTags as ProductTag[]);
-    }
-  }, [product, show]);
-
   // Filtered tags based on search term
   const filteredTags =
     tagsData?.content.productTags.filter(
       (tag) =>
         tag.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        !productTags.some((pt) => pt.id === tag.id),
+        !productTagLinks?.some((pt) => pt?.productTag?.id === tag.id),
     ) || [];
 
   // Handle adding a tag to the product
@@ -74,14 +63,6 @@ const ProductTagsModal = ({
       console.log('data, ', data);
       await addTagLink(data);
 
-      // If successful, find the tag from the full list and add to local state
-      const tagToAdd = tagsData?.content.productTags.find(
-        (tag) => tag.id === tagId,
-      );
-      if (tagToAdd) {
-        setProductTags([...productTags, tagToAdd]);
-      }
-
       if (onTagsUpdated) onTagsUpdated();
     } catch (error) {
       console.error('Failed to add tag:', error);
@@ -89,15 +70,13 @@ const ProductTagsModal = ({
   };
 
   // Handle removing a tag from the product
-  const handleRemoveTag = async (tagId: number) => {
+  const handleRemoveTag = async (tagLinkId: number) => {
     try {
       await removeTagLink({
-        productId: product.id,
-        productTagId: tagId,
+        id: tagLinkId,
       });
       console.log(isRemovingTag);
       // Update local state
-      setProductTags(productTags.filter((tag) => tag.id !== tagId));
 
       if (onTagsUpdated) onTagsUpdated();
     } catch (error) {
@@ -148,7 +127,7 @@ const ProductTagsModal = ({
       size="lg"
     >
       <Modal.Header closeButton>
-        <Modal.Title>Gestion des tags</Modal.Title>
+        <Modal.Title>Tags Manager</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Tabs
@@ -156,21 +135,19 @@ const ProductTagsModal = ({
           onSelect={(k) => setActiveTab(k || 'manage')}
           className="mb-4"
         >
-          <Tab eventKey="manage" title="Gérer les tags">
+          <Tab eventKey="manage" title="Manage Tags">
             {/* Current Tags */}
             <div className="mb-4">
-              <h6 className="fw-bold mb-2">Tags actuels</h6>
+              <h6 className="fw-bold mb-2">Current Tags</h6>
               <div className="d-flex flex-wrap gap-2">
-                {productTags.length === 0 ? (
-                  <span className="text-muted fst-italic">
-                    Aucun tag assigné
-                  </span>
+                {productTagLinks?.length === 0 ? (
+                  <span className="text-muted fst-italic">No assigned tag</span>
                 ) : (
-                  productTags.map((tag) => (
+                  productTagLinks?.map((tagLink, index) => (
                     <TagBadge
-                      key={tag.id}
-                      tag={tag}
-                      onRemove={() => handleRemoveTag(tag.id)}
+                      key={index}
+                      tag={tagLink?.productTag as ProductTag}
+                      onRemove={() => handleRemoveTag(tagLink?.id as number)}
                     />
                   ))
                 )}
@@ -179,7 +156,7 @@ const ProductTagsModal = ({
 
             {/* Search & Add Tags */}
             <div>
-              <h6 className="fw-bold mb-2">Ajouter des tags</h6>
+              <h6 className="fw-bold mb-2">Add tags</h6>
               <div className="input-group mb-3">
                 <span className="input-group-text bg-light border-end-0">
                   <i className="icofont-search-1"></i>
@@ -187,7 +164,7 @@ const ProductTagsModal = ({
                 <input
                   type="text"
                   className="form-control border-start-0 ps-0"
-                  placeholder="Rechercher des tags..."
+                  placeholder="Search Tags..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -199,7 +176,7 @@ const ProductTagsModal = ({
                     className="spinner-border spinner-border-sm text-primary"
                     role="status"
                   >
-                    <span className="visually-hidden">Chargement...</span>
+                    <span className="visually-hidden">Loading...</span>
                   </div>
                 </div>
               ) : (
@@ -211,7 +188,7 @@ const ProductTagsModal = ({
                     {filteredTags.length === 0 ? (
                       <div className="text-center w-100">
                         <span className="text-muted fst-italic">
-                          Aucun tag trouvé
+                          No tag found
                         </span>
                         <div className="mt-2">
                           <Button
@@ -220,7 +197,7 @@ const ProductTagsModal = ({
                             onClick={() => setActiveTab('create')}
                           >
                             <i className="icofont-plus me-1"></i>
-                            Créer un nouveau tag
+                            Create new tag
                           </Button>
                         </div>
                       </div>
@@ -256,7 +233,7 @@ const ProductTagsModal = ({
                             onClick={() => setActiveTab('create')}
                           >
                             <i className="icofont-plus me-1"></i>
-                            Créer un nouveau tag
+                            Create new tag
                           </Button>
                         </div>
                       </>
@@ -267,11 +244,11 @@ const ProductTagsModal = ({
             </div>
           </Tab>
 
-          <Tab eventKey="create" title="Créer un tag">
+          <Tab eventKey="create" title="Create Tag">
             <form>
               <div className="mb-3">
                 <label className="form-label">
-                  Nom du tag <span className="text-danger">*</span>
+                  Tag Name<span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
@@ -283,7 +260,7 @@ const ProductTagsModal = ({
               </div>
 
               <div className="mb-3">
-                <label className="form-label">Description (Optionnel)</label>
+                <label className="form-label">Description (Optional)</label>
                 <textarea
                   className="form-control"
                   value={newTagDescription}
@@ -306,10 +283,10 @@ const ProductTagsModal = ({
                         role="status"
                         aria-hidden="true"
                       ></span>
-                      Création en cours...
+                      creations...
                     </>
                   ) : (
-                    <>Créer et ajouter</>
+                    <>Create and add</>
                   )}
                 </Button>
               </div>
@@ -319,7 +296,7 @@ const ProductTagsModal = ({
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onModalClose}>
-          Fermer
+          Close
         </Button>
       </Modal.Footer>
     </Modal>
