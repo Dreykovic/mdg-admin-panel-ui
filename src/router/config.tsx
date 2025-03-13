@@ -4,6 +4,7 @@
 import Changelog from '@/pages/changelog';
 import RecipeDetailsPage from '@/pages/compositions/recipe-details-page';
 import RecipesPage from '@/pages/compositions/recipes-page';
+import InventoryCreatePage from '@/pages/goods/add-inventory-page';
 import AddProductPage from '@/pages/goods/add-product-page';
 import CategoriesPage from '@/pages/goods/categories-page';
 import MarginsPage from '@/pages/goods/margins-page';
@@ -86,6 +87,15 @@ export const authRoutesConfig: RoutesConfigType = {
     path: '/catalog/goods/products/details/:productId',
     component: ProductDetailsPage,
     pageName: 'Product Details Page',
+  },
+  addInventory: {
+    navLink: 'addInventoryNavId',
+
+    name: 'add-inventory',
+
+    path: '/catalog/goods/products/add-inventory/:sku',
+    component: InventoryCreatePage,
+    pageName: 'Inventory Create Page',
   },
   addProduct: {
     navLink: 'addProductNavId',

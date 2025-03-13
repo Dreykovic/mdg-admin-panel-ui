@@ -5,10 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
 import { useCreateProductMutation } from '@/store/api/product';
-import { ApiResponse } from '@/types/api';
+import { ListResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
 import Stepper from './stepper';
@@ -43,8 +42,9 @@ const AddProduct = () => {
   const handleSubmit = async (data: any) => {
     try {
       if (data) {
-        const response: ApiResponse<Product> =
+        const response: ListResponse<Product> =
           await createProduct(data).unwrap();
+        console.log(response);
 
         if (response.success) {
           dispatch(
@@ -53,7 +53,10 @@ const AddProduct = () => {
               message: `${response.message}`,
             }),
           );
-          navigate(authRoutesConfig.products.path);
+          // navigate(authRoutesConfig.products.path);
+          navigate(
+            `/catalog/goods/products/add-inventory/${response.content.product.sku}`,
+          );
         }
       }
     } catch (error) {
