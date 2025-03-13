@@ -68,7 +68,7 @@ const InventoryCreateForm = ({
                         htmlFor={`inventoryMetaData.${field}`}
                         className="form-label required"
                       >
-                        {field === 'inStock' ? 'In Stock' : 'Backorderable'}
+                        {field === 'inStock' ? 'In Stock' : 'Back Orderable'}
                       </label>
                       <Field
                         name={`inventoryMetaData.${field}`}
