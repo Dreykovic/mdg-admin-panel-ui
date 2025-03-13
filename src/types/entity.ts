@@ -175,7 +175,7 @@ export interface Product {
   supplierId: number;
   marginLevelId: number;
   ingredients?: Ingredient[];
-  ProductTagLinks?: ProductTagLink[];
+  productTagLinks?: ProductTagLink[];
   inventory?: Inventory | null;
   images?: ProductImage[];
   origin?: Origin;

@@ -9,58 +9,61 @@ type Props = {
 };
 
 const ProductMetadata = ({ product }: Props) => {
-  const [showUpdateProductMetadataModal, setShowUpdateProductMetadataModal] =
-    useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const handleUpdateProductMetadataModalClose = () =>
-    setShowUpdateProductMetadataModal(false);
-  const handleUpdateProductMetadataModalShow = () =>
-    setShowUpdateProductMetadataModal(true);
+  const toggleEditModal = () => setIsEditModalOpen(!isEditModalOpen);
+
   return (
     <>
-      <div className="card teacher-card shadow">
-        <div className="card-body  d-flex mem-list">
-          <div className="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
-            <div
-              className=" d-flex justify-content-center align-items-center rounded"
-              style={{
-                width: '100%',
-                height: '200px', // Définissez une hauteur par défaut
-                maxWidth: '400px', // Largeur maximale pour un rendu propre
-                margin: 'auto', // Centre horizontalement dans les conteneurs
-              }}
-            >
-              <i
-                className="icofont-honey xl shadow-sm"
-                style={{
-                  fontSize: '7rem', // Taille de l'icône
-                  // color: '#fff', // Couleur blanche pour contraste
-                }}
-              ></i>
+      <div className="card shadow rounded-3 border-0 overflow-hidden">
+        <div className="card-body p-0">
+          <div className="row g-0">
+            {/* Product Image/Icon Column */}
+            <div className="col-md-4 bg-light d-flex align-items-center justify-content-center p-4">
+              <div className="text-center">
+                <i className="icofont-honey fs-1 text-primary mb-3"></i>
+                <h6 className="d-md-none fw-bold mt-2">{product.name}</h6>
+              </div>
             </div>
-          </div>
 
-          <div className="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
-            <h6 className="mb-0 mt-2  fw-bold d-block fs-6">{product.name}</h6>
+            {/* Product Information Column */}
+            <div className="col-md-8">
+              <div className="p-4">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h5 className="fw-bold d-none d-md-block">{product.name}</h5>
+                  <button
+                    onClick={toggleEditModal}
+                    className="btn btn-sm btn-outline-primary rounded-pill"
+                    aria-label="Edit product"
+                  >
+                    <i className="icofont-edit me-1"></i>
+                    Edit
+                  </button>
+                </div>
 
-            <div className="video-setting-icon mt-3 pt-3 border-top">
-              <p>{product.description}</p>
-            </div>
-            <div className="d-flex flex-wrap align-items-center ct-btn-set">
-              <a
-                href="#"
-                className="btn btn-dark btn-sm mt-1"
-                onClick={handleUpdateProductMetadataModalShow}
-              >
-                <i className="icofont-edit me-2 fs-6"></i>Edit
-              </a>
+                <div className="mb-4">
+                  <p className="text-secondary mb-0">{product.description}</p>
+                </div>
+
+                {/* Additional metadata could be added here */}
+                <div className="d-flex flex-wrap gap-2 mt-3 pt-3 border-top">
+                  {product.productTagLinks &&
+                    product.productTagLinks.map((productTagLink, index) => (
+                      <span key={index} className="badge bg-light text-dark">
+                        {productTagLink.productTag?.name}
+                      </span>
+                    ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Edit Modal */}
       <ProductMetadataEditForm
-        show={showUpdateProductMetadataModal}
-        handleClose={handleUpdateProductMetadataModalClose}
+        show={isEditModalOpen}
+        handleClose={toggleEditModal}
         product={product}
       />
     </>
