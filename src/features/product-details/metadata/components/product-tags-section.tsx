@@ -1,6 +1,9 @@
 // File: ProductTagsSection.tsx
 import { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 
+import ErrorAlert from '@/components/ui/error-alert';
+import { useGetUniqueProductTagLinksQuery } from '@/store/api/product-tag';
 import { Product, ProductTag } from '@/types/entity';
 
 import ProductTagsModal from './product-tags-modal';
@@ -16,10 +19,31 @@ const ProductTagsSection = ({
   onTagsUpdated,
 }: ProductTagsSectionProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    data: response,
+    isFetching,
+    isError,
+    error,
+  } = useGetUniqueProductTagLinksQuery(
+    { productId: product.id as string },
+    {
+      refetchOnMountOrArgChange: false,
+      refetchOnReconnect: true,
+    },
+  );
+
+  if (isFetching) {
+    return <Spinner animation="border" />;
+  }
+
+  if (isError) {
+    return <ErrorAlert error={error} />;
+  }
+
+  const productTagLinks = response?.content.productTagLinks;
 
   // Get current product tags
-  const currentTags =
-    product.productTagLinks?.map((link) => link.productTag) || [];
+  const currentTags = productTagLinks?.map((link) => link.productTag) || [];
 
   return (
     <div className="mt-3 pt-3 border-top">
@@ -35,7 +59,11 @@ const ProductTagsSection = ({
       </div>
 
       <div className="d-flex flex-wrap gap-2">
-        {currentTags.length > 0 ? (
+        {isFetching ? (
+          <Spinner animation="border" />
+        ) : isError ? (
+          <ErrorAlert error={error} />
+        ) : currentTags.length > 0 ? (
           currentTags.map((tag, index) => (
             <TagBadge key={index} tag={tag as ProductTag} />
           ))
