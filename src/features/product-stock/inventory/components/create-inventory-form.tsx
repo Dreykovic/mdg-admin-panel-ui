@@ -14,6 +14,16 @@ const InventoryCreateForm = ({
     sku,
   );
 
+  // Définition des champs du formulaire pour une meilleure maintenance
+  const numberFields = [
+    'quantity',
+    'reorderThreshold',
+    'reorderQuantity',
+    'availableQuantity',
+  ];
+
+  const booleanFields = ['inStock', 'backOrderable'];
+
   return (
     <Modal
       show={show}
@@ -21,27 +31,23 @@ const InventoryCreateForm = ({
       backdrop="static"
       keyboard={false}
       centered
+      size="lg"
     >
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, values }) => (
           <Form>
             <Modal.Header closeButton>
-              <Modal.Title>Add Inventory</Modal.Title>
+              <Modal.Title>Add Inventory for SKU: {sku}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-              <div className="modal-content">
-                <div className="modal-body">
-                  {[
-                    'quantity',
-                    'reorderThreshold',
-                    'reorderQuantity',
-                    'availableQuantity',
-                  ].map((field) => (
+              <div className="row">
+                <div className="col-md-6">
+                  {numberFields.map((field) => (
                     <div className="mb-3" key={field}>
                       <label
                         htmlFor={`inventoryMetaData.${field}`}
@@ -52,7 +58,8 @@ const InventoryCreateForm = ({
                       <Field
                         name={`inventoryMetaData.${field}`}
                         type="number"
-                        className="form-control"
+                        min="0"
+                        className={`form-control `}
                       />
                       <ErrorMessage
                         name={`inventoryMetaData.${field}`}
@@ -61,8 +68,10 @@ const InventoryCreateForm = ({
                       />
                     </div>
                   ))}
+                </div>
 
-                  {['inStock', 'backOrderable'].map((field) => (
+                <div className="col-md-6">
+                  {booleanFields.map((field) => (
                     <div className="mb-3" key={field}>
                       <label
                         htmlFor={`inventoryMetaData.${field}`}
@@ -73,7 +82,7 @@ const InventoryCreateForm = ({
                       <Field
                         name={`inventoryMetaData.${field}`}
                         as="select"
-                        className="form-control"
+                        className={`form-select `}
                       >
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -85,6 +94,33 @@ const InventoryCreateForm = ({
                       />
                     </div>
                   ))}
+
+                  {/* Status Overview */}
+                  <div className="alert alert-info mt-4">
+                    <strong>Status Overview:</strong>
+                    <ul className="mb-0 mt-2">
+                      {values.inventoryMetaData?.quantity > 0 && (
+                        <li>
+                          You have {values.inventoryMetaData.quantity} items in
+                          inventory
+                        </li>
+                      )}
+                      {values.inventoryMetaData?.availableQuantity <
+                        values.inventoryMetaData?.reorderThreshold && (
+                        <li className="text-warning">
+                          Available quantity is below reorder threshold
+                        </li>
+                      )}
+                      {values.inventoryMetaData?.inStock === false && (
+                        <li className="text-danger">
+                          Product is marked as out of stock
+                        </li>
+                      )}
+                      {values.inventoryMetaData?.backOrderable === true && (
+                        <li>Product can be back ordered</li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </Modal.Body>
@@ -95,9 +131,9 @@ const InventoryCreateForm = ({
                 type="button"
                 onClick={handleClose}
               >
-                Close
+                Cancel
               </button>
-              <LoadingButton isLoading={isSubmitting} />
+              <LoadingButton isLoading={isSubmitting} text="Save Inventory" />
             </Modal.Footer>
           </Form>
         )}
