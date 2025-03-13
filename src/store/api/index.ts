@@ -93,7 +93,7 @@ export const apiSlice = createApi({
     'STEPS',
     'INGREDIENTS',
     'VOLUME_CONVERSION',
-    'INVENTORY',
+    'INVENTORIES',
   ], // Exemple : tags pour cache invalidation
   endpoints: (builder) => ({
     /**Categories */

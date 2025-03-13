@@ -15,9 +15,30 @@ const inventoryApi = apiSlice.injectEndpoints({
             url: `inventory/get/${productId}`,
           };
         },
-        providesTags: ['INVENTORY'], // Ajouter un tag
+        providesTags: ['INVENTORIES'], // Ajouter un tag
       },
     ),
+    createInventory: builder.mutation({
+      query: (data: {
+        sku: string;
+        inventoryMetaData: Partial<Inventory>;
+      }) => ({
+        url: 'inventory/create',
+        method: 'POST',
+        body: {
+          sku: data.sku,
+          inventoryMetaData: {
+            quantity: data.inventoryMetaData.quantity,
+            reorderThreshold: data.inventoryMetaData.reorderThreshold,
+            reorderQuantity: data.inventoryMetaData.reorderQuantity,
+            availableQuantity: data.inventoryMetaData.availableQuantity,
+            inStock: data.inventoryMetaData.inStock,
+            backOrderable: data.inventoryMetaData.backOrderable,
+          },
+        },
+      }),
+      invalidatesTags: ['INVENTORIES'],
+    }),
   }),
   overrideExisting: false,
 });
@@ -26,4 +47,5 @@ const inventoryApi = apiSlice.injectEndpoints({
 export const {
   // Inventory
   useGetInventoryQuery,
+  useCreateInventoryMutation,
 } = inventoryApi;
