@@ -1,0 +1,465 @@
+import { ListResponse } from '@/types/api';
+import {
+  Ingredient,
+  Inventory,
+  MarginLevel,
+  Origin,
+  Product,
+  ProductCategory,
+  Recipe,
+  Step,
+  Supplier,
+  UnitOfMeasure,
+  User,
+  VolumeConversion,
+} from '@/types/entity';
+
+import { apiSlice } from '.';
+
+const apiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    /**Auth */
+    signIn: builder.mutation({
+      query: (data: Partial<User>) => ({
+        url: 'admin-auth/sign-in',
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    signOut: builder.mutation({
+      query: (data: { token: string | null }) => ({
+        url: 'admin-auth/sign-out',
+        method: 'DELETE',
+        body: data,
+      }),
+    }),
+
+    /**Categories */
+
+    createCategory: builder.mutation({
+      query: (data: Partial<ProductCategory>) => ({
+        url: 'catalog/product-catalog/categories/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['CATEGORIES'], // Invalider les caches
+    }),
+    editCategory: builder.mutation({
+      query: (data: ProductCategory) => ({
+        url: `catalog/product-catalog/categories/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['CATEGORIES'], // Invalider les caches
+    }),
+    deleteCategory: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/product-catalog/categories/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['CATEGORIES'], // Invalider les caches
+    }),
+    getCategoriesList: builder.query<ListResponse<ProductCategory[]>, void>({
+      query: () => {
+        return {
+          url: `catalog/product-catalog/categories/list`,
+        };
+      },
+      providesTags: ['CATEGORIES'], // Ajouter un tag
+    }),
+    /** Margins*/
+
+    createMargin: builder.mutation({
+      query: (data: Partial<MarginLevel>) => ({
+        url: 'catalog/product-catalog/margins/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['MARGINS'], // Invalider les caches
+    }),
+    editMargin: builder.mutation({
+      query: (data: MarginLevel) => ({
+        url: `catalog/product-catalog/margins/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['MARGINS'], // Invalider les caches
+    }),
+    deleteMargin: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/product-catalog/margins/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['MARGINS'], // Invalider les caches
+    }),
+    getMarginsList: builder.query<ListResponse<MarginLevel[]>, void>({
+      query: () => {
+        return {
+          url: `catalog/product-catalog/margins/list`,
+        };
+      },
+      providesTags: ['MARGINS'], // Ajouter un tag
+    }),
+    /** */
+    /** Units*/
+    getUnitsList: builder.query<ListResponse<UnitOfMeasure[]>, void>({
+      query: () => {
+        return {
+          url: `catalog/us-o-m/list`,
+        };
+      },
+      providesTags: ['UOM'], // Ajouter un tag
+    }),
+
+    createUnit: builder.mutation({
+      query: (data: Partial<UnitOfMeasure>) => ({
+        url: 'catalog/us-o-m/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['UOM'], // Invalider les caches
+    }),
+    editUnit: builder.mutation({
+      query: (data: UnitOfMeasure) => ({
+        url: `catalog/us-o-m/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['UOM'], // Invalider les caches
+    }),
+    deleteUnit: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/us-o-m/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['UOM'], // Invalider les caches
+    }),
+    /**Origins */
+
+    createOrigin: builder.mutation({
+      query: (data: Partial<Origin>) => ({
+        url: 'catalog/product-catalog/origins/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['ORIGINS'], // Invalider les caches
+    }),
+    editOrigin: builder.mutation({
+      query: (data: Origin) => ({
+        url: `catalog/product-catalog/origins/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['ORIGINS'], // Invalider les caches
+    }),
+    deleteOrigin: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/product-catalog/origins/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['ORIGINS'], // Invalider les caches
+    }),
+
+    /** Suppliers*/
+
+    createSupplier: builder.mutation({
+      query: (data: Partial<Supplier>) => ({
+        url: 'catalog/product-catalog/suppliers/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['SUPPLIERS'], // Invalider les caches
+    }),
+    editSupplier: builder.mutation({
+      query: (data: Supplier) => ({
+        url: `catalog/product-catalog/suppliers/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['SUPPLIERS'], // Invalider les caches
+    }),
+    deleteSupplier: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/product-catalog/suppliers/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['SUPPLIERS'], // Invalider les caches
+    }),
+    getSuppliersList: builder.query<ListResponse<Supplier[]>, void>({
+      query: () => {
+        return {
+          url: `catalog/product-catalog/suppliers/list`,
+        };
+      },
+      providesTags: ['SUPPLIERS'], // Ajouter un tag
+    }),
+    getOriginsList: builder.query<ListResponse<Origin[]>, void>({
+      query: () => {
+        return {
+          url: `catalog/product-catalog/origins/list`,
+        };
+      },
+      providesTags: ['ORIGINS'], // Ajouter un tag
+    }),
+    /**Products */
+
+    createProduct: builder.mutation({
+      query: (data: Partial<Product>) => ({
+        url: 'catalog/product-catalog/products/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['PRODUCTS'], // Invalider les caches
+    }),
+    getUniqueProduct: builder.query<
+      ListResponse<Product>,
+      { productId: string }
+    >({
+      query: (args) => {
+        const { productId } = args;
+
+        return {
+          url: `catalog/product-catalog/products/details/${productId}`,
+        };
+      },
+      providesTags: ['PRODUCTS'], // Ajouter un tag
+    }),
+
+    editProduct: builder.mutation({
+      query: (data: Partial<Product>) => ({
+        url: `catalog/product-catalog/products/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['PRODUCTS'], // Invalider les caches
+    }),
+    deleteProduct: builder.mutation({
+      query: (data: { id: string }) => ({
+        url: `catalog/product-catalog/products/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['PRODUCTS'], // Invalider les caches
+    }),
+    getProductsList: builder.query<ListResponse<Product[]>, void>({
+      query: () => {
+        return {
+          url: `catalog/product-catalog/products/list`,
+        };
+      },
+      providesTags: ['PRODUCTS'], // Ajouter un tag
+    }),
+    createProductConversionSetting: builder.mutation({
+      query: (data: Partial<VolumeConversion>) => ({
+        url: 'conversion/volume/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['PRODUCTS', 'VOLUME_CONVERSION'], // Invalider les caches
+    }),
+    deleteProductConversionSetting: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: 'conversion/volume/delete',
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['PRODUCTS', 'VOLUME_CONVERSION'], // Invalider les caches
+    }),
+    /**Recipes */
+
+    getUniqueRecipe: builder.query<ListResponse<Recipe>, { recipeId: number }>({
+      query: (args) => {
+        const { recipeId } = args;
+
+        return {
+          url: `catalog/recipe-catalog/recipes/details/${recipeId}`,
+        };
+      },
+      providesTags: ['RECIPES'], // Ajouter un tag
+    }),
+    createRecipe: builder.mutation({
+      query: (data: Partial<Recipe>) => ({
+        url: 'catalog/recipe-catalog/recipes/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['RECIPES'], // Invalider les caches
+    }),
+    editRecipe: builder.mutation({
+      query: (data: Recipe) => ({
+        url: `catalog/recipe-catalog/recipes/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['RECIPES'], // Invalider les caches
+    }),
+    deleteRecipe: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/recipe-catalog/recipes/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['RECIPES'], // Invalider les caches
+    }),
+    /**Ingredients */
+
+    getIngredients: builder.query<
+      ListResponse<Ingredient[]>,
+      { filters?: string }
+    >({
+      query: (args) => {
+        const { filters } = args;
+
+        return {
+          url: `catalog/recipe-catalog/ingredients/list`,
+          params: { filters },
+        };
+      },
+      providesTags: ['INGREDIENTS'], // Ajouter un tag
+    }),
+    createIngredient: builder.mutation({
+      query: (data: Partial<Ingredient>) => ({
+        url: 'catalog/recipe-catalog/ingredients/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['INGREDIENTS'], // Invalider les caches
+    }),
+    editIngredient: builder.mutation({
+      query: (data: Ingredient) => ({
+        url: `catalog/recipe-catalog/ingredients/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['INGREDIENTS'], // Invalider les caches
+    }),
+    deleteIngredient: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/recipe-catalog/ingredients/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['INGREDIENTS'], // Invalider les caches
+    }),
+    /**Step */
+
+    getSteps: builder.query<ListResponse<Step[]>, { filters?: string }>({
+      query: (args) => {
+        const { filters } = args;
+
+        return {
+          url: `catalog/recipe-catalog/steps/list`,
+          params: { filters },
+        };
+      },
+      providesTags: ['STEPS'], // Ajouter un tag
+    }),
+    createStep: builder.mutation({
+      query: (data: Partial<Step>) => ({
+        url: 'catalog/recipe-catalog/steps/save',
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['STEPS'], // Invalider les caches
+    }),
+    editStep: builder.mutation({
+      query: (data: Step) => ({
+        url: `catalog/recipe-catalog/steps/update/${data.id}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['STEPS'], // Invalider les caches
+    }),
+    deleteStep: builder.mutation({
+      query: (data: { id: number }) => ({
+        url: `catalog/recipe-catalog/steps/delete`,
+        method: 'DELETE',
+        body: data,
+      }),
+      invalidatesTags: ['STEPS'], // Invalider les caches
+    }),
+
+    // Inventory
+    getInventory: builder.query<ListResponse<Inventory>, { productId: string }>(
+      {
+        query: (args) => {
+          const { productId } = args;
+
+          return {
+            url: `inventory/get/${productId}`,
+          };
+        },
+        providesTags: ['INVENTORY'], // Ajouter un tag
+      },
+    ),
+  }),
+  overrideExisting: false,
+});
+// Export hooks for usage in functional components, which are
+// auto-generated based on the defined endpoints
+export const {
+  /**Auth */
+  useSignInMutation,
+  useSignOutMutation,
+  /**Categories */
+  useCreateCategoryMutation,
+  useEditCategoryMutation,
+  useDeleteCategoryMutation,
+
+  useGetCategoriesListQuery,
+  /**MArgins */
+  useCreateMarginMutation,
+  useEditMarginMutation,
+  useDeleteMarginMutation,
+  useGetMarginsListQuery,
+  /**UNits */
+  useCreateOriginMutation,
+  useEditOriginMutation,
+  useDeleteOriginMutation,
+  useGetOriginsListQuery,
+
+  /**Suppliers */
+  useCreateSupplierMutation,
+  useEditSupplierMutation,
+  useDeleteSupplierMutation,
+
+  useGetSuppliersListQuery,
+  /**UNits */
+  useCreateUnitMutation,
+  useEditUnitMutation,
+  useDeleteUnitMutation,
+  useGetUnitsListQuery,
+
+  /**Products */
+  useEditProductMutation,
+  useDeleteProductMutation,
+  useGetUniqueProductQuery,
+  useGetProductsListQuery,
+  useCreateProductMutation,
+  useCreateProductConversionSettingMutation,
+  useDeleteProductConversionSettingMutation,
+  /**Recipes */
+
+  useCreateRecipeMutation,
+  useEditRecipeMutation,
+  useDeleteRecipeMutation,
+  useGetUniqueRecipeQuery,
+  /**Ingredient */
+
+  useCreateIngredientMutation,
+  useEditIngredientMutation,
+  useDeleteIngredientMutation,
+  useGetIngredientsQuery,
+  /**Steps */
+
+  useCreateStepMutation,
+  useEditStepMutation,
+  useDeleteStepMutation,
+  useGetStepsQuery,
+} = apiSlice;
+export type PrefetchEndpoints = keyof (typeof apiSlice)['endpoints']; // 🔥 Récupère tous les endpoints

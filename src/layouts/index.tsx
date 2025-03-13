@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
+
 import Header from '@/components/header';
 import LeftAside from '@/components/left-aside';
 import SideBar from '@/components/sidebar';
 import CustomAlert from '@/components/ui/alerts/alert';
+import { RootState } from '@/store';
 
 import AnimatedOutlet from './animate';
 

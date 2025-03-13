@@ -3,7 +3,7 @@ import changelogData from './data';
 const ChangelogUpdates = () => {
   const renderUpdates = changelogData.map((newChange) => {
     return (
-      <div className="pt-2">
+      <div className="pt-2" key={newChange.version}>
         <h6 className="d-inline-block">
           <span className="badge bg-secondary font-weight-light">
             {newChange.version}
@@ -16,12 +16,12 @@ const ChangelogUpdates = () => {
           {newChange.updates.map((update) => {
             return (
               <>
-                <li>
+                <li key={update.description}>
                   {update.description}
                   {update.details.length > 0 ? (
                     <ul>
                       {update.details.map((detail) => {
-                        return <li>{detail}</li>;
+                        return <li key={detail}>{detail}</li>;
                       })}
                     </ul>
                   ) : (

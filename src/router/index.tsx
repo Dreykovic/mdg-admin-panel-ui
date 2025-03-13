@@ -1,5 +1,7 @@
-import Layout from '@/layouts';
 import { createBrowserRouter } from 'react-router-dom';
+
+import Layout from '@/layouts';
+
 import { authRoutesConfig, guestRoutesConfig } from './config';
 
 export const authRouter = createBrowserRouter([

@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { RootState } from '@/store';
+import { usePrefetch } from '@/store/api';
+
 import { ISideBarLink } from './sidebar-content';
-import { usePrefetch } from '@/store/base-api-slice';
 
 type Props = {
   link: ISideBarLink;
@@ -14,7 +15,7 @@ const SidebarNavLink = ({ link }: Props) => {
   const { name, group } = useSelector((state: RootState) => state.page);
 
   // ✅ Vérifie que prefetchQuery existe avant d'utiliser usePrefetch
-  const prefetch = link.prefetchQuery ? usePrefetch(link.prefetchQuery) : null;
+  const prefetch = usePrefetch(link.prefetchQuery || 'getSomeProducts');
 
   const [isLinkActive, setIsLinkActive] = useState<boolean>(false);
 

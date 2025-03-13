@@ -7,17 +7,21 @@ import { useNavigate } from 'react-router-dom';
 
 import { makeGlobalLogout } from '@/features/auth/store/slice';
 import { AppDispatch, RootState } from '@/store';
+import { useSignOutMutation } from '@/store/api/auth';
 import authUtil from '@/utils/auth-utils';
 
 import { closeSidebar, openSidebar } from '../sidebar/sidebar-slice';
 import { showAlert } from '../ui/alerts/alert-slice';
-import { useSignOutMutation } from '@/store/api-slice';
 
 function Header() {
   const dispatch = useDispatch<AppDispatch>();
   const { isOpened } = useSelector((state: RootState) => state.sidebar);
   const toggleSidebar = () => {
-    isOpened ? dispatch(closeSidebar()) : dispatch(openSidebar());
+    if (isOpened) {
+      dispatch(closeSidebar());
+    } else {
+      dispatch(openSidebar());
+    }
   };
   const navigate = useNavigate();
   const [signOut] = useSignOutMutation();

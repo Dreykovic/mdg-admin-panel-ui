@@ -9,9 +9,9 @@ import PageSizePicker from '@/components/ui/pagination/page-size-picker';
 import SearchInput from '@/components/ui/pagination/search-input';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
 import MarginsTable from '@/features/margins/components/margin-table';
-import { useGetSomeMarginsQuery } from '@/store/base-api-slice';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/page-slice';
+import { useGetSomeMarginsQuery } from '@/store/api';
+import { setPageName } from '@/store/slice/page-slice';
 
 const MarginsPage = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -5,12 +5,10 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useCreateIngredientMutation } from '@/store/api-slice';
 import { AppDispatch } from '@/store';
-import {
-  useGetProductsListQuery,
-  useGetUnitsListQuery,
-} from '@/store/api-slice';
+import { useCreateIngredientMutation } from '@/store/api/ingredient';
+import { useGetProductsListQuery } from '@/store/api/product';
+import { useGetUnitsListQuery } from '@/store/api/unit-of-measure';
 import { ApiResponse } from '@/types/api';
 import { Ingredient } from '@/types/entity';
 
