@@ -65,7 +65,11 @@ const ProductTagsSection = ({
           <ErrorAlert error={error} />
         ) : currentTags.length > 0 ? (
           currentTags.map((tag, index) => (
-            <TagBadge key={index} tag={tag as ProductTag} />
+            <TagBadge
+              key={index}
+              tag={tag as ProductTag}
+              isRemovingTag={false}
+            />
           ))
         ) : (
           <span className="text-muted fst-italic">Aucun tag assigné</span>
