@@ -39,9 +39,8 @@ export const formatDateTime = (
   }
 };
 
-// Exemples d'utilisation
-console.log(formatDateTime('2025-03-12T14:30:00')); // "12/03/2025 14:30:00"
-console.log(formatDateTime(new Date(), 'dddd, MMMM D, YYYY HH:mm')); // Exemple: "Wednesday, March 12, 2025 15:45"
-console.log(formatDateTime(null)); // "Date invalide"
-console.log(formatDateTime(undefined)); // "Date invalide"
-console.log(formatDateTime('invalid-date')); // "Date invalide"
+// Format currency display
+export const formatCurrency = (value: number | null) => {
+  if (value === null) return '$0.00';
+  return `$${value.toFixed(2)}`;
+};
