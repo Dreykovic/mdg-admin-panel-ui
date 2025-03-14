@@ -1,130 +1,81 @@
-import { Inventory } from '@/types/entity';
-import { formatDateTime } from '@/utils/format';
+import { useState } from 'react';
 
-type Prop = {
-  inventory: Inventory;
-};
+import { Product, Inventory } from '@/types/entity';
 
-const ProductInventory = ({ inventory }: Prop) => {
-  const getBadgeClass = (value: number) => {
-    if (value === 0) return 'badge bg-danger'; // Rouge si épuisé
-    if (value < 5) return 'badge bg-warning text-dark'; // Jaune si faible
-    return 'badge bg-success'; // Vert sinon
-  };
+import AdjustmentForm from './adjustment-form';
+import InventorySummary from './inventory-summary';
+import MovementHistory from './movement-history';
+import ReconciliationForm from './reconciliation-form';
+import RestockForm from './restock-form';
+
+// Composant principal de gestion d'inventaire
+const InventoryManagement = ({
+  sampleInventory,
+}: {
+  selectedProduct: Product;
+  sampleInventory: Inventory;
+}) => {
+  const [activeTab, setActiveTab] = useState<string>('history');
 
   return (
-    <div className="card shadow-sm border-0">
-      <div className="card-header bg-primary text-white py-3 d-flex justify-content-between">
-        <h6 className="mb-0 fw-bold">📦 Inventory Information</h6>
-        <button
-          type="button"
-          className="btn btn-light btn-sm"
-          data-bs-toggle="modal"
-          data-bs-target="#edit1"
-        >
-          <i className="icofont-edit text-primary fs-6"></i> Edit
-        </button>
-      </div>
-      <div className="card-body">
-        <div className="row">
-          {/* Left Column */}
-          <div className="col-md-6">
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Quantity</span>
-                <span className={getBadgeClass(inventory.quantity)}>
-                  {inventory.quantity}
-                </span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Available Quantity</span>
-                <span className={getBadgeClass(inventory.availableQuantity)}>
-                  {inventory.availableQuantity}
-                </span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Reserved Quantity</span>
-                <span className="badge bg-secondary">
-                  {inventory.reservedQuantity}
-                </span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Reorder Threshold</span>
-                <span className="badge bg-info">
-                  {inventory.reorderThreshold}
-                </span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Reorder Quantity</span>
-                <span className="badge bg-primary">
-                  {inventory.reorderQuantity}
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Right Column */}
-          <div className="col-md-6">
-            <ul className="list-group list-group-flush">
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Back Orderable</span>
-                <span>{inventory.backOrderable ? '✅ Yes' : '❌ No'}</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Last Stock Check</span>
-                <span className="text-muted">
-                  {formatDateTime(inventory.lastStockCheck)}
-                </span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">Next Schedule Check</span>
-                <span className="text-muted">
-                  {formatDateTime(inventory.nextScheduledCheck)}
-                </span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <span className="fw-bold">In Stock</span>
-                <span>{inventory.inStock ? '✅ Yes' : '❌ No'}</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                  <span className="fw-bold">Warehouse</span>
-                  <p className="text-muted small mb-0">
-                    {inventory.warehouseId
-                      ? `${inventory.warehouse?.name} 🗺️(${inventory.warehouse?.location})`
-                      : 'N/A'}
-                  </p>
-                </div>
-                <button className="btn btn-sm btn-outline-primary">
-                  <i className="icofont-eye"></i> View
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Full-width Restock Button */}
-        <div className="row mt-3">
-          <div className="col-12">
-            {inventory.quantity <= inventory.reorderThreshold && (
+    <>
+      <h1 className="mb-4 text-primary fw-bold">Gestion d&apos;Inventaire</h1>
+      <InventorySummary inventory={sampleInventory} />
+      <div className="card shadow-sm border-0">
+        <div className="card-header bg-white">
+          <ul className="nav nav-tabs card-header-tabs">
+            <li className="nav-item">
               <button
-                className="btn btn-success w-100"
-                onClick={() => handleRestock(inventory.id)}
+                className={`nav-link ${activeTab === 'history' ? 'active bg-primary text-white' : ''}`}
+                onClick={() => setActiveTab('history')}
               >
-                Restock <i className="icofont-refresh"></i>
+                <i className="icofont-history me-2"></i>Historique
               </button>
-            )}
-          </div>
+            </li>
+            <li className="nav-item">
+              <button
+                className={`nav-link ${activeTab === 'restock' ? 'active bg-primary text-white' : ''}`}
+                onClick={() => setActiveTab('restock')}
+              >
+                <i className="icofont-refresh me-2"></i>Restock
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className={`nav-link ${activeTab === 'reconcile' ? 'active bg-primary text-white' : ''}`}
+                onClick={() => setActiveTab('reconcile')}
+              >
+                <i className="icofont-check-circled me-2"></i>Réconciliation
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className={`nav-link ${activeTab === 'adjust' ? 'active bg-primary text-white' : ''}`}
+                onClick={() => setActiveTab('adjust')}
+              >
+                <i className="icofont-ui-settings me-2"></i>Réajustement
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div className="card-body">
+          {activeTab === 'history' && (
+            <MovementHistory inventory={sampleInventory} />
+          )}
+          {activeTab === 'restock' && (
+            <RestockForm inventory={sampleInventory} />
+          )}
+          {activeTab === 'reconcile' && (
+            <ReconciliationForm inventory={sampleInventory} />
+          )}
+          {activeTab === 'adjust' && (
+            <AdjustmentForm inventory={sampleInventory} />
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-// Function to handle restocking action
-const handleRestock = (inventoryId: string) => {
-  console.log(`Initiating restock for inventory with ID: ${inventoryId}`);
-  // Vous pouvez ajouter un appel à l'API ou une action qui met à jour l'inventaire
-};
-
-export default ProductInventory;
+export default InventoryManagement;
