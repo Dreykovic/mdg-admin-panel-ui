@@ -16,25 +16,37 @@ const ProductOrganizeCategory = ({ product }: Props) => {
     setShowUpdateProductCategoryModal(false);
   const handleUpdateProductCategoryModalShow = () =>
     setShowUpdateProductCategoryModal(true);
+
+  const categoryName = product.category?.name || 'Not assigned';
+
   return (
     <>
-      <div className="py-2 d-flex align-items-center border-bottom flex-wrap">
+      <div
+        className="py-2 d-flex align-items-center border-bottom flex-wrap"
+        aria-labelledby="category-label"
+      >
         <div className="d-flex align-items-center flex-fill">
-          <span className="avatar lg bg-secondary  text-center d-flex align-items-center justify-content-center">
+          <span
+            className="avatar lg bg-secondary text-center d-flex align-items-center justify-content-center"
+            aria-hidden="true"
+          >
             <i className="icofont-bricks fs-5"></i>
           </span>
           <div className="d-flex flex-column ps-3">
-            <h6 className=" mb-0 small-14">Category</h6>
-            <span className="fw-bold">{product.category?.name}</span>
+            <h3 id="category-label" className="h6 mb-0 small-14">
+              Category
+            </h3>
+            <span className="fw-bold">{categoryName}</span>
           </div>
         </div>
         <div className="time-block text-truncate">
           <button
             type="button"
-            className="btn p-0"
+            className="btn btn-sm btn-outline-primary rounded-circle p-2"
             onClick={handleUpdateProductCategoryModalShow}
+            aria-label={`Edit category: ${categoryName}`}
           >
-            <i className="icofont-edit text-primary fs-6"></i>
+            <i className="icofont-edit fs-6" aria-hidden="true"></i>
           </button>
         </div>
       </div>
