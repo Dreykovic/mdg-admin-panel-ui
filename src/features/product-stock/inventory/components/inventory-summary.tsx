@@ -101,17 +101,6 @@ const InventorySummary = ({ inventory }: Prop) => {
                   </ul>
                 </div>
               </div>
-
-              {/* Full-width Restock Button */}
-              <div className="row mt-3">
-                <div className="col-12">
-                  {inventory.quantity <= inventory.reorderThreshold && (
-                    <button className="btn btn-success w-100">
-                      Restock <i className="icofont-refresh"></i>
-                    </button>
-                  )}
-                </div>
-              </div>
             </>
           </div>
         </div>

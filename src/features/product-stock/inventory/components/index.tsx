@@ -26,7 +26,7 @@ const InventoryManagement = ({
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTab === 'history' ? 'active bg-primary text-white' : ''}`}
+                className={` ${activeTab === 'history' ? 'active bg-primary text-white' : ''}`}
                 onClick={() => setActiveTab('history')}
               >
                 <i className="icofont-history me-2"></i>Historique
@@ -34,7 +34,7 @@ const InventoryManagement = ({
             </li>
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTab === 'restock' ? 'active bg-primary text-white' : ''}`}
+                className={` ${activeTab === 'restock' ? 'active bg-primary text-white' : ''}`}
                 onClick={() => setActiveTab('restock')}
               >
                 <i className="icofont-refresh me-2"></i>Restock
@@ -42,7 +42,7 @@ const InventoryManagement = ({
             </li>
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTab === 'reconcile' ? 'active bg-primary text-white' : ''}`}
+                className={` ${activeTab === 'reconcile' ? 'active bg-primary text-white' : ''}`}
                 onClick={() => setActiveTab('reconcile')}
               >
                 <i className="icofont-check-circled me-2"></i>Réconciliation
@@ -50,7 +50,7 @@ const InventoryManagement = ({
             </li>
             <li className="nav-item">
               <button
-                className={`nav-link ${activeTab === 'adjust' ? 'active bg-primary text-white' : ''}`}
+                className={` ${activeTab === 'adjust' ? 'active bg-primary text-white' : ''}`}
                 onClick={() => setActiveTab('adjust')}
               >
                 <i className="icofont-ui-settings me-2"></i>Réajustement
