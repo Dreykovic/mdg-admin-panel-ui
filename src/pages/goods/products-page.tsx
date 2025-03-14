@@ -46,7 +46,7 @@ const ProductsPage = () => {
   useEffect(() => {
     dispatch(setPageName({ name: 'product-list', group: 'goods' }));
   }, [dispatch]);
-  console.log(someProducts);
+
   return (
     <>
       <ProductStats />

@@ -44,7 +44,6 @@ const AddProduct = () => {
       if (data) {
         const response: ListResponse<Product> =
           await createProduct(data).unwrap();
-        console.log(response);
 
         if (response.success) {
           dispatch(
