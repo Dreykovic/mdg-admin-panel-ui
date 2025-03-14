@@ -15,7 +15,7 @@ const InventorySummary = ({ inventory }: Prop) => {
   return (
     <div className="row mb-4">
       <div className="col-12">
-        <div className="card shadow-sm border-0">
+        <div className="card shadow border-3">
           <div className="card-header bg-primary text-white">
             <h5 className="mb-0">📦 Inventory Information</h5>
           </div>

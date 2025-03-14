@@ -21,7 +21,7 @@ const InventoryManagement = ({
     <>
       <h1 className="mb-4 text-primary fw-bold">Inventory Management</h1>
       <InventorySummary inventory={sampleInventory} />
-      <div className="card shadow-sm border-0">
+      <div className="card shadow border-3">
         <div className="card-header bg-white">
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">
