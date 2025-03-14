@@ -5,12 +5,12 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoTableData from '@/components/ui/no-data/no-table-data';
 import { AppDispatch } from '@/store';
+import { useDeleteSupplierMutation } from '@/store/api/supplier';
 import { Supplier } from '@/types/entity';
-
-import { useDeleteSupplierMutation } from '@/store/api-slice';
 
 import SupplierEditForm from './supplier-edit-form';
 import SupplierRow from './supplier-row';
+
 interface ISupplierListProps {
   suppliers: Partial<Supplier>[];
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '@/store';
-import { setTheme } from '@/store/theme-slice';
+import { setTheme } from '@/store/slice/theme-slice';
 
 const ThemeSwitcher = () => {
   const currentTheme = useSelector(
@@ -15,7 +15,11 @@ const ThemeSwitcher = () => {
     dispatch(setTheme({ theme: newTheme }));
   };
   useEffect(() => {
-    currentTheme === 'light' ? setChecked(false) : setChecked(true);
+    if (currentTheme === 'light') {
+      setChecked(false);
+    } else {
+      setChecked(true);
+    }
   }, [setChecked, currentTheme]);
   return (
     <>

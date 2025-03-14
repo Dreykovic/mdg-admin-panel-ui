@@ -1,5 +1,6 @@
-import { Product } from '@/types/entity';
 import { useNavigate } from 'react-router-dom';
+
+import { Product } from '@/types/entity';
 
 interface IProductRowProps {
   product: Partial<Product>;
@@ -9,7 +10,11 @@ const ProductRow = ({ product }: IProductRowProps) => {
   const navigate = useNavigate();
   return (
     <>
-      <tr onClick={() => navigate(`/products/details/${product.id}`)}>
+      <tr
+        onClick={() =>
+          navigate(`/catalog/goods/products/details/${product.id}`)
+        }
+      >
         <td>
           <div className="d-flex align-items-center flex-fill">
             <div
@@ -40,14 +45,14 @@ const ProductRow = ({ product }: IProductRowProps) => {
             </div>
           </div>
         </td>
-        <td>{product.quantity}</td>
+        <td>{product.sku}</td>
         <td>{product.pricePerGramGround}</td>
         <td>{product.pricePerGramWhole}</td>
         <td>
           <span
-            className={`badge bg-${product.isPublic ? 'light' : 'dark'} ${product.isPublic ? 'text-dark' : ''} `}
+            className={`badge bg-${product.isActive ? 'light' : 'dark'} ${product.isActive ? 'text-dark' : ''} `}
           >
-            {product.isPublic ? 'Visible' : 'Hidden'}
+            {product.isActive ? 'Visible' : 'Hidden'}
           </span>
         </td>
 

@@ -18,7 +18,7 @@ const ProductsTable = ({ products }: IProductListProps) => {
             <tr>
               <th>Product</th>
               <th>Category</th>
-              <th>Quantity</th>
+              <th>SKU</th>
               <th>Price (Ground)</th>
               <th>Price (Whole)</th>
               <th>Status</th>

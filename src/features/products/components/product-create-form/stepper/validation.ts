@@ -19,22 +19,6 @@ export const productSchema = yup.object({
     .nullable()
     .typeError('Description must be a string'),
 
-  isActive: yup
-    .boolean()
-    .required('Active status is required')
-    .typeError('Active status must be a boolean'),
-  minimumStockLevel: yup
-    .number()
-    .integer()
-    .positive()
-    .required('Minimum stock level is required')
-    .typeError('Minimum stock level must be a positive integer'),
-  quantity: yup
-    .number()
-    .integer()
-    .positive()
-    .required('Quantity is required')
-    .typeError('Quantity must be a positive integer'),
   additionalCost: yup
     .number()
     .positive()
@@ -117,10 +101,6 @@ export const productInitialValues = {
   isGMOFree: false,
   description: 'lorem ipsum',
 
-  isActive: false,
-  isPublic: false,
-  minimumStockLevel: 1000,
-  quantity: 1000,
   additionalCost: 0,
   costPerGramWhole: 1000,
   costPerGramGround: 1000,
@@ -199,20 +179,7 @@ export const step3Schema = yup.object({
     .required('Supplier ID is required')
     .typeError('Supplier ID must be a positive integer'),
 });
-export const step4Schema = yup.object({
-  minimumStockLevel: yup
-    .number()
-    .integer()
-    .positive()
-    .required('Minimum stock level is required')
-    .typeError('Minimum stock level must be a positive integer'),
-  quantity: yup
-    .number()
-    .integer()
-    .positive()
-    .required('Quantity is required')
-    .typeError('Quantity must be a positive integer'),
-});
+
 export const stepSchema = yup.object({
   productMedia: yup
     .array()
@@ -239,20 +206,14 @@ export const step3InitialValues = {
   categoryId: undefined,
   supplierId: undefined,
 };
-export const step4InitialValues = {
-  minimumStockLevel: 1000,
-  quantity: 1000,
-};
+
 export const step5InitialValues = {
   name: '',
   isGlutenFree: false,
   isGMOFree: false,
   description: undefined,
   barcode: '',
-  isActive: true,
-  isPublic: false,
-  minimumStockLevel: 0,
-  quantity: 0,
+
   additionalCost: undefined,
   costPerGramWhole: 0,
   costPerGramGround: 0,

@@ -1,72 +1,35 @@
-import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoTableData from '@/components/ui/no-data/no-table-data';
-import { AppDispatch } from '@/store';
 import { MarginLevel } from '@/types/entity';
 
-import { useDeleteMarginMutation } from '@/store/api-slice';
+import { useMargins } from '../hooks/use-margins';
 
 import MarginEditForm from './margin-edit-form';
 import MarginRow from './margin-row';
+
 interface IMarginListProps {
   margins: Partial<MarginLevel>[];
 }
+
 const MarginsTable = ({ margins }: IMarginListProps) => {
-  const [updateInitialValues, setUpdateInitialValues] =
-    useState<Partial<MarginLevel>>();
-  const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
+  const {
+    updateInitialValues,
+    setUpdateInitialValues,
+    showDeleteItemModal,
+    handleDeleteItemModalClose,
+    handleDeleteItemModalShow,
+    showEditSupplierModal,
+    handleEditMarginModalClose,
+    handleEditMarginModalShow,
+    setMarginId,
+    isLoading,
+    handleDeletion,
+  } = useMargins();
 
-  const handleDeleteItemModalClose = () => setShowDeleteItemModal(false);
-  const handleDeleteItemModalShow = () => setShowDeleteItemModal(true);
-  const [showEditSupplierModal, setShowEditSupplierModal] = useState(false);
-
-  const handleEditMarginModalClose = () => setShowEditSupplierModal(false);
-  const handleEditMarginModalShow = () => setShowEditSupplierModal(true);
-  const [marginId, setMarginId] = useState<number>();
-  const dispatch = useDispatch<AppDispatch>();
-
-  const [deleteMargin, { isLoading }] = useDeleteMarginMutation();
-
-  const handleDeletion = useCallback(async () => {
-    try {
-      if (marginId) {
-        const response = await deleteMargin({
-          id: marginId,
-        }).unwrap();
-
-        if (response.success) {
-          dispatch(
-            showAlert({
-              title: 'Success !',
-              message: response.message,
-            }),
-          );
-        }
-      } else {
-        throw new Error('No data provided');
-      }
-    } catch (error) {
-      console.error(error);
-
-      dispatch(
-        showAlert({
-          title: 'Error !',
-          message: 'An error occurred during deletion' + JSON.stringify(error),
-          success: false,
-        }),
-      );
-    } finally {
-      handleDeleteItemModalClose();
-    }
-  }, [marginId, deleteMargin, dispatch]);
   return (
     <>
       <div className="card-body">
         <table
-          id="departmentTable"
           className="table table-hover table-striped align-middle mb-0"
           style={{ width: '100%' }}
         >
@@ -74,7 +37,6 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
             <tr>
               <th>Name</th>
               <th>Level</th>
-
               <th>Actions</th>
             </tr>
           </thead>
@@ -83,7 +45,7 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
               margins.map((margin, index) => (
                 <MarginRow
                   margin={margin}
-                  key={margin.id ?? index++}
+                  key={margin.id ?? index}
                   setMarginId={setMarginId}
                   handleDeleteItemModalShow={handleDeleteItemModalShow}
                   handleEditMarginModalShow={handleEditMarginModalShow}
@@ -91,9 +53,7 @@ const MarginsTable = ({ margins }: IMarginListProps) => {
                 />
               ))
             ) : (
-              <>
-                <NoTableData number={3} />
-              </>
+              <NoTableData number={3} />
             )}
           </tbody>
         </table>

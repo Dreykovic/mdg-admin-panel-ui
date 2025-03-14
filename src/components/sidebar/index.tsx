@@ -26,17 +26,36 @@ const SideBar = () => {
   const [sidebarState, setSidebarState] = useState<string>('');
   const [sidebarOpenedClass, setSidebarOpenedClass] = useState<string>('');
   useEffect(() => {
-    isMinified ? setSidebarState('sidebar-mini') : setSidebarState('');
-    isOpened ? setSidebarOpenedClass('open') : setSidebarOpenedClass('');
+    if (isMinified) {
+      setSidebarState('sidebar-mini');
+    } else {
+      setSidebarState('');
+    }
+    if (isOpened) {
+      setSidebarOpenedClass('open');
+    } else {
+      setSidebarOpenedClass('');
+    }
 
     if (rect) {
       if (rect.height <= 780 + 48 && sidebarState === 'sidebar-mini') {
         setContentOverflow('scroll');
       }
     }
-  }, [ref, isMinified, rect, height, width, isOpened]);
+  }, [ref, isMinified, rect, height, width, isOpened, sidebarState]);
   const contentRender = useMemo(() => {
-    return data.map((link) => <SidebarNavGroup link={link} key={link.id} />);
+    return Object.keys(data).map((module) => {
+      return (
+        <div className="mt-3" key={module}>
+          <span className={`text-muted text-uppercase my-2 font-weight-bold`}>
+            {module}
+          </span>
+          {data[module].map((link) => (
+            <SidebarNavGroup link={link} key={link.id} />
+          ))}
+        </div>
+      );
+    });
   }, []);
   return (
     <>

@@ -5,14 +5,14 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
-import { useDeleteStepMutation, useGetStepsQuery } from '@/store/api-slice';
-
+import { AppDispatch } from '@/store';
+import { useDeleteStepMutation, useGetStepsQuery } from '@/store/api/step';
 import { Step } from '@/types/entity';
 
 import StepCreateForm from './add-step';
 import StepEditForm from './edit-step';
 import StepItem from './step-item';
-import { AppDispatch } from '@/store';
+
 type Props = {
   recipeId: number;
 };
