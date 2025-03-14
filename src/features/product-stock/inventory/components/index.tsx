@@ -8,7 +8,7 @@ import MovementHistory from './movement-history';
 import ReconciliationForm from './reconciliation-form';
 import RestockForm from './restock-form';
 
-// Composant principal de gestion d'inventaire
+// Main inventory management component
 const InventoryManagement = ({
   sampleInventory,
 }: {
@@ -19,7 +19,7 @@ const InventoryManagement = ({
 
   return (
     <>
-      <h1 className="mb-4 text-primary fw-bold">Gestion d&apos;Inventaire</h1>
+      <h1 className="mb-4 text-primary fw-bold">Inventory Management</h1>
       <InventorySummary inventory={sampleInventory} />
       <div className="card shadow-sm border-0">
         <div className="card-header bg-white">
@@ -29,7 +29,7 @@ const InventoryManagement = ({
                 className={` ${activeTab === 'history' ? 'active bg-primary text-white' : ''}`}
                 onClick={() => setActiveTab('history')}
               >
-                <i className="icofont-history me-2"></i>Historique
+                <i className="icofont-history me-2"></i>History
               </button>
             </li>
             <li className="nav-item">
@@ -45,7 +45,7 @@ const InventoryManagement = ({
                 className={` ${activeTab === 'reconcile' ? 'active bg-primary text-white' : ''}`}
                 onClick={() => setActiveTab('reconcile')}
               >
-                <i className="icofont-check-circled me-2"></i>Réconciliation
+                <i className="icofont-check-circled me-2"></i>Reconciliation
               </button>
             </li>
             <li className="nav-item">
@@ -53,7 +53,7 @@ const InventoryManagement = ({
                 className={` ${activeTab === 'adjust' ? 'active bg-primary text-white' : ''}`}
                 onClick={() => setActiveTab('adjust')}
               >
-                <i className="icofont-ui-settings me-2"></i>Réajustement
+                <i className="icofont-ui-settings me-2"></i>Adjustment
               </button>
             </li>
           </ul>

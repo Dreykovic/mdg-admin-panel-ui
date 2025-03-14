@@ -5,7 +5,7 @@ import { Inventory } from '@/types/entity';
 interface ReconciliationFormProps {
   inventory: Inventory;
 }
-// Formulaire de réconciliation
+// Reconciliation Form
 const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
   inventory,
 }) => {
@@ -25,7 +25,7 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
       reason,
       notes,
     });
-    // Logique de soumission ici
+    // Submission logic here
   };
 
   return (
@@ -51,7 +51,7 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
         <div className="col-md-4">
           <div className="card mb-3">
             <div className="card-header bg-primary text-white">
-              <h6 className="mb-0">Comptage Physique</h6>
+              <h6 className="mb-0">Physical Count</h6>
             </div>
             <div className="card-body">
               <input
@@ -68,7 +68,7 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
         <div className="col-md-4">
           <div className="card mb-3">
             <div className="card-header bg-primary text-white">
-              <h6 className="mb-0">Différence</h6>
+              <h6 className="mb-0">Difference</h6>
             </div>
             <div className="card-body text-center">
               <h3
@@ -83,7 +83,7 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
                 {actualQuantity - inventory.quantity > 0 ? '+' : ''}
                 {actualQuantity - inventory.quantity}
               </h3>
-              <p className="text-muted mb-0">unités</p>
+              <p className="text-muted mb-0">units</p>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
         <div className="col-md-6">
           <div className="mb-3">
             <label htmlFor="reason" className="form-label fw-bold">
-              Raison de la différence
+              Reason for Difference
             </label>
             <select
               className="form-select"
@@ -101,14 +101,12 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
               value={reason}
               onChange={(e) => setReason(e.target.value)}
             >
-              <option value="">Sélectionner une raison...</option>
-              <option value="COUNTING_ERROR">
-                Erreur de comptage précédent
-              </option>
-              <option value="THEFT">Vol</option>
-              <option value="DAMAGE">Dommage/Casse</option>
-              <option value="SYSTEM_ERROR">Erreur système</option>
-              <option value="OTHER">Autre</option>
+              <option value="">Select a reason...</option>
+              <option value="COUNTING_ERROR">Previous Counting Error</option>
+              <option value="THEFT">Theft</option>
+              <option value="DAMAGE">Damage/Breakage</option>
+              <option value="SYSTEM_ERROR">System Error</option>
+              <option value="OTHER">Other</option>
             </select>
           </div>
         </div>
@@ -116,7 +114,7 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
         <div className="col-md-6">
           <div className="mb-3">
             <label htmlFor="notes" className="form-label fw-bold">
-              Notes explicatives
+              Explanatory Notes
             </label>
             <textarea
               className="form-control"
@@ -131,11 +129,11 @@ const ReconciliationForm: React.FC<ReconciliationFormProps> = ({
 
       <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
         <button type="button" className="btn btn-outline-secondary">
-          Annuler
+          Cancel
         </button>
         <button type="submit" className="btn btn-primary">
           <i className="icofont-check-circled me-1"></i>
-          Valider la réconciliation
+          Validate Reconciliation
         </button>
       </div>
     </form>

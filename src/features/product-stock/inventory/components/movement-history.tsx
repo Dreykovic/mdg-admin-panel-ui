@@ -11,9 +11,9 @@ interface MovementHistoryProps {
   inventory: Inventory;
 }
 
-// Historique des mouvements
+// Movement History
 const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
-  // Exemple de mouvements
+  // Sample movements
   const movements: StockMovement[] = inventory.stockMovements ?? [];
   const getTypeIcon = (type: MovementType): string => {
     switch (type) {
@@ -55,7 +55,7 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
   };
 
   const formatDate = (date: Date): string => {
-    return new Date(date).toLocaleDateString('fr-FR', {
+    return new Date(date).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -65,13 +65,13 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h5 className="mb-0">Historique des mouvements</h5>
+        <h5 className="mb-0">Movement History</h5>
         <div>
           <button className="btn btn-sm btn-outline-primary me-2">
-            <i className="icofont-filter me-1"></i>Filtrer
+            <i className="icofont-filter me-1"></i>Filter
           </button>
           <button className="btn btn-sm btn-outline-secondary">
-            <i className="icofont-download me-1"></i>Exporter
+            <i className="icofont-download me-1"></i>Export
           </button>
         </div>
       </div>
@@ -82,8 +82,8 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
             <tr>
               <th>Date</th>
               <th>Type</th>
-              <th>Quantité</th>
-              <th>Référence</th>
+              <th>Quantity</th>
+              <th>Reference</th>
               <th>Notes</th>
               <th>Actions</th>
             </tr>
@@ -95,7 +95,7 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
                 <td>
                   <span className={getTypeBadge(movement.type)}>
                     <i className={`${getTypeIcon(movement.type)} me-1`}></i>
-                    {movement.type === 'STOCK_IN' ? 'Entrée' : 'Sortie'}
+                    {movement.type === 'STOCK_IN' ? 'Input' : 'Output'}
                   </span>
                 </td>
                 <td className="fw-bold">{movement.quantity}</td>
@@ -125,7 +125,7 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
         <ul className="pagination justify-content-center">
           <li className="page-item disabled">
             <a className="page-link" href="#" tabIndex={-1}>
-              Précédent
+              Previous
             </a>
           </li>
           <li className="page-item active">
@@ -145,7 +145,7 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
           </li>
           <li className="page-item">
             <a className="page-link" href="#">
-              Suivant
+              Next
             </a>
           </li>
         </ul>

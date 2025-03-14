@@ -5,7 +5,7 @@ interface AdjustmentFormProps {
   inventory: Inventory;
 }
 
-// Formulaire de réajustement
+// Adjustment Form
 const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
   const [adjustmentType, setAdjustmentType] =
     useState<MovementType>('STOCK_IN');
@@ -22,7 +22,7 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
       reason,
       notes,
     });
-    // Logique de soumission ici
+    // Submission logic here
   };
 
   return (
@@ -49,7 +49,7 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
                 onChange={() => setAdjustmentType('STOCK_IN')}
               />
               <label className="btn btn-outline-success" htmlFor="stockIn">
-                <i className="icofont-plus-circle me-1"></i>Entrée
+                <i className="icofont-plus-circle me-1"></i>Input
               </label>
 
               <input
@@ -62,14 +62,14 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
                 onChange={() => setAdjustmentType('STOCK_OUT')}
               />
               <label className="btn btn-outline-danger" htmlFor="stockOut">
-                <i className="icofont-minus-circle me-1"></i>Sortie
+                <i className="icofont-minus-circle me-1"></i>Output
               </label>
             </div>
           </div>
 
           <div className="mb-3">
             <label htmlFor="quantity" className="form-label fw-bold">
-              Quantité
+              Quantity
             </label>
             <input
               type="number"
@@ -83,7 +83,7 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
 
           <div className="mb-3">
             <label htmlFor="reason" className="form-label fw-bold">
-              Motif d&apos;ajustement
+              Adjustment Reason
             </label>
             <select
               className="form-select"
@@ -91,12 +91,12 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
               value={reason}
               onChange={(e) => setReason(e.target.value)}
             >
-              <option value="">Sélectionner un motif...</option>
-              <option value="ADJUSTMENT">Ajustement manuel</option>
-              <option value="DAMAGE">Produit endommagé</option>
-              <option value="RETURN">Retour client</option>
-              <option value="TRANSFER">Transfert d&apos;entrepôt</option>
-              <option value="OTHER">Autre</option>
+              <option value="">Select a reason...</option>
+              <option value="ADJUSTMENT">Manual Adjustment</option>
+              <option value="DAMAGE">Damaged Product</option>
+              <option value="RETURN">Customer Return</option>
+              <option value="TRANSFER">Warehouse Transfer</option>
+              <option value="OTHER">Other</option>
             </select>
           </div>
         </div>
@@ -104,7 +104,7 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
         <div className="col-md-6">
           <div className="mb-3">
             <label htmlFor="notes" className="form-label fw-bold">
-              Notes explicatives
+              Explanatory Notes
             </label>
             <textarea
               className="form-control"
@@ -112,7 +112,7 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
               rows={8}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Veuillez expliquer la raison de cet ajustement..."
+              placeholder="Please explain the reason for this adjustment..."
             ></textarea>
           </div>
         </div>
@@ -120,7 +120,7 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
 
       <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
         <button type="button" className="btn btn-outline-secondary">
-          Annuler
+          Cancel
         </button>
         <button
           type="submit"
@@ -129,9 +129,7 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
           <i
             className={`icofont-${adjustmentType === 'STOCK_IN' ? 'plus' : 'minus'}-circle me-1`}
           ></i>
-          {adjustmentType === 'STOCK_IN'
-            ? 'Ajouter au stock'
-            : 'Retirer du stock'}
+          {adjustmentType === 'STOCK_IN' ? 'Add to Stock' : 'Remove from Stock'}
         </button>
       </div>
     </form>

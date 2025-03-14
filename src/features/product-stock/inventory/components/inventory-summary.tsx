@@ -7,9 +7,9 @@ type Prop = {
 
 const InventorySummary = ({ inventory }: Prop) => {
   const getBadgeClass = (value: number) => {
-    if (value === 0) return 'badge bg-danger'; // Rouge si épuisé
-    if (value < 5) return 'badge bg-warning text-dark'; // Jaune si faible
-    return 'badge bg-success'; // Vert sinon
+    if (value === 0) return 'badge bg-danger'; // Red if depleted
+    if (value < 5) return 'badge bg-warning text-dark'; // Yellow if low
+    return 'badge bg-success'; // Green otherwise
   };
 
   return (

@@ -5,7 +5,7 @@ import { Inventory } from '@/types/entity';
 interface RestockFormProps {
   inventory: Inventory;
 }
-// Formulaire de réapprovisionnement
+// Restock Form
 const RestockForm: React.FC<RestockFormProps> = ({ inventory }) => {
   const [quantity, setQuantity] = useState<number>(inventory.reorderQuantity);
   const [notes, setNotes] = useState<string>('');
@@ -19,7 +19,7 @@ const RestockForm: React.FC<RestockFormProps> = ({ inventory }) => {
       supplierOrder,
       notes,
     });
-    // Logique de soumission ici
+    // Submission logic here
   };
 
   return (
@@ -28,7 +28,7 @@ const RestockForm: React.FC<RestockFormProps> = ({ inventory }) => {
         <div className="col-md-6">
           <div className="mb-3">
             <label htmlFor="quantity" className="form-label fw-bold">
-              Quantité à réapprovisionner
+              Quantity to Restock
             </label>
             <input
               type="number"
@@ -39,13 +39,13 @@ const RestockForm: React.FC<RestockFormProps> = ({ inventory }) => {
               onChange={(e) => setQuantity(parseInt(e.target.value))}
             />
             <small className="text-muted">
-              Quantité recommandée: {inventory.reorderQuantity}
+              Recommended quantity: {inventory.reorderQuantity}
             </small>
           </div>
 
           <div className="mb-3">
             <label htmlFor="supplierOrder" className="form-label fw-bold">
-              N° Commande Fournisseur
+              Supplier Order #
             </label>
             <input
               type="text"
@@ -79,7 +79,7 @@ const RestockForm: React.FC<RestockFormProps> = ({ inventory }) => {
         </button>
         <button type="submit" className="btn btn-success">
           <i className="icofont-check-circled me-1"></i>
-          Confirm restock
+          Confirm Restock
         </button>
       </div>
     </form>
