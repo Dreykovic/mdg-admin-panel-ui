@@ -1,4 +1,4 @@
-import { FormikHelpers } from 'formik';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
@@ -6,70 +6,138 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';
 import { useCreateInventoryMutation } from '@/store/api/inventory';
 import { ApiResponse } from '@/types/api';
+import { Inventory } from '@/types/entity';
 
-export const useInventoryForm = (handleClose: () => void, sku: string) => {
+import { CreateInventoryPayload, Warehouse } from '../types';
+
+/**
+ * Hook personnalisé pour gérer le formulaire d'inventaire
+ * @param onSuccess Callback à appeler en cas de succès
+ * @param sku SKU du produit
+ * @returns Valeurs initiales, schéma de validation, gestionnaire de soumission et liste des entrepôts
+ */
+export const useInventoryForm = (onSuccess: () => void, sku: string) => {
+  const [createInventory, { isLoading }] = useCreateInventoryMutation();
+  const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  const [createInventory] = useCreateInventoryMutation();
+  useEffect(() => {
+    // Simuler le chargement des entrepôts depuis l'API
+    // Dans une implémentation réelle, vous devriez utiliser un hook RTK Query
+    setWarehouses([
+      { id: '1', name: 'Main Warehouse', location: 'Paris', isDefault: true },
+      {
+        id: '2',
+        name: 'Secondary Warehouse',
+        location: 'Lyon',
+        isDefault: false,
+      },
+    ]);
+  }, []);
 
-  // 🟢 Valeurs Initiales
-  const initialValues = {
-    sku: sku,
+  // Valeurs initiales du formulaire
+  const initialValues: CreateInventoryPayload = {
+    sku,
+    warehouseId: '',
     inventoryMetaData: {
       quantity: 0,
-      reorderThreshold: 0,
-      reorderQuantity: 0,
       availableQuantity: 0,
-      inStock: false,
-      backOrderable: false,
+      minimumQuantity: 0,
+      safetyStockLevel: 0,
+      reorderThreshold: 5,
+      reorderQuantity: 10,
+      leadTimeInDays: 7,
+      economicOrderQuantity: undefined,
+      unitCost: undefined,
+      valuationMethod: 'FIFO',
+      inStock: 'false',
+      backOrderable: 'false',
+      stockLocation: '',
+      notes: '',
     },
   };
 
-  // 🟠 Validation Yup
+  // Schéma de validation Yup
   const validationSchema = Yup.object({
-    sku: Yup.string().required('SKU is required.'),
+    warehouseId: Yup.string().required('Warehouse is required'),
     inventoryMetaData: Yup.object({
-      quantity: Yup.number().required('Quantity is required.').min(0),
-      reorderThreshold: Yup.number().required('Reorder threshold is required.'),
-      reorderQuantity: Yup.number().required('Reorder quantity is required.'),
-      availableQuantity: Yup.number().required(
-        'Available quantity is required.',
+      quantity: Yup.number()
+        .required('Quantity is required')
+        .min(0, 'Quantity cannot be negative'),
+      availableQuantity: Yup.number()
+        .nullable()
+        .min(0, 'Available quantity cannot be negative'),
+      minimumQuantity: Yup.number()
+        .nullable()
+        .min(0, 'Minimum quantity cannot be negative'),
+      safetyStockLevel: Yup.number()
+        .nullable()
+        .min(0, 'Safety stock level cannot be negative'),
+      reorderThreshold: Yup.number()
+        .required('Reorder threshold is required')
+        .min(0, 'Reorder threshold cannot be negative'),
+      reorderQuantity: Yup.number()
+        .required('Reorder quantity is required')
+        .min(1, 'Reorder quantity must be at least 1'),
+      economicOrderQuantity: Yup.number()
+        .nullable()
+        .min(0, 'Economic order quantity cannot be negative'),
+      leadTimeInDays: Yup.number()
+        .nullable()
+        .integer('Lead time must be a whole number')
+        .min(0, 'Lead time cannot be negative'),
+      unitCost: Yup.number().nullable().min(0, 'Unit cost cannot be negative'),
+      valuationMethod: Yup.string().oneOf(
+        ['FIFO', 'LIFO', 'WAC', 'FEFO'],
+        'Invalid valuation method',
       ),
-      inStock: Yup.boolean().required(),
-      backOrderable: Yup.boolean().required(),
+      inStock: Yup.boolean().required('In stock status is required'),
+      backOrderable: Yup.boolean().required(
+        'Back orderable status is required',
+      ),
+      stockLocation: Yup.string().nullable(),
+      notes: Yup.string()
+        .nullable()
+        .max(500, 'Notes cannot exceed 500 characters'),
     }),
   });
 
-  // 🔴 Gestion de la soumission
-  const handleSubmit = async (
-    values: typeof initialValues,
-    { setSubmitting }: FormikHelpers<typeof initialValues>,
-  ) => {
+  // Gestionnaire de soumission du formulaire
+  const handleSubmit = async (values: CreateInventoryPayload) => {
     try {
-      const response: ApiResponse<any> = await createInventory(values).unwrap();
+      // Normaliser les valeurs du formulaire
+      const normalizedValues = {
+        ...values,
+        inventoryMetaData: {
+          ...values.inventoryMetaData,
+          // Convertir les chaînes 'true'/'false' en booléens pour l'API
+          inStock: values.inventoryMetaData.inStock === 'true',
+          backOrderable: values.inventoryMetaData.backOrderable === 'true',
+        },
+      };
+
+      // Appeler l'API pour créer l'inventaire
+      const response: ApiResponse<Inventory> =
+        await createInventory(normalizedValues).unwrap();
 
       if (response.success) {
         dispatch(
           showAlert({
-            title: 'Success!',
+            title: 'Succuss !',
             message: `${response.message}`,
           }),
         );
-        handleClose();
-      } else {
-        throw new Error(response.message);
       }
+      onSuccess();
     } catch (error) {
-      dispatch(
-        showAlert({
-          title: 'Error!',
-          message: 'An error occurred: ' + (error as any).data?.error?.message,
-          success: false,
-        }),
-      );
-    } finally {
-      setSubmitting(false);
+      console.error('Failed to create inventory:', error);
     }
   };
 
-  return { initialValues, validationSchema, handleSubmit };
+  return {
+    initialValues,
+    validationSchema,
+    handleSubmit,
+    isLoading,
+    warehouses,
+  };
 };

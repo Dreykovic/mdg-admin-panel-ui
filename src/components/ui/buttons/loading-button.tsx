@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import Button from 'react-bootstrap/Button';
 
 import { VariantType } from '@/types/style';
@@ -11,6 +11,7 @@ interface ILoadingButtonProps {
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   classes?: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
+  icon?: ReactNode;
 }
 function LoadingButton({
   loadingText = 'Loading...',
@@ -20,6 +21,7 @@ function LoadingButton({
   variant = 'primary',
   classes,
   type = 'submit',
+  icon = undefined,
 }: ILoadingButtonProps) {
   return (
     <Button
@@ -29,6 +31,7 @@ function LoadingButton({
       disabled={isLoading}
       onClick={!isLoading ? handleClick : undefined}
     >
+      {icon ?? ''}
       {isLoading ? (
         <span
           className="spinner-border spinner-border-sm"
