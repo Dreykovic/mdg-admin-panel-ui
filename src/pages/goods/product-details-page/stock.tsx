@@ -3,8 +3,8 @@ import { useState } from 'react';
 import ErrorAlert from '@/components/ui/error-alert';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
-import InventoryManagement from '@/features/product-stock/inventory/components';
-import InventoryCreateForm from '@/features/product-stock/inventory/components/create-inventory-form';
+import InventoryManagement from '@/features/inventory/components';
+import InventoryCreateForm from '@/features/inventory/components/create-inventory-form';
 import { useGetInventoryQuery } from '@/store/api/inventory';
 import { Product } from '@/types/entity';
 

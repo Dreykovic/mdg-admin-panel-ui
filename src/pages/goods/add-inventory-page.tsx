@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useInventoryForm } from '@/features/product-stock/inventory/hooks/use-inventory-form';
+import { useInventoryForm } from '@/features/inventory/hooks/use-inventory-form';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/slice/page-slice';
