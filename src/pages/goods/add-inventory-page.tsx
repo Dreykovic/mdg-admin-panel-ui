@@ -17,16 +17,18 @@ const InventoryCreatePage = () => {
   }, [dispatch]);
 
   return (
-    <div className="row justify-content-center g-3">
-      <div className="col-lg-10 col-md-12">
-        <div className="d-flex justify-content-between align-items-center mb-4">
-          <div className="d-flex align-items-center">
-            <h2 className="mb-0">
-              Add Inventory for Product SKU: <Badge bg="info">{sku}</Badge>
-            </h2>
+    <div className="row clearfix g-3">
+      <div className="row justify-content-center g-3">
+        <div className="col-sm-12 col-md-12">
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <div className="d-flex align-items-center">
+              <h2 className="mb-0">
+                Add Inventory for Product SKU: <Badge bg="info">{sku}</Badge>
+              </h2>
+            </div>
           </div>
+          <InventoryCreateForm sku={sku as string} />
         </div>
-        <InventoryCreateForm sku={sku as string} />
       </div>
     </div>
   );

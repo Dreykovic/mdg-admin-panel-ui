@@ -82,18 +82,3 @@ export interface InventorySummary {
   outOfStock: number;
   totalValue: number;
 }
-
-/**
- * Interface pour les entrepôts
- */
-export interface Warehouse {
-  id: string;
-  name: string;
-  location?: string;
-  isDefault: boolean;
-}
-
-/**
- * Types d'onglets pour le formulaire d'inventaire
- */
-export type InventoryFormTab = 'quantities' | 'cost' | 'location' | 'overview';

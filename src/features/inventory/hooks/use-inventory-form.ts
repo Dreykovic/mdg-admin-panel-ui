@@ -6,9 +6,9 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';
 import { useCreateInventoryMutation } from '@/store/api/inventory';
 import { ApiResponse } from '@/types/api';
-import { Inventory } from '@/types/entity';
+import { Inventory, Warehouse } from '@/types/entity';
 
-import { CreateInventoryPayload, Warehouse } from '../types';
+import { CreateInventoryPayload } from '../types';
 
 /**
  * Hook personnalisé pour gérer le formulaire d'inventaire
