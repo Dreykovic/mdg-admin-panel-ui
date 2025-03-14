@@ -18,7 +18,7 @@ import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/slice/page-slice';
 
 import CostTab from './cost-tab';
-import LocationTab from './lovation-tab';
+import LocationTab from './location-tab';
 import OverviewTab from './overview-tab';
 import QuantitiesTab from './quantities-tab';
 
@@ -115,6 +115,7 @@ const InventoryCreateForm = ({ sku }: { sku: string }) => {
                     variant="primary"
                     classes="d-inline-flex align-items-center"
                     icon={<Save size={16} className="me-2" />}
+                    type="submit"
                   />
                 </div>
               </div>

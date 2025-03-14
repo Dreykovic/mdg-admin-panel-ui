@@ -15,11 +15,11 @@ export interface InventoryMetadata {
   // Champs de réapprovisionnement
   reorderThreshold: number;
   reorderQuantity: number;
-  economicOrderQuantity?: number;
+  economicOrderQuantity?: number | null;
   leadTimeInDays?: number;
 
   // Champs de coût et valorisation
-  unitCost?: number;
+  unitCost?: number | null;
   valuationMethod?: ValuationMethod;
 
   // Statuts
