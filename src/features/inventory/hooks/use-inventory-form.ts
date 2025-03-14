@@ -32,8 +32,6 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
       reorderQuantity: 10,
       leadTimeInDays: 7,
       economicOrderQuantity: 0,
-      unitCost: 0,
-      valuationMethod: 'FIFO',
       inStock: 'false',
       backOrderable: 'false',
       stockLocation: '',
@@ -43,7 +41,6 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
 
   // Schéma de validation Yup
   const validationSchema = Yup.object({
-    warehouseId: Yup.string().required('Warehouse is required'),
     inventoryMetaData: Yup.object({
       quantity: Yup.number()
         .required('Quantity is required')
@@ -70,11 +67,7 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
         .nullable()
         .integer('Lead time must be a whole number')
         .min(0, 'Lead time cannot be negative'),
-      unitCost: Yup.number().nullable().min(0, 'Unit cost cannot be negative'),
-      valuationMethod: Yup.string().oneOf(
-        ['FIFO', 'LIFO', 'WAC', 'FEFO'],
-        'Invalid valuation method',
-      ),
+
       inStock: Yup.boolean().required('In stock status is required'),
       backOrderable: Yup.boolean().required(
         'Back orderable status is required',

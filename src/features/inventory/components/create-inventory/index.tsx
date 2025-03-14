@@ -1,13 +1,7 @@
 import { Formik, Form } from 'formik';
 import { useEffect } from 'react';
 import { Card, Button, Tabs, Tab } from 'react-bootstrap';
-import {
-  Save,
-  XCircle,
-  Archive,
-  CurrencyDollar,
-  BoxSeam,
-} from 'react-bootstrap-icons';
+import { Save, XCircle, Archive, BoxSeam } from 'react-bootstrap-icons';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +11,6 @@ import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/slice/page-slice';
 
-import CostTab from './cost-tab';
 import LocationTab from './location-tab';
 import OverviewTab from './overview-tab';
 import QuantitiesTab from './quantities-tab';
@@ -62,18 +55,6 @@ const InventoryCreateForm = ({ sku }: { sku: string }) => {
                       }
                     >
                       <QuantitiesTab />
-                    </Tab>
-
-                    <Tab
-                      eventKey="cost"
-                      title={
-                        <span>
-                          <CurrencyDollar className="me-2" />
-                          Costs & Valuation
-                        </span>
-                      }
-                    >
-                      <CostTab values={values} />
                     </Tab>
 
                     <Tab

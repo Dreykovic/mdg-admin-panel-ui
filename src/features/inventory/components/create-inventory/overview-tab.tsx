@@ -1,16 +1,14 @@
-import { formatCurrency } from '@/utils/format';
-
 import { CreateInventoryPayload } from '../../types';
 
 const OverviewTab = ({ values }: { values: CreateInventoryPayload }) => {
   const {
     quantity = 0,
-    unitCost,
+
     availableQuantity,
     safetyStockLevel = 0,
     reorderThreshold = 0,
     leadTimeInDays = 0,
-    valuationMethod = 'FIFO',
+
     inStock,
     backOrderable,
   } = values.inventoryMetaData || {};
@@ -73,29 +71,6 @@ const OverviewTab = ({ values }: { values: CreateInventoryPayload }) => {
                 <div className="col-md-6">
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item bg-transparent d-flex justify-content-between px-0">
-                      <span className="fw-semibold">Unit Cost:</span>
-                      <span className="badge bg-dark">
-                        {typeof unitCost === 'number'
-                          ? formatCurrency(unitCost)
-                          : 'Not set'}
-                      </span>
-                    </li>
-
-                    <li className="list-group-item bg-transparent d-flex justify-content-between px-0">
-                      <span className="fw-semibold">Total Value:</span>
-                      <span className="badge bg-dark">
-                        {typeof unitCost === 'number' && quantity > 0
-                          ? formatCurrency(unitCost * quantity)
-                          : 'Not available'}
-                      </span>
-                    </li>
-
-                    <li className="list-group-item bg-transparent d-flex justify-content-between px-0">
-                      <span className="fw-semibold">Valuation Method:</span>
-                      <span className="text-primary">{valuationMethod}</span>
-                    </li>
-
-                    <li className="list-group-item bg-transparent d-flex justify-content-between px-0">
                       <span className="fw-semibold">Status:</span>
                       <span
                         className={isInStock ? 'text-success' : 'text-danger'}
@@ -139,16 +114,6 @@ const OverviewTab = ({ values }: { values: CreateInventoryPayload }) => {
                     )}
                   </div>
                 )}
-
-                {quantity > 0 &&
-                  typeof unitCost === 'number' &&
-                  unitCost > 0 && (
-                    <div className="alert alert-success mb-2">
-                      <strong>Ready:</strong> Initial stock of {quantity} units
-                      worth {formatCurrency(unitCost * quantity)} will be
-                      recorded.
-                    </div>
-                  )}
 
                 {!isInStock && isBackOrderable && (
                   <div className="alert alert-info mb-2">
