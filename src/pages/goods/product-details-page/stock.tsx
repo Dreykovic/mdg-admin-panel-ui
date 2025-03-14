@@ -3,11 +3,10 @@ import { useState } from 'react';
 import ErrorAlert from '@/components/ui/error-alert';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
-import ProductInventory from '@/features/product-stock/inventory/components';
-import InventoryCreateForm from '@/features/product-stock/inventory/components/create-inventory-form';
-import StockMovementTable from '@/features/product-stock/stock-mvt/components';
+import InventoryManagement from '@/features/inventory/components';
+import InventoryCreateForm from '@/features/inventory/components/create-inventory-form';
 import { useGetInventoryQuery } from '@/store/api/inventory';
-import { Inventory, Product } from '@/types/entity';
+import { Product } from '@/types/entity';
 
 type Props = {
   product: Product;
@@ -49,17 +48,10 @@ const ProductStockTabPane = ({ product }: Props) => {
     <>
       {inventory ? (
         <div className="container-fluid">
-          <div className="row g-4">
-            {/* Section Inventaire en haut */}
-            <div className="col-12">
-              <ProductInventory inventory={inventory as Inventory} />
-            </div>
-
-            {/* Section Mouvements de stock en dessous */}
-            <div className="col-12">
-              <StockMovementTable inventory={inventory as Inventory} />
-            </div>
-          </div>
+          <InventoryManagement
+            selectedProduct={product}
+            sampleInventory={inventory}
+          />
         </div>
       ) : (
         <>

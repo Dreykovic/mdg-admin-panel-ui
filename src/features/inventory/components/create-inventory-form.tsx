@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Modal, ModalProps } from 'react-bootstrap';
 
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useInventoryForm } from '@/features/product-stock/inventory/hooks/use-inventory-form';
+import { useInventoryForm } from '@/features/inventory/hooks/use-inventory-form';
 
 const InventoryCreateForm = ({
   show,
