@@ -35,7 +35,7 @@ const ProductPriceSettings = ({ product }: Props) => {
 
   return (
     <>
-      <div className="card shadow-sm border-0 mb-4">
+      <div className="card shadow  rounded-3 border-0 mb-4">
         <div className="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center">
           <h5 className="mb-0 fw-bold">
             <i className="icofont-price fs-5 me-2"></i>

@@ -9,7 +9,10 @@ type Props = {
 
 const ProductStateCard = ({ product }: Props) => {
   return (
-    <section className="card border-danger" aria-labelledby="danger-zone-title">
+    <section
+      className="card  shadow rounded-3 border-danger"
+      aria-labelledby="danger-zone-title"
+    >
       <div className="card-body">
         <h2 id="danger-zone-title" className="h6 fw-bold mb-3 text-danger">
           Danger Zone

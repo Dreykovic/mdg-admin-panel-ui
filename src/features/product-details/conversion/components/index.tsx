@@ -76,7 +76,7 @@ const ProductConversionCard = ({ product }: Props) => {
 
   return (
     <>
-      <div className="card shadow-sm border-0 mb-4">
+      <div className="card shadow rounded-3 border-0 mb-4">
         <div className="card-header bg-light d-flex justify-content-between align-items-center py-3">
           <div className="d-flex align-items-center">
             <div className="rounded-circle bg-primary p-2 me-3 text-white">
