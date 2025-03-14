@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
@@ -6,7 +5,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';
 import { useCreateInventoryMutation } from '@/store/api/inventory';
 import { ApiResponse } from '@/types/api';
-import { Inventory, Warehouse } from '@/types/entity';
+import { Inventory } from '@/types/entity';
 
 import { CreateInventoryPayload } from '../types';
 
@@ -18,21 +17,7 @@ import { CreateInventoryPayload } from '../types';
  */
 export const useInventoryForm = (onSuccess: () => void, sku: string) => {
   const [createInventory, { isLoading }] = useCreateInventoryMutation();
-  const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    // Simuler le chargement des entrepôts depuis l'API
-    // Dans une implémentation réelle, vous devriez utiliser un hook RTK Query
-    setWarehouses([
-      { id: '1', name: 'Main Warehouse', location: 'Paris', isDefault: true },
-      {
-        id: '2',
-        name: 'Secondary Warehouse',
-        location: 'Lyon',
-        isDefault: false,
-      },
-    ]);
-  }, []);
 
   // Valeurs initiales du formulaire
   const initialValues: CreateInventoryPayload = {
@@ -46,8 +31,8 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
       reorderThreshold: 5,
       reorderQuantity: 10,
       leadTimeInDays: 7,
-      economicOrderQuantity: undefined,
-      unitCost: undefined,
+      // economicOrderQuantity: null,
+      // unitCost: null,
       valuationMethod: 'FIFO',
       inStock: 'false',
       backOrderable: 'false',
@@ -138,6 +123,5 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
     validationSchema,
     handleSubmit,
     isLoading,
-    warehouses,
   };
 };

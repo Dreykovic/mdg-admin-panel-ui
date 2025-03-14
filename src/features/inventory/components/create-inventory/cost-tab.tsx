@@ -123,6 +123,35 @@ const CostTab = ({ values }: { values: CreateInventoryPayload }) => {
           )}
         </div>
       </div>
+      <div className="row mt-3">
+        <div className="col-12">
+          <div className="alert alert-info">
+            <strong>
+              <i className="icofont-info-circle me-2"></i>Valuation Info
+            </strong>
+            <p className="mb-0 mt-2 small">
+              Setting a unit cost allows the system to calculate inventory
+              value. The valuation method determines how costs are calculated
+              when stock is consumed.
+            </p>
+            <ul className="mb-0 mt-3 small">
+              <li>
+                <strong>FIFO</strong>: First items in are the first ones sold
+              </li>
+              <li>
+                <strong>LIFO</strong>: Most recently received items are sold
+                first
+              </li>
+              <li>
+                <strong>WAC</strong>: Uses average cost across all inventory
+              </li>
+              <li>
+                <strong>FEFO</strong>: Items expiring first are sold first
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -26,8 +26,10 @@ const InventoryCreateForm = ({ sku }: { sku: string }) => {
   const navigate = useNavigate();
   const handleClose = () => navigate(authRoutesConfig.products.path);
 
-  const { initialValues, validationSchema, handleSubmit, warehouses } =
-    useInventoryForm(handleClose, sku as string);
+  const { initialValues, validationSchema, handleSubmit } = useInventoryForm(
+    handleClose,
+    sku as string,
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -83,7 +85,7 @@ const InventoryCreateForm = ({ sku }: { sku: string }) => {
                         </span>
                       }
                     >
-                      <LocationTab warehouses={warehouses} />
+                      <LocationTab />
                     </Tab>
                   </Tabs>
                 </div>

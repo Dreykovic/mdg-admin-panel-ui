@@ -1,8 +1,6 @@
 import { ErrorMessage, Field } from 'formik';
 
-import { Warehouse } from '@/types/entity';
-
-const LocationTab = ({ warehouses }: { warehouses: Warehouse[] }) => {
+const LocationTab = () => {
   // Définition des champs par catégorie
 
   const booleanFields = [
@@ -46,28 +44,6 @@ const LocationTab = ({ warehouses }: { warehouses: Warehouse[] }) => {
             Storage Location
           </h5>
 
-          <div className="mb-3">
-            <label htmlFor="warehouseId" className="form-label fw-semibold">
-              Warehouse <span className="text-danger">*</span>
-            </label>
-            <Field name="warehouseId" as="select" className={`form-select`}>
-              <option value="">Select Warehouse</option>
-              {warehouses?.map((warehouse) => (
-                <option key={warehouse.id} value={warehouse.id}>
-                  {warehouse.name} {warehouse.isDefault && '(Default)'}
-                </option>
-              ))}
-            </Field>
-            <small className="text-muted d-block mt-1">
-              Where this inventory is stored
-            </small>
-            <ErrorMessage
-              name="warehouseId"
-              component="div"
-              className="invalid-feedback"
-            />
-          </div>
-
           {locationFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
@@ -80,6 +56,29 @@ const LocationTab = ({ warehouses }: { warehouses: Warehouse[] }) => {
               <Field
                 name={`inventoryMetaData.${field.name}`}
                 type="text"
+                className={`form-control`}
+              />
+              <small className="text-muted d-block mt-1">{field.hint}</small>
+              <ErrorMessage
+                name={`inventoryMetaData.${field.name}`}
+                component="div"
+                className="invalid-feedback"
+              />
+            </div>
+          ))}
+          {additionalFields.map((field) => (
+            <div className="mb-3" key={field.name}>
+              <label
+                htmlFor={`inventoryMetaData.${field.name}`}
+                className="form-label fw-semibold"
+              >
+                {field.label}{' '}
+                {field.required && <span className="text-danger">*</span>}
+              </label>
+              <Field
+                name={`inventoryMetaData.${field.name}`}
+                as="textarea"
+                rows="3"
                 className={`form-control`}
               />
               <small className="text-muted d-block mt-1">{field.hint}</small>
@@ -114,30 +113,6 @@ const LocationTab = ({ warehouses }: { warehouses: Warehouse[] }) => {
                 <option value="true">Yes</option>
                 <option value="false">No</option>
               </Field>
-              <small className="text-muted d-block mt-1">{field.hint}</small>
-              <ErrorMessage
-                name={`inventoryMetaData.${field.name}`}
-                component="div"
-                className="invalid-feedback"
-              />
-            </div>
-          ))}
-
-          {additionalFields.map((field) => (
-            <div className="mb-3" key={field.name}>
-              <label
-                htmlFor={`inventoryMetaData.${field.name}`}
-                className="form-label fw-semibold"
-              >
-                {field.label}{' '}
-                {field.required && <span className="text-danger">*</span>}
-              </label>
-              <Field
-                name={`inventoryMetaData.${field.name}`}
-                as="textarea"
-                rows="3"
-                className={`form-control`}
-              />
               <small className="text-muted d-block mt-1">{field.hint}</small>
               <ErrorMessage
                 name={`inventoryMetaData.${field.name}`}
