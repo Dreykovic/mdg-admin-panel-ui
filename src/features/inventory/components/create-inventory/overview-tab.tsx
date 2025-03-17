@@ -12,7 +12,8 @@ const OverviewTab = ({ values }: { values: InventoryMetadata }) => {
     backOrderable,
   } = values || {};
 
-  const isInStock = availableQuantity >= safetyStockLevel;
+  const isInStock =
+    availableQuantity >= safetyStockLevel && availableQuantity > 0;
   const isBackOrderable = backOrderable === 'true';
 
   return (

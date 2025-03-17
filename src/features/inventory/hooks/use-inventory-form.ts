@@ -79,7 +79,9 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
         inventoryMetaData: {
           ...values,
           // Convertir les chaînes 'true'/'false' en booléens pour l'API
-          inStock: values.availableQuantity >= values.safetyStockLevel,
+          inStock:
+            values.availableQuantity >= values.safetyStockLevel &&
+            values.availableQuantity > 0,
           backOrderable: values.backOrderable === 'true',
         },
       };
