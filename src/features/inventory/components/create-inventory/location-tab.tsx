@@ -5,12 +5,6 @@ const LocationTab = () => {
 
   const booleanFields = [
     {
-      name: 'inStock',
-      label: 'In Stock',
-      hint: 'Is this product currently in stock?',
-      required: true,
-    },
-    {
       name: 'backOrderable',
       label: 'Back Orderable',
       hint: 'Can customers order when out of stock?',
