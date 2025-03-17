@@ -85,7 +85,7 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
           backOrderable: values.backOrderable === 'true',
         },
       };
-
+      console.log('inventory Data : ', normalizedValues);
       // Appeler l'API pour créer l'inventaire
       const response: ApiResponse<Inventory> =
         await createInventory(normalizedValues).unwrap();
