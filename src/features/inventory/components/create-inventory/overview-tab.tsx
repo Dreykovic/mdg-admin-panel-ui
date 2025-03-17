@@ -1,6 +1,6 @@
-import { CreateInventoryPayload } from '../../types';
+import { InventoryMetadata } from '../../types';
 
-const OverviewTab = ({ values }: { values: CreateInventoryPayload }) => {
+const OverviewTab = ({ values }: { values: InventoryMetadata }) => {
   const {
     quantity = 0,
 
@@ -11,7 +11,7 @@ const OverviewTab = ({ values }: { values: CreateInventoryPayload }) => {
 
     inStock,
     backOrderable,
-  } = values.inventoryMetaData || {};
+  } = values || {};
 
   const isInStock = inStock === 'true';
   const isBackOrderable = backOrderable === 'true';

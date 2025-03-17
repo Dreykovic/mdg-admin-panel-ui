@@ -7,7 +7,7 @@ import { useCreateInventoryMutation } from '@/store/api/inventory';
 import { ApiResponse } from '@/types/api';
 import { Inventory } from '@/types/entity';
 
-import { CreateInventoryPayload } from '../types';
+import { InventoryMetadata } from '../types';
 
 /**
  * Hook personnalisé pour gérer le formulaire d'inventaire
@@ -20,76 +20,68 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
   const dispatch = useDispatch<AppDispatch>();
 
   // Valeurs initiales du formulaire
-  const initialValues: CreateInventoryPayload = {
-    sku,
-    warehouseId: '',
-    inventoryMetaData: {
-      quantity: 0,
-      availableQuantity: 0,
-      minimumQuantity: 0,
-      safetyStockLevel: 0,
-      reorderThreshold: 5,
-      reorderQuantity: 10,
-      leadTimeInDays: 7,
-      economicOrderQuantity: 0,
-      inStock: 'false',
-      backOrderable: 'false',
-      stockLocation: '',
-      notes: '',
-    },
+  const initialValues: InventoryMetadata = {
+    quantity: 0,
+    availableQuantity: 0,
+    minimumQuantity: 0,
+    safetyStockLevel: 0,
+    reorderThreshold: 5,
+    reorderQuantity: 10,
+    leadTimeInDays: 7,
+    economicOrderQuantity: 0,
+    inStock: 'false',
+    backOrderable: 'false',
+    stockLocation: '',
+    notes: '',
   };
 
   // Schéma de validation Yup
   const validationSchema = Yup.object({
-    inventoryMetaData: Yup.object({
-      quantity: Yup.number()
-        .required('Quantity is required')
-        .min(0, 'Quantity cannot be negative'),
-      availableQuantity: Yup.number()
-        .nullable()
-        .min(0, 'Available quantity cannot be negative'),
-      minimumQuantity: Yup.number()
-        .nullable()
-        .min(0, 'Minimum quantity cannot be negative'),
-      safetyStockLevel: Yup.number()
-        .nullable()
-        .min(0, 'Safety stock level cannot be negative'),
-      reorderThreshold: Yup.number()
-        .required('Reorder threshold is required')
-        .min(0, 'Reorder threshold cannot be negative'),
-      reorderQuantity: Yup.number()
-        .required('Reorder quantity is required')
-        .min(1, 'Reorder quantity must be at least 1'),
-      economicOrderQuantity: Yup.number()
-        .nullable()
-        .min(0, 'Economic order quantity cannot be negative'),
-      leadTimeInDays: Yup.number()
-        .nullable()
-        .integer('Lead time must be a whole number')
-        .min(0, 'Lead time cannot be negative'),
+    quantity: Yup.number()
+      .required('Quantity is required')
+      .min(0, 'Quantity cannot be negative'),
+    availableQuantity: Yup.number()
+      .nullable()
+      .min(0, 'Available quantity cannot be negative'),
+    minimumQuantity: Yup.number()
+      .nullable()
+      .min(0, 'Minimum quantity cannot be negative'),
+    safetyStockLevel: Yup.number()
+      .nullable()
+      .min(0, 'Safety stock level cannot be negative'),
+    reorderThreshold: Yup.number()
+      .required('Reorder threshold is required')
+      .min(0, 'Reorder threshold cannot be negative'),
+    reorderQuantity: Yup.number()
+      .required('Reorder quantity is required')
+      .min(1, 'Reorder quantity must be at least 1'),
+    economicOrderQuantity: Yup.number()
+      .nullable()
+      .min(0, 'Economic order quantity cannot be negative'),
+    leadTimeInDays: Yup.number()
+      .nullable()
+      .integer('Lead time must be a whole number')
+      .min(0, 'Lead time cannot be negative'),
 
-      inStock: Yup.boolean().required('In stock status is required'),
-      backOrderable: Yup.boolean().required(
-        'Back orderable status is required',
-      ),
-      stockLocation: Yup.string().nullable(),
-      notes: Yup.string()
-        .nullable()
-        .max(500, 'Notes cannot exceed 500 characters'),
-    }),
+    inStock: Yup.boolean().required('In stock status is required'),
+    backOrderable: Yup.boolean().required('Back orderable status is required'),
+    stockLocation: Yup.string().nullable(),
+    notes: Yup.string()
+      .nullable()
+      .max(500, 'Notes cannot exceed 500 characters'),
   });
 
   // Gestionnaire de soumission du formulaire
-  const handleSubmit = async (values: CreateInventoryPayload) => {
+  const handleSubmit = async (values: InventoryMetadata) => {
     try {
       // Normaliser les valeurs du formulaire
       const normalizedValues = {
-        ...values,
+        sku,
         inventoryMetaData: {
-          ...values.inventoryMetaData,
+          ...values,
           // Convertir les chaînes 'true'/'false' en booléens pour l'API
-          inStock: values.inventoryMetaData.inStock === 'true',
-          backOrderable: values.inventoryMetaData.backOrderable === 'true',
+          inStock: values.inStock === 'true',
+          backOrderable: values.backOrderable === 'true',
         },
       };
 
@@ -108,6 +100,15 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
       onSuccess();
     } catch (error) {
       console.error('Failed to create inventory:', error);
+      dispatch(
+        showAlert({
+          title: 'Error !',
+          message:
+            'An error occurred during the submission ' +
+            (error as any).data.error.message,
+          success: false,
+        }),
+      );
     }
   };
 

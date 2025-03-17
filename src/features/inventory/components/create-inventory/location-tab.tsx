@@ -47,45 +47,45 @@ const LocationTab = () => {
           {locationFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
-                htmlFor={`inventoryMetaData.${field.name}`}
+                htmlFor={`${field.name}`}
                 className="form-label fw-semibold"
               >
                 {field.label}{' '}
                 {field.required && <span className="text-danger">*</span>}
               </label>
               <Field
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 type="text"
                 className={`form-control`}
               />
               <small className="text-muted d-block mt-1">{field.hint}</small>
               <ErrorMessage
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 component="div"
-                className="invalid-feedback"
+                className="text-danger"
               />
             </div>
           ))}
           {additionalFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
-                htmlFor={`inventoryMetaData.${field.name}`}
+                htmlFor={`${field.name}`}
                 className="form-label fw-semibold"
               >
                 {field.label}{' '}
                 {field.required && <span className="text-danger">*</span>}
               </label>
               <Field
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 as="textarea"
                 rows="3"
                 className={`form-control`}
               />
               <small className="text-muted d-block mt-1">{field.hint}</small>
               <ErrorMessage
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 component="div"
-                className="invalid-feedback"
+                className="text-danger"
               />
             </div>
           ))}
@@ -99,14 +99,14 @@ const LocationTab = () => {
           {booleanFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
-                htmlFor={`inventoryMetaData.${field.name}`}
+                htmlFor={`${field.name}`}
                 className="form-label fw-semibold"
               >
                 {field.label}{' '}
                 {field.required && <span className="text-danger">*</span>}
               </label>
               <Field
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 as="select"
                 className={`form-select`}
               >
@@ -115,9 +115,9 @@ const LocationTab = () => {
               </Field>
               <small className="text-muted d-block mt-1">{field.hint}</small>
               <ErrorMessage
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 component="div"
-                className="invalid-feedback"
+                className="text-danger"
               />
             </div>
           ))}

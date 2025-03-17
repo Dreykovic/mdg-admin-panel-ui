@@ -77,14 +77,14 @@ const QuantitiesTab = () => {
           {quantityFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
-                htmlFor={`inventoryMetaData.${field.name}`}
+                htmlFor={`${field.name}`}
                 className="form-label fw-semibold"
               >
                 {field.label}{' '}
                 {field.required && <span className="text-danger">*</span>}
               </label>
               <Field
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 type="number"
                 min="0"
                 step="0.01"
@@ -92,9 +92,9 @@ const QuantitiesTab = () => {
               />
               <small className="text-muted d-block mt-1">{field.hint}</small>
               <ErrorMessage
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 component="div"
-                className="invalid-feedback"
+                className="text-danger"
               />
             </div>
           ))}
@@ -107,14 +107,14 @@ const QuantitiesTab = () => {
           {reorderFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
-                htmlFor={`inventoryMetaData.${field.name}`}
+                htmlFor={`${field.name}`}
                 className="form-label fw-semibold"
               >
                 {field.label}{' '}
                 {field.required && <span className="text-danger">*</span>}
               </label>
               <Field
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 type="number"
                 min="0"
                 step={field.name === 'leadTimeInDays' ? '1' : '0.01'}
@@ -122,9 +122,9 @@ const QuantitiesTab = () => {
               />
               <small className="text-muted d-block mt-1">{field.hint}</small>
               <ErrorMessage
-                name={`inventoryMetaData.${field.name}`}
+                name={`${field.name}`}
                 component="div"
-                className="invalid-feedback"
+                className="text-danger"
               />
             </div>
           ))}
