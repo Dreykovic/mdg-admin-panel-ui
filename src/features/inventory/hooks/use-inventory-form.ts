@@ -41,13 +41,13 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
       .required('Quantity is required')
       .min(0, 'Quantity cannot be negative'),
     availableQuantity: Yup.number()
-      .nullable()
+      .required('Available quantity is required')
       .min(0, 'Available quantity cannot be negative'),
     minimumQuantity: Yup.number()
       .nullable()
       .min(0, 'Minimum quantity cannot be negative'),
     safetyStockLevel: Yup.number()
-      .nullable()
+      .required('Safety stock level is required')
       .min(0, 'Safety stock level cannot be negative'),
     reorderThreshold: Yup.number()
       .required('Reorder threshold is required')
@@ -63,7 +63,6 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
       .integer('Lead time must be a whole number')
       .min(0, 'Lead time cannot be negative'),
 
-    inStock: Yup.boolean().required('In stock status is required'),
     backOrderable: Yup.boolean().required('Back orderable status is required'),
     stockLocation: Yup.string().nullable(),
     notes: Yup.string()
@@ -80,7 +79,9 @@ export const useInventoryForm = (onSuccess: () => void, sku: string) => {
         inventoryMetaData: {
           ...values,
           // Convertir les chaînes 'true'/'false' en booléens pour l'API
-          inStock: values.inStock === 'true',
+          inStock:
+            values.inStock ===
+            values.availableQuantity > values.safetyStockLevel,
           backOrderable: values.backOrderable === 'true',
         },
       };

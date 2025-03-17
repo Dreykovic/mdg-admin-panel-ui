@@ -6,10 +6,10 @@ import { ValuationMethod } from '@/types/entity';
 export interface InventoryMetadata {
   // Champs de quantité
   quantity: number;
-  availableQuantity?: number;
+  availableQuantity: number;
   minimumQuantity?: number;
   maximumQuantity?: number;
-  safetyStockLevel?: number;
+  safetyStockLevel: number;
   reservedQuantity?: number;
 
   // Champs de réapprovisionnement

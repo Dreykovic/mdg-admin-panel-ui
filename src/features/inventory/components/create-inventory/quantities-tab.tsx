@@ -24,7 +24,7 @@ const QuantitiesTab = () => {
       name: 'availableQuantity',
       label: 'Available Quantity',
       hint: 'Items ready for immediate sale or use',
-      required: false,
+      required: true,
     },
     {
       name: 'minimumQuantity',
@@ -35,8 +35,8 @@ const QuantitiesTab = () => {
     {
       name: 'safetyStockLevel',
       label: 'Safety Stock Level',
-      hint: 'Buffer stock to prevent stockouts',
-      required: false,
+      hint: 'Buffer stock to prevent stock outs',
+      required: true,
     },
   ];
 
