@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import ActionConfirmModal from '@/components/ui/action-confirm-modal';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useCreateInventory } from '@/features/inventory/hooks/use-create-inventory';
+import { useInventoryForm } from '@/features/inventory/hooks/use-create-inventory';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/slice/page-slice';
@@ -25,7 +25,7 @@ const InventoryCreateForm = ({ sku }: { sku: string }) => {
 
   const handleClose = () => navigate(authRoutesConfig.products.path);
 
-  const { initialValues, validationSchema, handleSubmit } = useCreateInventory(
+  const { initialValues, validationSchema, handleSubmit } = useInventoryForm(
     handleClose,
     sku,
   );

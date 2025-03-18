@@ -1,68 +1,44 @@
-import { Field, ErrorMessage } from 'formik';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { ErrorMessage, Field } from 'formik';
 
-import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/slice/page-slice';
-
-const QuantitiesTab = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(setPageName({ name: 'add-inventory', group: 'goods' }));
-  }, [dispatch]);
-
+const LocationTab = () => {
   // Définition des champs par catégorie
-  const quantityFields = [
+
+  const booleanFields = [
     {
-      name: 'minimumQuantity',
-      label: 'Minimum Quantity',
-      hint: 'Absolute minimum quantity to maintain',
-      required: false,
-    },
-    {
-      name: 'safetyStockLevel',
-      label: 'Safety Stock Level',
-      hint: 'Buffer stock to prevent stock outs',
+      name: 'backOrderable',
+      label: 'Back Orderable',
+      hint: 'Can customers order when out of stock?',
       required: true,
     },
   ];
 
-  const reorderFields = [
+  const locationFields = [
     {
-      name: 'reorderThreshold',
-      label: 'Reorder Threshold',
-      hint: 'Minimum quantity before reordering',
-      required: true,
-    },
-    {
-      name: 'reorderQuantity',
-      label: 'Reorder Quantity',
-      hint: 'How many to order when below threshold',
-      required: true,
-    },
-    {
-      name: 'leadTimeInDays',
-      label: 'Lead Time (Days)',
-      hint: 'Expected days between order and receipt',
-      required: false,
-    },
-    {
-      name: 'economicOrderQuantity',
-      label: 'Economic Order Quantity',
-      hint: 'Optimal order quantity based on costs',
+      name: 'stockLocation',
+      label: 'Stock Location',
+      hint: 'Specific location within warehouse (e.g., "Aisle 5, Bin 3")',
       required: false,
     },
   ];
 
+  const additionalFields = [
+    {
+      name: 'notes',
+      label: 'Notes',
+      hint: 'Additional information about this inventory',
+      required: false,
+      type: 'textarea',
+    },
+  ];
   return (
     <>
       <div className="row mt-3">
         <div className="col-md-6">
           <h5 className="mb-3 text-primary border-bottom pb-2">
-            Current Stock
+            Storage Location
           </h5>
-          {quantityFields.map((field) => (
+
+          {locationFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
                 htmlFor={`${field.name}`}
@@ -73,9 +49,30 @@ const QuantitiesTab = () => {
               </label>
               <Field
                 name={`${field.name}`}
-                type="number"
-                min="0"
-                step="0.01"
+                type="text"
+                className={`form-control`}
+              />
+              <small className="text-muted d-block mt-1">{field.hint}</small>
+              <ErrorMessage
+                name={`${field.name}`}
+                component="div"
+                className="text-danger"
+              />
+            </div>
+          ))}
+          {additionalFields.map((field) => (
+            <div className="mb-3" key={field.name}>
+              <label
+                htmlFor={`${field.name}`}
+                className="form-label fw-semibold"
+              >
+                {field.label}{' '}
+                {field.required && <span className="text-danger">*</span>}
+              </label>
+              <Field
+                name={`${field.name}`}
+                as="textarea"
+                rows="3"
                 className={`form-control`}
               />
               <small className="text-muted d-block mt-1">{field.hint}</small>
@@ -90,9 +87,10 @@ const QuantitiesTab = () => {
 
         <div className="col-md-6">
           <h5 className="mb-3 text-primary border-bottom pb-2">
-            Reorder Parameters
+            Status Settings
           </h5>
-          {reorderFields.map((field) => (
+
+          {booleanFields.map((field) => (
             <div className="mb-3" key={field.name}>
               <label
                 htmlFor={`${field.name}`}
@@ -103,11 +101,12 @@ const QuantitiesTab = () => {
               </label>
               <Field
                 name={`${field.name}`}
-                type="number"
-                min="0"
-                step={field.name === 'leadTimeInDays' ? '1' : '0.01'}
-                className={`form-control`}
-              />
+                as="select"
+                className={`form-select`}
+              >
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </Field>
               <small className="text-muted d-block mt-1">{field.hint}</small>
               <ErrorMessage
                 name={`${field.name}`}
@@ -122,4 +121,4 @@ const QuantitiesTab = () => {
   );
 };
 
-export default QuantitiesTab;
+export default LocationTab;

@@ -15,7 +15,7 @@ import { InventoryMetadata } from '../types';
  * @param sku SKU du produit
  * @returns Valeurs initiales, schéma de validation, gestionnaire de soumission et liste des entrepôts
  */
-export const useInventoryForm = (onSuccess: () => void, sku: string) => {
+export const useCreateInventory = (onSuccess: () => void, sku: string) => {
   const [createInventory, { isLoading }] = useCreateInventoryMutation();
   const dispatch = useDispatch<AppDispatch>();
 

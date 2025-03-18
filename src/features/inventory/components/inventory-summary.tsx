@@ -35,8 +35,11 @@ const InventorySummary = ({ inventory }: Prop) => {
           <div className="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h5 className="mb-0">📦 Inventory Information</h5>
             <span className="badge bg-light text-primary">
-              ID: {inventory.id.substring(0, 8)}...
+              ID: {inventory.id.substring(0, 16)}...
             </span>
+            <button className="btn btn-sm btn-light me-2">
+              <i className="icofont-edit me-1"></i>Edit
+            </button>
           </div>
           <div className="card-body">
             <div className="row">
