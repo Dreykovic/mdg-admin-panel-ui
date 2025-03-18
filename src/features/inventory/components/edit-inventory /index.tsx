@@ -7,31 +7,32 @@ import { useNavigate } from 'react-router-dom';
 
 import ActionConfirmModal from '@/components/ui/action-confirm-modal';
 import LoadingButton from '@/components/ui/buttons/loading-button';
-import { useInventoryForm } from '@/features/inventory/hooks/use-create-inventory';
-import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
 import { setPageName } from '@/store/slice/page-slice';
+import { Inventory } from '@/types/entity';
+
+import { useEditInventory } from '../../hooks/use-edit-inventory';
 
 import LocationTab from './location-tab';
 import OverviewTab from './overview-tab';
 import QuantitiesTab from './quantities-tab';
 
-const InventoryCreateForm = ({ sku }: { sku: string }) => {
+const InventoryEditForm = ({ inventory }: { inventory: Inventory }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formikRef = useRef<any>(null); // Ref pour accéder à Formik de l'extérieur
 
-  const handleClose = () => navigate(authRoutesConfig.products.path);
-
-  const { initialValues, validationSchema, handleSubmit } = useInventoryForm(
+  const handleClose = () =>
+    navigate(`/catalog/goods/products/details/${inventory.productId}`);
+  const { initialValues, validationSchema, handleSubmit } = useEditInventory(
     handleClose,
-    sku,
+    inventory,
   );
 
   useEffect(() => {
-    dispatch(setPageName({ name: 'add-inventory', group: 'goods' }));
+    dispatch(setPageName({ name: 'edit-inventory', group: 'goods' }));
   }, [dispatch]);
 
   // Handler déclenché après confirmation du modal
@@ -61,7 +62,7 @@ const InventoryCreateForm = ({ sku }: { sku: string }) => {
               <Form>
                 <div className="row flex-row-reverse">
                   <div className="col-sm-12 col-lg-5">
-                    <OverviewTab values={values} />
+                    <OverviewTab values={values} inventory={inventory} />
                   </div>
                   <div className="col-sm-12 col-lg-7">
                     <Tabs defaultActiveKey="quantities" className="mb-4">
@@ -145,4 +146,4 @@ const InventoryCreateForm = ({ sku }: { sku: string }) => {
   );
 };
 
-export default InventoryCreateForm;
+export default InventoryEditForm;

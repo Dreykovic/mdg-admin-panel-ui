@@ -1,4 +1,7 @@
-import { CreateInventoryPayload } from '@/features/inventory/types';
+import {
+  CreateInventoryPayload,
+  UpdateInventoryPayload,
+} from '@/features/inventory/types';
 import { ListResponse } from '@/types/api';
 import { Inventory } from '@/types/entity';
 
@@ -29,6 +32,17 @@ const inventoryApi = apiSlice.injectEndpoints({
           warehouseId: data.warehouseId,
           inventoryMetaData: data.inventoryMetaData,
         },
+      }),
+      invalidatesTags: ['INVENTORIES'],
+    }),
+    updateInventory: builder.mutation<
+      ListResponse<Inventory>,
+      { id: string; body: Partial<UpdateInventoryPayload> }
+    >({
+      query: ({ id, body }) => ({
+        url: `inventory/update/${id}`,
+        method: 'PUT',
+        body,
       }),
       invalidatesTags: ['INVENTORIES'],
     }),
@@ -113,4 +127,5 @@ export const {
   useGetStockMovementQuery,
   useGetRecentMovementsQuery,
   useProcessStockMovementMutation,
+  useUpdateInventoryMutation,
 } = inventoryApi;

@@ -3,11 +3,11 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';
-import { useCreateInventoryMutation } from '@/store/api/inventory';
-import { ApiResponse } from '@/types/api';
+import { useUpdateInventoryMutation } from '@/store/api/inventory';
+import { ListResponse } from '@/types/api';
 import { Inventory } from '@/types/entity';
 
-import { InventoryMetadata } from '../types';
+import { UpdateInventoryPayload } from '../types';
 
 /**
  * Hook personnalisé pour gérer le formulaire d'inventaire
@@ -15,34 +15,34 @@ import { InventoryMetadata } from '../types';
  * @param sku SKU du produit
  * @returns Valeurs initiales, schéma de validation, gestionnaire de soumission et liste des entrepôts
  */
-export const useEditInventory = (onSuccess: () => void, sku: string) => {
-  const [createInventory, { isLoading }] = useCreateInventoryMutation();
-  const dispatch = useDispatch<AppDispatch>();
-
-  // Valeurs initiales du formulaire
-  const initialValues: InventoryMetadata = {
-    quantity: 0,
-    availableQuantity: 0,
-    minimumQuantity: 0,
-    safetyStockLevel: 0,
-    reorderThreshold: 5,
-    reorderQuantity: 10,
-    leadTimeInDays: 7,
-    economicOrderQuantity: 0,
-    inStock: 'false',
-    backOrderable: 'false',
-    stockLocation: '',
-    notes: '',
+export const useEditInventory = (
+  onSuccess: () => void,
+  inventory: Inventory,
+) => {
+  const initialValues: Partial<UpdateInventoryPayload> = {
+    minimumQuantity: inventory.minimumQuantity,
+    maximumQuantity: inventory.maximumQuantity ?? undefined,
+    safetyStockLevel: inventory.safetyStockLevel,
+    reorderThreshold: inventory.reorderThreshold,
+    reorderQuantity: inventory.reorderQuantity,
+    economicOrderQuantity: inventory.economicOrderQuantity ?? undefined,
+    leadTimeInDays: inventory.leadTimeInDays ?? undefined,
+    unitCost: inventory.unitCost ?? undefined,
+    valuationMethod: inventory.valuationMethod,
+    inStock: inventory.inStock,
+    backOrderable: inventory.backOrderable,
+    stockLocation: inventory.stockLocation ?? '',
+    notes: inventory.notes ?? '',
+    lastStockCheck: inventory.lastStockCheck ?? undefined,
+    nextScheduledCheck: inventory.nextScheduledCheck ?? undefined,
+    lastReceivedDate: inventory.lastReceivedDate ?? undefined,
+    expiryDate: inventory.expiryDate ?? undefined,
   };
+  const [updateInventory, { isLoading }] = useUpdateInventoryMutation();
+  const dispatch = useDispatch<AppDispatch>();
 
   // Schéma de validation Yup
   const validationSchema = Yup.object({
-    quantity: Yup.number()
-      .required('Quantity is required')
-      .min(0, 'Quantity cannot be negative'),
-    availableQuantity: Yup.number()
-      .required('Available quantity is required')
-      .min(0, 'Available quantity cannot be negative'),
     minimumQuantity: Yup.number()
       .nullable()
       .min(0, 'Minimum quantity cannot be negative'),
@@ -71,24 +71,21 @@ export const useEditInventory = (onSuccess: () => void, sku: string) => {
   });
 
   // Gestionnaire de soumission du formulaire
-  const handleSubmit = async (values: InventoryMetadata) => {
+  const handleSubmit = async (values: UpdateInventoryPayload) => {
     try {
-      // Normaliser les valeurs du formulaire
-      const normalizedValues = {
-        sku,
-        inventoryMetaData: {
-          ...values,
-          // Convertir les chaînes 'true'/'false' en booléens pour l'API
-          inStock:
-            values.availableQuantity >= values.safetyStockLevel &&
-            values.availableQuantity > 0,
-          backOrderable: values.backOrderable === 'true',
-        },
-      };
-      console.log('inventory Data : ', normalizedValues);
-      // Appeler l'API pour créer l'inventaire
-      const response: ApiResponse<Inventory> =
-        await createInventory(normalizedValues).unwrap();
+      const filteredValues = { ...values };
+
+      // Nettoyage éventuel des champs vides ou inutiles
+      Object.keys(filteredValues).forEach((key) => {
+        if (filteredValues[key as keyof typeof filteredValues] === '') {
+          delete filteredValues[key as keyof typeof filteredValues];
+        }
+      });
+
+      const response: ListResponse<Inventory> = await updateInventory({
+        id: inventory.id,
+        body: filteredValues,
+      }).unwrap();
 
       if (response.success) {
         dispatch(

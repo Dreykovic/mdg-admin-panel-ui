@@ -82,3 +82,7 @@ export interface InventorySummary {
   outOfStock: number;
   totalValue: number;
 }
+
+export type UpdateInventoryPayload = Partial<
+  Omit<InventoryMetadata, 'quantity' | 'availableQuantity' | 'reservedQuantity'>
+>;

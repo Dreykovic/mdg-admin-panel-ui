@@ -1,10 +1,20 @@
-import { InventoryMetadata } from '../../types';
+import { Inventory } from '@/types/entity';
 
-const OverviewTab = ({ values }: { values: InventoryMetadata }) => {
+import { UpdateInventoryPayload } from '../../types';
+
+const OverviewTab = ({
+  values,
+  inventory,
+}: {
+  values: UpdateInventoryPayload;
+  inventory: Inventory;
+}) => {
   const {
     quantity = 0,
 
     availableQuantity,
+  } = inventory || {};
+  const {
     safetyStockLevel = 0,
     reorderThreshold = 0,
     leadTimeInDays = 0,
