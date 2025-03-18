@@ -15,18 +15,6 @@ const QuantitiesTab = () => {
   // Définition des champs par catégorie
   const quantityFields = [
     {
-      name: 'quantity',
-      label: 'Current Quantity',
-      hint: 'Total quantity of this item',
-      required: true,
-    },
-    {
-      name: 'availableQuantity',
-      label: 'Available Quantity',
-      hint: 'Items ready for immediate sale or use',
-      required: true,
-    },
-    {
       name: 'minimumQuantity',
       label: 'Minimum Quantity',
       hint: 'Absolute minimum quantity to maintain',

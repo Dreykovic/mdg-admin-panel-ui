@@ -1,9 +1,8 @@
 import { Formik, Form } from 'formik';
 import { useEffect, useRef, useState } from 'react';
-import { Card, Button, Tabs, Tab } from 'react-bootstrap';
+import { Button, Tabs, Tab, ModalProps, Modal } from 'react-bootstrap';
 import { Save, XCircle, Archive, BoxSeam } from 'react-bootstrap-icons';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import ActionConfirmModal from '@/components/ui/action-confirm-modal';
 import LoadingButton from '@/components/ui/buttons/loading-button';
@@ -17,15 +16,18 @@ import LocationTab from './location-tab';
 import OverviewTab from './overview-tab';
 import QuantitiesTab from './quantities-tab';
 
-const InventoryEditForm = ({ inventory }: { inventory: Inventory }) => {
-  const navigate = useNavigate();
+const InventoryEditForm = ({
+  show,
+  handleClose,
+  inventory,
+}: ModalProps & {
+  inventory: Inventory;
+}) => {
   const dispatch = useDispatch<AppDispatch>();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formikRef = useRef<any>(null); // Ref pour accéder à Formik de l'extérieur
 
-  const handleClose = () =>
-    navigate(`/catalog/goods/products/details/${inventory.productId}`);
   const { initialValues, validationSchema, handleSubmit } = useEditInventory(
     handleClose,
     inventory,
@@ -43,23 +45,34 @@ const InventoryEditForm = ({ inventory }: { inventory: Inventory }) => {
 
   return (
     <>
-      <Card className="shadow border-3">
-        <Card.Body>
-          <Formik
-            innerRef={formikRef}
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={async (values) => {
-              try {
-                setIsSubmitting(true);
-                await handleSubmit(values);
-              } finally {
-                setIsSubmitting(false);
-              }
-            }}
-          >
-            {({ values, resetForm }) => (
-              <Form>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        aria-labelledby="contained-modal-title-vcenter"
+        size="xl"
+        centered
+      >
+        <Formik
+          innerRef={formikRef}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={async (values) => {
+            try {
+              setIsSubmitting(true);
+              await handleSubmit(values);
+            } finally {
+              setIsSubmitting(false);
+            }
+          }}
+        >
+          {({ values, resetForm }) => (
+            <Form>
+              <Modal.Header closeButton>
+                <Modal.Title>{`Edit Inventory`}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
                 <div className="row flex-row-reverse">
                   <div className="col-sm-12 col-lg-5">
                     <OverviewTab values={values} inventory={inventory} />
@@ -92,7 +105,8 @@ const InventoryEditForm = ({ inventory }: { inventory: Inventory }) => {
                     </Tabs>
                   </div>
                 </div>
-
+              </Modal.Body>
+              <Modal.Footer>
                 <div className="d-flex justify-content-between border-top pt-4 mt-3">
                   <Button
                     variant="outline-secondary"
@@ -110,7 +124,7 @@ const InventoryEditForm = ({ inventory }: { inventory: Inventory }) => {
                       className="me-2"
                       onClick={handleClose}
                     >
-                      Skip
+                      Cancel and Close
                     </Button>
 
                     <LoadingButton
@@ -125,11 +139,11 @@ const InventoryEditForm = ({ inventory }: { inventory: Inventory }) => {
                     />
                   </div>
                 </div>
-              </Form>
-            )}
-          </Formik>
-        </Card.Body>
-      </Card>
+              </Modal.Footer>
+            </Form>
+          )}
+        </Formik>
+      </Modal>
 
       {/* Confirmation Modal */}
       <ActionConfirmModal
@@ -137,8 +151,8 @@ const InventoryEditForm = ({ inventory }: { inventory: Inventory }) => {
         handleClose={() => setShowConfirmModal(false)}
         confirmHandler={handleConfirmSubmit}
         isLoading={isSubmitting}
-        title="Confirm Inventory Submission"
-        message="Are you sure you want to submit this inventory data?"
+        title="Confirm Inventory Edit Submission"
+        message="Are you sure you want to submit this inventory updates?"
         confirmText="Yes, Submit"
         cancelText="No, Cancel"
       />
