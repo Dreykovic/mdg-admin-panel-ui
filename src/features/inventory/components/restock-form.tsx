@@ -6,14 +6,22 @@ import LoadingButton from '@/components/ui/buttons/loading-button';
 import { Inventory } from '@/types/entity';
 
 import { useRestock } from '../hooks/use-restock';
+import { StockMovementData } from '../types';
 
 interface RestockFormProps {
   inventory: Inventory;
 }
 // Restock Form
 const RestockForm: React.FC<RestockFormProps> = ({ inventory }) => {
-  const { validationSchema, handleSubmit, initialValues } =
-    useRestock(inventory);
+  const initialValues: StockMovementData = {
+    inventoryId: inventory.id,
+    quantity: 0,
+    documentNumber: '',
+    notes: '',
+    productId: inventory.productId,
+    movementType: 'INCOMING',
+  };
+  const { validationSchema, handleSubmit } = useRestock();
   const formikRef = useRef<any>(null); // Ref pour accéder à Formik de l'extérieur
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
