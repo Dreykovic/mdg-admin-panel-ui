@@ -5,7 +5,7 @@ import ActionConfirmModal from '@/components/ui/action-confirm-modal';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { Inventory } from '@/types/entity';
 
-import { useRestock } from '../hooks/use-restock';
+import { useStockAdjustment } from '../hooks/use-stock-adjustment';
 import { StockMovementData } from '../types';
 
 interface RestockFormProps {
@@ -21,7 +21,7 @@ const RestockForm: React.FC<RestockFormProps> = ({ inventory }) => {
     productId: inventory.productId,
     movementType: 'INCOMING',
   };
-  const { validationSchema, handleSubmit } = useRestock();
+  const { validationSchema, handleSubmit } = useStockAdjustment();
   const formikRef = useRef<any>(null); // Ref pour accéder à Formik de l'extérieur
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
