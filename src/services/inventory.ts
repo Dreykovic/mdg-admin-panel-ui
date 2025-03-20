@@ -16,7 +16,7 @@ const inventoryApi = apiSlice.injectEndpoints({
           const { productId } = args;
 
           return {
-            url: `inventory/get/${productId}`,
+            url: `stock/inventory/get/${productId}`,
           };
         },
         providesTags: ['INVENTORIES'],
@@ -25,7 +25,7 @@ const inventoryApi = apiSlice.injectEndpoints({
 
     createInventory: builder.mutation({
       query: (data: CreateInventoryPayload) => ({
-        url: 'inventory/create',
+        url: 'stock/inventory/create',
         method: 'POST',
         body: {
           sku: data.sku,
@@ -40,7 +40,7 @@ const inventoryApi = apiSlice.injectEndpoints({
       { id: string; body: Partial<UpdateInventoryPayload> }
     >({
       query: ({ id, body }) => ({
-        url: `inventory/update/${id}`,
+        url: `stock/inventory/update/${id}`,
         method: 'PUT',
         body,
       }),
@@ -49,7 +49,7 @@ const inventoryApi = apiSlice.injectEndpoints({
 
     getInventorySummary: builder.query<any, void>({
       query: () => ({
-        url: 'inventory/summary',
+        url: 'stock/inventory/summary',
       }),
       providesTags: ['INVENTORIES'],
     }),
@@ -59,58 +59,13 @@ const inventoryApi = apiSlice.injectEndpoints({
       { inventoryId: string; quantity: number }
     >({
       query: (data) => ({
-        url: `inventory/${data.inventoryId}/quantity`,
+        url: `stock/inventory/${data.inventoryId}/quantity`,
         method: 'PATCH',
         body: {
           quantity: data.quantity,
         },
       }),
       invalidatesTags: ['INVENTORIES'],
-    }),
-
-    createStockMovement: builder.mutation<{ movement: any }, any>({
-      query: (data) => ({
-        url: 'inventory/movement',
-        method: 'POST',
-        body: data,
-      }),
-      invalidatesTags: ['INVENTORIES'],
-    }),
-
-    getStockMovement: builder.query<any, string>({
-      query: (movementId) => ({
-        url: `inventory/movement/${movementId}`,
-      }),
-      providesTags: (result, error, movementId) => [
-        { type: 'INVENTORIES', id: `MOVEMENT-${movementId}` },
-      ],
-    }),
-
-    getRecentMovements: builder.query<any, number | void>({
-      query: (limit = 10) => ({
-        url: `inventory/movements/recent?limit=${limit}`,
-      }),
-      providesTags: ['INVENTORIES'],
-    }),
-
-    processStockMovement: builder.mutation<
-      { result: any },
-      {
-        movementId: string;
-        action: 'approve' | 'start' | 'complete' | 'cancel';
-      }
-    >({
-      query: (data) => ({
-        url: `inventory/movement/${data.movementId}/process`,
-        method: 'POST',
-        body: {
-          action: data.action,
-        },
-      }),
-      invalidatesTags: (result, error, { movementId }) => [
-        'INVENTORIES',
-        { type: 'INVENTORIES', id: `MOVEMENT-${movementId}` },
-      ],
     }),
   }),
   overrideExisting: false,
@@ -123,9 +78,6 @@ export const {
   useCreateInventoryMutation,
   useGetInventorySummaryQuery,
   useUpdateInventoryQuantityMutation,
-  useCreateStockMovementMutation,
-  useGetStockMovementQuery,
-  useGetRecentMovementsQuery,
-  useProcessStockMovementMutation,
+
   useUpdateInventoryMutation,
 } = inventoryApi;

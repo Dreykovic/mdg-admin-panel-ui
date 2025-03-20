@@ -2,8 +2,8 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
-import { AppDispatch } from '@/store';
 import { useCreateInventoryMutation } from '@/services/inventory';
+import { AppDispatch } from '@/store';
 import { ApiResponse } from '@/types/api';
 import { Inventory } from '@/types/entity';
 

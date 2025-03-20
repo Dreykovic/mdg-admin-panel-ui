@@ -110,7 +110,7 @@ export interface StockMovementData {
   scheduledAt?: Date;
   sourceWarehouseId?: string;
   destinationWarehouseId?: string;
-  createdById: string;
+  createdById?: string;
   approvedById?: string;
   referenceType?: string; // Legacy support
   referenceId?: string; // Legacy support or document reference

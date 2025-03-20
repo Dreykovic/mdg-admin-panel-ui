@@ -11,9 +11,7 @@ export type MovementType =
   | 'OUTGOING'
   | 'TRANSFER'
   | 'ADJUSTMENT'
-  | 'RETURN'
-  | 'STOCK_IN'
-  | 'STOCK_OUT';
+  | 'RETURN';
 
 export type MovementReason =
   | 'PURCHASE'
@@ -29,7 +27,6 @@ export type MovementReason =
   | 'ORDER'
   | 'PURCHASE_ORDER'
   | 'INVENTORY'
-  | 'DAMAGE'
   | 'OTHER';
 
 export type MovementStatus =
@@ -250,8 +247,8 @@ export interface Inventory {
   stockLocation: string | null;
   notes: string | null;
   turnoverRate: number | null;
-  productId: string | null;
-  product?: Product | null;
+  productId: string;
+  product?: Product;
   warehouseId: string;
   warehouse?: Warehouse;
   stockMovements?: StockMovement[];
