@@ -1,4 +1,9 @@
-import { ValuationMethod } from '@/types/entity';
+import {
+  MovementReason,
+  MovementStatus,
+  MovementType,
+  ValuationMethod,
+} from '@/types/entity';
 
 /**
  * Interface pour les métadonnées d'inventaire
@@ -86,3 +91,27 @@ export interface InventorySummary {
 export type UpdateInventoryPayload = Partial<
   Omit<InventoryMetadata, 'quantity' | 'availableQuantity' | 'reservedQuantity'>
 >;
+
+export interface StockMovementData {
+  inventoryId: string;
+  productId: string;
+  quantity: number;
+  unitCost?: number;
+  movementType: MovementType;
+  reason?: MovementReason;
+  status?: MovementStatus;
+  notes?: string;
+  lotNumber?: string;
+  expiryDate?: Date;
+  batchId?: string;
+  isAdjustment?: boolean;
+  documentNumber?: string;
+  metadata?: Record<string, any>;
+  scheduledAt?: Date;
+  sourceWarehouseId?: string;
+  destinationWarehouseId?: string;
+  createdById: string;
+  approvedById?: string;
+  referenceType?: string; // Legacy support
+  referenceId?: string; // Legacy support or document reference
+}
