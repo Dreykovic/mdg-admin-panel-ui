@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
-import { useDeleteProductMutation } from '@/store/api/product';
+import { useDeleteProductMutation } from '@/services/product';
 
 /**
  * Custom hook to handle product deletion with optimized error handling

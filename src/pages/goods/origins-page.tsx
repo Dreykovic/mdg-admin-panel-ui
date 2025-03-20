@@ -10,8 +10,8 @@ import SearchInput from '@/components/ui/pagination/search-input';
 import OriginCreateForm from '@/features/origins/components/origin-create-form';
 import OriginList from '@/features/origins/components/origin-list';
 import { AppDispatch } from '@/store';
-import { useGetSomeOriginsQuery } from '@/store/api';
-import { setPageName } from '@/store/slice/page-slice';
+import { useGetSomeOriginsQuery } from '@/services';
+import { setPageName } from '@/store/page-slice';
 
 const OriginsPage = () => {
   const dispatch = useDispatch<AppDispatch>();

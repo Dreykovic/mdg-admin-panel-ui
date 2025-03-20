@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/slice/page-slice';
+import { setPageName } from '@/store/page-slice';
 
 const QuantitiesTab = () => {
   const dispatch = useDispatch<AppDispatch>();

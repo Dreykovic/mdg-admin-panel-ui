@@ -14,7 +14,7 @@ import LoadingFallback from '@/components/ui/loading-fallback';
 import Layout from '@/layouts';
 import { authRoutesConfig, guestRoutesConfig } from '@/router/config';
 import { AppDispatch, RootState } from '@/store';
-import { setTheme } from '@/store/slice/theme-slice';
+import { setTheme } from '@/store/theme-slice';
 
 // Wrapper component that handles auth state changes
 const AuthStateHandler: React.FC<{ isAuthenticated: boolean }> = ({

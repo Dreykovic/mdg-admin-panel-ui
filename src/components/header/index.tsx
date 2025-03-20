@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { makeGlobalLogout } from '@/features/auth/store/slice';
 import { AppDispatch, RootState } from '@/store';
-import { useSignOutMutation } from '@/store/api/auth';
+import { useSignOutMutation } from '@/services/auth';
 import authUtil from '@/utils/auth-utils';
 
 import { closeSidebar, openSidebar } from '../sidebar/sidebar-slice';

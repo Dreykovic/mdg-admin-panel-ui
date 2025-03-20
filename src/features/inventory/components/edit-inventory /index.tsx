@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import ActionConfirmModal from '@/components/ui/action-confirm-modal';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/slice/page-slice';
+import { setPageName } from '@/store/page-slice';
 import { Inventory } from '@/types/entity';
 
 import { useEditInventory } from '../../hooks/use-edit-inventory';

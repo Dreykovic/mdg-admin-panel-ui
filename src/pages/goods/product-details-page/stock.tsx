@@ -4,7 +4,7 @@ import ErrorAlert from '@/components/ui/error-alert';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import InventoryManagement from '@/features/inventory/components';
-import { useGetInventoryQuery } from '@/store/api/inventory';
+import { useGetInventoryQuery } from '@/services/inventory';
 import { Product } from '@/types/entity';
 
 type Props = {

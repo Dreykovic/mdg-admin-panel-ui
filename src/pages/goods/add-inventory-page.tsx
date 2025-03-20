@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import InventoryCreateForm from '@/features/inventory/components/create-inventory';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/slice/page-slice';
+import { setPageName } from '@/store/page-slice';
 
 const InventoryCreatePage = () => {
   const { sku } = useParams();

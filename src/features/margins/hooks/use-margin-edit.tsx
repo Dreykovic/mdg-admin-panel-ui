@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';
-import { useEditMarginMutation } from '@/store/api/margin-level';
+import { useEditMarginMutation } from '@/services/margin-level';
 import { ApiResponse } from '@/types/api';
 import { MarginLevel } from '@/types/entity';
 

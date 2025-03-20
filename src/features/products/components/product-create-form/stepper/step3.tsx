@@ -5,9 +5,9 @@ import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 import CategoryCreateForm from '@/features/categories/components/category-create-form';
 import OriginCreateForm from '@/features/origins/components/origin-create-form';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
-import { useGetCategoriesListQuery } from '@/store/api/category';
-import { useGetOriginsListQuery } from '@/store/api/origin';
-import { useGetSuppliersListQuery } from '@/store/api/supplier';
+import { useGetCategoriesListQuery } from '@/services/category';
+import { useGetOriginsListQuery } from '@/services/origin';
+import { useGetSuppliersListQuery } from '@/services/supplier';
 
 const Step3 = () => {
   const [showCreateSupplierModal, setShowCreateSupplierModal] = useState(false);

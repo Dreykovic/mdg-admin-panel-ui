@@ -10,7 +10,7 @@ import LoadingButton from '@/components/ui/buttons/loading-button';
 import { useCreateInventory } from '@/features/inventory/hooks/use-create-inventory';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/slice/page-slice';
+import { setPageName } from '@/store/page-slice';
 
 import LocationTab from './location-tab';
 import OverviewTab from './overview-tab';

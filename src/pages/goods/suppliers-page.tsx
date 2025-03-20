@@ -10,8 +10,8 @@ import SearchInput from '@/components/ui/pagination/search-input';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
 import SuppliersTable from '@/features/suppliers/components/suppliers-table';
 import { AppDispatch } from '@/store';
-import { useGetSomeSuppliersQuery } from '@/store/api';
-import { setPageName } from '@/store/slice/page-slice';
+import { useGetSomeSuppliersQuery } from '@/services';
+import { setPageName } from '@/store/page-slice';
 
 const SuppliersPage = () => {
   const dispatch = useDispatch<AppDispatch>();

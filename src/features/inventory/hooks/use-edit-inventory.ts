@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { AppDispatch } from '@/store';
-import { useUpdateInventoryMutation } from '@/store/api/inventory';
+import { useUpdateInventoryMutation } from '@/services/inventory';
 import { ListResponse } from '@/types/api';
 import { Inventory } from '@/types/entity';
 

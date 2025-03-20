@@ -6,9 +6,9 @@ import authReducer from '@/features/auth/store/slice';
 
 import alertReducer from '../components/ui/alerts/alert-slice';
 
-import { apiSlice } from './api';
-import pageReducer from './slice/page-slice';
-import themeReducer from './slice/theme-slice';
+import { apiSlice } from '../services';
+import pageReducer from './page-slice';
+import themeReducer from './theme-slice';
 
 const combinedReducer = {
   auth: authReducer,

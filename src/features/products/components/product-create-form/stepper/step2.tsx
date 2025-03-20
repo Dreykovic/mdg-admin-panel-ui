@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 import MarginCreateForm from '@/features/margins/components/margin-create-form';
-import { useGetMarginsListQuery } from '@/store/api/margin-level';
+import { useGetMarginsListQuery } from '@/services/margin-level';
 
 const Step2 = () => {
   const [showCreateMarginModal, setShowCreateMarginModal] = useState(false);

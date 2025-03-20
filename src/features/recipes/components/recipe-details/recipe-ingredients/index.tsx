@@ -9,7 +9,7 @@ import { AppDispatch } from '@/store';
 import {
   useDeleteIngredientMutation,
   useGetIngredientsQuery,
-} from '@/store/api/ingredient';
+} from '@/services/ingredient';
 import { Ingredient } from '@/types/entity';
 
 import IngredientCreateForm from './add-ingredient';
