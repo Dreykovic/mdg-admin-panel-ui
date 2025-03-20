@@ -8,7 +8,7 @@ interface AdjustmentFormProps {
 // Adjustment Form
 const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
   const [adjustmentType, setAdjustmentType] =
-    useState<MovementType>('STOCK_IN');
+    useState<MovementType>('INCOMING');
   const [quantity, setQuantity] = useState<number>(1);
   const [reason, setReason] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
@@ -43,12 +43,12 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
                 type="radio"
                 className="btn-check"
                 name="adjustmentType"
-                id="stockIn"
-                value="STOCK_IN"
-                checked={adjustmentType === 'STOCK_IN'}
-                onChange={() => setAdjustmentType('STOCK_IN')}
+                id="incoming"
+                value="INCOMING"
+                checked={adjustmentType === 'INCOMING'}
+                onChange={() => setAdjustmentType('INCOMING')}
               />
-              <label className="btn btn-outline-success" htmlFor="stockIn">
+              <label className="btn btn-outline-success" htmlFor="incoming">
                 <i className="icofont-plus-circle me-1"></i>Input
               </label>
 
@@ -56,12 +56,12 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
                 type="radio"
                 className="btn-check"
                 name="adjustmentType"
-                id="stockOut"
-                value="STOCK_OUT"
-                checked={adjustmentType === 'STOCK_OUT'}
-                onChange={() => setAdjustmentType('STOCK_OUT')}
+                id="outgoing"
+                value="OUTGOING"
+                checked={adjustmentType === 'OUTGOING'}
+                onChange={() => setAdjustmentType('OUTGOING')}
               />
-              <label className="btn btn-outline-danger" htmlFor="stockOut">
+              <label className="btn btn-outline-danger" htmlFor="outgoing">
                 <i className="icofont-minus-circle me-1"></i>Output
               </label>
             </div>
@@ -124,12 +124,12 @@ const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
         </button>
         <button
           type="submit"
-          className={`btn ${adjustmentType === 'STOCK_IN' ? 'btn-success' : 'btn-danger'}`}
+          className={`btn ${adjustmentType === 'INCOMING' ? 'btn-success' : 'btn-danger'}`}
         >
           <i
-            className={`icofont-${adjustmentType === 'STOCK_IN' ? 'plus' : 'minus'}-circle me-1`}
+            className={`icofont-${adjustmentType === 'INCOMING' ? 'plus' : 'minus'}-circle me-1`}
           ></i>
-          {adjustmentType === 'STOCK_IN' ? 'Add to Stock' : 'Remove from Stock'}
+          {adjustmentType === 'INCOMING' ? 'Add to Stock' : 'Remove from Stock'}
         </button>
       </div>
     </form>
