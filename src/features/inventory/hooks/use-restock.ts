@@ -10,7 +10,7 @@ import { Inventory, StockMovement } from '@/types/entity';
 
 import { StockMovementData } from '../types';
 
-export const useRestock = (handleClose: () => void, inventory: Inventory) => {
+export const useRestock = (inventory: Inventory) => {
   const dispatch = useDispatch<AppDispatch>();
   const [createStockMvt] = useCreateStockMovementMutation();
 
@@ -28,7 +28,14 @@ export const useRestock = (handleClose: () => void, inventory: Inventory) => {
       .nullable()
       .max(500, 'Notes cannot exceed 500 characters'),
   });
-
+  const initialValues: StockMovementData = {
+    inventoryId: inventory.id,
+    quantity: 0,
+    documentNumber: '',
+    notes: '',
+    productId: inventory.productId,
+    movementType: 'INCOMING',
+  };
   const handleSubmit = async (
     values: StockMovementData,
     { setSubmitting }: FormikHelpers<StockMovementData>,
@@ -36,12 +43,7 @@ export const useRestock = (handleClose: () => void, inventory: Inventory) => {
     try {
       if (values) {
         const data: StockMovementData = {
-          quantity: values.quantity,
-          documentNumber: values.documentNumber,
-          notes: values.notes,
-          inventoryId: inventory.id,
-          productId: inventory.productId,
-          movementType: 'INCOMING',
+          ...values,
         };
 
         const response: ListResponse<StockMovement> =
@@ -55,8 +57,6 @@ export const useRestock = (handleClose: () => void, inventory: Inventory) => {
             }),
           );
         }
-
-        handleClose();
       } else {
         throw new Error('No Data Provided');
       }
@@ -79,5 +79,6 @@ export const useRestock = (handleClose: () => void, inventory: Inventory) => {
   return {
     validationSchema,
     handleSubmit,
+    initialValues,
   };
 };
