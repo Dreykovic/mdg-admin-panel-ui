@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
-import { AppDispatch } from '@/store';
 import { useDeleteMarginMutation } from '@/services/margin-level';
+import { AppDispatch } from '@/store';
 import { MarginLevel } from '@/types/entity';
 
 export const useMargins = () => {
