@@ -1,4 +1,3 @@
-import { FormikHelpers } from 'formik';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
@@ -36,10 +35,7 @@ export const useRestock = (inventory: Inventory) => {
     productId: inventory.productId,
     movementType: 'INCOMING',
   };
-  const handleSubmit = async (
-    values: StockMovementData,
-    { setSubmitting }: FormikHelpers<StockMovementData>,
-  ) => {
+  const handleSubmit = async (values: StockMovementData) => {
     try {
       if (values) {
         const data: StockMovementData = {
@@ -71,8 +67,6 @@ export const useRestock = (inventory: Inventory) => {
           success: false,
         }),
       );
-    } finally {
-      setSubmitting(false);
     }
   };
 
