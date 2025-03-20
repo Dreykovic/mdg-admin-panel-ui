@@ -6,7 +6,7 @@ import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import { AppDispatch } from '@/store';
-import { useDeleteStepMutation, useGetStepsQuery } from '@/store/api/step';
+import { useDeleteStepMutation, useGetStepsQuery } from '@/services/step';
 import { Step } from '@/types/entity';
 
 import StepCreateForm from './add-step';

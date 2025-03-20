@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import WelcomImg from '@/assets/images/welcome/no-data.svg';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/slice/page-slice';
+import { setPageName } from '@/store/page-slice';
 
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();

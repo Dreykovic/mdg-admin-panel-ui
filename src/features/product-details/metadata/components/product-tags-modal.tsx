@@ -7,7 +7,7 @@ import {
   useAddProductTagLinkMutation,
   useRemoveProductTagLinkMutation,
   useCreateProductTagMutation,
-} from '@/store/api/product-tag';
+} from '@/services/product-tag';
 import { Product, ProductTag, ProductTagLink } from '@/types/entity';
 
 import TagBadge from './tag-badge';

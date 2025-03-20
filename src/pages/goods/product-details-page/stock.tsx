@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import ErrorAlert from '@/components/ui/error-alert';
 import CardLoading from '@/components/ui/loading/card-loading';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import InventoryManagement from '@/features/inventory/components';
-import InventoryCreateForm from '@/features/inventory/components/create-inventory-form';
-import { useGetInventoryQuery } from '@/store/api/inventory';
+import { useGetInventoryQuery } from '@/services/inventory';
 import { Product } from '@/types/entity';
 
 type Props = {
@@ -13,14 +12,6 @@ type Props = {
 };
 
 const ProductStockTabPane = ({ product }: Props) => {
-  const [showCreateInventoryModal, setShowCreateInventoryModal] =
-    useState(false);
-
-  const handleCreateInventoryModalClose = () =>
-    setShowCreateInventoryModal(false);
-  const handleCreateInventoryModalShow = () =>
-    setShowCreateInventoryModal(true);
-
   const {
     data: response,
     isFetching,
@@ -59,22 +50,16 @@ const ProductStockTabPane = ({ product }: Props) => {
             text={`Inventory Not Present For the product *${product.name}*`}
           />
           <div className="d-flex align-items-center justify-content-center">
-            <button
+            <Link
+              to={`/catalog/goods/products/add-inventory/${product.sku}`}
               type="button"
               className="btn btn-dark w-sm-100"
-              onClick={handleCreateInventoryModalShow}
             >
-              <i className="icofont-plus-circle me-2 fs-6"></i>Create Inventory
-            </button>
+              <i className="icofont-plus-circle me-2 fs-6"></i>Add Product
+            </Link>
           </div>
         </>
       )}
-
-      <InventoryCreateForm
-        show={showCreateInventoryModal}
-        handleClose={handleCreateInventoryModalClose}
-        sku={product.sku}
-      />
     </>
   );
 };

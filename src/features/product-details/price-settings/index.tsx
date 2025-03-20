@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Product } from '@/types/entity';
+import { formatCurrency } from '@/utils/format';
 
 import ProductPriceSettingsEditForm from './edit';
 import ProductPriceMargin from './margin';
@@ -20,12 +21,6 @@ const ProductPriceSettings = ({ product }: Props) => {
 
   const handleUpdateProductPriceSettingsModalShow = () =>
     setShowUpdateProductPriceSettingsModal(true);
-
-  // Format currency display
-  const formatCurrency = (value: number | null) => {
-    if (value === null) return '$0.00';
-    return `$${value.toFixed(2)}`;
-  };
 
   // Calculate profit margins
   const wholeProfitMargin =

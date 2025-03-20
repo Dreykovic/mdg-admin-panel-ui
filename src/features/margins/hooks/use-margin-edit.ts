@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
 import { showAlert } from '@/components/ui/alerts/alert-slice';
+import { useEditMarginMutation } from '@/services/margin-level';
 import { AppDispatch } from '@/store';
-import { useEditMarginMutation } from '@/store/api/margin-level';
 import { ApiResponse } from '@/types/api';
 import { MarginLevel } from '@/types/entity';
 

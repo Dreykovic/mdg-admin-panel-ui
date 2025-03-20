@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 
 import ErrorAlert from '@/components/ui/error-alert';
-import { useGetUniqueProductTagLinksQuery } from '@/store/api/product-tag';
+import { useGetUniqueProductTagLinksQuery } from '@/services/product-tag';
 import { Product, ProductTag } from '@/types/entity';
 
 import ProductTagsModal from './product-tags-modal';

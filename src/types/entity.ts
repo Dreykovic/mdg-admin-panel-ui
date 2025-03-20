@@ -6,17 +6,37 @@ export type TokenStatus = 'ACTIVE' | 'REVOKED';
 
 export type VisibilityType = 'DRAFT' | 'VISIBLE' | 'HIDDEN' | 'ARCHIVED';
 
-export type MovementType = 'STOCK_IN' | 'STOCK_OUT';
+export type MovementType =
+  | 'INCOMING'
+  | 'OUTGOING'
+  | 'TRANSFER'
+  | 'ADJUSTMENT'
+  | 'RETURN';
 
-export type ReferenceType =
+export type MovementReason =
+  | 'PURCHASE'
+  | 'SALE'
+  | 'TRANSFER'
+  | 'ADJUSTMENT_INVENTORY'
+  | 'ADJUSTMENT_DAMAGE'
+  | 'ADJUSTMENT_EXPIRY'
+  | 'RETURN_FROM_CUSTOMER'
+  | 'RETURN_TO_SUPPLIER'
+  | 'PRODUCTION'
+  | 'CONSUMPTION'
   | 'ORDER'
   | 'PURCHASE_ORDER'
-  | 'ADJUSTMENT'
-  | 'TRANSFER'
-  | 'RETURN'
-  | 'DAMAGE'
-  | 'OTHER'
-  | 'INVENTORY';
+  | 'INVENTORY'
+  | 'OTHER';
+
+export type MovementStatus =
+  | 'DRAFT'
+  | 'PLANNED'
+  | 'IN_PROGRESS'
+  | 'COMPLETED'
+  | 'CANCELLED';
+
+export type ValuationMethod = 'FIFO' | 'LIFO' | 'WAC' | 'FEFO';
 
 export type UOMType = 'WEIGHT' | 'VOLUME' | 'OTHER';
 
@@ -33,7 +53,9 @@ export interface User {
   recipes?: Recipe[];
   createdAt: Date;
   updatedAt: Date;
-  stockMovements?: StockMovement[];
+  createdStockMovements?: StockMovement[];
+  approvedStockMovements?: StockMovement[];
+  executedStockMovements?: StockMovement[];
 }
 
 export interface TokenFamily {
@@ -178,6 +200,7 @@ export interface Product {
   productTagLinks?: ProductTagLink[];
   inventory?: Inventory | null;
   images?: ProductImage[];
+  stockMovements?: StockMovement[];
   origin?: Origin;
   category?: ProductCategory;
   supplier?: Supplier;
@@ -204,14 +227,28 @@ export interface Inventory {
   quantity: number;
   availableQuantity: number;
   reservedQuantity: number;
+  minimumQuantity: number;
+  maximumQuantity: number | null;
+  safetyStockLevel: number;
+  economicOrderQuantity: number | null;
+  unitCost: number | null;
+  totalValue: number | null;
+  valuationMethod: ValuationMethod;
   reorderThreshold: number;
   reorderQuantity: number;
+  leadTimeInDays: number | null;
   inStock: boolean;
   backOrderable: boolean;
+  isActive: boolean;
   lastStockCheck: Date | null;
   nextScheduledCheck: Date | null;
-  productId: string | null;
-  product?: Product | null;
+  lastReceivedDate: Date | null;
+  expiryDate: Date | null;
+  stockLocation: string | null;
+  notes: string | null;
+  turnoverRate: number | null;
+  productId: string;
+  product?: Product;
   warehouseId: string;
   warehouse?: Warehouse;
   stockMovements?: StockMovement[];
@@ -223,20 +260,57 @@ export interface Warehouse {
   location: string | null;
   isDefault: boolean;
   inventories?: Inventory[];
+  address: string | null;
+  city: string | null;
+  postalCode: string | null;
+  country: string | null;
+  capacity: number | null;
+  isActive: boolean;
+  sourceMovements?: StockMovement[];
+  destinationMovements?: StockMovement[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface StockMovement {
   id: string;
+  reference: string;
   quantity: number;
-  type: MovementType;
+  unitCost: number | null;
+  totalValue: number | null;
+  movementType: MovementType;
+  reason: MovementReason;
+  status: MovementStatus;
+  lotNumber: string | null;
+  expiryDate: Date | null;
+  batchId: string | null;
+  isAdjustment: boolean;
+  documentNumber: string | null;
   notes: string | null;
-  referenceType: ReferenceType;
-  referenceId: string | null;
+  metadata: JsonValue | null;
+  createdAt: Date;
+  updatedAt: Date;
+  scheduledAt: Date | null;
+  executedAt: Date | null;
+  deletedAt: Date | null;
+  version: number;
   inventoryId: string;
   inventory?: Inventory;
-  userId: string | null;
-  user?: User | null;
-  createdAt: Date;
+  productId: string;
+  product?: Product;
+  sourceWarehouseId: string | null;
+  sourceWarehouse?: Warehouse | null;
+  destinationWarehouseId: string | null;
+  destinationWarehouse?: Warehouse | null;
+  createdById: string;
+  createdBy?: User;
+  approvedById: string | null;
+  approvedBy?: User | null;
+  executedById: string | null;
+  executedBy?: User | null;
+  parentMovementId: string | null;
+  parentMovement?: StockMovement | null;
+  childMovements?: StockMovement[];
 }
 
 export interface RecipeCategory {
@@ -320,3 +394,11 @@ export interface VolumeConversion {
   createdAt: Date;
   updatedAt: Date;
 }
+
+type JsonValue =
+  | string
+  | number
+  | boolean
+  | { [key in string]?: JsonValue }
+  | Array<JsonValue>
+  | null;

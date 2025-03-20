@@ -11,8 +11,8 @@ import ProductStats from '@/features/products/components/product-stats';
 import ProductTable from '@/features/products/components/products-table';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
-import { useGetSomeProductsQuery } from '@/store/api';
-import { setPageName } from '@/store/slice/page-slice';
+import { useGetSomeProductsQuery } from '@/services';
+import { setPageName } from '@/store/page-slice';
 
 const ProductsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -46,7 +46,7 @@ const ProductsPage = () => {
   useEffect(() => {
     dispatch(setPageName({ name: 'product-list', group: 'goods' }));
   }, [dispatch]);
-  console.log(someProducts);
+
   return (
     <>
       <ProductStats />

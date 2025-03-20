@@ -5,7 +5,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoCardData from '@/components/ui/no-data/no-card-data';
 import { AppDispatch } from '@/store';
-import { useDeleteCategoryMutation } from '@/store/api/category';
+import { useDeleteCategoryMutation } from '@/services/category';
 import { ProductCategory } from '@/types/entity';
 
 import CategoryCard from './category-card';

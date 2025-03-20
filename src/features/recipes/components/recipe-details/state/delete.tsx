@@ -6,7 +6,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { authRoutesConfig } from '@/router/config';
 import { AppDispatch } from '@/store';
-import { useDeleteRecipeMutation } from '@/store/api/recipe';
+import { useDeleteRecipeMutation } from '@/services/recipe';
 import { Recipe } from '@/types/entity';
 
 type Props = {

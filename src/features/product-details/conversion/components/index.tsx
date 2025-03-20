@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import { AppDispatch } from '@/store';
-import { useDeleteProductConversionSettingMutation } from '@/store/api/product';
+import { useDeleteProductConversionSettingMutation } from '@/services/product';
 import { Product } from '@/types/entity';
 
 import ProductSettingCreateForm from './create';

@@ -9,8 +9,8 @@ import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import OriginCreateForm from '@/features/origins/components/origin-create-form';
 import { AppDispatch } from '@/store';
-import { useGetOriginsListQuery } from '@/store/api/origin';
-import { useEditProductMutation } from '@/store/api/product';
+import { useGetOriginsListQuery } from '@/services/origin';
+import { useEditProductMutation } from '@/services/product';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 

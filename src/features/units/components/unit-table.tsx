@@ -5,7 +5,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import DeletionConfirmModal from '@/components/ui/deletion-confirm-modal';
 import NoTableData from '@/components/ui/no-data/no-table-data';
 import { AppDispatch } from '@/store';
-import { useDeleteUnitMutation } from '@/store/api/unit-of-measure';
+import { useDeleteUnitMutation } from '@/services/unit-of-measure';
 import { UnitOfMeasure } from '@/types/entity';
 
 import UnitEditForm from './unit-edit-form';

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { RootState } from '@/store';
-import { usePrefetch } from '@/store/api';
+import { usePrefetch } from '@/services';
 
 import { ISideBarLink } from './sidebar-content';
 

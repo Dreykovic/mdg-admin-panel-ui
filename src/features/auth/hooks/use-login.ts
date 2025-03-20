@@ -8,7 +8,7 @@ import { showAlert } from '@/components/ui/alerts/alert-slice';
 import { makeGlobalLogin } from '@/features/auth/store/slice';
 import { AuthResponse } from '@/features/auth/types';
 import { AppDispatch } from '@/store';
-import { useSignInMutation } from '@/store/api/auth';
+import { useSignInMutation } from '@/services/auth';
 import { ApiResponse } from '@/types/api';
 
 export interface LoginFormValues {

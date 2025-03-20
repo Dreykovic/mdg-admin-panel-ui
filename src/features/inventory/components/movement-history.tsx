@@ -2,9 +2,9 @@ import React from 'react';
 
 import {
   MovementType,
-  ReferenceType,
   Inventory,
   StockMovement,
+  MovementReason,
 } from '@/types/entity';
 
 interface MovementHistoryProps {
@@ -17,40 +17,80 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
   const movements: StockMovement[] = inventory.stockMovements ?? [];
   const getTypeIcon = (type: MovementType): string => {
     switch (type) {
-      case 'STOCK_IN':
-        return 'icofont-arrow-up text-success';
-      case 'STOCK_OUT':
-        return 'icofont-arrow-down text-danger';
+      case 'INCOMING':
+        return 'icofont-arrow-up ';
+
+      case 'OUTGOING':
+        return 'icofont-arrow-down ';
+
+      case 'TRANSFER':
+        return 'icofont-exchange ';
+
+      case 'ADJUSTMENT':
+        return 'icofont-adjust ';
+
+      case 'RETURN':
+        return 'icofont-reply ';
+
       default:
-        return 'icofont-question text-secondary';
+        return 'icofont-question text-muted';
     }
   };
 
   const getTypeBadge = (type: MovementType): string => {
     switch (type) {
-      case 'STOCK_IN':
+      case 'INCOMING':
         return 'badge bg-success';
-      case 'STOCK_OUT':
+
+      case 'OUTGOING':
         return 'badge bg-danger';
-      default:
+
+      case 'TRANSFER':
+        return 'badge bg-info';
+
+      case 'ADJUSTMENT':
+        return 'badge bg-warning text-dark';
+
+      case 'RETURN':
         return 'badge bg-secondary';
+
+      default:
+        return 'badge bg-light text-dark';
     }
   };
 
-  const getReferenceTypeBadge = (refType: ReferenceType): string => {
+  const getReferenceTypeBadge = (refType: MovementReason): string => {
     switch (refType) {
-      case 'ORDER':
-        return 'badge bg-info';
+      case 'PURCHASE':
       case 'PURCHASE_ORDER':
         return 'badge bg-primary';
-      case 'ADJUSTMENT':
-        return 'badge bg-warning text-dark';
-      case 'DAMAGE':
-        return 'badge bg-danger';
-      case 'RETURN':
+
+      case 'SALE':
+      case 'ORDER':
+        return 'badge bg-info';
+
+      case 'TRANSFER':
         return 'badge bg-secondary';
-      default:
+
+      case 'ADJUSTMENT_INVENTORY':
+      case 'ADJUSTMENT_DAMAGE':
+      case 'ADJUSTMENT_EXPIRY':
+        return 'badge bg-warning text-dark';
+
+      case 'RETURN_FROM_CUSTOMER':
+      case 'RETURN_TO_SUPPLIER':
+        return 'badge bg-success';
+
+      case 'PRODUCTION':
+      case 'CONSUMPTION':
+        return 'badge bg-dark';
+
+      case 'INVENTORY':
         return 'badge bg-light text-dark';
+
+      case 'OTHER':
+      default:
+        return 'badge bg-secondary text-light';
     }
   };
 
@@ -67,10 +107,10 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h5 className="mb-0">Movement History</h5>
         <div>
-          <button className="btn btn-sm btn-outline-primary me-2">
+          <button className="btn btn-sm btn-outline-primary me-2" disabled>
             <i className="icofont-filter me-1"></i>Filter
           </button>
-          <button className="btn btn-sm btn-outline-secondary">
+          <button className="btn btn-sm btn-outline-secondary" disabled>
             <i className="icofont-download me-1"></i>Export
           </button>
         </div>
@@ -92,26 +132,39 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
             {movements.map((movement) => (
               <tr key={movement.id}>
                 <td>{formatDate(movement.createdAt)}</td>
+
                 <td>
-                  <span className={getTypeBadge(movement.type)}>
-                    <i className={`${getTypeIcon(movement.type)} me-1`}></i>
-                    {movement.type === 'STOCK_IN' ? 'Input' : 'Output'}
+                  <span className={getTypeBadge(movement.movementType)}>
+                    <i
+                      className={`${getTypeIcon(movement.movementType)} me-1`}
+                    ></i>
+                    {movement.movementType === 'INCOMING' ? 'Input' : 'Output'}
                   </span>
                 </td>
+
                 <td className="fw-bold">{movement.quantity}</td>
+
                 <td>
-                  <span
-                    className={getReferenceTypeBadge(movement.referenceType)}
-                  >
-                    {movement.referenceType}
+                  <span className={getReferenceTypeBadge(movement.reason)}>
+                    {movement.reason}
                   </span>
                 </td>
-                <td>{movement.notes}</td>
+
+                <td>{movement.notes || 'N/A'}</td>
+
                 <td>
-                  <button className="btn btn-sm btn-outline-info me-1">
+                  <button
+                    className="btn btn-sm btn-outline-info me-1"
+                    title="View"
+                    disabled
+                  >
                     <i className="icofont-eye"></i>
                   </button>
-                  <button className="btn btn-sm btn-outline-secondary">
+                  <button
+                    className="btn btn-sm btn-outline-secondary"
+                    title="Print"
+                    disabled
+                  >
                     <i className="icofont-print"></i>
                   </button>
                 </td>

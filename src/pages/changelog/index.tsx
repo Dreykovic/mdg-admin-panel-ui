@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import ChangelogImg from '@/assets/images/change-log.webp';
 import { AppDispatch } from '@/store';
-import { setPageName } from '@/store/slice/page-slice';
+import { setPageName } from '@/store/page-slice';
 
 import ChangelogUpdates from './update';
 const Changelog = () => {

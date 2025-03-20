@@ -9,8 +9,8 @@ import DynamicAddBtn from '@/components/ui/buttons/dynamic-add-button';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import SupplierCreateForm from '@/features/suppliers/components/supplier-create-form';
 import { AppDispatch } from '@/store';
-import { useEditProductMutation } from '@/store/api/product';
-import { useGetSuppliersListQuery } from '@/store/api/supplier';
+import { useEditProductMutation } from '@/services/product';
+import { useGetSuppliersListQuery } from '@/services/supplier';
 import { ApiResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 

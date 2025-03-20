@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
-import { useCreateProductMutation } from '@/store/api/product';
+import { useCreateProductMutation } from '@/services/product';
 import { ListResponse } from '@/types/api';
 import { Product } from '@/types/entity';
 
@@ -44,7 +44,6 @@ const AddProduct = () => {
       if (data) {
         const response: ListResponse<Product> =
           await createProduct(data).unwrap();
-        console.log(response);
 
         if (response.success) {
           dispatch(

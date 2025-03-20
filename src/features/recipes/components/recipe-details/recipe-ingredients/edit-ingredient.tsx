@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 import { showAlert } from '@/components/ui/alerts/alert-slice';
 import LoadingButton from '@/components/ui/buttons/loading-button';
 import { AppDispatch } from '@/store';
-import { useCreateIngredientMutation } from '@/store/api/ingredient';
-import { useGetProductsListQuery } from '@/store/api/product';
-import { useGetUnitsListQuery } from '@/store/api/unit-of-measure';
+import { useCreateIngredientMutation } from '@/services/ingredient';
+import { useGetProductsListQuery } from '@/services/product';
+import { useGetUnitsListQuery } from '@/services/unit-of-measure';
 import { ApiResponse } from '@/types/api';
 import { Ingredient } from '@/types/entity';
 
