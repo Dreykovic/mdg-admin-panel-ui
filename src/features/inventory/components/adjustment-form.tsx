@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 
 import { MovementType, Inventory } from '@/types/entity';
+import { StockMovementData } from '../types';
 interface AdjustmentFormProps {
   inventory: Inventory;
 }
 
 // Adjustment Form
 const AdjustmentForm: React.FC<AdjustmentFormProps> = ({ inventory }) => {
+  const initialValues: StockMovementData = {
+    inventoryId: inventory.id,
+    quantity: 0,
+    documentNumber: '',
+    notes: '',
+    productId: inventory.productId,
+    movementType: 'INCOMING',
+  };
   const [adjustmentType, setAdjustmentType] =
     useState<MovementType>('INCOMING');
   const [quantity, setQuantity] = useState<number>(1);
