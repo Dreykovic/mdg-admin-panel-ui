@@ -18,11 +18,9 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
   const getTypeIcon = (type: MovementType): string => {
     switch (type) {
       case 'INCOMING':
-      case 'STOCK_IN':
         return 'icofont-arrow-up ';
 
       case 'OUTGOING':
-      case 'STOCK_OUT':
         return 'icofont-arrow-down ';
 
       case 'TRANSFER':
@@ -42,11 +40,9 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
   const getTypeBadge = (type: MovementType): string => {
     switch (type) {
       case 'INCOMING':
-      case 'STOCK_IN':
         return 'badge bg-success';
 
       case 'OUTGOING':
-      case 'STOCK_OUT':
         return 'badge bg-danger';
 
       case 'TRANSFER':
@@ -85,9 +81,6 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
       case 'RETURN_TO_SUPPLIER':
         return 'badge bg-success';
 
-      case 'DAMAGE':
-        return 'badge bg-danger';
-
       case 'PRODUCTION':
       case 'CONSUMPTION':
         return 'badge bg-dark';
@@ -114,10 +107,10 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h5 className="mb-0">Movement History</h5>
         <div>
-          <button className="btn btn-sm btn-outline-primary me-2">
+          <button className="btn btn-sm btn-outline-primary me-2" disabled>
             <i className="icofont-filter me-1"></i>Filter
           </button>
-          <button className="btn btn-sm btn-outline-secondary">
+          <button className="btn btn-sm btn-outline-secondary" disabled>
             <i className="icofont-download me-1"></i>Export
           </button>
         </div>
@@ -145,10 +138,7 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
                     <i
                       className={`${getTypeIcon(movement.movementType)} me-1`}
                     ></i>
-                    {movement.movementType === 'STOCK_IN' ||
-                    movement.movementType === 'INCOMING'
-                      ? 'Input'
-                      : 'Output'}
+                    {movement.movementType === 'INCOMING' ? 'Input' : 'Output'}
                   </span>
                 </td>
 
@@ -166,12 +156,14 @@ const MovementHistory: React.FC<MovementHistoryProps> = ({ inventory }) => {
                   <button
                     className="btn btn-sm btn-outline-info me-1"
                     title="View"
+                    disabled
                   >
                     <i className="icofont-eye"></i>
                   </button>
                   <button
                     className="btn btn-sm btn-outline-secondary"
                     title="Print"
+                    disabled
                   >
                     <i className="icofont-print"></i>
                   </button>
